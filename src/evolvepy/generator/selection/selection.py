@@ -1,5 +1,4 @@
 import numpy as np
-from numpy.lib.function_base import select
 from numpy.typing import ArrayLike
 from numpy.random import choice
 import numba
