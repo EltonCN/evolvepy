@@ -44,7 +44,7 @@ def tournament(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 
 	return selected
 
-#@numba.njit
+@numba.njit
 def roulette(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 	'''Select the best individuals stocaticaly with the probability of beign chosen
 	equivalent to the individual fitness.
@@ -86,3 +86,7 @@ def rank(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 tournament.needs_sort = False
 roulette.needs_sort = True
 rank.needs_sort = True
+
+
+def default_selection():
+	return tournament
