@@ -6,6 +6,32 @@ from evolvepy.generator.crossover import default_crossover
 from evolvepy.generator.selection.selection import default_selection
 
 class Generation:
+    """
+    Store the data from a generation of the experiment.
+
+    :ivar names: Names of the chromossomes
+    :type names: numpy.ndarray of strings
+    
+    :ivar mutation_op: Mutation operators
+    :type mutation_op: list of functions
+
+    :ivar mutation_params: Mutation parameters
+    :type mutation_params: list of dicts
+
+    :ivar crossover_op: Crossover operators
+    :type crossover_op: list of functions
+
+    :ivar crossover_params: Crossover parameters
+    :type crossover_params: list of dicts
+
+    :ivar selection_op: Selection operator
+    :type selection_op: function
+
+    :ivar dtype: individual's dtype
+    :type dtype: numpy.dtype
+
+    """
+
     def __init__(self, chromossome_sizes:ArrayLike, n_chromossome:int=1, types:list=[np.float32], names:list=[]):
         dtype = []
 
@@ -37,6 +63,9 @@ class Generation:
 
             self.mutation_params.append({"existence_rate":1.0, "gene_rate": 0.0, "range": (0.0, 1.0)})
             self.crossover_params.append({})
+
+
+        self.names = np.asarray(self.names)
 
         self.dtype = np.dtype(dtype)
         self.population = None
