@@ -1,1 +1,1 @@
-from crossover import mean, one_point, n_point, default_crossover
+from .crossover import mean, one_point, n_point, default_crossover

@@ -1,1 +1,1 @@
-from selection import tournament, roulette, rank, default_selection
+from .selection import tournament, roulette, rank, default_selection
