@@ -30,21 +30,25 @@ class Layer(ABC):
     def dynamic_parameters(self):
         return self._dynamic_parameters
 
-    def __call__(self, arg:ArrayLike) -> np.ndarray:        
-        population = np.asarray(arg)
+    def __call__(self, population:ArrayLike, fitness:Union[ArrayLike, None]=None) -> np.ndarray:        
+        population = np.asarray(population)
         result = population.copy()
+
+        if fitness is None:
+            fitness = np.zeros(len(population), dtype=np.float32)
+        fitness = np.asarray(fitness)
 
         if self._chromossome_names is None: # Without specified name
             if len(population.dtype) == 0: # and only one chromossome
-                result = self.call(population)
+                result = self.call(population, fitness)
             else:
                 for name in population.dtype.names: # and multiple chrmossomes
-                    result[name] = self.call(population[name])
+                    result[name] = self.call(population[name], fitness)
         else:
             for name in self._chromossome_names:
-                result[name] = self.call(population[name])
+                result[name] = self.call(population[name], fitness)
 
         return result
     
-    def call(self, chromossomes:np.ndarray) -> np.ndarray:
+    def call(self, chromossomes:np.ndarray, fitness:np.ndarray) -> np.ndarray:
         return chromossomes

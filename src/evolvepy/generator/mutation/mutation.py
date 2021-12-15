@@ -25,7 +25,7 @@ class NumericMutationLayer(Layer):
         self._gene_rate = gene_rate
         self._mutation_range = mutation_range
 
-    def call(self, chromossomes: np.ndarray) -> np.ndarray:
+    def call(self, chromossomes: np.ndarray, fitness:np.ndarray) -> np.ndarray:
         return NumericMutationLayer.mutate(chromossomes, self._mutation_function, self._existence_rate, self._gene_rate, self._mutation_range)
 
     @staticmethod
