@@ -16,13 +16,13 @@ class Generation:
     :type mutation_op: list of functions
 
     :ivar mutation_params: Mutation parameters
-    :type mutation_params: list of dicts
+    :type mutation_params: dict of dicts
 
     :ivar crossover_op: Crossover operators
     :type crossover_op: list of functions
 
     :ivar crossover_params: Crossover parameters
-    :type crossover_params: list of dicts
+    :type crossover_params: dict of dicts
 
     :ivar selection_op: Selection operator
     :type selection_op: function
@@ -38,11 +38,11 @@ class Generation:
         chromossome_sizes = np.asarray(chromossome_sizes)
 
         self.names = []
-        self.mutation_op = []
-        self.mutation_params = []
+        self.mutation_op = {}
+        self.mutation_params = {}
 
-        self.crossover_op = []
-        self.crossover_params = []
+        self.crossover_op = {}
+        self.crossover_params = {}
 
         self.selection_op = default_selection()
         
@@ -58,14 +58,38 @@ class Generation:
 
             dtype.append((name, types[i], size))
 
-            self.mutation_op.append(default_mutation(types[i]))
-            self.crossover_op.append(default_crossover(types[i]))
+            self.mutation_op[name] = default_mutation(types[i])
+            self.crossover_op[name] = default_crossover(types[i])
 
-            self.mutation_params.append({"existence_rate":1.0, "gene_rate": 0.0, "range": (0.0, 1.0)})
-            self.crossover_params.append({})
+            self.mutation_params[name] = {"existence_rate":1.0, "gene_rate": 0.0, "range": (0.0, 1.0)}
+            self.crossover_params[name] = {}
 
 
         self.names = np.asarray(self.names)
 
         self.dtype = np.dtype(dtype)
         self.population = None
+
+
+    def set_mutation(self, chromossome_name="", chromossome_index=-1, operator=None, parameters=None):
+        if chromossome_name == "":
+            chromossome_name = self.names[chromossome_index]
+        
+        if operator is not None:
+            self.mutation_op[chromossome_name] = operator
+
+        if parameters is not None:
+            self.mutation_params[chromossome_name] - parameters
+    
+    def set_crossover(self, chromossome_name="", chromossome_index=-1, operator=None, parameters=None):
+        if chromossome_name == "":
+            chromossome_name = self.names[chromossome_index]
+        
+        if operator is not None:
+            self.crossover_op[chromossome_name] = operator
+
+        if parameters is not None:
+            self.crossover_params[chromossome_name] - parameters
+        
+    def set_selection(self, operator):
+        self.selection_op = operator

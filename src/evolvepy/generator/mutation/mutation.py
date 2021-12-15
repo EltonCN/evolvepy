@@ -1,4 +1,8 @@
 import numpy as np
+import numba
+
+from numpy.typing import ArrayLike
+
 from .numeric_mutation import sum_mutation
 from .binary_mutation import bit_mutation
 

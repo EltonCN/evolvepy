@@ -71,3 +71,4 @@ def n_point(chromosomes:ArrayLike, n:int=1) -> np.array:
 
 def default_crossover(type):
     return one_point
+
