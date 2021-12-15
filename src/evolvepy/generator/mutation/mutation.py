@@ -19,7 +19,7 @@ def default_mutation(type):
     else:
         return bit_mutation
 
-class MutationLayer(Layer):
+class NumericMutationLayer(Layer):
     def __init__(self, mutation_function:Callable, existence_rate:float, gene_rate:float, range:Tuple[float, float], name: str = None, chromossome_names: Union[str, List[str], None] = None):
         super().__init__(name=name, dynamic_parameters=True, chromossome_names=chromossome_names)
         self._mutation_function = mutation_function
@@ -28,7 +28,7 @@ class MutationLayer(Layer):
         self._range = range
 
     def call(self, chromossomes: np.ndarray) -> np.ndarray:
-        return MutationLayer.mutate(chromossomes, self._mutation_function, self._existence_rate, self._gene_rate, self._range)
+        return NumericMutationLayer.mutate(chromossomes, self._mutation_function, self._existence_rate, self._gene_rate, self._range)
 
     @staticmethod
     @numba.njit(parallel=True)
