@@ -1,11 +1,10 @@
-from numba.types.npytypes import Array
 import numpy as np
 from numpy.typing import ArrayLike
 from evolvepy.generator.mutation import default_mutation
 from evolvepy.generator.crossover import default_crossover
 from evolvepy.generator.selection.selection import default_selection
 
-class Generation:
+class Population:
     """
     Store the data from a generation of the experiment.
 
