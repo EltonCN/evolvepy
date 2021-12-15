@@ -1,3 +1,6 @@
 import numpy as np
 
-def generate(mother, father):
+class Generator:
+
+    def __init__(self):
+        

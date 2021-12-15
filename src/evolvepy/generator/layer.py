@@ -1,5 +1,6 @@
-from abc import ABC, abstractmethod
 from __future__ import annotations
+from abc import ABC, abstractmethod
+
 
 from typing import List, Union
 
@@ -38,10 +39,10 @@ class Layer(ABC):
                 result = self.call(population)
             else:
                 for name in population.dtype.names: # and multiple chrmossomes
-                    result[name] = self.call(population[name].flatten())
+                    result[name] = self.call(population[name])
         else:
             for name in self._chromossome_names:
-                result[name] = self.call(population[name].flatten())
+                result[name] = self.call(population[name])
 
         return result
     
