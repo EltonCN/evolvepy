@@ -6,8 +6,6 @@ from typing import List, Union
 import numpy as np
 from numpy.typing import ArrayLike
 
-from tensorflow.keras.layers import Dense
-
 class Layer(ABC):
 
     def __init__(self, name:str=None, dynamic_parameters:bool = False, chromossome_names : Union[str, List[str], None] = None):
