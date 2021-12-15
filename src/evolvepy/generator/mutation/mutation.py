@@ -29,7 +29,7 @@ class NumericMutationLayer(Layer):
         return NumericMutationLayer.mutate(chromossomes, self._mutation_function, self._existence_rate, self._gene_rate, self._mutation_range)
 
     @staticmethod
-    #@numba.njit(parallel=True)
+    @numba.njit(parallel=True)
     def mutate(chromossomes:np.ndarray, mutation_function:Callable, existence_rate:float, gene_rate:float, mutation_range:Tuple[float, float]):
         result = np.empty_like(chromossomes)
         
