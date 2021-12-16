@@ -14,6 +14,7 @@ sys.path.append("..\src")
 from evolvepy.evaluator.function_evaluator import FunctionEvaluator
 from evolvepy.evaluator.dispatcher import MultipleEvaluation, EvaluationDispatcher
 from evolvepy.evaluator.aggregator import FitnessAggregator
+from evolvepy.evaluator.manager import EvaluationManager
 
 def sum1(individuals:ArrayLike):
     return individuals[0]["chr0"].sum()
@@ -92,6 +93,20 @@ class TestEvaluator(unittest.TestCase):
 
         fitness = evaluator(population)
         fitness = aggre(fitness)
+
+        assert_equal(fitness_reference, fitness)
+
+    def test_manager(self):
+        population = get_population()
+        fitness_reference = population["chr0"].max(axis=1)
+
+        evaluator = FunctionEvaluator(min_max, n_scores=2)
+        dispatcher = EvaluationDispatcher()
+        aggre = FitnessAggregator(mode=FitnessAggregator.MAX)
+
+        manager = EvaluationManager(evaluator, dispatcher, aggre)
+
+        fitness = manager(population)
 
         assert_equal(fitness_reference, fitness)
 
