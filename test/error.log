@@ -1,0 +1,167 @@
+DEBUG:numba.core.byteflow:bytecode dump:
+>          0	NOP(arg=None, lineno=17)
+           2	LOAD_FAST(arg=0, lineno=17)
+           4	LOAD_CONST(arg=1, lineno=17)
+           6	BINARY_SUBSCR(arg=None, lineno=17)
+           8	LOAD_METHOD(arg=0, lineno=17)
+          10	CALL_METHOD(arg=0, lineno=17)
+          12	RETURN_VALUE(arg=None, lineno=17)
+DEBUG:numba.core.byteflow:pending: deque([State(pc_initial=0 nstack_initial=0)])
+DEBUG:numba.core.byteflow:stack: []
+DEBUG:numba.core.byteflow:dispatch pc=0, inst=NOP(arg=None, lineno=17)
+DEBUG:numba.core.byteflow:stack []
+DEBUG:numba.core.byteflow:dispatch pc=2, inst=LOAD_FAST(arg=0, lineno=17)
+DEBUG:numba.core.byteflow:stack []
+DEBUG:numba.core.byteflow:dispatch pc=4, inst=LOAD_CONST(arg=1, lineno=17)
+DEBUG:numba.core.byteflow:stack ['$individual2.0']
+DEBUG:numba.core.byteflow:dispatch pc=6, inst=BINARY_SUBSCR(arg=None, lineno=17)
+DEBUG:numba.core.byteflow:stack ['$individual2.0', '$const4.1']
+DEBUG:numba.core.byteflow:dispatch pc=8, inst=LOAD_METHOD(arg=0, lineno=17)
+DEBUG:numba.core.byteflow:stack ['$6binary_subscr.2']
+DEBUG:numba.core.byteflow:dispatch pc=10, inst=CALL_METHOD(arg=0, lineno=17)
+DEBUG:numba.core.byteflow:stack ['$8load_method.3']
+DEBUG:numba.core.byteflow:dispatch pc=12, inst=RETURN_VALUE(arg=None, lineno=17)
+DEBUG:numba.core.byteflow:stack ['$10call_method.4']
+DEBUG:numba.core.byteflow:end state. edges=[]
+DEBUG:numba.core.byteflow:-------------------------Prune PHIs-------------------------
+DEBUG:numba.core.byteflow:Used_phis: defaultdict(<class 'set'>, {State(pc_initial=0 nstack_initial=0): set()})
+DEBUG:numba.core.byteflow:defmap: {}
+DEBUG:numba.core.byteflow:phismap: defaultdict(<class 'set'>, {})
+DEBUG:numba.core.byteflow:changing phismap: defaultdict(<class 'set'>, {})
+DEBUG:numba.core.byteflow:keep phismap: {}
+DEBUG:numba.core.byteflow:new_out: defaultdict(<class 'dict'>, {})
+DEBUG:numba.core.byteflow:----------------------DONE Prune PHIs-----------------------
+DEBUG:numba.core.byteflow:block_infos State(pc_initial=0 nstack_initial=0):
+AdaptBlockInfo(insts=((0, {}), (2, {'res': '$individual2.0'}), (4, {'res': '$const4.1'}), (6, {'index': '$const4.1', 'target': '$individual2.0', 'res': '$6binary_subscr.2'}), (8, {'item': '$6binary_subscr.2', 'res': '$8load_method.3'}), (10, {'func': '$8load_method.3', 'args': [], 'res': '$10call_method.4'}), (12, {'retval': '$10call_method.4', 'castval': '$12return_value.5'})), outgoing_phis={}, blockstack=(), active_try_block=None, outgoing_edgepushed={})
+DEBUG:numba.core.interpreter:label 0:
+    individual = arg(0, name=individual)     ['individual']
+    $const4.1 = const(str, chr0)             ['$const4.1']
+    $6binary_subscr.2 = getitem(value=individual, index=$const4.1, fn=<built-in function getitem>) ['$6binary_subscr.2', '$const4.1', 'individual']
+    $8load_method.3 = getattr(value=$6binary_subscr.2, attr=sum) ['$6binary_subscr.2', '$8load_method.3']
+    $10call_method.4 = call $8load_method.3(func=$8load_method.3, args=[], kws=(), vararg=None, target=None) ['$10call_method.4', '$8load_method.3']
+    $12return_value.5 = cast(value=$10call_method.4) ['$10call_method.4', '$12return_value.5']
+    return $12return_value.5                 ['$12return_value.5']
+
+DEBUG:numba.core.ssa:==== SSA block analysis pass on 0
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001F55D7E45B0>
+DEBUG:numba.core.ssa:on stmt: individual = arg(0, name=individual)
+DEBUG:numba.core.ssa:on stmt: $const4.1 = const(str, chr0)
+DEBUG:numba.core.ssa:on stmt: $6binary_subscr.2 = static_getitem(value=individual, index=chr0, index_var=$const4.1, fn=<built-in function getitem>)
+DEBUG:numba.core.ssa:on stmt: $8load_method.3 = getattr(value=$6binary_subscr.2, attr=sum)
+DEBUG:numba.core.ssa:on stmt: $10call_method.4 = call $8load_method.3(func=$8load_method.3, args=[], kws=(), vararg=None, target=None)
+DEBUG:numba.core.ssa:on stmt: $12return_value.5 = cast(value=$10call_method.4)
+DEBUG:numba.core.ssa:on stmt: return $12return_value.5
+DEBUG:numba.core.ssa:defs defaultdict(<class 'list'>,
+            {'$10call_method.4': [<numba.core.ir.Assign object at 0x000001F55D7A11C0>],
+             '$12return_value.5': [<numba.core.ir.Assign object at 0x000001F55D7A10D0>],
+             '$6binary_subscr.2': [<numba.core.ir.Assign object at 0x000001F55D7C9730>],
+             '$8load_method.3': [<numba.core.ir.Assign object at 0x000001F55D7A1490>],
+             '$const4.1': [<numba.core.ir.Assign object at 0x000001F55D7A1A90>],
+             'individual': [<numba.core.ir.Assign object at 0x000001F55D7917F0>]})
+DEBUG:numba.core.ssa:SSA violators set()
+DEBUG:numba.core.typeinfer:captured error
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\numba\core\errors.py", line 776, in new_error_context
+    yield
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 459, in __call__
+    sig = typeinfer.context.resolve_static_getitem(
+  File "C:\Python38\lib\site-packages\numba\core\typing\context.py", line 338, in resolve_static_getitem
+    return self.resolve_function_type("static_getitem", args, kws)
+  File "C:\Python38\lib\site-packages\numba\core\typing\context.py", line 208, in resolve_function_type
+    res = self._resolve_builtin_function_type(func, args, kws)
+  File "C:\Python38\lib\site-packages\numba\core\typing\context.py", line 225, in _resolve_builtin_function_type
+    res = defn.apply(args, kws)
+  File "C:\Python38\lib\site-packages\numba\core\typing\templates.py", line 351, in apply
+    sig = generic(args, kws)
+  File "C:\Python38\lib\site-packages\numba\core\typing\arraydecl.py", line 528, in generic
+    ret = ary.copy(dtype=ary.dtype.typeof(idx), layout='A')
+  File "C:\Python38\lib\site-packages\numba\core\types\npytypes.py", line 455, in copy
+    return Array(dtype=dtype, ndim=ndim, layout=layout, readonly=readonly,
+  File "C:\Python38\lib\site-packages\numba\core\types\abstract.py", line 66, in __call__
+    inst = type.__call__(cls, *args, **kwargs)
+  File "C:\Python38\lib\site-packages\numba\core\types\npytypes.py", line 437, in __init__
+    super(Array, self).__init__(dtype, ndim, layout, name=name)
+  File "C:\Python38\lib\site-packages\numba\core\types\common.py", line 55, in __init__
+    raise TypeError(msg.format(dtype))
+TypeError: The dtype of a Buffer type cannot itself be a Buffer type, this is unsupported behaviour.
+The dtype requested for the unsupported Buffer was: nestedarray(float32, (5,)).
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 154, in propagate
+    constraint(typeinfer)
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 469, in __call__
+    self.fallback(typeinfer)
+  File "C:\Python38\lib\contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "C:\Python38\lib\site-packages\numba\core\errors.py", line 786, in new_error_context
+    raise newerr.with_traceback(tb)
+numba.core.errors.InternalError: [1m[1mThe dtype of a Buffer type cannot itself be a Buffer type, this is unsupported behaviour.
+The dtype requested for the unsupported Buffer was: nestedarray(float32, (5,)).[0m
+[0m[1mDuring: typing of static-get-item at .\test_evaluator.py (17)[0m
+DEBUG:numba.core.typeinfer:captured error
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 154, in propagate
+    constraint(typeinfer)
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 564, in __call__
+    fnty = typevars[self.func].getone()
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 122, in getone
+    raise TypingError("Undecided type {}".format(self))
+numba.core.errors.TypingError: [1m[1m[1mUndecided type $8load_method.3 := <undecided>[0m
+[0m[1mDuring: resolving caller type: $8load_method.3[0m
+[0m[1mDuring: typing of call at .\test_evaluator.py (17)
+[0m
+DEBUG:numba.core.typeinfer:captured error
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\numba\core\errors.py", line 776, in new_error_context
+    yield
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 459, in __call__
+    sig = typeinfer.context.resolve_static_getitem(
+  File "C:\Python38\lib\site-packages\numba\core\typing\context.py", line 338, in resolve_static_getitem
+    return self.resolve_function_type("static_getitem", args, kws)
+  File "C:\Python38\lib\site-packages\numba\core\typing\context.py", line 208, in resolve_function_type
+    res = self._resolve_builtin_function_type(func, args, kws)
+  File "C:\Python38\lib\site-packages\numba\core\typing\context.py", line 225, in _resolve_builtin_function_type
+    res = defn.apply(args, kws)
+  File "C:\Python38\lib\site-packages\numba\core\typing\templates.py", line 351, in apply
+    sig = generic(args, kws)
+  File "C:\Python38\lib\site-packages\numba\core\typing\arraydecl.py", line 528, in generic
+    ret = ary.copy(dtype=ary.dtype.typeof(idx), layout='A')
+  File "C:\Python38\lib\site-packages\numba\core\types\npytypes.py", line 455, in copy
+    return Array(dtype=dtype, ndim=ndim, layout=layout, readonly=readonly,
+  File "C:\Python38\lib\site-packages\numba\core\types\abstract.py", line 66, in __call__
+    inst = type.__call__(cls, *args, **kwargs)
+  File "C:\Python38\lib\site-packages\numba\core\types\npytypes.py", line 437, in __init__
+    super(Array, self).__init__(dtype, ndim, layout, name=name)
+  File "C:\Python38\lib\site-packages\numba\core\types\common.py", line 55, in __init__
+    raise TypeError(msg.format(dtype))
+TypeError: The dtype of a Buffer type cannot itself be a Buffer type, this is unsupported behaviour.
+The dtype requested for the unsupported Buffer was: nestedarray(float32, (5,)).
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 154, in propagate
+    constraint(typeinfer)
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 469, in __call__
+    self.fallback(typeinfer)
+  File "C:\Python38\lib\contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "C:\Python38\lib\site-packages\numba\core\errors.py", line 786, in new_error_context
+    raise newerr.with_traceback(tb)
+numba.core.errors.InternalError: [1m[1mThe dtype of a Buffer type cannot itself be a Buffer type, this is unsupported behaviour.
+The dtype requested for the unsupported Buffer was: nestedarray(float32, (5,)).[0m
+[0m[1mDuring: typing of static-get-item at .\test_evaluator.py (17)[0m
+DEBUG:numba.core.typeinfer:captured error
+Traceback (most recent call last):
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 154, in propagate
+    constraint(typeinfer)
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 564, in __call__
+    fnty = typevars[self.func].getone()
+  File "C:\Python38\lib\site-packages\numba\core\typeinfer.py", line 122, in getone
+    raise TypingError("Undecided type {}".format(self))
+numba.core.errors.TypingError: [1m[1m[1mUndecided type $8load_method.3 := <undecided>[0m
+[0m[1mDuring: resolving caller type: $8load_method.3[0m
+[0m[1mDuring: typing of call at .\test_evaluator.py (17)
+[0m
