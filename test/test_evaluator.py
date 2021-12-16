@@ -101,7 +101,7 @@ class TestEvaluator(unittest.TestCase):
         fitness_reference = population["chr0"].max(axis=1)
 
         evaluator = FunctionEvaluator(min_max, n_scores=2)
-        dispatcher = EvaluationDispatcher()
+        dispatcher = MultipleEvaluation(n_evaluation=2)
         aggre = FitnessAggregator(mode=FitnessAggregator.MAX)
 
         manager = EvaluationManager(evaluator, dispatcher, aggre)
