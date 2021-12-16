@@ -18,7 +18,18 @@ def sum1(individuals:ArrayLike):
     return individuals[0]["chr0"].sum()
 
 def sum2(individuals:ArrayLike):
-    return individuals[0]["chr0"].sum() + individuals[1]["chr0"].sum()
+    ind0_sum = individuals[0]["chr0"].sum()
+    ind1_sum = individuals[1]["chr0"].sum()
+
+    fitness = np.zeros(2, dtype=np.float64)
+    if ind0_sum > ind1_sum:
+        fitness[0] = 1
+        fitness[1] = -1
+    else:
+        fitness[0] = -1
+        fitness[1] = 1
+
+    return fitness
 
 class TestEvaluator(unittest.TestCase):
 
@@ -40,12 +51,12 @@ class TestEvaluator(unittest.TestCase):
         dtype = np.dtype([("chr0", np.float32, 5)])
         population = np.empty(10, dtype)
 
-        evaluator = FunctionEvaluator(sum2, mode=FunctionEvaluator.NJIT, individual_per_call=2)
+        evaluator = FunctionEvaluator(sum2, mode=FunctionEvaluator.PYTHON, individual_per_call=2)
 
         fitness = evaluator(population)
-        fitness_reference  = [sum(population["chr0"].sum(1)[i:i+2]) for i in range(0, len(population["chr0"]), 2)]
-
-        assert_allclose(fitness, fitness_reference)
+        assert_equal(len(fitness), 10)
+        assert_equal((fitness == 1).sum()+(fitness == -1).sum(), len(fitness))
+        
     
 if __name__ == "__main__":
     #logging.basicConfig(level = logging.DEBUG, filename="error.log")

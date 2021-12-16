@@ -53,12 +53,12 @@ class FunctionEvaluator(Evaluator):
         #if n%individual_per_call != 0:
         #    raise RuntimeError("Population size must be divible by individual_per_call")
 
-        fitness = np.empty(n, dtype=np.float64)
+        fitness = np.empty(population.shape[0], dtype=np.float64)
         
         for i in prange(n):
             index = i*individual_per_call
             first = index
             last = index+individual_per_call
-            fitness[i] = function(population[first:last])
+            fitness[first:last] = function(population[first:last])
 
         return fitness
