@@ -1,12 +1,13 @@
 from typing import List, Tuple, Union
 import numpy as np
-from numpy.lib.arraysetops import isin
 
 from numpy.typing import ArrayLike, DTypeLike
 
+from evolvepy.generator.layer import Layer
+
 class Generator:
 
-    def __init__(self, chromossome_sizes:ArrayLike, chromossome_ranges:Union[None, List[Union[None, Tuple]], Tuple]=None, types:Union[list, DTypeLike]=[np.float32], names:Union[list, str, None]=None):    
+    def __init__(self, chromossome_sizes:ArrayLike, layers:Union[None, List[Layer]]=None, chromossome_ranges:Union[None, List[Union[None, Tuple]], Tuple]=None, types:Union[list, DTypeLike]=[np.float32], names:Union[list, str, None]=None):    
         chromossome_sizes = np.asarray(chromossome_sizes)
 
         if chromossome_sizes.shape == ():
@@ -28,32 +29,50 @@ class Generator:
         if not isinstance(types, list):
             types = [types]
 
+        self._chromossome_sizes = chromossome_sizes
+        self._n_chromossome = n_chromossome
+        self._chromossome_ranges = chromossome_ranges
+
+        
+        
+        self._create_dtype_names_ranges(names, types)
+        
+
+        if layers is None:
+            layers = []
+
+        self._layers = layers
+
+        self._fitness = None
+        self._population = None
+        self._n_individual = None
+
+    def _create_dtype_names_ranges(self, names, types):
         self._names = []
+
         dtype = []
-        for i in range(n_chromossome):
+        for i in range(self._n_chromossome):
             name = "chr"+str(i)
             if len(names)-1 >= i:
                 name = names[i]
             self._names.append(name)
 
-            size = np.atleast_1d(chromossome_sizes[i])
+            size = np.atleast_1d(self._chromossome_sizes[i])
             size = tuple(size)
 
             dtype.append((name, types[i], size))
 
-            if chromossome_ranges[i] is None:
+            if self._chromossome_ranges[i] is None:
                 if np.dtype(types[i]).char in np.typecodes["AllFloat"]:
-                    chromossome_ranges[i] = (0.0, 1.0)
+                    self._chromossome_ranges[i] = (0.0, 1.0)
                 elif np.dtype(types[i]).char in np.typecodes["AllInteger"]:
-                    chromossome_ranges[i] = (0, 10)
-        
-        self._dtype = np.dtype(dtype)
-        self._population = None
-        self._chromossome_sizes = chromossome_sizes
-        self._n_chromossome = n_chromossome
-        self._chromossome_ranges = chromossome_ranges
+                    self._chromossome_ranges[i] = (0, 10)
 
-    def generate_first(self, n_individual):
+        self._dtype = np.dtype(dtype)
+
+
+
+    def generate_first(self, n_individual:int) -> np.ndarray:
 
         population = np.empty(n_individual, self._dtype)
 
@@ -75,6 +94,34 @@ class Generator:
                 population[name] = np.random.choice([False, True], shape)
 
         return population
-
-
+    
+    def generate_evolve(self) -> np.ndarray:
+        for layer in self._layers:
+            self._population = layer(self._population, self._fitness)
         
+        return self._population
+
+    def add(self, layer:Layer) -> None:
+        self._layers.append(layer)
+    
+    @property
+    def fitness(self) -> np.ndarray:
+        return self._fitness
+
+    @fitness.setter
+    def fitness(self, value:ArrayLike):
+        self._fitness = np.asarray(value)
+
+    def generate(self, n_individual:int=None) -> np.ndarray:
+        if n_individual is not None:
+            self._n_individual = n_individual
+        
+        if self._n_individual is None:
+            raise RuntimeError("Generator generate must be called at least one time with n_individual parameter")
+
+        if self._fitness is None or self._population is None:
+            self._population = self.generate_first(n_individual)
+        else:
+            self._population = self.generate_evolve()
+
+        return self._population
