@@ -21,7 +21,7 @@ class CombineLayer(Layer):
     
     @staticmethod
     @numba.njit()#parallel=True)
-    def _combine(chromossomes:np.ndarray, fitness:np.ndarray, selection_function:Callable, crossover_function:Callable, n_combine:int):
+    def combine(chromossomes:np.ndarray, fitness:np.ndarray, selection_function:Callable, crossover_function:Callable, n_combine:int):
         result = np.empty_like(chromossomes)
 
         n = fitness.shape[0]
