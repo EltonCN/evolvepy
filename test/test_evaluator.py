@@ -12,7 +12,8 @@ from utils import assert_not_equal
 sys.path.append("..\src")
 
 from evolvepy.evaluator.function_evaluator import FunctionEvaluator
-
+from evolvepy.evaluator.dispatcher import MultipleEvaluation, EvaluationDispatcher
+from evolvepy.evaluator.aggregator import FitnessAggregator
 
 def sum1(individuals:ArrayLike):
     return individuals[0]["chr0"].sum()
@@ -31,12 +32,24 @@ def sum2(individuals:ArrayLike):
 
     return fitness
 
+def min_max(individuals:ArrayLike):
+    fitness = np.empty(2, dtype=np.float64)
+    fitness[0] = individuals[0]["chr0"].min()
+    fitness[1] = individuals[0]["chr0"].max()
+
+    return fitness
+
+def get_population():
+    dtype = np.dtype([("chr0", np.float32, 5)])
+    population = np.empty(10, dtype)
+    
+    return population
+
 class TestEvaluator(unittest.TestCase):
 
     def test_function_modes(self):
-        dtype = np.dtype([("chr0", np.float32, 5)])
-        population = np.empty(10, dtype)
-        fitness_reference = population["chr0"].sum(axis=1)
+        population = get_population()
+        fitness_reference = population["chr0"].sum(axis=1).reshape(10,1)
 
         fitness_result = []
         
@@ -48,8 +61,7 @@ class TestEvaluator(unittest.TestCase):
             assert_equal(fitness, fitness_reference)
 
     def test_function_individual_per_call(self):
-        dtype = np.dtype([("chr0", np.float32, 5)])
-        population = np.empty(10, dtype)
+        population = get_population()
 
         evaluator = FunctionEvaluator(sum2, mode=FunctionEvaluator.PYTHON, individual_per_call=2)
 
@@ -57,6 +69,32 @@ class TestEvaluator(unittest.TestCase):
         assert_equal(len(fitness), 10)
         assert_equal((fitness == 1).sum()+(fitness == -1).sum(), len(fitness))
         
+    def test_dispatcher(self):
+        population = get_population()
+        fitness_reference = population["chr0"].sum(axis=1).reshape(10,1)
+
+        evaluator = FunctionEvaluator(sum1)
+        
+        dispatcher = EvaluationDispatcher()
+        fitness = dispatcher(population, evaluator)
+        assert_equal(fitness, fitness_reference)
+
+        dispatcher = MultipleEvaluation(n_evaluation=1)
+        fitness = dispatcher(population, evaluator)
+        assert_equal(fitness, fitness_reference)
+
+    def test_aggregator(self):
+        population = get_population()
+        fitness_reference = population["chr0"].max(axis=1)
+
+        evaluator = FunctionEvaluator(min_max, n_scores=2)
+        aggre = FitnessAggregator(mode=FitnessAggregator.MAX)
+
+        fitness = evaluator(population)
+        fitness = aggre(fitness)
+
+        assert_equal(fitness_reference, fitness)
+
     
 if __name__ == "__main__":
     #logging.basicConfig(level = logging.DEBUG, filename="error.log")
