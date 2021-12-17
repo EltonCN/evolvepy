@@ -30,7 +30,7 @@ class FunctionEvaluator(Evaluator):
             self._static_call = numba.jit()(FunctionEvaluator.call)
         elif mode == NJIT:
             self._function = numba.njit()(function)
-            self._static_call = FunctionEvaluator.call#numba.njit()(FunctionEvaluator.call)
+            self._static_call = numba.njit()(FunctionEvaluator.call)
         elif mode == JIT_PARALLEL:
             self._function = numba.jit(parallel=True)(function)
             self._static_call = numba.jit(parallel=True)(FunctionEvaluator.call)
