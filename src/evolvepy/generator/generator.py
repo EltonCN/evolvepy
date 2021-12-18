@@ -1,4 +1,4 @@
-from typing import List, Tuple, Union
+from typing import Dict, List, Tuple, Union
 import numpy as np
 
 from numpy.typing import ArrayLike, DTypeLike
@@ -70,10 +70,25 @@ class Generator:
 
         self._dtype = np.dtype(dtype)
 
-    def set_parameter(self, layer_name:str, parameter_name:str, value:object):
+    def set_parameter(self, layer_name:str, parameter_name:str, value:object) -> None:
         for layer in self._layers:
             if layer.name == layer_name:
                 layer.parameters = (parameter_name, value)
+
+    def set_parameters(self, layer_name:str, parameters:Dict[str, object]) -> None:
+        for layer in self._layers:
+            if layer.name == layer_name:
+                layer.parameters = parameters
+
+    def get_parameter(self, layer_name:str, parameter_name:str=None) -> object:
+        for layer in self._layers:
+            if layer.name == layer_name:
+                return layer.parameters[parameter_name]
+    
+    def get_parameters(self, layer_name:str) -> Dict[str, object]:
+        for layer in self._layers:
+            if layer.name == layer_name:
+                return layer.parameters
 
     def generate_first(self, n_individual:int) -> np.ndarray:
 

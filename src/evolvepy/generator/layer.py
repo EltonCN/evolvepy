@@ -7,8 +7,6 @@ from typing import Dict, List, Tuple, Union
 import numpy as np
 from numpy.typing import ArrayLike
 
-from tensorflow.keras.layers import Dense
-
 class Layer(ABC):
 
     def __init__(self, name:str=None, dynamic_parameters:Dict[str, bool] = None, parameters:Dict[str, object] = None, chromossome_names : Union[str, List[str], None] = None):
@@ -28,7 +26,7 @@ class Layer(ABC):
             self._chromossome_names = chromossome_names
 
         self._next = None
-        self._parameters : Dict[str, object] = {}
+        self._parameters = parameters
 
     @property
     def parameters(self)-> Dict[str, object]:
