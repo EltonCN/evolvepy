@@ -19,14 +19,18 @@ def default_mutation(type):
 
 class NumericMutationLayer(Layer):
     def __init__(self, mutation_function:Callable, existence_rate:float, gene_rate:float, mutation_range:Tuple[float, float], name: str = None, chromossome_names: Union[str, List[str], None] = None):
-        super().__init__(name=name, dynamic_parameters=True, chromossome_names=chromossome_names)
+        parameters = {"existence_rate":existence_rate, "gene_rate":gene_rate, "mutation_range":mutation_range}
+        dynamic_parameters = dict.fromkeys(list(parameters.keys()), False)
+
+        super().__init__(name=name, dynamic_parameters=dynamic_parameters, parameters=parameters, chromossome_names=chromossome_names)
         self._mutation_function = mutation_function
-        self._existence_rate = existence_rate
-        self._gene_rate = gene_rate
-        self._mutation_range = mutation_range
 
     def call(self, chromossomes: np.ndarray, fitness:np.ndarray) -> np.ndarray:
-        return NumericMutationLayer.mutate(chromossomes, self._mutation_function, self._existence_rate, self._gene_rate, self._mutation_range)
+        existance_rate = self.parameters["existance_rate"]
+        gene_rate = self.parameters["gene_rate"]
+        mutation_range = self.parameters["mutation_range"]
+
+        return NumericMutationLayer.mutate(chromossomes, self._mutation_function, existance_rate, gene_rate, mutation_range)
 
     @staticmethod
     @numba.njit()#parallel=True)

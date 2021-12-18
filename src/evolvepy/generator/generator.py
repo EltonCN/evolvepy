@@ -70,7 +70,10 @@ class Generator:
 
         self._dtype = np.dtype(dtype)
 
-
+    def set_parameter(self, layer_name:str, parameter_name:str, value:object):
+        for layer in self._layers:
+            if layer.name == layer_name:
+                layer.parameters = (parameter_name, value)
 
     def generate_first(self, n_individual:int) -> np.ndarray:
 
