@@ -29,6 +29,8 @@ class Layer(ABC):
         self._population = None
         self._fitness = None
 
+        self._prev_count : int = 0
+
     @property
     def parameters(self)-> Dict[str, object]:
         return self._parameters
@@ -73,6 +75,8 @@ class Layer(ABC):
         if layer not in self._next:
             self._next.append(layer)
 
+            layer._prev_count += 1
+
     @property
     def population(self) -> np.ndarray:
         return self._population
@@ -101,6 +105,39 @@ class Layer(ABC):
 
     def call(self, population:np.ndarray, fitness:np.ndarray) -> Tuple(np.ndarray, np.ndarray):
         return population, fitness
+
+class Concatenate(Layer):
+
+    def __init__(self, name: str = None, dynamic_parameters: Dict[str, bool] = None, parameters: Dict[str, object] = None):
+        super().__init__(name=name, dynamic_parameters=dynamic_parameters, parameters=parameters)
+
+        self._received_count = 0
+
+    def __call__(self, population: np.ndarray, fitness: np.ndarray) -> Tuple(np.ndarray, np.ndarray):
+        population = np.asarray(population)
+
+        if fitness is None:
+            fitness = np.zeros(len(population), dtype=np.float32)
+        fitness = np.asarray(fitness)
+
+        if self._received_count == 0:
+            self._population = population
+            self._fitness = fitness
+        else:
+            self._population = np.concatenate((self._population, population))
+            self._fitness = np.concatenate((self._fitness, fitness))
+
+        self._received_count += 1
+
+        if self._prev_count == self._received_count:
+            self._received_count = 0
+
+            for layer in self._next:
+                layer(population, fitness)
+
+        return population, fitness
+
+
 
 
 class ChromossomeOperator(Layer):

@@ -8,7 +8,7 @@ from utils import assert_not_equal
 
 sys.path.append("..\src")
 
-from evolvepy.generator.layer import Layer
+from evolvepy.generator.layer import Layer, Concatenate
 
 class TestLayer(unittest.TestCase):
 
@@ -21,12 +21,34 @@ class TestLayer(unittest.TestCase):
         layer1.next = layer2
         layer1.next = layer3
 
-        pop = np.ndarray(10)
-        fitness = np.ndarray(10)
+        pop = np.empty(10)
+        fitness = np.empty(10)
 
         layer1(pop, fitness)
 
         assert_equal(pop, layer2.population)
         assert_equal(pop, layer3.population)
 
-    
+    def test_converge(self):
+        layer1 = Layer()
+        layer2 = Layer()
+        layer3 = Layer()
+        layer4 = Concatenate()
+
+        layer1.next = layer2
+        layer1.next = layer3
+        layer2.next = layer4
+        layer3.next = layer4
+
+        pop = np.empty(10)
+        fitness = np.empty(10)
+
+        layer1(pop, fitness)
+
+        pop_result = np.concatenate((pop, pop))
+        fitness_result = np.concatenate((fitness, fitness))
+
+        assert_equal(pop_result, layer4.population)
+        assert_equal(pop.dtype, layer4.population.dtype)
+
+        assert_equal(fitness_result, layer4.fitness)
