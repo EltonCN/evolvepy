@@ -23,8 +23,11 @@ class Layer(ABC):
             dynamic_parameters = {}
         self._dynamic_parameters : Dict[str, bool] = dynamic_parameters
 
-        self._next = None
+        self._next : List[Layer] = []
         self._parameters = parameters
+
+        self._population = None
+        self._fitness = None
 
     @property
     def parameters(self)-> Dict[str, object]:
@@ -61,6 +64,24 @@ class Layer(ABC):
     def name(self) -> str:
         return self._name
 
+    @property
+    def next(self) -> Layer:
+        return self._next
+    
+    @next.setter
+    def next(self, layer:Layer) -> None:
+        if layer not in self._next:
+            self._next.append(layer)
+
+    @property
+    def population(self) -> np.ndarray:
+        return self._population
+    
+    @property
+    def fitness(self) -> np.ndarray:
+        return self._fitness
+
+
     def __call__(self, population:ArrayLike, fitness:Union[ArrayLike, None]=None) -> np.ndarray:          
         population = np.asarray(population)
 
@@ -69,6 +90,13 @@ class Layer(ABC):
         fitness = np.asarray(fitness)
 
         population, fitness = self.call(population, fitness)
+
+        self._population = population
+        self._fitness = fitness
+
+        for layer in self._next:
+            layer(population, fitness)
+
         return population, fitness
 
     def call(self, population:np.ndarray, fitness:np.ndarray) -> Tuple(np.ndarray, np.ndarray):
