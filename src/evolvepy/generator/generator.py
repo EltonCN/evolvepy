@@ -115,7 +115,7 @@ class Generator:
     
     def generate_evolve(self) -> np.ndarray:
         for layer in self._layers:
-            self._population = layer(self._population, self._fitness)
+            self._population, self._fitness = layer(self._population, self._fitness)
         
         return self._population
 

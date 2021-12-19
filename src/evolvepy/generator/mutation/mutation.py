@@ -8,7 +8,7 @@ import numba
 from .numeric_mutation import sum_mutation
 from .binary_mutation import bit_mutation
 
-from evolvepy.generator import Layer
+from evolvepy.generator import ChromossomeOperator
 
 def default_mutation(type):
     if (np.dtype(type).char in np.typecodes["AllFloat"] or 
@@ -17,7 +17,7 @@ def default_mutation(type):
     else:
         return bit_mutation
 
-class NumericMutationLayer(Layer):
+class NumericMutationLayer(ChromossomeOperator):
     def __init__(self, mutation_function:Callable, existence_rate:float, gene_rate:float, mutation_range:Tuple[float, float], name: str = None, chromossome_names: Union[str, List[str], None] = None):
         parameters = {"existence_rate":existence_rate, "gene_rate":gene_rate, "mutation_range":mutation_range}
         dynamic_parameters = dict.fromkeys(list(parameters.keys()), True)
@@ -25,7 +25,7 @@ class NumericMutationLayer(Layer):
         super().__init__(name=name, dynamic_parameters=dynamic_parameters, parameters=parameters, chromossome_names=chromossome_names)
         self._mutation_function = mutation_function
 
-    def call(self, chromossomes: np.ndarray, fitness:np.ndarray) -> np.ndarray:
+    def call_chromossomes(self, chromossomes: np.ndarray, fitness:np.ndarray) -> np.ndarray:
         existence_rate = self.parameters["existence_rate"]
         gene_rate = self.parameters["gene_rate"]
         mutation_range = self.parameters["mutation_range"]
@@ -36,7 +36,7 @@ class NumericMutationLayer(Layer):
     @numba.njit()#parallel=True)
     def mutate(chromossomes:np.ndarray, mutation_function:Callable, existence_rate:float, gene_rate:float, mutation_range:Tuple[float, float]):
         result = np.empty_like(chromossomes)
-        
+
         n = chromossomes.shape[0]
         for i in numba.prange(n):
             result[i] = mutation_function(chromossomes[i], existence_rate, gene_rate, mutation_range)

@@ -20,7 +20,7 @@ class TestCombineLayer(unittest.TestCase):
         fitness = np.random.rand(10)
     
         layer = CombineLayer(tournament, one_point, 2, name="combine_test" )
-        changed = layer(population, fitness)
+        changed, _ = layer(population, fitness)
 
         assert_equal(changed.dtype, population.dtype)
         assert_not_equal(population, changed)
@@ -33,7 +33,7 @@ class TestCombineLayer(unittest.TestCase):
         fitness = np.random.rand(10)
 
         layer = CombineLayer(tournament, one_point, 2, name="combine_test" )
-        changed = layer(population, fitness)
+        changed, _ = layer(population, fitness)
 
         assert_equal(changed.dtype, population.dtype)
         assert_not_equal(changed["chr0"], population["chr0"])
@@ -46,7 +46,7 @@ class TestCombineLayer(unittest.TestCase):
         fitness = np.random.rand(10)
 
         layer = CombineLayer(tournament, one_point, 2, name="combine_test", chromossome_names="chr0")
-        changed = layer(population, fitness)
+        changed, _ = layer(population, fitness)
 
         assert_equal(changed.dtype, population.dtype)
         assert_not_equal(changed["chr0"], population["chr0"])

@@ -18,7 +18,7 @@ class TestMutationLayer(unittest.TestCase):
     
         layer = NumericMutationLayer(sum_mutation, 1.0, 0.0, (0.0, 1.0), "mutation_test")
 
-        changed = layer(population)
+        changed, _ = layer(population)
 
         assert_equal(changed.dtype, population.dtype)
         assert_not_equal(changed, population)
@@ -27,7 +27,7 @@ class TestMutationLayer(unittest.TestCase):
         population = np.zeros((10), dtype=[("chr0", np.float64, 10), ("chr1", np.float64, 2)])
 
         layer = NumericMutationLayer(sum_mutation, 1.0, 0.5, (0.0, 1.0), "mutation_test")
-        changed = layer(population)
+        changed, _ = layer(population)
 
         assert_equal(changed.dtype, population.dtype)
         assert_not_equal(changed["chr0"], population["chr0"])
@@ -37,7 +37,7 @@ class TestMutationLayer(unittest.TestCase):
         population = np.zeros((10), dtype=[("chr0", np.float64, 10), ("chr1", np.float64, 2)])
 
         layer = NumericMutationLayer(sum_mutation, 1.0, 0.5, (0.0, 1.0), "mutation_test", chromossome_names="chr0")
-        changed = layer(population)
+        changed, _ = layer(population)
 
         assert_equal(changed.dtype, population.dtype)
         assert_not_equal(changed["chr0"], population["chr0"])
