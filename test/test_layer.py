@@ -8,7 +8,7 @@ from utils import assert_not_equal
 
 sys.path.append("..\src")
 
-from evolvepy.generator.layer import Layer, Concatenate
+from evolvepy.generator import Layer, Concatenate, FilterFirsts, Sort
 
 class TestLayer(unittest.TestCase):
 
@@ -52,3 +52,32 @@ class TestLayer(unittest.TestCase):
         assert_equal(pop.dtype, layer4.population.dtype)
 
         assert_equal(fitness_result, layer4.fitness)
+
+    def test_filter(self):
+        layer = FilterFirsts(5)
+
+        pop = np.empty(10)
+        fitness = np.empty(10)
+
+        layer(pop, fitness)
+
+        pop_result = pop[0:5]
+        fitness_result = fitness[0:5]
+
+        assert_equal(pop_result, layer.population)
+        assert_equal(fitness_result, layer.fitness)
+
+    def test_sort(self):
+        layer = Sort()
+
+        pop = np.arange(0, 1, 0.1)
+        fitness = np.arange(0, 1, 0.1)
+
+        layer(pop, fitness)
+
+        pop_result = np.flip(pop)
+        fitness_result = np.flip(fitness)
+
+        assert_equal(fitness_result, layer.fitness)
+        assert_equal(pop_result, layer.population)
+        

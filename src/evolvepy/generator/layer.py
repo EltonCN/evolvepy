@@ -19,12 +19,16 @@ class Layer(ABC):
         self._name = name + str(Layer.__layer_count)
         Layer.__layer_count += 1
 
-        if dynamic_parameters is None:
+        self._parameters = parameters
+
+        if dynamic_parameters is None and parameters is None:
             dynamic_parameters = {}
+        elif dynamic_parameters is None:
+            dynamic_parameters = dict.fromkeys(list(parameters.keys()), True)
         self._dynamic_parameters : Dict[str, bool] = dynamic_parameters
 
         self._next : List[Layer] = []
-        self._parameters = parameters
+       
 
         self._population = None
         self._fitness = None
