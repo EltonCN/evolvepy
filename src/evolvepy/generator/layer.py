@@ -95,9 +95,19 @@ class Layer(ABC):
 
         if fitness is None:
             fitness = np.zeros(len(population), dtype=np.float32)
-        fitness = np.asarray(fitness)
+        fitness = np.asarray(fitness).flatten()
+
+        '''print(self.name)
+        print("Received:")
+        print(population)
+        print(fitness)'''
 
         population, fitness = self.call(population, fitness)
+
+        '''print("Sending:")
+        print(population)
+        print(fitness)
+        print()'''
 
         self._population = population
         self._fitness = fitness
@@ -107,7 +117,7 @@ class Layer(ABC):
 
         return population, fitness
 
-    def call(self, population:np.ndarray, fitness:np.ndarray) -> Tuple(np.ndarray, np.ndarray):
+    def call(self, population:np.ndarray, fitness:np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
         return population, fitness
 
 class Concatenate(Layer):
@@ -117,12 +127,12 @@ class Concatenate(Layer):
 
         self._received_count = 0
 
-    def __call__(self, population: np.ndarray, fitness: np.ndarray) -> Tuple(np.ndarray, np.ndarray):
+    def __call__(self, population: np.ndarray, fitness: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
         population = np.asarray(population)
 
         if fitness is None:
             fitness = np.zeros(len(population), dtype=np.float32)
-        fitness = np.asarray(fitness)
+        fitness = np.asarray(fitness).flatten()
 
         if self._received_count == 0:
             self._population = population

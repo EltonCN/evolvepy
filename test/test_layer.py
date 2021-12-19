@@ -3,6 +3,7 @@ import sys
 
 import numpy as np
 from numpy.testing import assert_equal, assert_raises
+from numpy.testing._private.utils import assert_
 
 from utils import assert_not_equal
 
@@ -43,15 +44,18 @@ class TestLayer(unittest.TestCase):
         pop = np.empty(10)
         fitness = np.empty(10)
 
-        layer1(pop, fitness)
+        for _ in range(2):
+            layer1(pop, fitness)
 
-        pop_result = np.concatenate((pop, pop))
-        fitness_result = np.concatenate((fitness, fitness))
+            pop_result = np.concatenate((pop, pop))
+            fitness_result = np.concatenate((fitness, fitness))
 
-        assert_equal(pop_result, layer4.population)
-        assert_equal(pop.dtype, layer4.population.dtype)
+            assert_equal(pop_result, layer4.population)
+            assert_equal(pop.dtype, layer4.population.dtype)
 
-        assert_equal(fitness_result, layer4.fitness)
+            assert_equal(fitness_result, layer4.fitness)
+
+
 
     def test_filter(self):
         layer = FilterFirsts(5)
@@ -80,4 +84,21 @@ class TestLayer(unittest.TestCase):
 
         assert_equal(fitness_result, layer.fitness)
         assert_equal(pop_result, layer.population)
-        
+        assert_equal(pop_result.shape, layer.population.shape)
+    
+    def test_filter_sort(self):
+        layer1 = Sort()
+        layer2 = FilterFirsts(5)
+
+        layer1.next = layer2
+
+        pop = np.arange(0, 1, 0.1)
+        fitness = np.arange(0, 1, 0.1)
+
+        pop_result = np.flip(pop)[0:5]
+        fitness_result = np.flip(fitness)[0:5]
+
+        layer1(pop, fitness)
+
+        assert_equal(pop_result, layer2.population)
+        assert_equal(fitness_result, layer2.fitness)

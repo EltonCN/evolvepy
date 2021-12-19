@@ -126,7 +126,7 @@ class Generator:
     def generate_evolve(self) -> np.ndarray:
         self._layers[0](self._population, self._fitness)
         
-        return self._layers[-1].population
+        return self._layers[-1].population[0:self._n_individual]
 
     def add(self, layer:Layer) -> None:
         if len(self._layers) != 0:
