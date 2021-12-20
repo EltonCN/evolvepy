@@ -5,9 +5,9 @@ from numba.np.ufunc import parallel
 import numpy as np
 import numba
 
-from evolvepy.generator import Layer
+from evolvepy.generator import ChromossomeOperator
 
-class CombineLayer(Layer):
+class CombineLayer(ChromossomeOperator):
     def __init__(self, selection_function:Callable, crossover_function:Callable, n_combine:int=2, name: str = None, chromossome_names: Union[str, List[str], None] = None):
         super().__init__(name=name, dynamic_parameters=False, chromossome_names=chromossome_names)
 
@@ -15,7 +15,7 @@ class CombineLayer(Layer):
         self._crossover_function = crossover_function
         self._n_combine = n_combine
 
-    def call(self, chromossomes: np.ndarray, fitness:np.ndarray) -> np.ndarray:
+    def call_chromossomes(self, chromossomes: np.ndarray, fitness:np.ndarray) -> np.ndarray:
         return CombineLayer.combine(chromossomes, fitness, self._selection_function, self._crossover_function, self._n_combine)
 
     

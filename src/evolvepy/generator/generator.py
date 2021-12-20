@@ -7,7 +7,7 @@ from evolvepy.generator.layer import Layer
 
 class Generator:
 
-    def __init__(self, chromossome_sizes:ArrayLike, layers:Union[None, List[Layer]]=None, chromossome_ranges:Union[None, List[Union[None, Tuple]], Tuple]=None, types:Union[list, DTypeLike]=[np.float32], names:Union[list, str, None]=None):    
+    def __init__(self, chromossome_sizes:ArrayLike, layers:Union[None, List[Layer]]=None, chromossome_ranges:Union[None, List[Union[None, Tuple]], Tuple]=None, types:Union[list, DTypeLike]=[np.float32], names:Union[list, str, None]=None, first_layer:Layer=None, last_layer:Layer=None):    
         chromossome_sizes = np.asarray(chromossome_sizes)
 
         if chromossome_sizes.shape == ():
@@ -32,14 +32,24 @@ class Generator:
         self._chromossome_sizes = chromossome_sizes
         self._n_chromossome = n_chromossome
         self._chromossome_ranges = chromossome_ranges
-
-        
         
         self._create_dtype_names_ranges(names, types)
-        
+
+        self._connected = False
 
         if layers is None:
             layers = []
+        elif first_layer is not None or last_layer is not None:
+            raise ValueError("Generator 'layers' parameter must not be used together with 'first_layer' and 'last_layer'")
+        else:
+            for i in range(len(layers)-1):
+                layers[i] = layers[i+1]
+
+        if first_layer is not None and last_layer is not None:
+            layers.append(first_layer)
+            layers.append(last_layer)
+        elif last_layer is not None or first_layer is not None:
+            raise ValueError("You must set Generator 'first_layer' with 'last_layer'")
 
         self._layers = layers
 
@@ -114,12 +124,14 @@ class Generator:
         return population
     
     def generate_evolve(self) -> np.ndarray:
-        for layer in self._layers:
-            self._population = layer(self._population, self._fitness)
+        self._layers[0](self._population, self._fitness)
         
-        return self._population
+        return self._layers[-1].population[0:self._n_individual]
 
     def add(self, layer:Layer) -> None:
+        if len(self._layers) != 0:
+            self._layers[-1].next = layer
+
         self._layers.append(layer)
     
     @property

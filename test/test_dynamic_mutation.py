@@ -17,8 +17,12 @@ from evolvepy.callbacks import DynamicMutation
 def return_one(individuals):
     return 1
 
+PRINT = False
 
 def helper_print_stage(evolver: Evolver):
+
+    if not PRINT:
+        return
 
     dym_callback = None
     for callback in evolver._callbacks:

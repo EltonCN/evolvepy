@@ -9,24 +9,31 @@ from numpy.typing import ArrayLike
 
 class Layer(ABC):
 
-    def __init__(self, name:str=None, dynamic_parameters:Dict[str, bool] = None, parameters:Dict[str, object] = None, chromossome_names : Union[str, List[str], None] = None):
+    __layer_count = 0
+
+    def __init__(self, name:str=None, dynamic_parameters:Dict[str, bool] = None, parameters:Dict[str, object] = None):
         
         if name is None:
-            self._name : str = self.__class__.__name__
-        else:
-            self._name = name
+            name = self.__class__.__name__
+        
+        self._name = name + str(Layer.__layer_count)
+        Layer.__layer_count += 1
 
-        if dynamic_parameters is None:
+        self._parameters = parameters
+
+        if dynamic_parameters is None and parameters is None:
             dynamic_parameters = {}
+        elif dynamic_parameters is None:
+            dynamic_parameters = dict.fromkeys(list(parameters.keys()), True)
         self._dynamic_parameters : Dict[str, bool] = dynamic_parameters
 
-        if isinstance(chromossome_names, str):
-            self._chromossome_names = [chromossome_names]
-        else:
-            self._chromossome_names = chromossome_names
+        self._next : List[Layer] = []
+       
 
-        self._next = None
-        self._parameters = parameters
+        self._population = None
+        self._fitness = None
+
+        self._prev_count : int = 0
 
     @property
     def parameters(self)-> Dict[str, object]:
@@ -63,25 +70,114 @@ class Layer(ABC):
     def name(self) -> str:
         return self._name
 
-    def __call__(self, population:ArrayLike, fitness:Union[ArrayLike, None]=None) -> np.ndarray:        
+    @property
+    def next(self) -> Layer:
+        return self._next
+    
+    @next.setter
+    def next(self, layer:Layer) -> None:
+        if layer not in self._next:
+            self._next.append(layer)
+
+            layer._prev_count += 1
+
+    @property
+    def population(self) -> np.ndarray:
+        return self._population
+    
+    @property
+    def fitness(self) -> np.ndarray:
+        return self._fitness
+
+
+    def __call__(self, population:ArrayLike, fitness:Union[ArrayLike, None]=None) -> np.ndarray:          
         population = np.asarray(population)
-        result = population.copy()
 
         if fitness is None:
             fitness = np.zeros(len(population), dtype=np.float32)
-        fitness = np.asarray(fitness)
+        fitness = np.asarray(fitness).flatten()
+
+        '''print(self.name)
+        print("Received:")
+        print(population)
+        print(fitness)'''
+
+        population, fitness = self.call(population, fitness)
+
+        '''print("Sending:")
+        print(population)
+        print(fitness)
+        print()'''
+
+        self._population = population
+        self._fitness = fitness
+
+        for layer in self._next:
+            layer(population, fitness)
+
+        return population, fitness
+
+    def call(self, population:np.ndarray, fitness:np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+        return population, fitness
+
+class Concatenate(Layer):
+
+    def __init__(self, name: str = None, dynamic_parameters: Dict[str, bool] = None, parameters: Dict[str, object] = None):
+        super().__init__(name=name, dynamic_parameters=dynamic_parameters, parameters=parameters)
+
+        self._received_count = 0
+
+    def __call__(self, population: np.ndarray, fitness: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+        population = np.asarray(population)
+
+        if fitness is None:
+            fitness = np.zeros(len(population), dtype=np.float32)
+        fitness = np.asarray(fitness).flatten()
+
+        if self._received_count == 0:
+            self._population = population
+            self._fitness = fitness
+        else:
+            self._population = np.concatenate((self._population, population))
+            self._fitness = np.concatenate((self._fitness, fitness))
+
+        self._received_count += 1
+
+        if self._prev_count == self._received_count:
+            self._received_count = 0
+
+            for layer in self._next:
+                layer(population, fitness)
+
+        return population, fitness
+
+
+
+
+class ChromossomeOperator(Layer):
+    def __init__(self, name: str = None, dynamic_parameters: Dict[str, bool] = None, parameters: Dict[str, object] = None, chromossome_names: Union[str, List[str], None] = None):
+        super().__init__(name=name, dynamic_parameters=dynamic_parameters, parameters=parameters)
+
+        if isinstance(chromossome_names, str):
+            self._chromossome_names = [chromossome_names]
+        else:
+            self._chromossome_names = chromossome_names
+
+    
+    def call(self, population:np.ndarray, fitness:np.ndarray) -> np.ndarray:        
+        result = population.copy()
 
         if self._chromossome_names is None: # Without specified name
             if len(population.dtype) == 0: # and only one chromossome
-                result = self.call(population, fitness)
+                result = self.call_chromossomes(population, fitness)
             else:
                 for name in population.dtype.names: # and multiple chrmossomes
-                    result[name] = self.call(population[name], fitness)
+                    result[name] = self.call_chromossomes(population[name], fitness)
         else:
             for name in self._chromossome_names:
-                result[name] = self.call(population[name], fitness)
+                result[name] = self.call_chromossomes(population[name], fitness)
 
-        return result
+        return result, fitness
     
-    def call(self, chromossomes:np.ndarray, fitness:np.ndarray) -> np.ndarray:
+    def call_chromossomes(self, chromossomes:np.ndarray, fitness:np.ndarray) -> np.ndarray:
         return chromossomes
