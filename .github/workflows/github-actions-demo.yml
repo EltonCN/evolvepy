@@ -1,9 +1,9 @@
 name: evolvepy CI/CD
 on:
   push:
-    branches: [ $default-branch ]
+    branches: [ develop, main ]
   pull_request:
-    branches: [ $default-branch ]
+    branches: [ develop, main ]
 
 jobs:
   build:
