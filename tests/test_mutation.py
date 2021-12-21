@@ -3,7 +3,7 @@ import sys
 
 import numpy as np
 
-sys.path.append("..\src")
+ 
 
 import evolvepy.generator.mutation.numeric_mutation as mutation
 

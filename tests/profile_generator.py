@@ -4,7 +4,7 @@ import cProfile
 import numpy as np
 
 
-sys.path.append("..\src")
+ 
 
 from evolvepy.generator import Generator
 from evolvepy.generator.mutation import NumericMutationLayer, sum_mutation

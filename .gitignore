@@ -4,3 +4,7 @@ __pycache__/
 *.whl
 *.gz
 dist/
+coverage.xml
+create-reports.sh
+pytest-report.xml
+.coverage

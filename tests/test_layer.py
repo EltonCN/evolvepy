@@ -5,9 +5,9 @@ import numpy as np
 from numpy.testing import assert_equal, assert_raises
 from numpy.testing._private.utils import assert_
 
-from utils import assert_not_equal
+from .utils import assert_not_equal
 
-sys.path.append("..\src")
+ 
 
 from evolvepy.generator import Layer, Concatenate, FilterFirsts, Sort
 

@@ -4,9 +4,7 @@ import sys
 import numpy as np
 from numpy.testing import assert_equal
 
-from utils import assert_not_equal
-
-sys.path.append("..\src")
+from .utils import assert_not_equal
 
 from evolvepy.generator import CombineLayer
 from evolvepy.generator.selection import tournament

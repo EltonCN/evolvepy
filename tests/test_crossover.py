@@ -3,8 +3,6 @@ import sys
 
 import numpy as np
 
-sys.path.append("..\src")
-
 import evolvepy.generator.crossover.crossover as crossover
 
 class TestCrossover(unittest.TestCase):

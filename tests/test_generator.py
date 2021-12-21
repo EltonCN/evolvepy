@@ -4,9 +4,9 @@ import sys
 import numpy as np
 from numpy.testing import assert_equal, assert_raises
 
-from utils import assert_not_equal
+from .utils import assert_not_equal
 
-sys.path.append("..\src")
+ 
 
 from evolvepy.generator import Generator
 from evolvepy.generator.mutation import NumericMutationLayer, sum_mutation

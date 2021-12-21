@@ -7,9 +7,9 @@ from numpy.testing._private.utils import assert_allclose
 from numpy.typing import ArrayLike
 from numpy.testing import assert_equal, assert_raises
 
-from utils import assert_not_equal
+from .utils import assert_not_equal
 
-sys.path.append("..\src")
+ 
 
 from evolvepy.evaluator.function_evaluator import FunctionEvaluator
 from evolvepy.evaluator.dispatcher import MultipleEvaluation, EvaluationDispatcher
