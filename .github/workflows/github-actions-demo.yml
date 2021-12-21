@@ -28,5 +28,6 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pytest test/
+        cd test
+        pytest test
       shell: bash
