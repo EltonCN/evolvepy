@@ -126,7 +126,10 @@ class Generator:
     def generate_evolve(self) -> np.ndarray:
         self._layers[0](self._population, self._fitness)
         
-        return self._layers[-1].population[0:self._n_individual]
+        if len(self._layers[-1].population) != self._n_individual:
+            raise RuntimeError("The generator generated a population with wrong size")
+
+        return self._layers[-1].population
 
     def add(self, layer:Layer) -> None:
         if len(self._layers) != 0:
