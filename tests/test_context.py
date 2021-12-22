@@ -29,3 +29,31 @@ class TestContext(unittest.TestCase):
 
         context.blocked["chr0"] = True
         assert_equal(context.blocked, {"chr0":True, "chr1": False})
+
+    def test_copy(self):
+        dtype = np.dtype([("chr0", np.float32, 5), ("chr1", bool, 3)])
+        
+        context = Context(dtype.names)
+        context.a = "a"
+
+        copy = context.copy()
+
+        assert_equal(list(context.blocked.values()), list(copy.blocked.values()))
+        assert_equal(list(context.blocked.keys()), list(copy.blocked.keys()))
+
+        assert_equal(list(context._values.values()), list(copy._values.values()))
+        assert_equal(list(context._values.keys()), list(copy._values.keys()))
+
+        assert_equal(context.sorted, copy.sorted)
+
+        context.sorted = True
+
+        assert_not_equal(context.sorted, copy.sorted)
+
+        copy.b = "b"
+        assert_not_equal(list(context._values.values()), list(copy._values.values()))
+        assert_not_equal(list(context._values.keys()), list(copy._values.keys()))
+
+        context.blocked["chr0"] = True
+        assert_not_equal(list(context.blocked.values()), list(copy.blocked.values()))
+

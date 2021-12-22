@@ -1,8 +1,9 @@
+from __future__ import annotations
 from typing import Any, Dict, List, Union
 
 class Context:
 
-    default_values = ["sorted", "_sorted", "blocked", "_chromossome_names", "chromossome_names", "_values", "have_value"]
+    default_values = ["sorted", "_sorted", "blocked", "_chromossome_names", "chromossome_names", "_values", "have_value", "copy"]
 
     def __init__(self, chromossome_names:Union[List[str], None], sorted=False):
         self._sorted = sorted
@@ -11,7 +12,7 @@ class Context:
             self.blocked : bool = False
         else:
             self.blocked : Dict[str, bool] = dict.fromkeys(chromossome_names, False)
-            
+
         self._chromossome_names = chromossome_names
         self._values : Dict[str, object] = {}
 
@@ -50,3 +51,11 @@ class Context:
             return True
         else:
             return False
+
+    def copy(self) -> Context:
+        context = Context(self.chromossome_names, self.sorted)
+        context.blocked = dict(zip(self.blocked.keys(), self.blocked.values()))
+        context._values = dict(zip(self._values.keys(), self._values.values()))
+
+        return context
+        
