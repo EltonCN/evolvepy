@@ -5,6 +5,8 @@ import numpy as np
 from numpy.testing import assert_equal, assert_raises
 from numpy.testing._private.utils import assert_
 
+from evolvepy.generator.context import Context
+
 from .utils import assert_not_equal
 
  
@@ -85,6 +87,8 @@ class TestLayer(unittest.TestCase):
         assert_equal(fitness_result, layer.fitness)
         assert_equal(pop_result, layer.population)
         assert_equal(pop_result.shape, layer.population.shape)
+        assert_equal(True, layer.context.sorted)
+
     
     def test_filter_sort(self):
         layer1 = Sort()
@@ -102,3 +106,18 @@ class TestLayer(unittest.TestCase):
 
         assert_equal(pop_result, layer2.population)
         assert_equal(fitness_result, layer2.fitness)
+
+    def test_block(self):
+        layer = Sort()
+
+        context = Context()
+
+        context.block_all = True
+
+        pop = np.arange(0, 1, 0.1)
+        fitness = np.arange(0, 1, 0.1)
+
+        layer(pop, fitness, context)
+
+        assert_equal(layer.population, pop)
+        assert_equal(layer.fitness, fitness)

@@ -1,6 +1,8 @@
 from typing import Tuple
 import numpy as np
 
+from evolvepy.generator.context import Context
+
 from .layer import Layer
 
 class Sort(Layer):
@@ -8,9 +10,11 @@ class Sort(Layer):
     def __init__(self, name: str = None, ):
         super().__init__(name=name)
 
-    def call(self, population: np.ndarray, fitness: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+    def call(self, population: np.ndarray, fitness: np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:
         indexs = np.argsort(fitness)
         indexs = np.flip(indexs)
+
+        context.sorted = True
 
         return population[indexs], fitness[indexs]
 
@@ -20,7 +24,7 @@ class FilterFirsts(Layer):
         parameters = {"n_to_pass":n_to_pass}
         super().__init__(name=name, parameters=parameters)
 
-    def call(self, population: np.ndarray, fitness: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+    def call(self, population: np.ndarray, fitness: np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:
         n_to_pass = self.parameters["n_to_pass"]
         
         return population[0:n_to_pass], fitness[0:n_to_pass]

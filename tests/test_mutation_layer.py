@@ -4,6 +4,8 @@ import sys
 import numpy as np
 from numpy.testing import assert_equal
 
+from evolvepy.generator.context import Context
+
 from .utils import assert_not_equal
 
  
@@ -42,3 +44,13 @@ class TestMutationLayer(unittest.TestCase):
         assert_equal(changed.dtype, population.dtype)
         assert_not_equal(changed["chr0"], population["chr0"])
         assert_equal(changed["chr1"], population["chr1"])
+
+    def test_blocked(self):
+        population = np.zeros((10), dtype=[("chr0", np.float64, 10), ("chr1", np.float64, 2)])
+        context = Context(population.dtype.names)
+        context.blocked["chr0"] = True
+
+        layer = NumericMutationLayer(sum_mutation, 1.0, 0.5, (0.0, 1.0), "mutation_test", chromossome_names="chr0")
+        changed, _ = layer(population, context=context)
+
+        assert_equal(changed["chr0"], population["chr0"])
