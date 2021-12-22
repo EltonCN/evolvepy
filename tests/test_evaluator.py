@@ -7,14 +7,13 @@ from numpy.testing._private.utils import assert_allclose
 from numpy.typing import ArrayLike
 from numpy.testing import assert_equal, assert_raises
 
+from evolvepy.evaluator import FitnessCache, FunctionEvaluator, MultipleEvaluation, EvaluationDispatcher, FitnessAggregator, EvaluationManager
+
+
 from .utils import assert_not_equal
 
  
 
-from evolvepy.evaluator.function_evaluator import FunctionEvaluator
-from evolvepy.evaluator.dispatcher import MultipleEvaluation, EvaluationDispatcher
-from evolvepy.evaluator.aggregator import FitnessAggregator
-from evolvepy.evaluator.manager import EvaluationManager
 
 def sum1(individuals:ArrayLike):
     return individuals[0]["chr0"].sum()
@@ -95,6 +94,31 @@ class TestEvaluator(unittest.TestCase):
         fitness = aggre(fitness)
 
         assert_equal(fitness_reference, fitness)
+
+    def test_cache(self):
+        dtype = np.dtype([("chr0", np.float32, 5)])
+
+        population = np.ones(10, dtype)
+        fitness_reference = population["chr0"].sum(axis=1).reshape(10,1)
+
+        population2 = np.zeros(10, dtype)
+        fitness_reference2 = population2["chr0"].sum(axis=1).reshape(10,1)
+
+        evaluator = FunctionEvaluator(sum1)
+
+        cache = FitnessCache(n_generation=2)
+
+        fitness = cache(population, evaluator)
+        assert_equal(fitness, fitness_reference)
+
+        fitness2 = cache(population2, evaluator)
+        assert_equal(fitness2, fitness_reference2)
+        fitness2 = cache(population2, evaluator)
+        assert_equal(fitness2, fitness_reference2)
+
+        ind_repr = cache.get_individual_representation(population[0])
+        assert_equal(ind_repr not in cache._cache, True)
+        
 
     def test_manager(self):
         population = get_population()
