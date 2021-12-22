@@ -112,7 +112,11 @@ class Layer(ABC):
         self._fitness = fitness
 
         for layer in self._next:
-            layer(population, fitness, context)
+                next_context = context
+                if len(self._next) != 1:
+                    next_context = next_context.copy()
+                    
+                layer(population, fitness, next_context)
 
         self._context = context
 
@@ -151,7 +155,11 @@ class Concatenate(Layer):
             self._received_count = 0
 
             for layer in self._next:
-                layer(population, fitness, context)
+                next_context = context
+                if len(self._next) != 1:
+                    next_context = next_context.copy()
+
+                layer(population, fitness, next_context)
 
         self._context = context
 
