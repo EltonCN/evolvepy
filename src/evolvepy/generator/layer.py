@@ -34,6 +34,7 @@ class Layer(ABC):
 
         self._population = None
         self._fitness = None
+        self._context = None
 
         self._prev_count : int = 0
 
@@ -91,6 +92,9 @@ class Layer(ABC):
     def fitness(self) -> np.ndarray:
         return self._fitness
 
+    @property
+    def context(self) -> Context:
+        return self._context
 
     def __call__(self, population:ArrayLike, fitness:Union[ArrayLike, None]=None, context:Union[Context, None]=None) -> np.ndarray:          
         population = np.asarray(population)
@@ -109,6 +113,8 @@ class Layer(ABC):
 
         for layer in self._next:
             layer(population, fitness, context)
+
+        self._context = context
 
         return population, fitness
 
@@ -146,6 +152,8 @@ class Concatenate(Layer):
 
             for layer in self._next:
                 layer(population, fitness, context)
+
+        self._context = context
 
         return population, fitness
 

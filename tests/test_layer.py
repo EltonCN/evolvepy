@@ -85,6 +85,8 @@ class TestLayer(unittest.TestCase):
         assert_equal(fitness_result, layer.fitness)
         assert_equal(pop_result, layer.population)
         assert_equal(pop_result.shape, layer.population.shape)
+        assert_equal(True, layer.context.sorted)
+
     
     def test_filter_sort(self):
         layer1 = Sort()
