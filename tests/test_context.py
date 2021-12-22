@@ -2,6 +2,7 @@ import unittest
 
 import numpy as np
 from numpy.testing import assert_equal
+from numpy.testing._private.utils import assert_raises
 
 from .utils import assert_not_equal
 
@@ -56,4 +57,3 @@ class TestContext(unittest.TestCase):
 
         context.blocked["chr0"] = True
         assert_not_equal(list(context.blocked.values()), list(copy.blocked.values()))
-

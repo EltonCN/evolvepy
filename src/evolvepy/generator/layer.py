@@ -106,17 +106,18 @@ class Layer(ABC):
         if context is None:
             context = Context(population.dtype.names)
 
-        population, fitness = self.call(population, fitness, context)
+        if not context.block_all:
+            population, fitness = self.call(population, fitness, context)
 
         self._population = population
         self._fitness = fitness
 
         for layer in self._next:
-                next_context = context
-                if len(self._next) != 1:
-                    next_context = next_context.copy()
-                    
-                layer(population, fitness, next_context)
+            next_context = context
+            if len(self._next) != 1:
+                next_context = next_context.copy()
+                
+            layer(population, fitness, next_context)
 
         self._context = context
 

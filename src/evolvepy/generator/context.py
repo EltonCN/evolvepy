@@ -3,9 +3,9 @@ from typing import Any, Dict, List, Union
 
 class Context:
 
-    default_values = ["sorted", "_sorted", "blocked", "_chromossome_names", "chromossome_names", "_values", "have_value", "copy"]
+    default_values = ["sorted", "_sorted", "blocked", "_chromossome_names", "chromossome_names", "_values", "have_value", "copy", "_block_all", "block_all"]
 
-    def __init__(self, chromossome_names:Union[List[str], None], sorted=False):
+    def __init__(self, chromossome_names:Union[List[str], None]=None, sorted=False):
         self._sorted = sorted
 
         if chromossome_names is None:
@@ -15,6 +15,7 @@ class Context:
 
         self._chromossome_names = chromossome_names
         self._values : Dict[str, object] = {}
+        self._block_all = False
 
     @property
     def chromossome_names(self) -> List[str]:
@@ -29,7 +30,18 @@ class Context:
         if isinstance(value, bool):
             self._sorted = value
         else:
-            raise ValueError("Sorted must be a boolean")
+            raise ValueError("sorted must be a boolean")
+
+    @property
+    def block_all(self) -> bool:
+        return self._block_all
+    
+    @block_all.setter
+    def block_all(self, value:bool) -> None:
+        if isinstance(value, bool):
+            self._block_all = value
+        else:
+            raise ValueError("block_all must be a boolean")
 
     
     def __setattr__(self, __name: str, __value: Any) -> None:
@@ -54,7 +66,12 @@ class Context:
 
     def copy(self) -> Context:
         context = Context(self.chromossome_names, self.sorted)
-        context.blocked = dict(zip(self.blocked.keys(), self.blocked.values()))
+        
+        if isinstance(self.blocked, bool):
+            context.blocked = self.blocked
+        else:
+            context.blocked = dict(zip(self.blocked.keys(), self.blocked.values()))
+        
         context._values = dict(zip(self._values.keys(), self._values.values()))
 
         return context
