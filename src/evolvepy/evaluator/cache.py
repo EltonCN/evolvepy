@@ -3,11 +3,12 @@ from typing import Deque, Dict, List
 
 import numpy as np
 
-from evolvepy.evaluator.evaluator import Evaluator
+from evolvepy.evaluator.evaluator import EvaluationStage, Evaluator
 
-class FitnessCache:
+class FitnessCache(EvaluationStage):
 
-    def __init__(self, n_generation:int = None, max_decimals:int=None):
+    def __init__(self, evaluator:Evaluator, n_generation:int = None, max_decimals:int=None):
+        super().__init__(evaluator)
         self._n_generation = n_generation
         self._max_decimals = max_decimals
         self._cache : Dict[bytes, float] = {}
@@ -25,10 +26,10 @@ class FitnessCache:
         return individual.data.tobytes()
 
 
-    def __call__(self, population:np.ndarray, evaluator:Evaluator) -> np.ndarray:
+    def __call__(self, population:np.ndarray) -> np.ndarray:
         pop_size = len(population)
         
-        fitness = np.empty((pop_size, evaluator._n_scores), np.float64)
+        fitness = np.empty((pop_size, self._evaluator._n_scores), np.float64)
         to_evaluate_indexs = []
         to_evaluate_repr = []
 
@@ -50,7 +51,7 @@ class FitnessCache:
         if len(to_evaluate_indexs) != 0:
             to_evaluate = population[to_evaluate_indexs]
 
-            evaluated_fitness = evaluator(to_evaluate)
+            evaluated_fitness = self._evaluator(to_evaluate)
 
             fitness[to_evaluate_indexs] = evaluated_fitness
 

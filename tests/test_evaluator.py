@@ -7,7 +7,7 @@ from numpy.testing._private.utils import assert_allclose
 from numpy.typing import ArrayLike
 from numpy.testing import assert_equal, assert_raises
 
-from evolvepy.evaluator import FitnessCache, FunctionEvaluator, MultipleEvaluation, EvaluationDispatcher, FitnessAggregator, EvaluationManager
+from evolvepy.evaluator import FitnessCache, FunctionEvaluator, MultipleEvaluation, FitnessAggregator
 
 
 from .utils import assert_not_equal
@@ -74,24 +74,19 @@ class TestEvaluator(unittest.TestCase):
         fitness_reference = population["chr0"].sum(axis=1).reshape(10,1)
 
         evaluator = FunctionEvaluator(sum1)
-        
-        dispatcher = EvaluationDispatcher()
-        fitness = dispatcher(population, evaluator)
-        assert_equal(fitness, fitness_reference)
 
-        dispatcher = MultipleEvaluation(n_evaluation=1)
-        fitness = dispatcher(population, evaluator)
+        dispatcher = MultipleEvaluation(evaluator, n_evaluation=1)
+        fitness = dispatcher(population)
         assert_equal(fitness, fitness_reference)
 
     def test_aggregator(self):
         population = get_population()
-        fitness_reference = population["chr0"].max(axis=1)
+        fitness_reference = population["chr0"].max(axis=1).reshape(10,1)
 
         evaluator = FunctionEvaluator(min_max, n_scores=2)
-        aggre = FitnessAggregator(mode=FitnessAggregator.MAX)
+        aggre = FitnessAggregator(evaluator, mode=FitnessAggregator.MAX)
 
-        fitness = evaluator(population)
-        fitness = aggre(fitness)
+        fitness = aggre(population)
 
         assert_equal(fitness_reference, fitness)
 
@@ -106,31 +101,33 @@ class TestEvaluator(unittest.TestCase):
 
         evaluator = FunctionEvaluator(sum1)
 
-        cache = FitnessCache(n_generation=2)
+        cache = FitnessCache(evaluator, n_generation=2)
 
-        fitness = cache(population, evaluator)
+        fitness = cache(population)
         assert_equal(fitness, fitness_reference)
 
-        fitness2 = cache(population2, evaluator)
+        fitness2 = cache(population2)
         assert_equal(fitness2, fitness_reference2)
-        fitness2 = cache(population2, evaluator)
+        fitness2 = cache(population2)
         assert_equal(fitness2, fitness_reference2)
 
         ind_repr = cache.get_individual_representation(population[0])
         assert_equal(ind_repr not in cache._cache, True)
         
 
-    def test_manager(self):
+    def test_together(self):
         population = get_population()
-        fitness_reference = population["chr0"].max(axis=1)
+        fitness_reference = population["chr0"].max(axis=1).reshape(10,1)
+
+
+        # cache(aggregator(dispatcher(evaluator)))
 
         evaluator = FunctionEvaluator(min_max, n_scores=2)
-        dispatcher = MultipleEvaluation(n_evaluation=2)
-        aggre = FitnessAggregator(mode=FitnessAggregator.MAX)
+        dispatcher = MultipleEvaluation(evaluator, n_evaluation=2)
+        aggre = FitnessAggregator(dispatcher, mode=FitnessAggregator.MAX)
+        cache = FitnessCache(aggre)
 
-        manager = EvaluationManager(evaluator, dispatcher, aggre)
-
-        fitness = manager(population)
+        fitness = cache(population)
 
         assert_equal(fitness_reference, fitness)
 
