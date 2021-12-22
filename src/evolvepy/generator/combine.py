@@ -6,6 +6,7 @@ import numpy as np
 import numba
 
 from evolvepy.generator import ChromossomeOperator
+from evolvepy.generator.context import Context
 
 class CombineLayer(ChromossomeOperator):
     def __init__(self, selection_function:Callable, crossover_function:Callable, n_combine:int=2, name: str = None, chromossome_names: Union[str, List[str], None] = None):
@@ -15,7 +16,7 @@ class CombineLayer(ChromossomeOperator):
         self._crossover_function = crossover_function
         self._n_combine = n_combine
 
-    def call_chromossomes(self, chromossomes: np.ndarray, fitness:np.ndarray) -> np.ndarray:
+    def call_chromossomes(self, chromossomes: np.ndarray, fitness:np.ndarray, context:Context) -> np.ndarray:
         return CombineLayer.combine(chromossomes, fitness, self._selection_function, self._crossover_function, self._n_combine)
 
     

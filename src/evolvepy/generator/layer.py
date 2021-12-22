@@ -7,6 +7,8 @@ from typing import Dict, List, Tuple, Union
 import numpy as np
 from numpy.typing import ArrayLike
 
+from evolvepy.generator.context import Context
+
 class Layer(ABC):
 
     __layer_count = 0
@@ -90,34 +92,27 @@ class Layer(ABC):
         return self._fitness
 
 
-    def __call__(self, population:ArrayLike, fitness:Union[ArrayLike, None]=None) -> np.ndarray:          
+    def __call__(self, population:ArrayLike, fitness:Union[ArrayLike, None]=None, context:Union[Context, None]=None) -> np.ndarray:          
         population = np.asarray(population)
 
         if fitness is None:
             fitness = np.zeros(len(population), dtype=np.float32)
         fitness = np.asarray(fitness).flatten()
 
-        '''print(self.name)
-        print("Received:")
-        print(population)
-        print(fitness)'''
+        if context is None:
+            context = Context(population.dtype.names)
 
-        population, fitness = self.call(population, fitness)
-
-        '''print("Sending:")
-        print(population)
-        print(fitness)
-        print()'''
+        population, fitness = self.call(population, fitness, context)
 
         self._population = population
         self._fitness = fitness
 
         for layer in self._next:
-            layer(population, fitness)
+            layer(population, fitness, context)
 
         return population, fitness
 
-    def call(self, population:np.ndarray, fitness:np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+    def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:
         return population, fitness
 
 class Concatenate(Layer):
@@ -127,12 +122,15 @@ class Concatenate(Layer):
 
         self._received_count = 0
 
-    def __call__(self, population: np.ndarray, fitness: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+    def __call__(self, population: np.ndarray, fitness: np.ndarray, context:Union[Context, None]=None) -> Tuple[np.ndarray, np.ndarray]:
         population = np.asarray(population)
 
         if fitness is None:
             fitness = np.zeros(len(population), dtype=np.float32)
         fitness = np.asarray(fitness).flatten()
+
+        if context is None:
+            context = Context(population.dtype.names)
 
         if self._received_count == 0:
             self._population = population
@@ -147,7 +145,7 @@ class Concatenate(Layer):
             self._received_count = 0
 
             for layer in self._next:
-                layer(population, fitness)
+                layer(population, fitness, context)
 
         return population, fitness
 
@@ -164,20 +162,23 @@ class ChromossomeOperator(Layer):
             self._chromossome_names = chromossome_names
 
     
-    def call(self, population:np.ndarray, fitness:np.ndarray) -> np.ndarray:        
+    def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> np.ndarray:        
         result = population.copy()
 
         if self._chromossome_names is None: # Without specified name
-            if len(population.dtype) == 0: # and only one chromossome
-                result = self.call_chromossomes(population, fitness)
+            if len(population.dtype) == 0 and not context.blocked: # and only one chromossome
+                result = self.call_chromossomes(population, fitness, context)
             else:
                 for name in population.dtype.names: # and multiple chrmossomes
-                    result[name] = self.call_chromossomes(population[name], fitness)
+                    if not context.blocked[name]:
+                        result[name] = self.call_chromossomes(population[name], fitness, context)
         else:
             for name in self._chromossome_names:
-                result[name] = self.call_chromossomes(population[name], fitness)
+                if not context.blocked[name]:
+                        result[name] = self.call_chromossomes(population[name], fitness, context)
+
 
         return result, fitness
     
-    def call_chromossomes(self, chromossomes:np.ndarray, fitness:np.ndarray) -> np.ndarray:
+    def call_chromossomes(self, chromossomes:np.ndarray, fitness:np.ndarray, context:Context) -> np.ndarray:
         return chromossomes

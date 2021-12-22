@@ -4,6 +4,8 @@ from numpy.typing import ArrayLike
 import numpy as np
 import numba
 
+from evolvepy.generator.context import Context
+
 
 from .numeric_mutation import sum_mutation
 from .binary_mutation import bit_mutation
@@ -25,7 +27,7 @@ class NumericMutationLayer(ChromossomeOperator):
         super().__init__(name=name, dynamic_parameters=dynamic_parameters, parameters=parameters, chromossome_names=chromossome_names)
         self._mutation_function = mutation_function
 
-    def call_chromossomes(self, chromossomes: np.ndarray, fitness:np.ndarray) -> np.ndarray:
+    def call_chromossomes(self, chromossomes: np.ndarray, fitness:np.ndarray, context:Context) -> np.ndarray:
         existence_rate = self.parameters["existence_rate"]
         gene_rate = self.parameters["gene_rate"]
         mutation_range = self.parameters["mutation_range"]

@@ -1,12 +1,17 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Union
 
 class Context:
 
     default_values = ["sorted", "_sorted", "blocked", "_chromossome_names", "chromossome_names", "_values", "have_value"]
 
-    def __init__(self, chromossome_names:List[str], sorted=False):
+    def __init__(self, chromossome_names:Union[List[str], None], sorted=False):
         self._sorted = sorted
-        self.blocked : Dict[str, bool] = dict.fromkeys(chromossome_names, False)
+
+        if chromossome_names is None:
+            self.blocked : bool = False
+        else:
+            self.blocked : Dict[str, bool] = dict.fromkeys(chromossome_names, False)
+            
         self._chromossome_names = chromossome_names
         self._values : Dict[str, object] = {}
 
