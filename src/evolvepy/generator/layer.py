@@ -132,15 +132,14 @@ class Concatenate(Layer):
 
         self._received_count = 0
 
-    def __call__(self, population: np.ndarray, fitness: np.ndarray, context:Union[Context, None]=None) -> Tuple[np.ndarray, np.ndarray]:
+    def __call__(self, population: np.ndarray, fitness: np.ndarray, context:Union[Context, None]=None) -> Tuple[np.ndarray, np.ndarray]: # NOSONAR
         population = np.asarray(population)
 
         if fitness is None:
             fitness = np.zeros(len(population), dtype=np.float32)
         fitness = np.asarray(fitness).flatten()
 
-        if context is None:
-            context = Context(population.dtype.names)
+        context = Context(population.dtype.names)
 
         if self._received_count == 0:
             self._population = population
