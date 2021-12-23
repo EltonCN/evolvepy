@@ -21,9 +21,16 @@ class Evolver:
             callback.generator = generator
             callback.evaluator = evaluator
 
+        self._started = False
+
     def evolve(self, generations:int):
 
         self._history = np.empty((generations, self._generation_size), np.float64)
+
+        if not self._started:
+            for callback in self._callbacks:
+                callback.on_start()
+            self._started = True
 
         for i in range(generations):
             for callback in self._callbacks:

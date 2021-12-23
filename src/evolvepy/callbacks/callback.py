@@ -35,6 +35,9 @@ class Callback(ABC):
             raise ValueError("Evaluator must be a evolvepy Evaluator instance")
         
 
+    def on_start(self) -> None: #NOSONAR
+        pass
+
     def on_generator_start(self) -> None: #NOSONAR
         pass
 
