@@ -43,7 +43,7 @@ class Generator:
             raise ValueError("Generator 'layers' parameter must not be used together with 'first_layer' and 'last_layer'")
         else:
             for i in range(len(layers)-1):
-                layers[i] = layers[i+1]
+                layers[i].next = layers[i+1]
 
         if first_layer is not None and last_layer is not None:
             layers.append(first_layer)
@@ -99,6 +99,28 @@ class Generator:
         for layer in self._layers:
             if layer.name == layer_name:
                 return layer.parameters
+
+    def get_all_static_parameters(self) -> Dict[str, object]:
+        static_parameters = {}
+        
+        for layer in self._layers:
+            name = layer.name
+            layer_static_parameters = layer.static_parameters
+            for key in layer_static_parameters:
+                static_parameters[name+"/"+key] = layer_static_parameters[key]
+
+        return static_parameters
+
+    def get_all_dynamic_parameters(self) -> Dict[str, object]:
+        dynamic_parameters = {}
+
+        for layer in self._layers:
+            name = layer.name
+            layer_dynamic_parameters = layer.dynamic_parameters
+            for key in layer_dynamic_parameters:
+                dynamic_parameters[name+"/"+key] = layer_dynamic_parameters[key]
+
+        return dynamic_parameters
 
     def generate_first(self, n_individual:int) -> np.ndarray:
 
