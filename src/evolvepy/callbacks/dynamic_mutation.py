@@ -9,18 +9,26 @@ class DynamicMutation(Callback):
     EXPLORATION = 2
 
     def __init__(self, layer_names:List[str], patience:int=10, refinement_patience:int=2, exploration_patience:int=2, refinement_steps:int=2, exploration_steps:int=5,  refinement_divider:int=2, exploration_multiplier:int=2):
-        super().__init__()
-        self._layer_names = layer_names
-        self._patience = patience
-        self._exploration_patience = exploration_patience
-        self._refinement_patience = refinement_patience
-        self._exploration_multiplier = exploration_multiplier
-        self._refinement_divider = refinement_divider
-        self._refinement_steps = refinement_steps
-        self._exploration_steps = exploration_steps
+        parameters = {}
+        parameters["patience"] = patience
+        parameters["refinement_patience"] = refinement_patience
+        parameters["exploration_patience"] = exploration_patience
+        parameters["refinement_steps"] = refinement_steps
+        parameters["exploration_steps"] = exploration_steps
+        parameters["refinement_divider"] = refinement_divider
+        parameters["exploration_multiplier"] = exploration_multiplier
+        parameters["wait"] = 0
+        parameters["step_count"] = 0
 
-        self._wait = 0
-        self._step_count = 0
+        dynamic_parameters  = dict.fromkeys(list(parameters.keys()), True)
+
+        dynamic_parameters["wait"] = False
+        dynamic_parameters["step_count"] = False
+
+        parameters["layer_names"] = layer_names
+        self._layer_names = layer_names
+
+        super().__init__(parameters=parameters, dynamic_parameters=dynamic_parameters)
         self._best_fitness = -np.Infinity
 
         self._stage = DynamicMutation.NORMAL
@@ -28,6 +36,16 @@ class DynamicMutation(Callback):
         self._original_parameters = {}
 
     def on_evaluator_end(self, fitness: np.ndarray) -> None:
+        self._patience = self.parameters["patience"]
+        self._exploration_patience = self.parameters["exploration_patience"]
+        self._refinement_patience = self.parameters["refinement_patience"]
+        self._exploration_multiplier = self.parameters["exploration_multiplier"]
+        self._refinement_divider = self.parameters["refinement_divider"]
+        self._refinement_steps = self.parameters["refinement_steps"]
+        self._exploration_steps = self.parameters["exploration_steps"]
+        self._wait = self.parameters["wait"]
+        self._step_count = self.parameters["step_count"]
+
         
         max_fitness = fitness.max()
         if max_fitness > self._best_fitness:
@@ -76,6 +94,9 @@ class DynamicMutation(Callback):
                 # EXPLORATION
                 self.exploration_step()
                 self._step_count += 1
+
+        self._parameters["wait"] = self._wait
+        self._parameters["step_count"] = self._step_count
 
     def save_parameters(self) -> None:
         for name in self._layer_names:

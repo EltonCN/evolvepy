@@ -1,14 +1,14 @@
-from abc import ABC
-
-
+from typing import Dict
 import numpy as np
+from evolvepy.configurable import Configurable
 
 from evolvepy.generator import Generator
 from evolvepy.evaluator import Evaluator
 
-class Callback(ABC):
+class Callback(Configurable):
 
-    def __init__(self):
+    def __init__(self, parameters:Dict[str, object]=None, dynamic_parameters:Dict[str,bool]= None):
+        super().__init__(parameters, dynamic_parameters)
         self._generator : Generator = None
         self._evaluator : Evaluator = None
 

@@ -44,7 +44,7 @@ def helper_print_stage(evolver: Evolver):
         print("EXPLORATION", end=" ")
 
     print(dym_callback._step_count, end=" ")
-    print(mut_layer.parameters["mutation_range"])
+    print("(", mut_layer.parameters["mutation_range_min"], ",", mut_layer.parameters["mutation_range_max"], ")")
 
 
 class TestDynamicMutation(unittest.TestCase):
