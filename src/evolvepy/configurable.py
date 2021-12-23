@@ -5,12 +5,20 @@ import numpy as np
 
 class Configurable(ABC):
 
-    def __init__(self, parameters:Dict[str, object]=None, dynamic_parameters:Dict[str, bool]=None) -> None:
+    __element_count = 0
+
+    def __init__(self, parameters:Dict[str, object]=None, dynamic_parameters:Dict[str, bool]=None, name:str=None) -> None:
         if parameters is None:
             parameters = {}
         if dynamic_parameters is None:
             dynamic_parameters = {}
         
+        if name is None:
+            name = self.__class__.__name__
+        self._name = name + str(Configurable.__element_count)
+        Configurable.__element_count += 1
+        
+
         self._parameters = parameters
 
         dynamic_parameter_names = list(dynamic_parameters.keys())
@@ -63,4 +71,6 @@ class Configurable(ABC):
     def static_parameters(self) -> Dict[str, object]:
         return {key: self._parameters[key] for key in self._static_parameter_names}
 
-    
+    @property
+    def name(self) -> str:
+        return self._name

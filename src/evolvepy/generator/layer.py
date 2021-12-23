@@ -12,30 +12,17 @@ from evolvepy.generator.context import Context
 
 class Layer(Configurable):
 
-    __layer_count = 0
 
     def __init__(self, name:str=None, dynamic_parameters:Dict[str, bool] = None, parameters:Dict[str, object] = None):
-        super().__init__(parameters, dynamic_parameters)
-        if name is None:
-            name = self.__class__.__name__
-        
-        self._name = name + str(Layer.__layer_count)
-        Layer.__layer_count += 1
+        super().__init__(parameters, dynamic_parameters, name=name)        
 
         self._next : List[Layer] = []
        
-
         self._population = None
         self._fitness = None
         self._context = None
 
         self._prev_count : int = 0
-
-    
-
-    @property
-    def name(self) -> str:
-        return self._name
 
     @property
     def next(self) -> Layer:
