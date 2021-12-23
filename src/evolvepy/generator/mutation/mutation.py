@@ -23,6 +23,7 @@ class NumericMutationLayer(ChromossomeOperator):
     def __init__(self, mutation_function:Callable, existence_rate:float, gene_rate:float, mutation_range:Tuple[float, float], name: str = None, chromossome_names: Union[str, List[str], None] = None):
         parameters = {"existence_rate":existence_rate, "gene_rate":gene_rate, "mutation_range":mutation_range}
         dynamic_parameters = dict.fromkeys(list(parameters.keys()), True)
+        parameters["mutation_function_name"] = mutation_function.__name__
 
         super().__init__(name=name, dynamic_parameters=dynamic_parameters, parameters=parameters, chromossome_names=chromossome_names)
         self._mutation_function = mutation_function
