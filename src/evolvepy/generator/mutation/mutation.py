@@ -21,7 +21,7 @@ def default_mutation(type):
 
 class NumericMutationLayer(ChromossomeOperator):
     def __init__(self, mutation_function:Callable, existence_rate:float, gene_rate:float, mutation_range:Tuple[float, float], name: str = None, chromossome_names: Union[str, List[str], None] = None):
-        parameters = {"existence_rate":existence_rate, "gene_rate":gene_rate, "mutation_range":mutation_range}
+        parameters = {"existence_rate":existence_rate, "gene_rate":gene_rate, "mutation_range_min":mutation_range[0], "mutation_range_max":mutation_range[1]}
         dynamic_parameters = dict.fromkeys(list(parameters.keys()), True)
         parameters["mutation_function_name"] = mutation_function.__name__
 
@@ -31,7 +31,7 @@ class NumericMutationLayer(ChromossomeOperator):
     def call_chromossomes(self, chromossomes: np.ndarray, fitness:np.ndarray, context:Context) -> np.ndarray:
         existence_rate = self.parameters["existence_rate"]
         gene_rate = self.parameters["gene_rate"]
-        mutation_range = self.parameters["mutation_range"]
+        mutation_range = (self.parameters["mutation_range_min"], self.parameters["mutation_range_max"])
 
         return NumericMutationLayer.mutate(chromossomes, self._mutation_function, existence_rate, gene_rate, mutation_range)
 

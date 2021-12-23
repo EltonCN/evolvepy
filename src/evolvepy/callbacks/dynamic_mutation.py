@@ -91,20 +91,20 @@ class DynamicMutation(Callback):
         for name in self._layer_names:
             parameters = self.generator.get_parameters(name)
 
-            if "mutation_range" in parameters:
-                new_range = np.asarray(parameters["mutation_range"])
-                new_range /= self._refinement_divider
-                new_range = tuple(new_range)
+            if "mutation_range_min" in parameters:
+                new_min = parameters["mutation_range_min"] / self._refinement_divider
+                new_max = parameters["mutation_range_max"] / self._refinement_divider
 
-                self.generator.set_parameter(name, "mutation_range", new_range)
+                self.generator.set_parameter(name, "mutation_range_min", new_min)
+                self.generator.set_parameter(name, "mutation_range_max", new_max)
 
     def exploration_step(self):
         for name in self._layer_names:
             parameters = self.generator.get_parameters(name)
 
-            if "mutation_range" in parameters:
-                new_range = np.asarray(parameters["mutation_range"])
-                new_range *= self._exploration_multiplier
-                new_range = tuple(new_range)
+            if "mutation_range_min" in parameters:
+                new_min = parameters["mutation_range_min"] * self._exploration_multiplier
+                new_max = parameters["mutation_range_max"] * self._exploration_multiplier
 
-                self.generator.set_parameter(name, "mutation_range", new_range)
+                self.generator.set_parameter(name, "mutation_range_min", new_min)
+                self.generator.set_parameter(name, "mutation_range_max", new_max)

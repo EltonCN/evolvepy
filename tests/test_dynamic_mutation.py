@@ -65,7 +65,8 @@ class TestDynamicMutation(unittest.TestCase):
         for _ in range(2):
             evolver.evolve(1)
             assert_equal(callbacks[0]._stage, DynamicMutation.NORMAL)
-            assert_equal(layers[0].parameters["mutation_range"], mutation_range)
+            assert_equal(layers[0].parameters["mutation_range_min"], mutation_range[0])
+            assert_equal(layers[0].parameters["mutation_range_max"], mutation_range[1])
             helper_print_stage(evolver)
 
         for _ in range(2):
@@ -73,7 +74,8 @@ class TestDynamicMutation(unittest.TestCase):
             for _ in range(3):
                 evolver.evolve(1)
                 assert_equal(callbacks[0]._stage, DynamicMutation.REFINEMENT)
-                assert_equal(layers[0].parameters["mutation_range"], mutation_range)
+                assert_equal(layers[0].parameters["mutation_range_min"], mutation_range[0])
+                assert_equal(layers[0].parameters["mutation_range_max"], mutation_range[1])
                 helper_print_stage(evolver)
 
         mutation_range = np.array([0.0, 1.0])
@@ -83,7 +85,8 @@ class TestDynamicMutation(unittest.TestCase):
             for _ in range(4):
                 evolver.evolve(1)
                 assert_equal(callbacks[0]._stage, DynamicMutation.EXPLORATION)
-                assert_equal(layers[0].parameters["mutation_range"], mutation_range)
+                assert_equal(layers[0].parameters["mutation_range_min"], mutation_range[0])
+                assert_equal(layers[0].parameters["mutation_range_max"], mutation_range[1])
                 helper_print_stage(evolver)
 
 
