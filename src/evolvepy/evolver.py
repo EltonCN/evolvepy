@@ -20,6 +20,7 @@ class Evolver:
         for callback in self._callbacks:
             callback.generator = generator
             callback.evaluator = evaluator
+            callback.callbacks = self._callbacks
 
         self._started = False
 
