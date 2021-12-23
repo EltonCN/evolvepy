@@ -7,27 +7,20 @@ from typing import Dict, List, Tuple, Union
 import numpy as np
 from numpy.typing import ArrayLike
 
+from evolvepy.configurable import Configurable
 from evolvepy.generator.context import Context
 
-class Layer(ABC):
+class Layer(Configurable):
 
     __layer_count = 0
 
     def __init__(self, name:str=None, dynamic_parameters:Dict[str, bool] = None, parameters:Dict[str, object] = None):
-        
+        super().__init__(parameters, dynamic_parameters)
         if name is None:
             name = self.__class__.__name__
         
         self._name = name + str(Layer.__layer_count)
         Layer.__layer_count += 1
-
-        self._parameters = parameters
-
-        if dynamic_parameters is None and parameters is None:
-            dynamic_parameters = {}
-        elif dynamic_parameters is None:
-            dynamic_parameters = dict.fromkeys(list(parameters.keys()), True)
-        self._dynamic_parameters : Dict[str, bool] = dynamic_parameters
 
         self._next : List[Layer] = []
        
@@ -38,36 +31,7 @@ class Layer(ABC):
 
         self._prev_count : int = 0
 
-    @property
-    def parameters(self)-> Dict[str, object]:
-        return self._parameters
     
-    @parameters.setter
-    def parameters(self, value:Union[Dict[str, object], Tuple[str, object]]) -> None:
-        if isinstance(value, tuple):
-            value = {value[0]: value[1]}
-        
-        keys = list(value.keys())
-        for key in keys:
-            if key not in self._dynamic_parameters:
-                del value[key]
-            if self._dynamic_parameters[key] == False:
-                del value[key]
-
-        self._parameters.update(value)
-
-    def lock_parameter(self, name:str) -> None:
-        if name in self._dynamic_parameters:
-            self._dynamic_parameters[name] = False
-    
-    def unlock_parameter(self, name:str) -> None:
-        if name in self._dynamic_parameters:
-            self._dynamic_parameters[name] = True
-
-
-    @property
-    def dynamic_parameters(self) -> List[str]:
-        return self._dynamic_parameters
 
     @property
     def name(self) -> str:

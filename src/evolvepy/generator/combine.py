@@ -10,7 +10,7 @@ from evolvepy.generator.context import Context
 
 class CombineLayer(ChromossomeOperator):
     def __init__(self, selection_function:Callable, crossover_function:Callable, n_combine:int=2, name: str = None, chromossome_names: Union[str, List[str], None] = None):
-        super().__init__(name=name, dynamic_parameters=False, chromossome_names=chromossome_names)
+        super().__init__(name=name, dynamic_parameters={}, chromossome_names=chromossome_names)
 
         self._selection_function = selection_function
         self._crossover_function = crossover_function
