@@ -18,14 +18,14 @@ class Logger(Callback, ABC):
 
     def _get_evaluator_static_parameters(self, evaluator_log:Dict[str,object], evaluator:Evaluator) -> None:
         name = evaluator.name
-        static_parameters = evaluator.static_parameters()
+        static_parameters = evaluator.static_parameters
 
         for key in static_parameters:
             evaluator_log[name+"/"+key] = static_parameters[key]
 
     def _get_evaluator_dynamic_parameters(self, evaluator_log:Dict[str, object], evaluator:Evaluator) -> None:
         name = evaluator.name
-        dynamic_parameters = evaluator.dynamic_parameters()
+        dynamic_parameters = evaluator.dynamic_parameters
 
         for key in dynamic_parameters:
             evaluator_log[name+"/"+key] = dynamic_parameters[key]

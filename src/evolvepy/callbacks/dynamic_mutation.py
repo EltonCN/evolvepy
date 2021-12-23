@@ -8,7 +8,7 @@ class DynamicMutation(Callback):
     REFINEMENT = 1
     EXPLORATION = 2
 
-    def __init__(self, layer_names:List[str], patience:int=10, refinement_patience:int=2, exploration_patience:int=2, refinement_steps:int=2, exploration_steps:int=5,  refinement_divider:int=2, exploration_multiplier:int=2):
+    def __init__(self, layer_names:List[str], patience:int=10, refinement_patience:int=2, exploration_patience:int=2, refinement_steps:int=2, exploration_steps:int=5,  refinement_divider:int=2, exploration_multiplier:int=2, stop_refinement:bool=False):
         parameters = {}
         parameters["patience"] = patience
         parameters["refinement_patience"] = refinement_patience
@@ -26,6 +26,8 @@ class DynamicMutation(Callback):
         dynamic_parameters["step_count"] = False
 
         parameters["layer_names"] = layer_names
+        parameters["stop_refinement"] = stop_refinement
+        self._stop_refinement = stop_refinement
         self._layer_names = layer_names
 
         super().__init__(parameters=parameters, dynamic_parameters=dynamic_parameters)
@@ -52,7 +54,7 @@ class DynamicMutation(Callback):
             self._best_fitness = max_fitness
             self._wait = 0
 
-            if self._stage == DynamicMutation.EXPLORATION:
+            if self._stage == DynamicMutation.EXPLORATION or (self._stop_refinement and self._stage == DynamicMutation.REFINEMENT):
                 #EXPLORATION -> NORMAL
                 self._stage = DynamicMutation.NORMAL
                 self.restore_parameters()
