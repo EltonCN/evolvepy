@@ -60,7 +60,7 @@ class Callback(Configurable):
     def on_generator_start(self) -> None: #NOSONAR
         pass
 
-    def on_generator_end(self) -> None: #NOSONAR
+    def on_generator_end(self, population:np.ndarray) -> None: #NOSONAR
         pass
 
     def on_evaluator_end(self, fitness:np.ndarray) -> None: #NOSONAR

@@ -40,7 +40,7 @@ class Evolver:
             population = self._generator.generate(self._generation_size)
 
             for callback in self._callbacks:
-                callback.on_generator_end()
+                callback.on_generator_end(population)
 
             fitness = self._evaluator(population)
 
