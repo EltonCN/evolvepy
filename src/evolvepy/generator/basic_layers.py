@@ -22,7 +22,8 @@ class FilterFirsts(Layer):
 
     def __init__(self, n_to_pass:int=1, name: str = None):
         parameters = {"n_to_pass":n_to_pass}
-        super().__init__(name=name, parameters=parameters)
+        dynamic_parameters = {"n_to_pass":True}
+        super().__init__(name=name, parameters=parameters, dynamic_parameters=dynamic_parameters)
 
     def call(self, population: np.ndarray, fitness: np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:
         n_to_pass = self.parameters["n_to_pass"]

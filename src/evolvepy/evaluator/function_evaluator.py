@@ -23,7 +23,7 @@ class FunctionEvaluator(Evaluator):
     NJIT_PARALLEL = 3
 
     def __init__(self, function:Callable[[np.ndarray], ArrayLike], n_scores:int=1, mode:int=NJIT, individual_per_call:int = 1) -> None:
-        super().__init__(n_scores, individual_per_call)
+        super().__init__(n_scores, individual_per_call, other_parameters={"evaluation_function_name":function.__name__})
 
         if mode == JIT:
             self._function = numba.jit()(function)
@@ -44,7 +44,8 @@ class FunctionEvaluator(Evaluator):
         self._mode = mode
 
     def __call__(self, population: np.ndarray) -> np.ndarray:
-        return self._static_call(self._function, self._individual_per_call, self._n_scores, population)
+        self._scores  = self._static_call(self._function, self._individual_per_call, self._n_scores, population)
+        return self._scores
 
     @staticmethod
     def call(function:Callable, individual_per_call:int, n_scores:int, population:np.ndarray) -> np.ndarray:

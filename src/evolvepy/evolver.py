@@ -20,10 +20,18 @@ class Evolver:
         for callback in self._callbacks:
             callback.generator = generator
             callback.evaluator = evaluator
+            callback.callbacks = self._callbacks
+
+        self._started = False
 
     def evolve(self, generations:int):
 
         self._history = np.empty((generations, self._generation_size), np.float64)
+
+        if not self._started:
+            for callback in self._callbacks:
+                callback.on_start()
+            self._started = True
 
         for i in range(generations):
             for callback in self._callbacks:
@@ -32,7 +40,7 @@ class Evolver:
             population = self._generator.generate(self._generation_size)
 
             for callback in self._callbacks:
-                callback.on_generator_end()
+                callback.on_generator_end(population)
 
             fitness = self._evaluator(population)
 

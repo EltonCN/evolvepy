@@ -79,3 +79,24 @@ class TestGenerator(unittest.TestCase):
 
         with assert_raises(RuntimeError):
             gen.generate()
+
+    def test_get_all_parameters(self):
+        layers = [  CombineLayer(tournament, one_point, 2),
+                    NumericMutationLayer(sum_mutation, 1.0, 0.5, (0.0, 1.0))]
+
+        gen = Generator(5, layers)
+
+        dynamic_parameters = {}
+        dynamic_parameters[layers[1].name+"/existence_rate"] = 1.0
+        dynamic_parameters[layers[1].name+"/gene_rate"] = 0.5
+        dynamic_parameters[layers[1].name+"/mutation_range_min"] = 0.0
+        dynamic_parameters[layers[1].name+"/mutation_range_max"] = 1.0
+
+        static_parameters = {}
+        static_parameters[layers[0].name+"/selection_function_name"] = "tournament"
+        static_parameters[layers[0].name+"/crossover_function_name"] = "one_point"
+        static_parameters[layers[1].name+"/mutation_function_name"] = "sum_mutation"
+
+
+        assert_equal(gen.get_all_dynamic_parameters(), dynamic_parameters)
+        assert_equal(gen.get_all_static_parameters(), static_parameters)

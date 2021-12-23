@@ -1,16 +1,16 @@
 from typing import Union, List, Callable
-from numba.misc.special import prange
-from numba.np.ufunc import parallel
 
 import numpy as np
 import numba
+from numba.misc.special import prange
 
 from evolvepy.generator import ChromossomeOperator
 from evolvepy.generator.context import Context
 
 class CombineLayer(ChromossomeOperator):
     def __init__(self, selection_function:Callable, crossover_function:Callable, n_combine:int=2, name: str = None, chromossome_names: Union[str, List[str], None] = None):
-        super().__init__(name=name, dynamic_parameters=False, chromossome_names=chromossome_names)
+        parameters = {"selection_function_name":selection_function.__name__, "crossover_function_name":crossover_function.__name__}
+        super().__init__(name=name, chromossome_names=chromossome_names, parameters=parameters)
 
         self._selection_function = selection_function
         self._crossover_function = crossover_function

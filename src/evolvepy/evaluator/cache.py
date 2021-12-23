@@ -8,7 +8,9 @@ from evolvepy.evaluator.evaluator import EvaluationStage, Evaluator
 class FitnessCache(EvaluationStage):
 
     def __init__(self, evaluator:Evaluator, n_generation:int = None, max_decimals:int=None):
-        super().__init__(evaluator)
+        parameters = {"n_generation":n_generation, "max_decimals":max_decimals}
+        super().__init__(evaluator, parameters=parameters)
+        
         self._n_generation = n_generation
         self._max_decimals = max_decimals
         self._cache : Dict[bytes, float] = {}
@@ -57,6 +59,8 @@ class FitnessCache(EvaluationStage):
 
             for i in range(len(to_evaluate_repr)):
                 self._cache[to_evaluate_repr[i]] = evaluated_fitness[i]
+
+        self._scores = self._evaluator.scores
 
         self._delete_old()
         self._generation += 1
