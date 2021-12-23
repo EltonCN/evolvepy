@@ -82,3 +82,23 @@ class Logger(Callback, ABC):
     def save_dynamic_log(self, log:Dict[str,Dict]) -> None:
         ...
 
+class MemoryStoreLogger(Logger):
+    def __init__(self, log_fitness: bool = True, log_population: bool = False, log_generator: bool = True, log_evaluator: bool = True, log_scores: bool = False):
+        super().__init__(log_fitness=log_fitness, log_population=log_population, log_generator=log_generator, log_evaluator=log_evaluator, log_scores=log_scores)
+
+        self._log = []
+        self._config_log = {}
+
+    def save_dynamic_log(self, log: Dict[str, Dict]) -> None:
+        self._log.append(log)
+
+    def save_static_log(self, log: Dict[str, Dict]) -> None:
+        self._config_log = log
+
+    @property
+    def log(self) -> List[Dict[str, Dict]]:
+        return self._log
+
+    @property
+    def config_log(self) -> Dict[str, Dict]:
+        return self._config_log
