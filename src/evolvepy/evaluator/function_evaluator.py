@@ -44,7 +44,8 @@ class FunctionEvaluator(Evaluator):
         self._mode = mode
 
     def __call__(self, population: np.ndarray) -> np.ndarray:
-        return self._static_call(self._function, self._individual_per_call, self._n_scores, population)
+        self._scores  = self._static_call(self._function, self._individual_per_call, self._n_scores, population)
+        return self._scores
 
     @staticmethod
     def call(function:Callable, individual_per_call:int, n_scores:int, population:np.ndarray) -> np.ndarray:

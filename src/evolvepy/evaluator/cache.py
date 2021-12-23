@@ -60,6 +60,8 @@ class FitnessCache(EvaluationStage):
             for i in range(len(to_evaluate_repr)):
                 self._cache[to_evaluate_repr[i]] = evaluated_fitness[i]
 
+        self._scores = self._evaluator.scores
+
         self._delete_old()
         self._generation += 1
 

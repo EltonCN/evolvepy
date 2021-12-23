@@ -22,7 +22,8 @@ class MultipleEvaluation(EvaluationStage):
         for i in range(n_evaluation):
             fitness[i] = self._evaluator(population)
 
-
         final_fitness = self._agregator(fitness, axis=0)
+
+        self._scores = final_fitness
 
         return final_fitness

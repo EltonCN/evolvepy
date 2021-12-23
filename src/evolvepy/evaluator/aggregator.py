@@ -30,6 +30,8 @@ class FitnessAggregator(EvaluationStage):
     def __call__(self, population:np.ndarray) -> np.ndarray:
         fitness = self._evaluator(population)
 
+        self._scores = fitness
+
         weights = self.parameters["weights"]
         if weights is not None:
             fitness = fitness*weights

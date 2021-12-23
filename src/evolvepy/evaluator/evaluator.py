@@ -18,10 +18,15 @@ class Evaluator(Configurable, ABC):
 
         self._individual_per_call = individual_per_call
         self._n_scores = n_scores
+        self._scores : np.ndarray = None
 
     @abstractmethod
     def __call__(self, population:np.ndarray) -> np.ndarray:
         ...
+
+    @property
+    def scores(self) -> np.ndarray:
+        return self._scores
 
 class EvaluationStage(Evaluator):
 
