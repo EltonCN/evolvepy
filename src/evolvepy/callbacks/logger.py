@@ -15,6 +15,7 @@ class Logger(Callback, ABC):
         super().__init__(parameters=parameters)
 
         self._dynamic_log = {}
+        self._generation_count = 0
 
     def _get_evaluator_static_parameters(self, evaluator_log:Dict[str,object], evaluator:Evaluator) -> None:
         name = evaluator.name
@@ -53,6 +54,8 @@ class Logger(Callback, ABC):
 
         if self.parameters["log_population"]:
             self._dynamic_log["population"] = population
+        
+        self._dynamic_log["generation"] = self._generation_count
 
     def on_evaluator_end(self, fitness: np.ndarray) -> None:
         if self.parameters["log_fitness"]:
@@ -76,6 +79,7 @@ class Logger(Callback, ABC):
             self._dynamic_log["scores"] = self.evaluator.scores
 
         self.save_dynamic_log(self._dynamic_log)
+        self._generation_count += 1
         
 
     @abstractmethod
