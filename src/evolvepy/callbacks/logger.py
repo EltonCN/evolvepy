@@ -16,6 +16,7 @@ class Logger(Callback, ABC):
 
         self._dynamic_log = {}
         self._generation_count = 0
+        self._population = None
 
     def _get_evaluator_static_parameters(self, evaluator_log:Dict[str,object], evaluator:Evaluator) -> None:
         name = evaluator.name
@@ -54,10 +55,12 @@ class Logger(Callback, ABC):
 
         if self.parameters["log_population"]:
             self._dynamic_log["population"] = population
-        
+        self._population = population
+
         self._dynamic_log["generation"] = self._generation_count
 
     def on_evaluator_end(self, fitness: np.ndarray) -> None:
+        fitness = fitness.flatten()
         if self.parameters["log_fitness"]:
             self._dynamic_log["fitness"] = fitness
 
@@ -77,6 +80,18 @@ class Logger(Callback, ABC):
 
         if self.parameters["log_scores"]:
             self._dynamic_log["scores"] = self.evaluator.scores
+
+        best_index = np.argmax(fitness)
+
+        self._dynamic_log["best_fitness"] = fitness[best_index]
+
+        if self._population[0].dtype is None:
+            self._dynamic_log["best_individual"] = self._population[best_index]
+        else:
+            for name in self._population[0].dtype.names:
+                for i in range(len(self._population[0][name])):
+                    self._dynamic_log["best_individual/"+name+"/"+str(i)] = self._population[best_index][name][i]
+
 
         self.save_dynamic_log(self._dynamic_log)
         self._generation_count += 1
