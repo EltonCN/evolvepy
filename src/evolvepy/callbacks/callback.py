@@ -66,4 +66,5 @@ class Callback(Configurable):
     def on_evaluator_end(self, fitness:np.ndarray) -> None: #NOSONAR
         pass
 
-    
+    def on_stop(self) -> None: #NOSONAR
+        pass

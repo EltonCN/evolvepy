@@ -14,16 +14,42 @@ class WandbLogger(Logger):
         self._group = group
         self._name = name
 
-        self._run = None
+        self._running = False
+
+        self._wandb_id = None
+
+    def _start_wandb(self, log=None):
+        if self._running:
+            return
+
+        if self._wandb_id is None:
+            self._run = wandb.init(project=self._project, entity=self._entity,
+                        group=self._group, name=self._name, 
+                        config=log, job_type="ea_optimization", resume="allow")
+        else:
+            self._run = wandb.init(project=self._project, entity=self._entity,
+                        group=self._group, name=self._name, 
+                        config=log, job_type="ea_optimization", resume="allow", id=self._wandb_id)
+
+        self._running = True
+        self._wandb_id = self._run.id
 
     def save_static_log(self, log: Dict[str, Dict]) -> None:
-        self._run = wandb.init(project=self._project, entity=self._entity,
-                    group=self._group, name=self._name, 
-                    config=log, job_type="ea_optimization")
-    
+        self._start_wandb(log=log)
+
     def save_dynamic_log(self, log: Dict[str, Dict]) -> None:
+        self._start_wandb()
+
         wandb.log(log)
 
-    def __del__(self):
-        if self._run is not None:
+    def on_stop(self) -> None:
+        super().on_stop()
+
+        if self._running:
             wandb.finish()
+            self._running = False
+
+    def __del__(self):
+        if self._running:
+            wandb.finish()
+            self._running = False

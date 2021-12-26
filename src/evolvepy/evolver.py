@@ -51,5 +51,9 @@ class Evolver:
 
             self._history[i] = fitness.flatten()
         
+
+        for callback in self._callbacks:
+            callback.on_stop()
+
         return self._history, population
 
