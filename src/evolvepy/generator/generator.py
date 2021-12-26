@@ -9,7 +9,7 @@ from evolvepy.descriptor import Descriptor
 
 class Generator:
 
-	def __init__(self, n_individual:int, layers:Union[None, List[Layer]]=None, first_layer:Layer=None, last_layer:Layer=None, descriptor:Optional[Descriptor]=None):    
+	def __init__(self, layers:Union[None, List[Layer]]=None, first_layer:Layer=None, last_layer:Layer=None, descriptor:Optional[Descriptor]=None, n_individual:Optional[int]=None):    
 		self._connected = False
 
 		if layers is None:
@@ -29,6 +29,9 @@ class Generator:
 		if descriptor is not None:
 			if isinstance(layers[-1], FirstGenLayer):
 				raise RuntimeWarning("You are passing a descriptor, but also passing a FirstGenLayer. This can create unexpected behavior.")
+
+			if n_individual is None:
+				raise ValueError("You must use Generator 'descriptor' and 'n_individual' parameters together")
 
 			first_gen = FirstGenLayer(descriptor, n_individual)
 			layers.append(first_gen)
