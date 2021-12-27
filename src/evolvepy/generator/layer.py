@@ -77,6 +77,7 @@ class Layer(Configurable):
     def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:
         return population, fitness
 
+
 class Concatenate(Layer):
 
     def __init__(self, name: str = None, dynamic_parameters: Dict[str, bool] = None, parameters: Dict[str, object] = None):
@@ -115,8 +116,6 @@ class Concatenate(Layer):
         self._context = context
 
         return population, fitness
-
-
 
 
 class ChromossomeOperator(Layer):
