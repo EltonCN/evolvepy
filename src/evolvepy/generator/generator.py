@@ -3,7 +3,7 @@ import numpy as np
 
 from numpy.typing import ArrayLike, DTypeLike
 
-from evolvepy.generator.layer import Layer
+from evolvepy.generator.layer import Layer, Concatenate, ChromossomeOperator
 from evolvepy.generator.firstgen import FirstGenLayer
 from evolvepy.descriptor import Descriptor
 

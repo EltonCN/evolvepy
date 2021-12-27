@@ -1,6 +1,7 @@
 import numpy as np
 
-from evolvepy.generator import Layer, Descriptor
+from evolvepy.generator.descriptor import Descriptor
+from evolvepy.generator.layer import Layer, Concatenate, ChromossomeOperator
 
 class FirstGenLayer(Layer):
 

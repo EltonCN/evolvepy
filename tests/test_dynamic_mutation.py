@@ -51,7 +51,7 @@ class TestDynamicMutation(unittest.TestCase):
 
     def test(self):
         layers = [NumericMutationLayer(sum_mutation, 1.0, 0.0, (0.0, 1.0))]
-        generator = Generator(1, layers)
+        generator = Generator(layers, n_individual=1)
 
         evaluator = FunctionEvaluator(return_one)
 
