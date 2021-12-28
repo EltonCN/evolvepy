@@ -133,16 +133,12 @@ class FileStoreLogger(Logger):
 		self._log_name = "debug_log_"+ str(datetime.datetime.now()) +".log"
 
 	def save_dynamic_log(self, log: Dict[str, Dict]) -> None:
-		with open(self._log_name,"w") as debug_log:
-			debug_log.write('\n\n\n')
-			debug_log.write(log)
-			debug_log.close()
+		logging.basicConfig(filename=self._log_name)
+		logging.warning(log)
 
 	def save_static_log(self, log: Dict[str, Dict]) -> None:
-		with open(self._log_name,"w") as debug_log:
-			debug_log.write('\n\n\n')
-			debug_log.write(log)
-			debug_log.close()
+		logging.basicConfig(filename=self._log_name)
+		logging.warning(log)
 
 	@property
 	def log(self) -> List[Dict[str, Dict]]:
