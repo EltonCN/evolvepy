@@ -30,7 +30,7 @@ class FilterFirsts(Layer):
 		
 		return population[0:n_to_pass], fitness[0:n_to_pass]
 
-class RamdomPredation(Layer):
+class RamdomPredate(Layer):
 
 	def __init__(self, n_to_predate:int=1, name: str = None):
 		parameters = {"n_to_predate":n_to_predate}
