@@ -91,7 +91,7 @@ class Concatenate(Layer):
 		self._fitness = None
 
 	def __call__(self, population: np.ndarray, fitness: np.ndarray, context:Union[Context, None]=None) -> Tuple[np.ndarray, np.ndarray]: # NOSONAR
-		if not (self._population and self._fitness is None):
+		if not (population is None and fitness is None):
 			population = np.asarray(population)
 
 			if fitness is None:
@@ -100,7 +100,7 @@ class Concatenate(Layer):
 
 			context = Context(population.dtype.names)
 
-			if self._population == 0 or self._population is None:
+			if self._received_count == 0 or self._population is None:
 				self._population = population
 				self._fitness = fitness
 			else:

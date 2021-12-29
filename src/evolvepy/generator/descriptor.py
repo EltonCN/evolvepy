@@ -1,11 +1,11 @@
 from typing import Optional, Union, Tuple, List
 
 import numpy as np
-from numpy.typing import ArrayLike
+from numpy.typing import ArrayLike, DTypeLike
 
 class Descriptor:
 
-    def __init__(self, chromossome_sizes:Optional[ArrayLike], chromossome_ranges:Union[None, List[Union[None, Tuple]], Tuple]=None, types:Union[list, DTypeLike]=[np.float32], names:Union[list, str, None]=None):
+    def __init__(self, chromossome_sizes:Optional[ArrayLike]=1, chromossome_ranges:Union[None, List[Union[None, Tuple]], Tuple]=None, types:Union[list, DTypeLike]=[np.float32], names:Union[list, str, None]=None):
         chromossome_sizes = np.asarray(chromossome_sizes)
 
         if chromossome_sizes.shape == ():
@@ -62,7 +62,7 @@ class Descriptor:
     
     @property
     def chromossome_names(self):
-        return self._chromossome_ranges
+        return self._names
 
     @property
     def chromossome_ranges(self):

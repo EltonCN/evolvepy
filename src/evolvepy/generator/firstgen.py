@@ -1,7 +1,10 @@
+from typing import Tuple
+
 import numpy as np
 
 from evolvepy.generator.descriptor import Descriptor
-from evolvepy.generator.layer import Layer, Concatenate, ChromossomeOperator
+from evolvepy.generator.layer import Layer
+from evolvepy.generator.context import Context
 
 class FirstGenLayer(Layer):
 
@@ -9,7 +12,7 @@ class FirstGenLayer(Layer):
 		parameters = {"run":True, "n_individual":n_individual}
 		dynamic_parameters = {"run":True}
 
-		super().__init__(parameters, dynamic_parameters, name=name)        
+		super().__init__(name=name, parameters=parameters, dynamic_parameters=dynamic_parameters)        
 
 		self._descriptor = descriptor
 		self._n_individual = n_individual
@@ -20,9 +23,11 @@ class FirstGenLayer(Layer):
 	def _generate_first(self) -> np.ndarray:
 
 		population = np.empty(self._n_individual, self._dtype)
+		n_individual = self.parameters["n_individual"]
 
-		for i in range(self._n_chromossome):
-			n_gene = self._chromossome_sizes[i]
+
+		for i in range(self._descriptor._n_chromossome):
+			n_gene = self._descriptor._chromossome_sizes[i]
 			name = self._names[i]
 			dtype = population[name].dtype
 			shape = (n_individual, n_gene)
@@ -40,12 +45,13 @@ class FirstGenLayer(Layer):
 
 		return population
 		
-	def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:
+	def __call__(self, population:np.ndarray, fitness:np.ndarray=None, context:Context=None) -> Tuple[np.ndarray, np.ndarray]:
+		
 		if self.parameters["run"]:
 			self._parameters["run"] = False
 
 			fitness = np.zeros(self._n_individual, dtype=np.float32)
+			population =  self._generate_first()
 
-			return self._generate_first(self._n_individual), fitness
-		else:
-			return population, fitness
+		self._population = population
+		self._fitness = fitness

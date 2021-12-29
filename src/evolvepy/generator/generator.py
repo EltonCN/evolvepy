@@ -3,9 +3,9 @@ import numpy as np
 
 from numpy.typing import ArrayLike, DTypeLike
 
-from evolvepy.generator.layer import Layer, Concatenate, ChromossomeOperator
+from evolvepy.generator.layer import Layer
 from evolvepy.generator.firstgen import FirstGenLayer
-from evolvepy.descriptor import Descriptor
+from evolvepy.generator.descriptor import Descriptor
 
 class Generator:
 
@@ -27,21 +27,24 @@ class Generator:
 			raise ValueError("You must set Generator 'first_layer' with 'last_layer'")
 
 		if descriptor is not None:
-			if isinstance(layers[-1], FirstGenLayer):
+			if len(layers) > 0 and isinstance(layers[-1], FirstGenLayer):
 				raise RuntimeWarning("You are passing a descriptor, but also passing a FirstGenLayer. This can create unexpected behavior.")
 
 			if n_individual is None:
 				raise ValueError("You must use Generator 'descriptor' and 'n_individual' parameters together")
 
 			first_gen = FirstGenLayer(descriptor, n_individual)
+
+			if len(layers) > 0:
+				layers[-1].next = first_gen
+
 			layers.append(first_gen)
 
 		self._layers = layers
 
 		self._fitness = None
 		self._population = None
-		self._n_individual = None
-		self.n_individual = n_individual
+		self._n_individual = n_individual
 
 	def set_parameter(self, layer_name:str, parameter_name:str, value:object) -> None:
 		for layer in self._layers:
@@ -89,7 +92,7 @@ class Generator:
 		self._layers[0](self._population, self._fitness)
 		
 		if len(self._layers[-1].population) != self._n_individual:
-			raise RuntimeError("The generator generated a population with wrong size")
+			raise RuntimeError("The generator generated a population with wrong size. Expected "+str(self._n_individual)+", got "+str(len(self._layers[-1].population)))
 
 		return self._layers[-1].population
 

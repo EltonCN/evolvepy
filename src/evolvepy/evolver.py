@@ -37,7 +37,7 @@ class Evolver:
             for callback in self._callbacks:
                 callback.on_generator_start()
 
-            population = self._generator.generate(self._generation_size)
+            population = self._generator.generate()
 
             for callback in self._callbacks:
                 callback.on_generator_end(population)

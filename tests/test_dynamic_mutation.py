@@ -10,7 +10,7 @@ from .utils import assert_not_equal
 
 from evolvepy import Evolver
 from evolvepy.evaluator import FunctionEvaluator
-from evolvepy.generator import Generator
+from evolvepy.generator import Generator, Descriptor
 from evolvepy.generator.mutation import NumericMutationLayer, sum_mutation
 from evolvepy.callbacks import DynamicMutation
 
@@ -51,7 +51,8 @@ class TestDynamicMutation(unittest.TestCase):
 
     def test(self):
         layers = [NumericMutationLayer(sum_mutation, 1.0, 0.0, (0.0, 1.0))]
-        generator = Generator(layers, n_individual=1)
+        descriptor = Descriptor(1)
+        generator = Generator(layers=layers, n_individual=1, descriptor=descriptor)
 
         evaluator = FunctionEvaluator(return_one)
 
