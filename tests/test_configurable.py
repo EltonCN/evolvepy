@@ -14,7 +14,7 @@ class TestConfigurable(unittest.TestCase):
 
         configurable = Configurable(parameters, dynamic_parameters)
 
-        print(configurable._static_parameter_names)
+        #print(configurable._static_parameter_names)
 
         assert_equal(configurable._static_parameter_names, ["c"])
         assert_equal(configurable._dynamic_parameter_names, ["a", "b"])

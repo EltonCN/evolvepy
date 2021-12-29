@@ -98,9 +98,9 @@ class TestGenerator(unittest.TestCase):
 		static_parameters[layers[0].name+"/crossover_function_name"] = "one_point"
 		static_parameters[layers[1].name+"/mutation_function_name"] = "sum_mutation"
 
-		print(dynamic_parameters)
-		print("--")
-		print(gen.get_all_dynamic_parameters())
+		#print(dynamic_parameters)
+		#print("--")
+		#print(gen.get_all_dynamic_parameters())
 
 		assert_equal(gen.get_all_dynamic_parameters(), dynamic_parameters)
 		assert_equal(gen.get_all_static_parameters(), static_parameters)
