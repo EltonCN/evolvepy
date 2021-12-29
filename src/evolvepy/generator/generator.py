@@ -106,6 +106,9 @@ class Generator:
 		
 		context = Context(population_size, self._descriptor.chromossome_names)
 
+		if self._population is not None and len(self._population) > population_size:
+			self._population = self._population[:population_size]
+
 		self._layers[0](self._population, self._fitness, context)
 		
 		if len(self._layers[-1].population) != population_size:

@@ -50,7 +50,8 @@ class FirstGenLayer(Layer):
 
 			fitness = np.zeros(population_size, dtype=np.float32)
 			population =  self._generate_first(population_size)
-		if len(population) != population_size:
+
+		if len(population) < population_size:
 			size_difference = population_size - len(population)
 
 			new_pop = self._generate_first(size_difference)
