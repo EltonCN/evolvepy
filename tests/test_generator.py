@@ -18,9 +18,9 @@ class TestGenerator(unittest.TestCase):
 
 	def test_single(self):
 		descriptor = Descriptor(10, (-10.0, 50.0), [np.float64], names = "single")
-		gen = Generator(descriptor = descriptor, n_individual = 10)
+		gen = Generator(descriptor = descriptor)
 
-		population = gen.generate()
+		population = gen.generate(10)
 
 		dtype = np.dtype([("single", np.float64, 10)])
 
@@ -30,9 +30,9 @@ class TestGenerator(unittest.TestCase):
 
 	def test_bool(self):
 		descriptor = Descriptor(chromossome_sizes= 10, types=bool, names = "bool")
-		gen = Generator(descriptor = descriptor, n_individual = 5)
+		gen = Generator(descriptor = descriptor)
 
-		population = gen.generate()
+		population = gen.generate(5)
 
 		dtype = np.dtype([("bool", bool, 10)])
 
@@ -42,9 +42,9 @@ class TestGenerator(unittest.TestCase):
 
 	def test_default(self):
 		descriptor = Descriptor(1)
-		gen = Generator(descriptor=descriptor, n_individual = 5)
+		gen = Generator(descriptor=descriptor)
 
-		population = gen.generate()
+		population = gen.generate(5)
 
 		dtype = np.dtype([("chr0", np.float32, tuple([1]))])
 
@@ -57,11 +57,11 @@ class TestGenerator(unittest.TestCase):
 					NumericMutationLayer(sum_mutation, 1.0, 0.5, (0.0, 1.0))]
 
 		descriptor = Descriptor(5)
-		gen = Generator(n_individual=5, layers=layers, descriptor=descriptor)
+		gen = Generator(layers=layers, descriptor=descriptor)
 		
 		dtype = np.dtype([("chr0", np.float32, 5)])
 
-		population = gen.generate()
+		population = gen.generate(5)
 		first_pop = population.copy()
 
 		assert_equal(population.dtype, dtype)
@@ -72,7 +72,7 @@ class TestGenerator(unittest.TestCase):
 
 		gen.fitness = fitness
 
-		population = gen.generate()
+		population = gen.generate(5)
 
 		assert_equal(population.dtype, dtype)
 		assert_equal(population.shape, (5,))
@@ -83,19 +83,24 @@ class TestGenerator(unittest.TestCase):
 		layers = [  CombineLayer(tournament, one_point, 2),
 					NumericMutationLayer(sum_mutation, 1.0, 0.5, (0.0, 1.0))]
 
-		gen = Generator(n_individual=5, layers=layers)
+		descriptor = Descriptor()
+		gen = Generator(layers=layers, descriptor=descriptor)
 
 		dynamic_parameters = {}
 		dynamic_parameters[layers[1].name+"/existence_rate"] = 1.0
 		dynamic_parameters[layers[1].name+"/gene_rate"] = 0.5
 		dynamic_parameters[layers[1].name+"/mutation_range_min"] = 0.0
 		dynamic_parameters[layers[1].name+"/mutation_range_max"] = 1.0
+		dynamic_parameters[gen._layers[-1].name+"/run"] = True
 
 		static_parameters = {}
 		static_parameters[layers[0].name+"/selection_function_name"] = "tournament"
 		static_parameters[layers[0].name+"/crossover_function_name"] = "one_point"
 		static_parameters[layers[1].name+"/mutation_function_name"] = "sum_mutation"
 
+		print(dynamic_parameters)
+		print("--")
+		print(gen.get_all_dynamic_parameters())
 
 		assert_equal(gen.get_all_dynamic_parameters(), dynamic_parameters)
 		assert_equal(gen.get_all_static_parameters(), static_parameters)

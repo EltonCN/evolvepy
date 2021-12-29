@@ -3,13 +3,14 @@ import numpy as np
 
 from numpy.typing import ArrayLike, DTypeLike
 
+from evolvepy.generator.context import Context
 from evolvepy.generator.layer import Layer
 from evolvepy.generator.firstgen import FirstGenLayer
 from evolvepy.generator.descriptor import Descriptor
 
 class Generator:
 
-	def __init__(self, layers:Union[None, List[Layer]]=None, first_layer:Layer=None, last_layer:Layer=None, descriptor:Optional[Descriptor]=None, n_individual:Optional[int]=None):    
+	def __init__(self, layers:Union[None, List[Layer]]=None, first_layer:Layer=None, last_layer:Layer=None, descriptor:Optional[Descriptor]=None):    
 		self._connected = False
 
 		if layers is None:
@@ -30,21 +31,20 @@ class Generator:
 			if len(layers) > 0 and isinstance(layers[-1], FirstGenLayer):
 				raise RuntimeWarning("You are passing a descriptor, but also passing a FirstGenLayer. This can create unexpected behavior.")
 
-			if n_individual is None:
-				raise ValueError("You must use Generator 'descriptor' and 'n_individual' parameters together")
-
-			first_gen = FirstGenLayer(descriptor, n_individual)
+			first_gen = FirstGenLayer(descriptor)
 
 			if len(layers) > 0:
 				layers[-1].next = first_gen
 
 			layers.append(first_gen)
+			self._descriptor = descriptor
+		else:
+			self._descriptor = layers[-1]._descriptor
 
 		self._layers = layers
 
 		self._fitness = None
 		self._population = None
-		self._n_individual = n_individual
 
 	def set_parameter(self, layer_name:str, parameter_name:str, value:object) -> None:
 		for layer in self._layers:
@@ -88,14 +88,6 @@ class Generator:
 
 		return dynamic_parameters
 
-	def generate_evolve(self) -> np.ndarray:
-		self._layers[0](self._population, self._fitness)
-		
-		if len(self._layers[-1].population) != self._n_individual:
-			raise RuntimeError("The generator generated a population with wrong size. Expected "+str(self._n_individual)+", got "+str(len(self._layers[-1].population)))
-
-		return self._layers[-1].population
-
 	def add(self, layer:Layer) -> None:
 		if len(self._layers) != 0:
 			self._layers[-1].next = layer
@@ -110,8 +102,15 @@ class Generator:
 	def fitness(self, value:ArrayLike):
 		self._fitness = np.asarray(value)
 
-	def generate(self) -> np.ndarray:
+	def generate(self, population_size:int) -> np.ndarray:
+		
+		context = Context(population_size, self._descriptor.chromossome_names)
 
-		self._population = self.generate_evolve()
+		self._layers[0](self._population, self._fitness, context)
+		
+		if len(self._layers[-1].population) != population_size:
+			raise RuntimeError("The generator generated a population with wrong size. Expected "+str(population_size)+", got "+str(len(self._layers[-1].population)))
+
+		self._population = self._layers[-1].population
 
 		return self._population

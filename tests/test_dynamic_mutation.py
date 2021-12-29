@@ -52,14 +52,14 @@ class TestDynamicMutation(unittest.TestCase):
     def test(self):
         layers = [NumericMutationLayer(sum_mutation, 1.0, 0.0, (0.0, 1.0))]
         descriptor = Descriptor(1)
-        generator = Generator(layers=layers, n_individual=1, descriptor=descriptor)
+        generator = Generator(layers=layers, descriptor=descriptor)
 
         evaluator = FunctionEvaluator(return_one)
 
         callbacks = [DynamicMutation([layers[0].name], patience=2, refinement_patience=3, exploration_patience=4, 
                                     refinement_steps=2, exploration_steps=2,  refinement_divider=5, exploration_multiplier=8)]
 
-        evolver = Evolver(generator, evaluator, 1, callbacks)
+        evolver = Evolver(generator, evaluator, 10, callbacks)
 
         mutation_range = np.array([0.0, 1.0])
 
