@@ -1,6 +1,7 @@
 from typing import Dict, List, Tuple, Union, Optional
-import numpy as np
+import warnings
 
+import numpy as np
 from numpy.typing import ArrayLike, DTypeLike
 
 from evolvepy.generator.context import Context
@@ -27,7 +28,18 @@ class Generator:
 		elif last_layer is not None or first_layer is not None:
 			raise ValueError("You must set Generator 'first_layer' with 'last_layer'")
 
-		if descriptor is not None:
+		have_first_generator = False
+
+		for layer in layers:
+			if isinstance(layer, FirstGenLayer):
+				have_first_generator = True
+
+		if not have_first_generator:
+			if descriptor is None:
+				warnings.warn("You are creating a generator without FirstGenLayer and descriptor. Creating default descriptor.")
+				
+				descriptor = Descriptor()
+			
 			if len(layers) > 0 and isinstance(layers[-1], FirstGenLayer):
 				raise RuntimeWarning("You are passing a descriptor, but also passing a FirstGenLayer. This can create unexpected behavior.")
 
