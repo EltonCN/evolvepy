@@ -15,7 +15,7 @@ class ProcessFitnessFunction(ABC):
     def __call__(self, individuals:np.ndarray) -> np.ndarray:
         if not self._setted or self._reset:
             self.setup()
-            self._reset = True
+            self._setted = True
         
         return self.evaluate(individuals)
 
@@ -58,12 +58,17 @@ class ProcessEvaluator(Evaluator):
 
 
     def _prepare_process(self):
+        if self._setted:
+            return
+
         for _ in range(self._n_process):
             p = mp.Process(target=evaluate_forever, 
                             args=(self._fitness_function, self._individuals_queue, self._scores_queue),
                             daemon=True)
             p.start()
             self._process.append(True)
+        
+        self._setted = True
 
 
     def __call__(self, population: np.ndarray) -> np.ndarray:
@@ -73,8 +78,7 @@ class ProcessEvaluator(Evaluator):
         if n%self._individual_per_call != 0:
             raise RuntimeError("Population size must be divible by individual_per_call")
 
-        if not self._setted:
-            self._prepare_process()
+        self._prepare_process()
 
         for i in range(n):
             index = i*self._individual_per_call
