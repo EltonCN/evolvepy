@@ -57,11 +57,20 @@ class Layer(Configurable):
 			fitness = np.asarray(fitness).flatten()
 
 			if context is None:
-				context = Context(population.dtype.names)
+				context = Context(len(population), population.dtype.names)
 
 			if not context.block_all:
 				population, fitness = self.call(population, fitness, context)
 
+		
+		self.send_next(population, fitness, context)
+		
+
+		self._context = context
+
+		return population, fitness
+
+	def send_next(self, population, fitness, context):
 		self._population = population
 		self._fitness = fitness
 
@@ -71,10 +80,6 @@ class Layer(Configurable):
 				next_context = next_context.copy()
 				
 			layer(population, fitness, next_context)
-
-		self._context = context
-
-		return population, fitness
 
 	def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:
 		return population, fitness
@@ -111,13 +116,7 @@ class Concatenate(Layer):
 
 		if self._prev_count == self._received_count:
 			self._received_count = 0
-
-			for layer in self._next:
-				next_context = context
-				if len(self._next) != 1:
-					next_context = next_context.copy()
-
-				layer(population, fitness, next_context)
+			self.send_next(self._population, self._fitness, context)
 
 		self._context = context
 

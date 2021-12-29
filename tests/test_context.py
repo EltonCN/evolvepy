@@ -13,7 +13,7 @@ class TestContext(unittest.TestCase):
     def test(self):
         dtype = np.dtype([("chr0", np.float32, 5), ("chr1", bool, 3)])
         
-        context = Context(dtype.names)
+        context = Context(1, dtype.names)
 
         assert_equal(context.blocked, {"chr0":False, "chr1": False})
         assert_equal(context.chromossome_names, ["chr0", "chr1"])
@@ -34,7 +34,7 @@ class TestContext(unittest.TestCase):
     def test_copy(self):
         dtype = np.dtype([("chr0", np.float32, 5), ("chr1", bool, 3)])
         
-        context = Context(dtype.names)
+        context = Context(1, dtype.names)
         context.a = "a"
 
         copy = context.copy()

@@ -53,5 +53,6 @@ class FirstGenLayer(Layer):
 			fitness = np.zeros(self._n_individual, dtype=np.float32)
 			population =  self._generate_first()
 
-		self._population = population
-		self._fitness = fitness
+			context = Context(self._n_individual, self._descriptor.chromossome_names)
+		
+		self.send_next(population, fitness, context)
