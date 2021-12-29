@@ -43,7 +43,7 @@ class ProcessEvaluator(Evaluator):
         if n_process is None:
             n_process = mp.cpu_count()
         
-        other_parameters={"evaluation_function_name":fitness_function.__class__.__name__, "n_process":n_process, "timeout":timeout}
+        other_parameters={"evaluation_function_name":fitness_function.__name__, "n_process":n_process, "timeout":timeout}
         super().__init__(n_scores=n_scores, individual_per_call=individual_per_call, other_parameters=other_parameters)
 
         self._fitness_function = fitness_function
