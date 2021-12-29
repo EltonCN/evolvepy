@@ -14,7 +14,7 @@ class FitnessCache(EvaluationStage):
         self._n_generation = n_generation
         self._max_decimals = max_decimals
         self._cache : Dict[bytes, float] = {}
-        self._last_acess : Dict[bytes, int] = {}
+        self._first_acess : Dict[bytes, int] = {}
         self._generation = 0
         
     def get_individual_representation(self, individual:np.ndarray) -> bytes:
@@ -46,8 +46,8 @@ class FitnessCache(EvaluationStage):
             else:
                 fitness[i] = self._cache[ind_repr]
 
-            if ind_repr not in self._last_acess:
-                self._last_acess[ind_repr] = self._generation
+            if ind_repr not in self._first_acess:
+                self._first_acess[ind_repr] = self._generation
 
         # Evaluate misses
         if len(to_evaluate_indexs) != 0:
@@ -72,6 +72,6 @@ class FitnessCache(EvaluationStage):
             return
 
         for key in list(self._cache.keys()):
-            if self._generation - self._last_acess[key] >= self._n_generation:
-                del self._last_acess[key]
+            if self._generation - self._first_acess[key] >= self._n_generation:
+                del self._first_acess[key]
                 del self._cache[key]
