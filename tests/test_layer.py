@@ -110,12 +110,11 @@ class TestLayer(unittest.TestCase):
     def test_block(self):
         layer = Sort()
 
-        context = Context()
-
-        context.block_all = True
-
         pop = np.arange(0, 1, 0.1)
         fitness = np.arange(0, 1, 0.1)
+
+        context = Context(len(pop))
+        context.block_all = True
 
         layer(pop, fitness, context)
 
