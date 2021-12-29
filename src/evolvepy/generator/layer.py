@@ -87,8 +87,8 @@ class Layer(Configurable):
 
 class Concatenate(Layer):
 
-	def __init__(self, name: str = None, dynamic_parameters: Dict[str, bool] = None, parameters: Dict[str, object] = None):
-		super().__init__(name=name, dynamic_parameters=dynamic_parameters, parameters=parameters)
+	def __init__(self, name: str = None):
+		super().__init__(name=name)
 
 		self._received_count = 0
 
@@ -103,8 +103,6 @@ class Concatenate(Layer):
 				fitness = np.zeros(len(population), dtype=np.float32)
 			fitness = np.asarray(fitness).flatten()
 
-			context = Context(population.dtype.names)
-
 			if self._received_count == 0 or self._population is None:
 				self._population = population
 				self._fitness = fitness
@@ -113,6 +111,7 @@ class Concatenate(Layer):
 				self._fitness = np.concatenate((self._fitness, fitness))
 
 		self._received_count += 1
+		context.sorted = False
 
 		if self._prev_count == self._received_count:
 			self._received_count = 0
