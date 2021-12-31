@@ -9,9 +9,9 @@ from evolvepy.generator.context import Context
 
 class FirstGenLayer(ChromossomeOperator):
 
-	def __init__(self, descriptor:Descriptor, initialize_zeros:bool=False, name:str=None, chromossome_names: Union[str, List[str], None] = None):
+	def __init__(self, descriptor:Descriptor, initialize_zeros:bool=False, name:str=None, chromossome_names: Union[str, List[str], None] = None, run:bool=True):
 		parameters = {"run":True, "initialize_zeros":initialize_zeros}
-		dynamic_parameters = {"run":True}
+		dynamic_parameters = {"run":run}
 
 		super().__init__(name=name, parameters=parameters, dynamic_parameters=dynamic_parameters, chromossome_names=chromossome_names)        
 
