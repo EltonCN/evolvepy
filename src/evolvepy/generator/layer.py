@@ -132,7 +132,7 @@ class ChromossomeOperator(Layer):
 			self._chromossome_names = chromossome_names
 
 	
-	def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> np.ndarray:        
+	def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:        
 		result = population.copy()
 
 		if self._chromossome_names is None: # Without specified name

@@ -10,8 +10,8 @@ from evolvepy.generator.context import Context
 class FirstGenLayer(ChromossomeOperator):
 
 	def __init__(self, descriptor:Descriptor, initialize_zeros:bool=False, name:str=None, chromossome_names: Union[str, List[str], None] = None, run:bool=True):
-		parameters = {"run":True, "initialize_zeros":initialize_zeros}
-		dynamic_parameters = {"run":run}
+		parameters = {"run":run, "initialize_zeros":initialize_zeros}
+		dynamic_parameters = {"run":True}
 
 		super().__init__(name=name, parameters=parameters, dynamic_parameters=dynamic_parameters, chromossome_names=chromossome_names)        
 
@@ -56,16 +56,20 @@ class FirstGenLayer(ChromossomeOperator):
 				population = np.empty(context.population_size, self._dtype)
 		return super().__call__(population, fitness=fitness, context=context)
 
-	def call(self, population: np.ndarray, fitness: np.ndarray, context: Context) -> np.ndarray:
+	def call(self, population: np.ndarray, fitness: np.ndarray, context: Context) -> Tuple[np.ndarray, np.ndarray]:
 		if population is None and self.parameters["run"]:
 			population = np.empty(context.population_size, dtype=self._dtype)
-		return super().call(population, fitness, context)
+
+		
+		if self.parameters["run"]:
+			self._parameters["run"] = False
+			return super().call(population, fitness, context)
+		else:
+			return population, fitness
 
 	def call_chromossomes(self, chromossomes:np.ndarray, fitness:np.ndarray, context:Context, name:Optional[str]) -> np.ndarray:
 		population_size = context.population_size
 
-		#if self.parameters["run"]:
-		#	self._parameters["run"] = False
 		
 
 		chromossomes =  self._generate_chromossome(population_size, name)

@@ -8,7 +8,6 @@ from evolvepy.generator.context import Context
 
 from .utils import assert_not_equal
 
- 
 
 from evolvepy.generator import Generator, Descriptor, descriptor, FirstGenLayer
 from evolvepy.generator.mutation import NumericMutationLayer, sum_mutation
