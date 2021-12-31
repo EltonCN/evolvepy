@@ -3,7 +3,7 @@ import sys
 
 import numpy as np
 from numpy.testing import assert_equal, assert_raises
-from numpy.testing._private.utils import assert_
+from evolvepy.generator.basic_layers import Block
 
 from evolvepy.generator.context import Context
 
@@ -120,3 +120,18 @@ class TestLayer(unittest.TestCase):
 
         assert_equal(layer.population, pop)
         assert_equal(layer.fitness, fitness)
+    
+    def test_block_layer(self):
+        context = Context(10, chromossome_names=["chr0", "chr1"])
+        layer = Block("chr0", True)
+        layer([], None, context)
+
+        assert_equal(context.blocked["chr0"], True)
+        assert_equal(context.blocked["chr1"], False)
+        assert_equal(context.block_all, False)
+
+        context = Context(10, chromossome_names=["chr0", "chr1"])
+        layer = Block(None, True)
+        layer([], None, context)
+
+        assert_equal(context.block_all, True)

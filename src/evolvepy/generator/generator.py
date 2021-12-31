@@ -1,5 +1,6 @@
 from typing import Dict, List, Tuple, Union, Optional
 import warnings
+from collections import deque
 
 import numpy as np
 from numpy.typing import ArrayLike, DTypeLike
@@ -24,6 +25,18 @@ class Generator:
 
 		if first_layer is not None and last_layer is not None:
 			layers.append(first_layer)
+
+			queue = deque()
+			for layer in first_layer.next:
+				queue.append(layer)
+			
+			while len(queue) != 0:
+				layer:Layer = queue.pop()
+				if layer != last_layer and layer not in layers:
+					layers.append(layer)
+					for next_layer in layer.next:
+						queue.append(next_layer)
+
 			layers.append(last_layer)
 		elif last_layer is not None or first_layer is not None:
 			raise ValueError("You must set Generator 'first_layer' with 'last_layer'")

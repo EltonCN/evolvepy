@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import List, Optional, Tuple, Union
 import numpy as np
 
 from evolvepy.generator.context import Context
@@ -29,3 +29,23 @@ class FilterFirsts(Layer):
         n_to_pass = self.parameters["n_to_pass"]
         
         return population[0:n_to_pass], fitness[0:n_to_pass]
+
+class Block(Layer):
+
+    def __init__(self, chromossome_names:Optional[Union[List[str], str]]=None, run:bool=False, name:str = None):
+        if isinstance(chromossome_names, str):
+            chromossome_names = [chromossome_names]
+
+        parameters={"run":run, "chromossome_names":chromossome_names}
+
+        super().__init__(name=name, parameters=parameters)
+
+    def call(self, population: np.ndarray, fitness: np.ndarray, context: Context) -> Tuple[np.ndarray, np.ndarray]:
+        if self.parameters["run"]:
+            if self.parameters["chromossome_names"] is not None:
+                for name in self.parameters["chromossome_names"]:
+                    context.blocked[name] = True
+            else:
+                context.block_all = True
+
+        return population, fitness
