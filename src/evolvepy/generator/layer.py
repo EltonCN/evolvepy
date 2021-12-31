@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 
-from typing import Dict, List, Tuple, Union
+from typing import Dict, List, Optional, Tuple, Union
 
 import numpy as np
 from numpy.typing import ArrayLike
@@ -100,7 +100,7 @@ class Concatenate(Layer):
 			population = np.asarray(population)
 
 			if fitness is None:
-				fitness = np.zeros(len(population), dtype=np.float32)
+				fitness = np.zeros(len(fitness), dtype=np.float32)
 			fitness = np.asarray(fitness).flatten()
 
 			if self._received_count == 0 or self._population is None:
@@ -137,18 +137,18 @@ class ChromossomeOperator(Layer):
 
 		if self._chromossome_names is None: # Without specified name
 			if len(population.dtype) == 0 and not context.blocked: # and only one chromossome
-				result = self.call_chromossomes(population, fitness, context)
+				result = self.call_chromossomes(population, fitness, context, None)
 			else:
 				for name in population.dtype.names: # and multiple chrmossomes
 					if not context.blocked[name]:
-						result[name] = self.call_chromossomes(population[name], fitness, context)
+						result[name] = self.call_chromossomes(population[name], fitness, context, name)
 		else:
 			for name in self._chromossome_names:
 				if not context.blocked[name]:
-						result[name] = self.call_chromossomes(population[name], fitness, context)
+						result[name] = self.call_chromossomes(population[name], fitness, context, name)
 
 
 		return result, fitness
 	
-	def call_chromossomes(self, chromossomes:np.ndarray, fitness:np.ndarray, context:Context) -> np.ndarray:
+	def call_chromossomes(self, chromossomes:np.ndarray, fitness:np.ndarray, context:Context, name:Optional[str]) -> np.ndarray:
 		return chromossomes

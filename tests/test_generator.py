@@ -4,11 +4,13 @@ import sys
 import numpy as np
 from numpy.testing import assert_equal, assert_raises
 
+from evolvepy.generator.context import Context
+
 from .utils import assert_not_equal
 
  
 
-from evolvepy.generator import Generator, Descriptor, descriptor
+from evolvepy.generator import Generator, Descriptor, descriptor, FirstGenLayer
 from evolvepy.generator.mutation import NumericMutationLayer, sum_mutation
 from evolvepy.generator.combine import CombineLayer
 from evolvepy.generator.crossover import one_point
@@ -97,6 +99,7 @@ class TestGenerator(unittest.TestCase):
 		static_parameters[layers[0].name+"/selection_function_name"] = "tournament"
 		static_parameters[layers[0].name+"/crossover_function_name"] = "one_point"
 		static_parameters[layers[1].name+"/mutation_function_name"] = "sum_mutation"
+		static_parameters[gen._layers[-1].name+"/initialize_zeros"] = False
 
 		#print(dynamic_parameters)
 		#print("--")
@@ -116,3 +119,24 @@ class TestGenerator(unittest.TestCase):
 		dtype = np.dtype([("chr0", np.float32, tuple([1]))])
 
 		assert_equal(descriptor.dtype, dtype)
+	
+	def test_multiple_generator(self):
+		descriptor = Descriptor((1,3), [(0,1), (3,5)], [np.float32, np.float32])
+		context = Context(10, descriptor.chromossome_names)
+
+		layer1 = FirstGenLayer(descriptor, chromossome_names=["chr0"], initialize_zeros=True)
+		
+		pop, _ = layer1(None, context=context)
+
+		assert_equal(np.bitwise_and(pop["chr0"] <=1, pop["chr0"] >=0), True)
+		assert_equal(pop["chr1"] == 0, True)
+
+		layer2 = FirstGenLayer(descriptor, chromossome_names=["chr1"])
+
+		layer1.next = layer2
+
+		layer1(None, context=context)
+		pop = layer2.population
+
+		assert_equal(np.bitwise_and(pop["chr0"] <=1, pop["chr0"] >=0), True)
+		assert_equal(np.bitwise_and(pop["chr1"] <=5, pop["chr1"] >=3), True)
