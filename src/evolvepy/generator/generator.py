@@ -32,7 +32,7 @@ class Generator:
 			
 			while len(queue) != 0:
 				layer:Layer = queue.pop()
-				if layer != last_layer:
+				if layer != last_layer and layer not in layers:
 					layers.append(layer)
 					for next_layer in layer.next:
 						queue.append(next_layer)
