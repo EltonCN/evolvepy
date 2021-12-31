@@ -25,7 +25,7 @@ class Layer(Configurable):
 		self._prev_count : int = 0
 
 	@property
-	def next(self) -> Layer:
+	def next(self) -> List[Layer]:
 		return self._next
 	
 	@next.setter

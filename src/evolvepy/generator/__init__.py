@@ -4,3 +4,5 @@ from .combine import CombineLayer
 from .generator import Generator
 from .descriptor import Descriptor
 from .firstgen import FirstGenLayer
+
+from . import mutation, selection, crossover
