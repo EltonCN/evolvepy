@@ -25,10 +25,10 @@ jobs:
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
-        python3 -m pip install pytest
+        python3 -m pip install pytest pytest-xdist
         if [ -f setup.cfg ]; then python3 -m pip install . ; fi
 
     - name: Test with pytest
       run: |
-        pytest
+        pytest -n 5
       shell: bash
