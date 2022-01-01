@@ -83,8 +83,12 @@ class LossFitnessFunction:
     def __call__(self, models:List[keras.Model]) -> np.ndarray:
         model = models[0]
 
-        predictions = model.predict(self._x)
-        score = self._loss(self._y, predictions)
+        if model.compiled_loss is None:
+            model.compile(optimizer="sgd", loss=self._loss)
+
+        prediction = model(self._x)
+
+        score = self._loss(self._y, prediction)
 
         return -np.array(score)
         
