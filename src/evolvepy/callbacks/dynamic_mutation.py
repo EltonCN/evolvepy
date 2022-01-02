@@ -34,6 +34,7 @@ class DynamicMutation(Callback):
         self._best_fitness = -np.Infinity
 
         self._stage = DynamicMutation.NORMAL
+        self._wait = 0
 
         self._original_parameters = {}
 
