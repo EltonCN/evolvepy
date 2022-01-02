@@ -1,1 +1,1 @@
-from .tf_keras import TFKerasEvaluator, LossFitnessFunction, transfer_weights
+from .tf_keras import TFKerasEvaluator, LossFitnessFunction, transfer_weights, EvolutionaryModel
