@@ -5,7 +5,7 @@ import numpy as np
 
  
 
-from evolvepy.generator.basic_layers import RamdomPredation as RP
+from evolvepy.generator.basic_layers import RandomPredation as RP
 
 class TestSelection(unittest.TestCase):
 
