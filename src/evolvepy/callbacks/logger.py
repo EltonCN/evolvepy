@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Dict, List
-import logging, datetime
+import datetime, json
 
 import numpy as np
 
@@ -130,20 +130,25 @@ class FileStoreLogger(Logger):
 		super().__init__(log_fitness=log_fitness, log_population=log_population, log_generator=log_generator, log_evaluator=log_evaluator, log_scores=log_scores)
 
 		#setup logging basic configuration for logging to a file
-		self._log_name = "debug_log_"+ str(datetime.datetime.now()) +".log"
+		self._log_name = "./evolution_logs/debug_log_"+ str(datetime.datetime.now()) +".log"
+		with open(self._log_name,"a") as debug_log:
+			debug_log.close()
 
 	def save_dynamic_log(self, log: Dict[str, Dict]) -> None:
-		with open(self._log_name,"w") as debug_log:
+		with open(self._log_name,"a") as debug_log:
 			debug_log.write('\n\n\n')
-			debug_log.write(log)
-			debug_log.close()
+			for key, value in log.items():
+				result = key + ': ' + str(value) + '\n'
+				debug_log.write(result)
+			
 
 	def save_static_log(self, log: Dict[str, Dict]) -> None:
-		with open(self._log_name,"w") as debug_log:
+		with open(self._log_name,"a") as debug_log:
 			debug_log.write('\n\n\n')
-			debug_log.write(log)
-			debug_log.close()
-
+			for key, value in log.items():
+				result = key + ': ' + str(value) + '\n'
+				debug_log.write(result)
+			
 	@property
-	def log(self) -> List[Dict[str, Dict]]:
+	def log(self) -> str:
 		return "O log pode ser encontrado no arquivo " + self._log_name
