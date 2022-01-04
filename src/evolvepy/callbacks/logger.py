@@ -97,7 +97,6 @@ class Logger(Callback, ABC):
 		self.save_dynamic_log(self._dynamic_log)
 		self._generation_count += 1
 		
-
 	@abstractmethod
 	def save_dynamic_log(self, log:Dict[str,Dict]) -> None:
 		...
