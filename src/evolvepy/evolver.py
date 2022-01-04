@@ -6,10 +6,10 @@ from evolvepy.evaluator import Evaluator
 from evolvepy.callbacks import Callback
 
 class Evolver:
-    def __init__(self, generator:Generator, evaluator:Evaluator, generation_size:int, callbacks:Union[Callback, List[Callback]]=None):
+    def __init__(self, generator:Generator, evaluator:Evaluator, population_size:int, callbacks:Union[Callback, List[Callback]]=None):
         self._generator = generator
         self._evaluator = evaluator
-        self._generation_size = generation_size
+        self._population_size = population_size
         
         if callbacks is None:
             callbacks = []
@@ -26,7 +26,7 @@ class Evolver:
 
     def evolve(self, generations:int):
 
-        self._history = np.empty((generations, self._generation_size), np.float64)
+        self._history = np.empty((generations, self._population_size), np.float64)
 
         if not self._started:
             for callback in self._callbacks:
@@ -35,17 +35,20 @@ class Evolver:
 
         for i in range(generations):
             for callback in self._callbacks:
-                callback.on_generator_start()
+                if callback.parameters["run"]:
+                    callback.on_generator_start()
 
-            population = self._generator.generate(self._generation_size)
+            population = self._generator.generate(self._population_size)
 
             for callback in self._callbacks:
-                callback.on_generator_end(population)
+                if callback.parameters["run"]:
+                    callback.on_generator_end(population)
 
             fitness = self._evaluator(population)
 
             for callback in self._callbacks:
-                callback.on_evaluator_end(fitness)
+                if callback.parameters["run"]:
+                    callback.on_evaluator_end(fitness)
 
             self._generator.fitness = fitness
 
@@ -53,7 +56,8 @@ class Evolver:
         
 
         for callback in self._callbacks:
-            callback.on_stop()
+            if callback.parameters["run"]:
+                callback.on_stop()
 
         return self._history, population
 

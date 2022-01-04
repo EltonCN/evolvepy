@@ -7,12 +7,10 @@ from numpy.testing._private.utils import assert_allclose
 from numpy.typing import ArrayLike
 from numpy.testing import assert_equal, assert_raises
 
-from evolvepy.evaluator import FitnessCache, FunctionEvaluator, MultipleEvaluation, FitnessAggregator
+from evolvepy.evaluator import FitnessCache, FunctionEvaluator, MultipleEvaluation, FitnessAggregator, ProcessFitnessFunction, ProcessEvaluator
 
 
 from .utils import assert_not_equal
-
- 
 
 
 def sum1(individuals:ArrayLike):
@@ -38,6 +36,16 @@ def min_max(individuals:ArrayLike):
     fitness[1] = individuals[0]["chr0"].max()
 
     return fitness
+
+class ProcessSum(ProcessFitnessFunction):
+    def __init__(self) -> None:
+        super().__init__(reset=False)
+    
+    def setup(self) -> None:
+        pass
+
+    def evaluate(self, individuals: np.ndarray) -> np.ndarray:
+        return individuals[0]["chr0"].sum()
 
 def get_population():
     dtype = np.dtype([("chr0", np.float32, 5)])
@@ -131,7 +139,16 @@ class TestEvaluator(unittest.TestCase):
 
         assert_equal(fitness_reference, fitness)
 
+    def test_process(self):
+        population = get_population()
+        fitness_reference = population["chr0"].sum(axis=1).reshape(10,1)
+
+        process_evaluator = ProcessEvaluator(ProcessSum)
+
+        fitness = process_evaluator(population)
+
+        assert_equal(fitness, fitness_reference)
+
     
 if __name__ == "__main__":
-    #logging.basicConfig(level = logging.DEBUG, filename="error.log")
-    TestEvaluator().test_function_modes()
+    unittest.main()

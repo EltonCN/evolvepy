@@ -1,182 +1,144 @@
-from typing import Dict, List, Tuple, Union
-import numpy as np
+from typing import Dict, List, Tuple, Union, Optional
+import warnings
+from collections import deque
 
+import numpy as np
 from numpy.typing import ArrayLike, DTypeLike
 
+from evolvepy.generator.context import Context
 from evolvepy.generator.layer import Layer
+from evolvepy.generator.firstgen import FirstGenLayer
+from evolvepy.generator.descriptor import Descriptor
 
 class Generator:
 
-    def __init__(self, chromossome_sizes:ArrayLike, layers:Union[None, List[Layer]]=None, chromossome_ranges:Union[None, List[Union[None, Tuple]], Tuple]=None, types:Union[list, DTypeLike]=[np.float32], names:Union[list, str, None]=None, first_layer:Layer=None, last_layer:Layer=None):    
-        chromossome_sizes = np.asarray(chromossome_sizes)
+	def __init__(self, layers:Union[None, List[Layer]]=None, first_layer:Layer=None, last_layer:Layer=None, descriptor:Optional[Descriptor]=None):    
+		self._connected = False
 
-        if chromossome_sizes.shape == ():
-            chromossome_sizes = np.array([chromossome_sizes])
+		if layers is None:
+			layers = []
+		elif first_layer is not None or last_layer is not None:
+			raise ValueError("Generator 'layers' parameter must not be used together with 'first_layer' and 'last_layer'")
+		else:
+			for i in range(len(layers)-1):
+				layers[i].next = layers[i+1]
 
-        n_chromossome = len(chromossome_sizes)
+		if first_layer is not None and last_layer is not None:
+			layers.append(first_layer)
 
-        if names is None:
-            names = []
-        elif isinstance(names, str):
-            names = [names]
-        
+			queue = deque()
+			for layer in first_layer.next:
+				queue.append(layer)
+			
+			while len(queue) != 0:
+				layer:Layer = queue.pop()
+				if layer != last_layer and layer not in layers:
+					layers.append(layer)
+					for next_layer in layer.next:
+						queue.append(next_layer)
 
-        if chromossome_ranges is None:
-            chromossome_ranges = [None] * n_chromossome
-        elif isinstance(chromossome_ranges, tuple):
-            chromossome_ranges = [chromossome_ranges]
+			layers.append(last_layer)
+		elif last_layer is not None or first_layer is not None:
+			raise ValueError("You must set Generator 'first_layer' with 'last_layer'")
 
-        if not isinstance(types, list):
-            types = [types]
+		have_first_generator = False
 
-        self._chromossome_sizes = chromossome_sizes
-        self._n_chromossome = n_chromossome
-        self._chromossome_ranges = chromossome_ranges
-        
-        self._create_dtype_names_ranges(names, types)
+		for layer in layers:
+			if isinstance(layer, FirstGenLayer):
+				have_first_generator = True
 
-        self._connected = False
+		if not have_first_generator:
+			if descriptor is None:
+				warnings.warn("You are creating a generator without FirstGenLayer and descriptor. Creating default descriptor.")
+				
+				descriptor = Descriptor()
+			
+			if len(layers) > 0 and isinstance(layers[-1], FirstGenLayer):
+				raise RuntimeWarning("You are passing a descriptor, but also passing a FirstGenLayer. This can create unexpected behavior.")
 
-        if layers is None:
-            layers = []
-        elif first_layer is not None or last_layer is not None:
-            raise ValueError("Generator 'layers' parameter must not be used together with 'first_layer' and 'last_layer'")
-        else:
-            for i in range(len(layers)-1):
-                layers[i].next = layers[i+1]
+			first_gen = FirstGenLayer(descriptor)
 
-        if first_layer is not None and last_layer is not None:
-            layers.append(first_layer)
-            layers.append(last_layer)
-        elif last_layer is not None or first_layer is not None:
-            raise ValueError("You must set Generator 'first_layer' with 'last_layer'")
+			if len(layers) > 0:
+				layers[-1].next = first_gen
 
-        self._layers = layers
+			layers.append(first_gen)
+			self._descriptor = descriptor
+		else:
+			self._descriptor = layers[-1]._descriptor
 
-        self._fitness = None
-        self._population = None
-        self._n_individual = None
+		self._layers = layers
 
-    def _create_dtype_names_ranges(self, names, types):
-        self._names = []
+		self._fitness = None
+		self._population = None
 
-        dtype = []
-        for i in range(self._n_chromossome):
-            name = "chr"+str(i)
-            if len(names)-1 >= i:
-                name = names[i]
-            self._names.append(name)
+	def set_parameter(self, layer_name:str, parameter_name:str, value:object) -> None:
+		for layer in self._layers:
+			if layer.name == layer_name:
+				layer.parameters = (parameter_name, value)
 
-            size = np.atleast_1d(self._chromossome_sizes[i])
-            size = tuple(size)
+	def set_parameters(self, layer_name:str, parameters:Dict[str, object]) -> None:
+		for layer in self._layers:
+			if layer.name == layer_name:
+				layer.parameters = parameters
 
-            dtype.append((name, types[i], size))
+	def get_parameter(self, layer_name:str, parameter_name:str=None) -> object:
+		for layer in self._layers:
+			if layer.name == layer_name:
+				return layer.parameters[parameter_name]
+	
+	def get_parameters(self, layer_name:str) -> Dict[str, object]:
+		for layer in self._layers:
+			if layer.name == layer_name:
+				return layer.parameters
 
-            if self._chromossome_ranges[i] is None:
-                if np.dtype(types[i]).char in np.typecodes["AllFloat"]:
-                    self._chromossome_ranges[i] = (0.0, 1.0)
-                elif np.dtype(types[i]).char in np.typecodes["AllInteger"]:
-                    self._chromossome_ranges[i] = (0, 10)
+	def get_all_static_parameters(self) -> Dict[str, object]:
+		static_parameters = {}
+		
+		for layer in self._layers:
+			name = layer.name
+			layer_static_parameters = layer.static_parameters
+			for key in layer_static_parameters:
+				static_parameters[name+"/"+key] = layer_static_parameters[key]
 
-        self._dtype = np.dtype(dtype)
+		return static_parameters
 
-    def set_parameter(self, layer_name:str, parameter_name:str, value:object) -> None:
-        for layer in self._layers:
-            if layer.name == layer_name:
-                layer.parameters = (parameter_name, value)
+	def get_all_dynamic_parameters(self) -> Dict[str, object]:
+		dynamic_parameters = {}
 
-    def set_parameters(self, layer_name:str, parameters:Dict[str, object]) -> None:
-        for layer in self._layers:
-            if layer.name == layer_name:
-                layer.parameters = parameters
+		for layer in self._layers:
+			name = layer.name
+			layer_dynamic_parameters = layer.dynamic_parameters
+			for key in layer_dynamic_parameters:
+				dynamic_parameters[name+"/"+key] = layer_dynamic_parameters[key]
 
-    def get_parameter(self, layer_name:str, parameter_name:str=None) -> object:
-        for layer in self._layers:
-            if layer.name == layer_name:
-                return layer.parameters[parameter_name]
-    
-    def get_parameters(self, layer_name:str) -> Dict[str, object]:
-        for layer in self._layers:
-            if layer.name == layer_name:
-                return layer.parameters
+		return dynamic_parameters
 
-    def get_all_static_parameters(self) -> Dict[str, object]:
-        static_parameters = {}
-        
-        for layer in self._layers:
-            name = layer.name
-            layer_static_parameters = layer.static_parameters
-            for key in layer_static_parameters:
-                static_parameters[name+"/"+key] = layer_static_parameters[key]
+	def add(self, layer:Layer) -> None:
+		if len(self._layers) != 0:
+			self._layers[-1].next = layer
 
-        return static_parameters
+		self._layers.append(layer)
+	
+	@property
+	def fitness(self) -> np.ndarray:
+		return self._fitness
 
-    def get_all_dynamic_parameters(self) -> Dict[str, object]:
-        dynamic_parameters = {}
+	@fitness.setter
+	def fitness(self, value:ArrayLike):
+		self._fitness = np.asarray(value)
 
-        for layer in self._layers:
-            name = layer.name
-            layer_dynamic_parameters = layer.dynamic_parameters
-            for key in layer_dynamic_parameters:
-                dynamic_parameters[name+"/"+key] = layer_dynamic_parameters[key]
+	def generate(self, population_size:int) -> np.ndarray:
+		
+		context = Context(population_size, self._descriptor.chromossome_names)
 
-        return dynamic_parameters
+		if self._population is not None and len(self._population) > population_size:
+			self._population = self._population[:population_size]
 
-    def generate_first(self, n_individual:int) -> np.ndarray:
+		self._layers[0](self._population, self._fitness, context)
+		
+		if len(self._layers[-1].population) != population_size:
+			raise RuntimeError("The generator generated a population with wrong size. Expected "+str(population_size)+", got "+str(len(self._layers[-1].population)))
 
-        population = np.empty(n_individual, self._dtype)
+		self._population = self._layers[-1].population
 
-        for i in range(self._n_chromossome):
-            n_gene = self._chromossome_sizes[i]
-            name = self._names[i]
-            dtype = population[name].dtype
-            shape = (n_individual, n_gene)
-
-            chromossome_range = self._chromossome_ranges[i]
-
-            if dtype.char in np.typecodes["AllFloat"]:
-                population[name] = np.random.rand(n_individual, n_gene)
-                population[name] *= chromossome_range[1] - chromossome_range[0]
-                population[name] += chromossome_range[0]
-            elif dtype.char in np.typecodes["AllInteger"]:
-                population[name] = np.random.randint(chromossome_range[0], chromossome_range[1], shape)
-            else:
-                population[name] = np.random.choice([False, True], shape)
-
-        return population
-    
-    def generate_evolve(self) -> np.ndarray:
-        self._layers[0](self._population, self._fitness)
-        
-        if len(self._layers[-1].population) != self._n_individual:
-            raise RuntimeError("The generator generated a population with wrong size")
-
-        return self._layers[-1].population
-
-    def add(self, layer:Layer) -> None:
-        if len(self._layers) != 0:
-            self._layers[-1].next = layer
-
-        self._layers.append(layer)
-    
-    @property
-    def fitness(self) -> np.ndarray:
-        return self._fitness
-
-    @fitness.setter
-    def fitness(self, value:ArrayLike):
-        self._fitness = np.asarray(value)
-
-    def generate(self, n_individual:int=None) -> np.ndarray:
-        if n_individual is not None:
-            self._n_individual = n_individual
-        
-        if self._n_individual is None:
-            raise RuntimeError("Generator generate must be called at least one time with n_individual parameter")
-
-        if self._fitness is None or self._population is None:
-            self._population = self.generate_first(n_individual)
-        else:
-            self._population = self.generate_evolve()
-
-        return self._population
+		return self._population

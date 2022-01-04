@@ -3,10 +3,11 @@ from typing import Any, Dict, List, Union
 
 class Context:
 
-    default_values = ["sorted", "_sorted", "blocked", "_chromossome_names", "chromossome_names", "_values", "have_value", "copy", "_block_all", "block_all"]
+    default_values = ["sorted", "_sorted", "blocked", "_chromossome_names", "chromossome_names", "_values", "have_value", "copy", "_block_all", "block_all", "population_size", "_population_size"]
 
-    def __init__(self, chromossome_names:Union[List[str], None]=None, sorted=False):
+    def __init__(self, population_size:int, chromossome_names:Union[List[str], None]=None, sorted=False):
         self._sorted = sorted
+        self._population_size = population_size
 
         if chromossome_names is None:
             self.blocked : bool = False
@@ -16,6 +17,10 @@ class Context:
         self._chromossome_names = chromossome_names
         self._values : Dict[str, object] = {}
         self._block_all = False
+
+    @property
+    def population_size(self) -> int:
+        return self._population_size
 
     @property
     def chromossome_names(self) -> List[str]:
@@ -65,7 +70,7 @@ class Context:
             return False
 
     def copy(self) -> Context:
-        context = Context(self.chromossome_names, self.sorted)
+        context = Context(self.population_size, self.chromossome_names, self.sorted)
         
         if isinstance(self.blocked, bool):
             context.blocked = self.blocked

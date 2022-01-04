@@ -1,4 +1,4 @@
-from typing import Union, List, Callable
+from typing import Union, List, Callable, Optional
 
 import numpy as np
 import numba
@@ -16,7 +16,7 @@ class CombineLayer(ChromossomeOperator):
         self._crossover_function = crossover_function
         self._n_combine = n_combine
 
-    def call_chromossomes(self, chromossomes: np.ndarray, fitness:np.ndarray, context:Context) -> np.ndarray:
+    def call_chromossomes(self, chromossomes: np.ndarray, fitness:np.ndarray, context:Context, name:Optional[str]) -> np.ndarray:
         return CombineLayer.combine(chromossomes, fitness, self._selection_function, self._crossover_function, self._n_combine)
 
     

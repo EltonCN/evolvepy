@@ -9,3 +9,4 @@ create-reports.sh
 pytest-report.xml
 .coverage
 examples/wandb/*
+build/

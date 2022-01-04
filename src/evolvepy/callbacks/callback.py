@@ -9,8 +9,16 @@ from evolvepy.evaluator import Evaluator
 
 class Callback(Configurable):
 
-    def __init__(self, parameters:Dict[str, object]=None, dynamic_parameters:Dict[str,bool]= None):
+    def __init__(self, run:bool=True, parameters:Dict[str, object]=None, dynamic_parameters:Dict[str,bool]= None):
+        if parameters is None:
+            parameters = {}
+        if dynamic_parameters is None:
+            dynamic_parameters = {}
+        parameters["run"] = run
+        dynamic_parameters["run"] = run
+
         super().__init__(parameters, dynamic_parameters)
+        
         self._generator : Generator = None
         self._evaluator : Evaluator = None
         self._callbacks : List[Callback] = []

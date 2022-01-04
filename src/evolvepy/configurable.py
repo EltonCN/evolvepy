@@ -7,6 +7,10 @@ class Configurable(ABC):
 
     __element_count = 0
 
+    @classmethod
+    def reset_count(cls):
+        cls.__element_count = 0
+
     def __init__(self, parameters:Dict[str, object]=None, dynamic_parameters:Dict[str, bool]=None, name:str=None) -> None:
         if parameters is None:
             parameters = {}
