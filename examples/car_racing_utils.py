@@ -70,7 +70,7 @@ def compute_lat_error(obs):
     return error
 
 class CarRacingEvaluator(ProcessFitnessFunction):
-    def __init__(self, show=False, save=False) -> None:
+    def __init__(self, show=False, save=False, args=None) -> None:
         super().__init__(reset=save)
 
         self._env = None

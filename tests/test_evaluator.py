@@ -38,7 +38,7 @@ def min_max(individuals:ArrayLike):
     return fitness
 
 class ProcessSum(ProcessFitnessFunction):
-    def __init__(self) -> None:
+    def __init__(self, args=None) -> None:
         super().__init__(reset=False)
     
     def setup(self) -> None:

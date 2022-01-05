@@ -1,4 +1,4 @@
-from typing import Dict, Type
+from typing import Any, Dict, Type
 import multiprocessing as mp
 from abc import ABC, abstractmethod
 
@@ -8,7 +8,7 @@ from .evaluator import Evaluator
 
 class ProcessFitnessFunction(ABC):
 
-    def __init__(self, reset:bool=False) -> None:
+    def __init__(self, reset:bool=False, args:Any=None) -> None:
         self._setted = False
         self._reset = reset
 
@@ -28,8 +28,8 @@ class ProcessFitnessFunction(ABC):
     def evaluate(self, individuals:np.ndarray) -> np.ndarray:
         ...
     
-def evaluate_forever(fitness_function:Type[ProcessFitnessFunction], individuals_queue:mp.Queue, scores_queue:mp.Queue):
-    evaluator = fitness_function()
+def evaluate_forever(fitness_function:Type[ProcessFitnessFunction], individuals_queue:mp.Queue, scores_queue:mp.Queue, args:Any):
+    evaluator = fitness_function(args=args)
 
     while True:
         individuals, first, last = individuals_queue.get(block=True)
@@ -39,7 +39,7 @@ def evaluate_forever(fitness_function:Type[ProcessFitnessFunction], individuals_
 
 
 class ProcessEvaluator(Evaluator):
-    def __init__(self, fitness_function:Type[ProcessFitnessFunction], n_process:int=None, timeout:int=None, n_scores: int = 1, individual_per_call: int = 1) -> None:
+    def __init__(self, fitness_function:Type[ProcessFitnessFunction], n_process:int=None, timeout:int=None, n_scores: int = 1, individual_per_call: int = 1, args:Any=None) -> None:
         if n_process is None:
             n_process = mp.cpu_count()
         
@@ -55,6 +55,7 @@ class ProcessEvaluator(Evaluator):
         self._scores_queue = mp.Queue()
 
         self._setted = False
+        self._args = args
 
 
     def _prepare_process(self):
@@ -63,7 +64,7 @@ class ProcessEvaluator(Evaluator):
 
         for _ in range(self._n_process):
             p = mp.Process(target=evaluate_forever, 
-                            args=(self._fitness_function, self._individuals_queue, self._scores_queue),
+                            args=(self._fitness_function, self._individuals_queue, self._scores_queue, self._args),
                             daemon=True)
             p.start()
             self._process.append(True)

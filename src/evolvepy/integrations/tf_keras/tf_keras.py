@@ -1,18 +1,29 @@
-from typing import Callable, List, Optional, Union
+from abc import abstractmethod
+from typing import Any, Callable, List, Optional, Union, Type
 
 import tensorflow as tf
 import tensorflow.keras as keras
 import numpy as np
 
 from evolvepy.evaluator import Evaluator
+from evolvepy.evaluator.process_evaluator import ProcessEvaluator, ProcessFitnessFunction
 from evolvepy.generator import Descriptor, Generator
 from evolvepy import Evolver
 from evolvepy.callbacks import Callback
 
 def transfer_weights(individual:np.ndarray, model:keras.Model) -> None:
-    weights:tf.Variable
-    for weights in model.weights:
-        weights.assign(individual[weights.name].reshape(weights.shape))
+    if len(individual.dtype.names[0]) >7  and individual.dtype.names[0][:7] == "weights": 
+        index = 0
+        
+        weights:tf.Variable
+        for weights in model.weights:
+            weights.assign(individual["weights"+str(index)].reshape(weights.shape))
+            index += 1
+    else:    
+    
+        weights:tf.Variable
+        for weights in model.weights:
+            weights.assign(individual[weights.name].reshape(weights.shape))
 
 def get_descriptor(model:keras.Model) -> Descriptor:
     chromossome_sizes = []
@@ -20,11 +31,14 @@ def get_descriptor(model:keras.Model) -> Descriptor:
     types = []
     names = []
 
+    index = 0
+
     for weights in model.weights:
         chromossome_sizes.append(weights.shape.num_elements())
         chromossome_ranges.append((-1.0, 1.0))
         types.append(np.float32)
-        names.append(weights.name)
+        names.append("weights"+str(index))
+        index += 1
 
     descriptor = Descriptor(chromossome_sizes, chromossome_ranges, types, names)
     return descriptor
@@ -153,3 +167,28 @@ class EvolutionaryModel(keras.Sequential):
         loss = self.compiled_loss(self._y, y_pred, sample_weight=self._sample_weight, regularization_losses=self.losses)
         self._debug_loss = loss
         return -np.array(loss)
+
+
+class ProcessTFKerasFitnessFunction(ProcessFitnessFunction):
+    def __init__(self, args:Any = None) -> None:
+        super().__init__(reset=False, args=args)
+        
+        config = args
+        self._model = EvolutionaryModel.from_config(config)
+        
+        self._model.compile("sgd", keras.losses.MeanSquaredError())
+    
+    def __call__(self, individuals: np.ndarray) -> np.ndarray:
+        individual = individuals[0]
+        transfer_weights(individual, self._model)
+
+        return super().__call__(self._model)
+    
+    @abstractmethod
+    def evaluate(self, model: keras.Model) -> np.ndarray:
+        ...
+
+class ProcessTFKerasEvaluator(ProcessEvaluator):
+
+    def __init__(self, fitness_function: Type[ProcessFitnessFunction], model:EvolutionaryModel, n_process: int = None, timeout: int = None, n_scores: int = 1, individual_per_call: int = 1) -> None:
+        super().__init__(fitness_function, n_process=n_process, timeout=timeout, n_scores=n_scores, individual_per_call=individual_per_call, args=model.get_config())
