@@ -1,7 +1,8 @@
 from typing import Dict
 
 import wandb
-
+import numpy as np
+import os
 from evolvepy.callbacks.logger import Logger
 
 class WandbLogger(Logger):
@@ -40,7 +41,20 @@ class WandbLogger(Logger):
     def save_dynamic_log(self, log: Dict[str, Dict]) -> None:
         self._start_wandb()
 
+        if self.parameters["log_best_individual"]:
+            best_individual = {}
+
+            for key in list(log.keys()):
+                if key[:15] == "best_individual":
+                    best_individual[key] = log[key]
+                    del log[key]
+
         wandb.log(log)
+
+        file_name = os.path.join(wandb.run.dir, "best_individual"+str(self._generation_count)+".npy")
+        file = open(file_name, "wb")
+        np.save(file, best_individual)
+        file.close()        
 
     def on_stop(self) -> None:
         super().on_stop()

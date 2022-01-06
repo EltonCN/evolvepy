@@ -25,6 +25,9 @@ class DynamicMutation(Callback):
         dynamic_parameters["wait"] = False
         dynamic_parameters["step_count"] = False
 
+        if not isinstance(layer_names, list):
+            raise ValueError("layer_names must be a list of strings.")
+
         parameters["layer_names"] = layer_names
         parameters["stop_refinement"] = stop_refinement
         self._stop_refinement = stop_refinement

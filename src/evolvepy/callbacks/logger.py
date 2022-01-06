@@ -9,9 +9,9 @@ from evolvepy.evaluator.evaluator import EvaluationStage, Evaluator
 
 
 class Logger(Callback, ABC):
-	def __init__(self, log_fitness:bool=True, log_population:bool=False, log_generator:bool=True, log_evaluator:bool=True, log_scores:bool=False):
+	def __init__(self, log_fitness:bool=True, log_population:bool=False, log_generator:bool=True, log_evaluator:bool=True, log_scores:bool=False, log_best_individual:bool=True):
 		parameters = {"log_fitness":log_fitness, "log_population":log_population, 
-					"log_generator":log_generator, "log_evaluator":log_evaluator, "log_scores":log_scores}
+					"log_generator":log_generator, "log_evaluator":log_evaluator, "log_scores":log_scores, "log_best_individual":log_best_individual}
 		
 		super().__init__(parameters=parameters)
 
@@ -86,12 +86,14 @@ class Logger(Callback, ABC):
 
 		self._dynamic_log["best_fitness"] = fitness[best_index]
 
-		if self._population[0].dtype is None:
-			self._dynamic_log["best_individual"] = self._population[best_index]
-		else:
-			for name in self._population[0].dtype.names:
-				for i in range(len(self._population[0][name])):
-					self._dynamic_log["best_individual/"+name+"/"+str(i)] = self._population[best_index][name][i]
+		if self.parameters["log_best_individual"]:
+
+			if self._population[0].dtype is None:
+				self._dynamic_log["best_individual"] = self._population[best_index]
+			else:
+				for name in self._population[0].dtype.names:
+					for i in range(len(self._population[0][name])):
+						self._dynamic_log["best_individual/"+name+"/"+str(i)] = self._population[best_index][name][i]
 
 
 		self.save_dynamic_log(self._dynamic_log)
