@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from typing import Any, Callable, List, Optional, Union, Type
+from typing import Any, Callable, Dict, List, Optional, Union, Type
 
 import tensorflow as tf
 import tensorflow.keras as keras
@@ -170,8 +170,8 @@ class EvolutionaryModel(keras.Sequential):
 
 
 class ProcessTFKerasFitnessFunction(ProcessFitnessFunction):
-    def __init__(self, args:Any = None) -> None:
-        super().__init__(reset=False, args=args)
+    def __init__(self, args:Dict, reset:bool=False) -> None:
+        super().__init__(reset=reset, args=args)
         
         config = args
         self._model = EvolutionaryModel.from_config(config)
