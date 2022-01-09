@@ -67,7 +67,7 @@ class ProcessEvaluator(Evaluator):
                             args=(self._fitness_function, self._individuals_queue, self._scores_queue, self._args),
                             daemon=True)
             p.start()
-            self._process.append(True)
+            self._process.append(p)
         
         self._setted = True
 
