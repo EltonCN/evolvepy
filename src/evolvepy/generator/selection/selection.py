@@ -31,7 +31,7 @@ def tournament(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 	for i in range(n_selection):
 		best_index = -1
 
-		while (isin(best_index, selected)) or best_index == -1:
+		while best_index == -1 or (isin(best_index, selected)):
 			index1 = np.random.randint(size)
 			index2 = np.random.randint(size)
 
@@ -59,13 +59,27 @@ def roulette(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 	'''
 
 	fitness = np.asarray(fitness_array)
-	selected = np.zeros(n_selection, dtype=np.int32)-1
-	size = fitness.shape[0]
-	sum = 0
-	for i in range(size):
-		sum += i
-	standard_prob = 1/sum
-	selected = choice(np.arange(0, size, 1, dtype=np.int32), n_selection, p=[standard_prob * (size -1 - i) for i in range(size)])
+	if np.min(fitness) < 0:
+		fitness = fitness - np.min(fitness)
+	prob = fitness/np.sum(fitness)
+
+	size = fitness.shape[0]	
+	indexs = np.arange(0, size, 1, dtype=np.int32)
+
+	# selected = np.random.choice(indexs, n_selection, p=probability) DON'T WORK WITH NJIT 
+
+	cumsum = np.cumsum(prob)
+
+	selected = np.empty(n_selection, np.int32)
+	for i in range(n_selection):
+		index = -1
+
+		while index == -1 or (isin(index, selected)):
+			index = indexs[np.searchsorted(cumsum, np.random.random(), side="right")]
+
+		selected[i] = index
+	#selected = np.searchsorted(cumsum, np.random.rand(n_selection), side="right")
+
 	return selected
 
 @numba.njit
