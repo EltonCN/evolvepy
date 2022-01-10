@@ -5,6 +5,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 from evolvepy.evaluator import ProcessFitnessFunction
+from evolvepy.integrations.gym import GymFitnessFunction
 
 def compute(individual:np.ndarray, x:np.ndarray):
     '''
@@ -38,10 +39,9 @@ def compute(individual:np.ndarray, x:np.ndarray):
     return result
 
 
-class BipedalWalkerFitnessFunction(ProcessFitnessFunction):
+class BipedalWalkerFitnessFunction(GymFitnessFunction):
 
-
-    def __init__(self, show=False, save=False , args=None) -> None:
+    def __init__(self, show=False, save=False) -> None:
         '''
             BipedalWalkerFitnessFunction constructor.
 
@@ -51,78 +51,10 @@ class BipedalWalkerFitnessFunction(ProcessFitnessFunction):
                 args (dict): can contain the key "time_mode", which indicates if the fitness should be the total amount 
                              of iterations performed in the environment.
         '''
-        super().__init__(reset=save)
-
-        self._time_mode = False
-        if isinstance(args, dict) and "time_mode" in args:
-            self._time_mode = args["time_mode"]
-
-        self._env = None
-        self._show = show
-        self._save = save
-        self._count = 0
+        super().__init__(env_name = "BipedalWalker-v3",show=show, save=save)
     
-    def setup(self) -> None:
-        '''
-            Initializes the environment.
-        '''
-        self._env = gym.make("BipedalWalker-v3")
+    def behaviour(self, obs: object, individual: np.ndarray) -> object:
+        action = compute(individual, obs)
+        action = (2.0*action)-1.0
 
-        if self._save:
-            self._env = Monitor(self._env, "./video"+str(self._count), force=True)
-            self._count += 1
-
-        
-    def evaluate(self, individuals:np.ndarray) -> np.ndarray:
-        '''
-            Evaluates the individual throug the environment.
-        '''
-        individual = individuals[0]
-
-        obs = self._env.reset()
-        done = False
-        total_reward = 0
-        while not done:
-            action = compute(individual, obs)
-            action = (2.0*action)-1.0
-
-            obs, rew, done, info = self._env.step(action)
-    
-            if self._time_mode:
-                total_reward += 1
-            else:
-                total_reward += rew
-
-            if self._show:
-                if isnotebook():
-                    show_state(self._env)
-                else:
-                    self._env.render()
-
-        if self._save:
-            self._env.close()
-
-        return total_reward
-
-
-def isnotebook():
-    try:
-        shell = get_ipython().__class__.__name__
-        if shell == 'ZMQInteractiveShell':
-            return True   # Jupyter notebook or qtconsole
-        elif shell == 'TerminalInteractiveShell':
-            return False  # Terminal running IPython
-        else:
-            return False  # Other type (?)
-    except NameError:
-        return False      # Probably standard Python interpreter    
-
-def show_state(env):
-    from IPython import display
-    plt.figure(3)
-    plt.clf()
-    plt.imshow(env.render(mode='rgb_array'))
-    plt.axis('off')
-
-    display.clear_output(wait=True)
-    display.display(plt.gcf())
+        return action
