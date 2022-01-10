@@ -86,3 +86,6 @@ class GymFitnessFunction(ProcessFitnessFunction, ABC):
             display.display(plt.gcf())
             self._env.render()
     
+    def __del__(self):
+        self._env.close()
+        self._env = None
