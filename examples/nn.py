@@ -1,14 +1,8 @@
-import multiprocessing as mp
-
 import numpy as np
-from mlagents_envs.environment import UnityEnvironment
-from gym_unity.envs import UnityToGymWrapper
 
-from evolvepy.integrations.unity_gym.unity import UnityFitnessFunction
-
-def compute(individual:np.ndarray, x:np.ndarray):
+def compute(individual:np.ndarray, x:np.ndarray) -> np.ndarray:
     '''
-        Foward pass of the dense neural network
+        Foward pass of a dense neural network
 
         Args:
             individual (np.ndarray): Individual with the weights.
@@ -36,11 +30,3 @@ def compute(individual:np.ndarray, x:np.ndarray):
     result = 1/(1+np.exp(-result)) 
 
     return result
-
-class Unity3DBallEvaluator(UnityFitnessFunction):
-
-    def behaviour(self, obs: object, individual: np.ndarray) -> object:
-        action = compute(individual, obs[0])
-        action = (2.0*action)-1.0
-
-        return action
