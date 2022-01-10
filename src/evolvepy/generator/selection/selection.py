@@ -78,8 +78,7 @@ def roulette(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 			index = indexs[np.searchsorted(cumsum, np.random.random(), side="right")]
 
 		selected[i] = index
-	#selected = np.searchsorted(cumsum, np.random.rand(n_selection), side="right")
-
+		
 	return selected
 
 @numba.njit

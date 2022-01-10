@@ -20,8 +20,8 @@ class TestSelection(unittest.TestCase):
 			rp = RP(n_to_predate = n_selected)
 			selected, selected_fitness = rp(population, fitness)
 
-			self.assertEqual(n_selected, len(selected))
-			self.assertEqual(n_selected, len(selected_fitness))
+			self.assertEqual(len(population), len(selected))
+			self.assertEqual(len(fitness), len(selected_fitness))
 			
 			for i in range(n_selected):
 				self.assertLessEqual(selected_fitness[i], fitness[-n_selected])
