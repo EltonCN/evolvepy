@@ -1,4 +1,6 @@
+from typing import List
 import numpy as np
+import evolvepy as ep
 
 def compute(individual:np.ndarray, x:np.ndarray) -> np.ndarray:
     '''
@@ -30,3 +32,33 @@ def compute(individual:np.ndarray, x:np.ndarray) -> np.ndarray:
     result = 1/(1+np.exp(-result)) 
 
     return result
+
+def create_descriptor(input_size:int, output_size:int, units:List[int]):
+    sizes = units
+    sizes.append(output_size)
+
+    names = []
+    chr_sizes = []
+    types = []
+    ranges = []
+
+    for i in range(len(sizes)):
+        total_weights = input_size*sizes[i]
+
+        names.append("layer"+str(i)+"w")
+        names.append("layer"+str(i)+"b")
+
+        chr_sizes.append(total_weights)
+        chr_sizes.append(sizes[i])
+
+        ranges.append((-1.0, 1.0))
+        ranges.append((-1.0, 1.0))
+
+        types.append(np.float32)
+        types.append(np.float32)
+
+        input_size = sizes[i]
+
+    descriptor = ep.generator.Descriptor(chr_sizes, ranges, types, names)
+
+    return descriptor
