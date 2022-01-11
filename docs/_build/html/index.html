@@ -67,8 +67,67 @@
              
   <section id="evolvepy-s-documentation">
 <h1>EvolvePy’s Documentation<a class="headerlink" href="#evolvepy-s-documentation" title="Permalink to this headline"></a></h1>
-<p>SSC0713 Project
-Teste</p>
+<p># EvolvePy</p>
+<p>EvolvePy is a Python module created to allow the easy creation and execution of evolutionary algorithms.</p>
+<p><strong>Documentation</strong>: [EvolvePy’s documentation]().</p>
+<p>## Features</p>
+<p>(Links to example using feature)</p>
+<ul class="simple">
+<li><p>Allows to create complex individual generators using different strategies:
+- [Crossover](examples/1%20-%20Simple%20EA.ipynb) (one-point, n-point, mean)
+- Mutation ([sum](examples/1%20-%20Simple%20EA.ipynb), multiplication, binary)
+- Dynamic mutation
+- [Elitism](examples/2%20-%20Elitism.ipynb)
+- [Randomic predation](examples/6%20-%20Random%20Predation.ipynb)
+- [Incremental evolution](examples/5%20-%20Incremental%20Evolution.ipynb)</p></li>
+<li><p>Define individuals with different chromosomes, with different types, ranges, sizes and parameters in the generator.</p></li>
+<li><p>Evaluate individuals using [simple functions](examples/1%20-%20Simple%20EA.ipynb)  or [multiple processes](examples/Car%20PID%20Control.ipynb).
+- [Fitness cache](examples/Car%20PID%20Control.ipynb) to avoid evaluate the same individual several times.
+- Fitness functions with different scores, which can be aggregated with different strategies.
+- [Evaluate the same individual several times to avoid noise]((examples/Car%20PID%20Control.ipynb)).</p></li>
+<li><p>[Log the evolution data to analyze later](examples/4%20-%20Logger.ipynb).</p></li>
+<li><p>Integrations with other modules:
+- [Wandb](examples/4%20-%20Logger.ipynb)
+- [Tensorflow/Keras](examples/TF-Keras%20Integration.ipynb)
+- [Gym](examples/Reinforcement%20Learning.ipynb)
+- [Unity ML Agents](examples/Unity%20ML%20Agents%20-%203DBall.ipynb) (using Gym)</p></li>
+</ul>
+<p>## Installation</p>
+<ul>
+<li><p>EvolvePy can be installed using pip:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">pip</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">evolvepy</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+<li><p>For install with all integrations dependecies (gym, tensorflow, wandb, gym_unity):</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">pip</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">evolvepy[all_integrations]</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+<li><p>For installing from this repository:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">pip</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+</ul>
+<p>## Examples</p>
+<p>The [“examples”](examples) folder have a lot of examples of how to use EvolvePy.</p>
+<p>## Authors</p>
+<p>Created by students from Unicamp’s Institute of Computing (IC-Unicamp) as a project for the [evolutionary systems subject](<a class="reference external" href="https://gitlab.com/simoesusp/disciplinas/tree/master/SSC0713-Sistemas-Evolutivos-Aplicados-a-Robotica">https://gitlab.com/simoesusp/disciplinas/tree/master/SSC0713-Sistemas-Evolutivos-Aplicados-a-Robotica</a>) at ICMC-USP, taught by prof. Eduardo do Valle Simoes.</p>
+<ul class="simple">
+<li><p>[EltonCN](<a class="reference external" href="https://github.com/EltonCN">https://github.com/EltonCN</a>)</p></li>
+<li><p>[João Bonucci](<a class="reference external" href="https://github.com/Joao-Pedro-MB">https://github.com/Joao-Pedro-MB</a>)</p></li>
+<li><p>[Thiago Lacerda](<a class="reference external" href="https://github.com/ThiagoDSL">https://github.com/ThiagoDSL</a>)</p></li>
+</ul>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
