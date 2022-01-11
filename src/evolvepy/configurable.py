@@ -2,7 +2,6 @@ from abc import ABC
 from typing import Dict, List, Union, Tuple
 
 import numpy as np
-import tensorflow.python.keras.layers
 
 
 class Configurable(ABC):
