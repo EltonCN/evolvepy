@@ -24,6 +24,8 @@ Examples are shown in the recommended reading sequence.
   - Evolution log using memory, file or wandb integration.
 - [Incremental Evolution](/examples/Incremental%20Evolution.ipynb)
 - [Random Predation](/examples/Random%20Predation.ipynb)
+- [3-CNF-SAT](/EXAMPLES/3-CNF-SAT.ipynb) 
+  - Binary operators.
 - [TF-Keras Integration](/examples/TF-Keras%20Integration.ipynb)
   - TF/Keras integration using EvolutionaryModel
 - [Car PID Control](/examples/Car%20PID%20Control.ipynb)
