@@ -29,7 +29,7 @@ class ProcessFitnessFunction(ABC):
         ...
     
 def evaluate_forever(fitness_function:Type[ProcessFitnessFunction], individuals_queue:mp.Queue, scores_queue:mp.Queue, args:Any):
-    evaluator = fitness_function(args=args)
+    evaluator = fitness_function(**args)
 
     while True:
         individuals, first, last = individuals_queue.get(block=True)
@@ -55,6 +55,9 @@ class ProcessEvaluator(Evaluator):
         self._scores_queue = mp.Queue()
 
         self._setted = False
+
+        if args is None:
+            args = {}
         self._args = args
 
 
@@ -67,7 +70,7 @@ class ProcessEvaluator(Evaluator):
                             args=(self._fitness_function, self._individuals_queue, self._scores_queue, self._args),
                             daemon=True)
             p.start()
-            self._process.append(True)
+            self._process.append(p)
         
         self._setted = True
 

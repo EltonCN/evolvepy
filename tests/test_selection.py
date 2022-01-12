@@ -9,7 +9,7 @@ import evolvepy.generator.selection.selection as evselect
 
 class TestSelection(unittest.TestCase):
     # TODO FIX roulette
-    selection_operators = [evselect.tournament,  evselect.rank]#, evselect.roulette]
+    selection_operators = [evselect.tournament,  evselect.rank, evselect.roulette]
 
     n_individuals = 100
 
@@ -18,7 +18,7 @@ class TestSelection(unittest.TestCase):
         fitness = np.sort(np.random.uniform(-100, 100, TestSelection.n_individuals))
 
         for operator in TestSelection.selection_operators:
-            for i in range(1, 3):
+            for i in range(2):
                 selections = operator(fitness, i)
 
                 self.assertEqual(type(selections), np.ndarray) #Correct type
