@@ -4,7 +4,7 @@ import numba
 from typing import Tuple
 
 @numba.njit
-def bit_mutation(chromossome:ArrayLike, existence_rate:float, gene_rate:float, mutation_range:Tuple[float, float]):
+def bit_mutation(chromossome:ArrayLike, existence_rate:float, gene_rate:float):
     ''' it takes a number n of genes and randomicaly change n gene bits in a chromossome.
 		If gener_rate = 1 this mutaions behaves like a flipbit mutation, else it is a bitstring mutaion
 	'''
@@ -18,4 +18,6 @@ def bit_mutation(chromossome:ArrayLike, existence_rate:float, gene_rate:float, m
             first = False
 
             index = np.random.randint(0, chromossome.shape[0])
-            new_chromossome[index] = 1 if chromossome[index] == 0 else 0
+            new_chromossome[index] = True if chromossome[index] == False else False
+    
+    return new_chromossome
