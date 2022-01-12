@@ -19,7 +19,7 @@ EvolvePy is a Python module created to allow the easy creation and execution of 
 - Evaluate individuals using [simple functions](examples/1%20-%20Simple%20EA.ipynb)  or [multiple processes](examples/Car%20PID%20Control.ipynb).
   - [Fitness cache](examples/Car%20PID%20Control.ipynb) to avoid evaluate the same individual several times.
   - Fitness functions with different scores, which can be aggregated with different strategies.
-  - [Evaluate the same individual several times to avoid noise](examples/Car%20PID%20Control.ipynb).
+  - [Evaluate the same individual several times to avoid noise]((examples/Car%20PID%20Control.ipynb)).
 - [Log the evolution data to analyze later](examples/4%20-%20Logger.ipynb).
 - Integrations with other modules:
   - [Wandb](examples/4%20-%20Logger.ipynb)

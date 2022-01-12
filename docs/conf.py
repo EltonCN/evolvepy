@@ -31,7 +31,7 @@ release = '0.1.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc', #Docs modules
-        'myst_parser', #HTML
+        'm2r2', #Markdown
         'sphinx.ext.napoleon', #NumPy/Google Docs Styles
 ]
 
@@ -59,3 +59,7 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 source_suffix = ['.rst', '.md']
+
+def setup(app):
+        
+        app.config.m2r_parse_relative_links = True
