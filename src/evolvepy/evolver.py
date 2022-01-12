@@ -1,12 +1,31 @@
-from typing import List, Union
+from typing import List, Tuple, Union
 import numpy as np
 
 from evolvepy.generator import Generator
 from evolvepy.evaluator import Evaluator
 from evolvepy.callbacks import Callback
 
+from tensorflow.python.keras.models import Model
+
+
 class Evolver:
+    '''
+    Basic class for evolving generations.
+
+    It combines the generator, evaluator and callbacks and runs the evolutionary process.
+    '''
+
     def __init__(self, generator:Generator, evaluator:Evaluator, population_size:int, callbacks:Union[Callback, List[Callback]]=None):
+        '''
+        Evolver constructor.
+
+        Args:
+            generator (Generator): Generator for generating populations.
+            evaluator (Evaluator): Evaluator for evaluating individuals.
+            population_size (int): Size of population.
+            callbacks (Union[Callback, List[Callback]], optional): Callabacks that will be called during evolution.. Defaults to None.
+        '''
+        
         self._generator = generator
         self._evaluator = evaluator
         self._population_size = population_size
@@ -24,7 +43,17 @@ class Evolver:
 
         self._started = False
 
-    def evolve(self, generations:int):
+    def evolve(self, generations:int) -> Tuple[np.ndarray, np.ndarray]:
+        '''
+        Evolves the population for a few generations
+
+        Args:
+            generations (int): Number of generations to evolve
+
+        Returns:
+            Tuple[np.ndarray, np.ndarray]: The first element is the fitness history of all generations, in order. 
+                The second is the last population evaluated.
+        '''
 
         self._history = np.empty((generations, self._population_size), np.float64)
 

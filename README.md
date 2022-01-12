@@ -44,7 +44,7 @@ EvolvePy is a Python module created to allow the easy creation and execution of 
     ```
 
 
-- For installing from this repository:
+- For installing from the repository:
 
     ```bash
     pip install --upgrade pip
