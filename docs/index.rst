@@ -11,7 +11,7 @@ EvolvePy's Documentation
    :caption: Contents:
    
    evolvepy
-   examples.rst
+   examples_link
    dev/development
 
 .. mdinclude:: README.md
