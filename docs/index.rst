@@ -6,18 +6,16 @@
 EvolvePy's Documentation
 ====================================
 
-.. mdinclude:: README.md
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
    
    evolvepy
 
-.. toctree::
-   :maxdepth: 2
-   :hidden:
-   :caption: Contents:
-   
    dev/development
+
+.. mdinclude:: README.md
+
+
+   
 

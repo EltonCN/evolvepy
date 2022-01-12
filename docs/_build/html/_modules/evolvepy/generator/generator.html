@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>evolvepy.generator.generator &mdash; EvolvePy 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> EvolvePy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/development.html">EvolvePy’s Development Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EvolvePy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>evolvepy.generator.generator</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for evolvepy.generator.generator</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">deque</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="k">import</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">DTypeLike</span>
+
+<span class="kn">from</span> <span class="nn">evolvepy.generator.context</span> <span class="k">import</span> <span class="n">Context</span>
+<span class="kn">from</span> <span class="nn">evolvepy.generator.layer</span> <span class="k">import</span> <span class="n">Layer</span>
+<span class="kn">from</span> <span class="nn">evolvepy.generator.firstgen</span> <span class="k">import</span> <span class="n">FirstGenLayer</span>
+<span class="kn">from</span> <span class="nn">evolvepy.generator.descriptor</span> <span class="k">import</span> <span class="n">Descriptor</span>
+
+<div class="viewcode-block" id="Generator"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator">[docs]</a><span class="k">class</span> <span class="nc">Generator</span><span class="p">:</span>
+
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layers</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Layer</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">first_layer</span><span class="p">:</span><span class="n">Layer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_layer</span><span class="p">:</span><span class="n">Layer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">descriptor</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="n">Descriptor</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>    
+		<span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">False</span>
+
+		<span class="k">if</span> <span class="n">layers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="n">layers</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">elif</span> <span class="n">first_layer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">last_layer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Generator &#39;layers&#39; parameter must not be used together with &#39;first_layer&#39; and &#39;last_layer&#39;&quot;</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">layers</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+				<span class="n">layers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">layers</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+		<span class="k">if</span> <span class="n">first_layer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">last_layer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">first_layer</span><span class="p">)</span>
+
+			<span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+			<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">first_layer</span><span class="o">.</span><span class="n">next</span><span class="p">:</span>
+				<span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+			
+			<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+				<span class="n">layer</span><span class="p">:</span><span class="n">Layer</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+				<span class="k">if</span> <span class="n">layer</span> <span class="o">!=</span> <span class="n">last_layer</span> <span class="ow">and</span> <span class="n">layer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">:</span>
+					<span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+					<span class="k">for</span> <span class="n">next_layer</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">next</span><span class="p">:</span>
+						<span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_layer</span><span class="p">)</span>
+
+			<span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">last_layer</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="n">last_layer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">first_layer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You must set Generator &#39;first_layer&#39; with &#39;last_layer&#39;&quot;</span><span class="p">)</span>
+
+		<span class="n">have_first_generator</span> <span class="o">=</span> <span class="kc">False</span>
+
+		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">:</span>
+			<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">FirstGenLayer</span><span class="p">):</span>
+				<span class="n">have_first_generator</span> <span class="o">=</span> <span class="kc">True</span>
+
+		<span class="k">if</span> <span class="ow">not</span> <span class="n">have_first_generator</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">descriptor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+				<span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;You are creating a generator without FirstGenLayer and descriptor. Creating default descriptor.&quot;</span><span class="p">)</span>
+				
+				<span class="n">descriptor</span> <span class="o">=</span> <span class="n">Descriptor</span><span class="p">()</span>
+			
+			<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">layers</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">FirstGenLayer</span><span class="p">):</span>
+				<span class="k">raise</span> <span class="ne">RuntimeWarning</span><span class="p">(</span><span class="s2">&quot;You are passing a descriptor, but also passing a FirstGenLayer. This can create unexpected behavior.&quot;</span><span class="p">)</span>
+
+			<span class="n">first_gen</span> <span class="o">=</span> <span class="n">FirstGenLayer</span><span class="p">(</span><span class="n">descriptor</span><span class="p">)</span>
+
+			<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">layers</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+				<span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">first_gen</span>
+
+			<span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">first_gen</span><span class="p">)</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_descriptor</span> <span class="o">=</span> <span class="n">descriptor</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_descriptor</span> <span class="o">=</span> <span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">_descriptor</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_layers</span> <span class="o">=</span> <span class="n">layers</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Generator.set_parameter"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.set_parameter">[docs]</a>	<span class="k">def</span> <span class="nf">set_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">parameter_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">layer_name</span><span class="p">:</span>
+				<span class="n">layer</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">(</span><span class="n">parameter_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Generator.set_parameters"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.set_parameters">[docs]</a>	<span class="k">def</span> <span class="nf">set_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">layer_name</span><span class="p">:</span>
+				<span class="n">layer</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span></div>
+
+<div class="viewcode-block" id="Generator.get_parameter"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.get_parameter">[docs]</a>	<span class="k">def</span> <span class="nf">get_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">parameter_name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">layer_name</span><span class="p">:</span>
+				<span class="k">return</span> <span class="n">layer</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">parameter_name</span><span class="p">]</span></div>
+	
+<div class="viewcode-block" id="Generator.get_parameters"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.get_parameters">[docs]</a>	<span class="k">def</span> <span class="nf">get_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]:</span>
+		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">layer_name</span><span class="p">:</span>
+				<span class="k">return</span> <span class="n">layer</span><span class="o">.</span><span class="n">parameters</span></div>
+
+<div class="viewcode-block" id="Generator.get_all_static_parameters"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.get_all_static_parameters">[docs]</a>	<span class="k">def</span> <span class="nf">get_all_static_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]:</span>
+		<span class="n">static_parameters</span> <span class="o">=</span> <span class="p">{}</span>
+		
+		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
+			<span class="n">name</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span>
+			<span class="n">layer_static_parameters</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">static_parameters</span>
+			<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">layer_static_parameters</span><span class="p">:</span>
+				<span class="n">static_parameters</span><span class="p">[</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">layer_static_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+		<span class="k">return</span> <span class="n">static_parameters</span></div>
+
+<div class="viewcode-block" id="Generator.get_all_dynamic_parameters"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.get_all_dynamic_parameters">[docs]</a>	<span class="k">def</span> <span class="nf">get_all_dynamic_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]:</span>
+		<span class="n">dynamic_parameters</span> <span class="o">=</span> <span class="p">{}</span>
+
+		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
+			<span class="n">name</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span>
+			<span class="n">layer_dynamic_parameters</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">dynamic_parameters</span>
+			<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">layer_dynamic_parameters</span><span class="p">:</span>
+				<span class="n">dynamic_parameters</span><span class="p">[</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">layer_dynamic_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+		<span class="k">return</span> <span class="n">dynamic_parameters</span></div>
+
+<div class="viewcode-block" id="Generator.add"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.add">[docs]</a>	<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span><span class="n">Layer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">layer</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span></div>
+	
+	<span class="nd">@property</span>
+	<span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span>
+
+	<span class="nd">@fitness</span><span class="o">.</span><span class="n">setter</span>
+	<span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Generator.generate"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.generate">[docs]</a>	<span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population_size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+		
+		<span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="n">population_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_descriptor</span><span class="o">.</span><span class="n">chromossome_names</span><span class="p">)</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_population</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">population_size</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_population</span><span class="p">[:</span><span class="n">population_size</span><span class="p">]</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">_population</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+		
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">population</span><span class="p">)</span> <span class="o">!=</span> <span class="n">population_size</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;The generator generated a population with wrong size. Expected &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">population_size</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;, got &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">population</span><span class="p">)))</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">population</span>
+
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_population</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, EvolvePy Developers..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
