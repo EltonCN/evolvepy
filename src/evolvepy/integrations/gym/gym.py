@@ -23,7 +23,7 @@ class GymFitnessFunction(ProcessFitnessFunction, ABC):
         Args:
             env_name (str): Name of the environment that will be used for the evaluation.
             show (bool, optional): Whether to show the graphical output of the environment. Defaults to False.
-            save (bool, optional): whether to save the graphical output in a file. Defaults to False.
+            save (bool, optional): Whether to save the graphical output in a file. Defaults to False.
         '''
         super().__init__(reset=save)
 
