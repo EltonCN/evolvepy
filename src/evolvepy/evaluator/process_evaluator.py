@@ -8,7 +8,7 @@ from .evaluator import Evaluator
 
 class ProcessFitnessFunction(ABC):
 
-    def __init__(self, reset:bool=False, args:Any=None) -> None:
+    def __init__(self, reset:bool=False) -> None:
         self._setted = False
         self._reset = reset
 
