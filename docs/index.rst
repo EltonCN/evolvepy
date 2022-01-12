@@ -14,3 +14,10 @@ EvolvePy's Documentation
    
    evolvepy
 
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Contents:
+   
+   dev/development
+
