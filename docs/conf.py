@@ -65,10 +65,12 @@ source_suffix = ['.rst', '.md']
 
 
 def setup(app):
-        
-        app.config.m2r_parse_relative_links = True
 
-if __name__ == "__main__":
-    # Parse README, creating a copy with corrected links
-    from .readme_parser import parse_readme
-    parse_readme()
+    app.config.m2r_parse_relative_links = True
+
+
+sys.path.insert(0, os.path.abspath('.'))
+
+# Parse Markdown files, creating copys with corrected links
+from markdown_parser import parse_files
+parse_files()

@@ -2,7 +2,7 @@
 
 EvolvePy is a Python module created to allow the easy creation and execution of evolutionary algorithms.
 
-**Documentation**: [EvolvePy's documentation]().
+**Documentation**: [EvolvePy's documentation](https://eltoncn.github.io/evolvepy/_build/html/index.html).
 
 ## Features
 
