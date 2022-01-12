@@ -61,10 +61,14 @@ class RandomPredation(Layer):
 		n_to_predate = self.parameters["n_to_predate"]
 		indexes = np.random.choice(np.arange(population.size - n_to_predate), size=n_to_predate)
 
-		new_population = []
-		new_fitness = []
+		new_population = population.copy()
+		new_fitness = fitness.copy()
 
+		index = population.shape[0]-1
 		for i in range(n_to_predate):
-			new_population.append(population[indexes[i]])
-			new_fitness.append(fitness[indexes[i]])
+			new_population[index] = population[indexes[i]]
+			new_fitness[index] = fitness[indexes[i]]
+
+			index -= 1
+
 		return new_population, new_fitness
