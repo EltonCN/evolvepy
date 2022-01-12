@@ -44,8 +44,8 @@
 <li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html">evolvepy.evaluator package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html">evolvepy.generator package</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="evolvepy.integrations.html">evolvepy.integrations package</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="evolvepy.integrations.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="evolvepy.integrations.html#subpackages">Subpackages</a></li>
 </ul>
 </li>
 </ul>
@@ -97,23 +97,37 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.integrations.wandb.wandb.WandbLogger.on_stop">
 <span class="sig-name descname"><span class="pre">on_stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#evolvepy.integrations.wandb.wandb.WandbLogger.on_stop" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Stops wandb run.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.integrations.wandb.wandb.WandbLogger.save_dynamic_log">
 <span class="sig-name descname"><span class="pre">save_dynamic_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#evolvepy.integrations.wandb.wandb.WandbLogger.save_dynamic_log" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Saves dynamic log between generations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – Dynamic log to save.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.integrations.wandb.wandb.WandbLogger.save_static_log">
 <span class="sig-name descname"><span class="pre">save_static_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#evolvepy.integrations.wandb.wandb.WandbLogger.save_static_log" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Saves static log. It should only be called at the beginning of the log (does nothing otherwise).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – Static log to save.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-evolvepy.integrations.wandb">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evolvepy.integrations.wandb" title="Permalink to this headline"></a></h2>
+<p>Integration with “Weights &amp; Biases” (<a class="reference external" href="https://wandb.ai/site">https://wandb.ai/site</a>)</p>
 </section>
 </section>
 
