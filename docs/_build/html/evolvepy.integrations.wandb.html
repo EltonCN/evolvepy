@@ -18,7 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="evolvepy.integrations.tf_keras package" href="evolvepy.integrations.tf_keras.html" /> 
+    <link rel="prev" title="evolvepy.integrations.unity_gym package" href="evolvepy.integrations.unity_gym.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -83,17 +83,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="evolvepy-integrations-wandb-package">
-<h1>evolvepy.integrations.wandb package<a class="headerlink" href="#evolvepy-integrations-wandb-package" title="Permalink to this headline"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
-</section>
-<section id="module-evolvepy.integrations.wandb.wandb">
-<span id="evolvepy-integrations-wandb-wandb-module"></span><h2>evolvepy.integrations.wandb.wandb module<a class="headerlink" href="#module-evolvepy.integrations.wandb.wandb" title="Permalink to this headline"></a></h2>
-<dl class="py class">
+  <section id="module-evolvepy.integrations.wandb">
+<span id="evolvepy-integrations-wandb-package"></span><h1>evolvepy.integrations.wandb package<a class="headerlink" href="#module-evolvepy.integrations.wandb" title="Permalink to this headline"></a></h1>
+<p>Integration with “Weights &amp; Biases” (<a class="reference external" href="https://wandb.ai/site">https://wandb.ai/site</a>)</p>
+<hr class="docutils" />
+<span class="target" id="module-evolvepy.integrations.wandb.wandb"></span><dl class="py class">
 <dt class="sig sig-object py" id="evolvepy.integrations.wandb.wandb.WandbLogger">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.integrations.wandb.wandb.</span></span><span class="sig-name descname"><span class="pre">WandbLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evolvepy.integrations.wandb.wandb.WandbLogger" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger" title="evolvepy.callbacks.logger.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.callbacks.logger.Logger</span></code></a></p>
+<p>Logger class to log data to “Weights &amp; Biases”.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.integrations.wandb.wandb.WandbLogger.on_stop">
 <span class="sig-name descname"><span class="pre">on_stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#evolvepy.integrations.wandb.wandb.WandbLogger.on_stop" title="Permalink to this definition"></a></dt>
@@ -125,17 +123,12 @@
 </dd></dl>
 
 </section>
-<section id="module-evolvepy.integrations.wandb">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evolvepy.integrations.wandb" title="Permalink to this headline"></a></h2>
-<p>Integration with “Weights &amp; Biases” (<a class="reference external" href="https://wandb.ai/site">https://wandb.ai/site</a>)</p>
-</section>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="evolvepy.integrations.tf_keras.html" class="btn btn-neutral float-left" title="evolvepy.integrations.tf_keras package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="evolvepy.integrations.unity_gym.html" class="btn btn-neutral float-left" title="evolvepy.integrations.unity_gym package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
