@@ -60,6 +60,12 @@ html_static_path = ['_static']
 
 source_suffix = ['.rst', '.md']
 
+
 def setup(app):
         
         app.config.m2r_parse_relative_links = True
+
+if __name__ == "__main__":
+    # Parse README, creating a copy with corrected links
+    from .readme_parser import parse_readme
+    parse_readme()
