@@ -79,8 +79,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -124,7 +124,35 @@
 <span class="kn">from</span> <span class="nn">evolvepy.generator</span> <span class="k">import</span> <span class="n">Block</span><span class="p">,</span> <span class="n">FirstGenLayer</span>
 
 <div class="viewcode-block" id="IncrementalEvolution"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.incremental_evolution.IncrementalEvolution">[docs]</a><span class="k">class</span> <span class="nc">IncrementalEvolution</span><span class="p">(</span><span class="n">Callback</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Callback that implements the behavior of a incremental evolution.</span>
+
+<span class="sd">    Incremental evolution is the process of evolving some aspects of the solution sought at each moment.</span>
+
+<span class="sd">    It works by preventing some pieces of the individuals from being altered, </span>
+<span class="sd">    allowing the adjustment of a part of them, usually that is more essential to the problem </span>
+<span class="sd">    (e.g. learning to process the readings of a robot&#39;s sensors before getting around)</span>
+
+<span class="sd">    The piece of individuals that will be blocked must be on its own chromosome.</span>
+
+<span class="sd">    This callback works in conjunction with two layers:</span>
+<span class="sd">        - Block layer: prevents the chromosome to be changed. It must be in the generator before the layers that can alter the chromosome.</span>
+<span class="sd">        - FirstGenLayer: generates the random distribution of the chromosome after its unlocking</span>
+<span class="sd">    </span>
+<span class="sd">    See the incremental evolution example to better understand how to use this callback: </span>
+<span class="sd">    https://github.com/EltonCN/evolvepy/blob/main/examples/Incremental%20Evolution.ipynb</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generation_to_start</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">block_layer</span><span class="p">:</span><span class="n">Block</span><span class="p">,</span> <span class="n">first_gen_layer</span><span class="p">:</span><span class="n">FirstGenLayer</span><span class="p">,</span> <span class="n">callbacks</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Callback</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        IncrementalEvolution constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            generation_to_start (int): In which generation to unlock the chromosome.</span>
+<span class="sd">            block_layer (Block): Layer that will prevent the chromosome to be changed.</span>
+<span class="sd">            first_gen_layer (FirstGenLayer): Layer that will generate the random distribution of the chromosome after its unlocking</span>
+<span class="sd">            callbacks (List[Callback], optional): Callbacks that will be disabled along the chromosome. Defaults to None.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;generation_to_start&quot;</span><span class="p">:</span><span class="n">generation_to_start</span><span class="p">,</span> <span class="s2">&quot;block_layer_name&quot;</span><span class="p">:</span><span class="n">block_layer</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;first_gen_layer_name&quot;</span><span class="p">:</span><span class="n">first_gen_layer</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;callbacks&quot;</span><span class="p">:[]}</span>
 
         <span class="k">if</span> <span class="n">callbacks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -141,6 +169,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks_to_stop</span> <span class="o">=</span> <span class="n">callbacks</span>
 
 <div class="viewcode-block" id="IncrementalEvolution.on_generator_start"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.incremental_evolution.IncrementalEvolution.on_generator_start">[docs]</a>    <span class="k">def</span> <span class="nf">on_generator_start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Called after generator run, performs the incremental evolution logic.</span>
+
+<span class="sd">        See class documentation.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generation</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;generation_to_start&quot;</span><span class="p">]:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_block_layer</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_first_gen_layer</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>

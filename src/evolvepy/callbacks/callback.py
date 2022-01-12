@@ -8,8 +8,22 @@ from evolvepy.generator import Generator
 from evolvepy.evaluator import Evaluator
 
 class Callback(Configurable):
+    '''
+    Base Callback class.
+
+    Callbacks are objects that can be called upon during evolution to change its behavior.
+    '''
 
     def __init__(self, run:bool=True, parameters:Dict[str, object]=None, dynamic_parameters:Dict[str,bool]= None):
+        '''
+        Callback constructor.
+
+        Args:
+            run (bool, optional): Whether the object should run. Defaults to True.
+            parameters (Dict[str, object], optional): Other callback parameters. Defaults to None.
+            dynamic_parameters (Dict[str,bool], optional): Other callback dynamic parameters description. Defaults to None.
+        '''
+        
         if parameters is None:
             parameters = {}
         if dynamic_parameters is None:
@@ -25,6 +39,11 @@ class Callback(Configurable):
 
     @property
     def generator(self) -> Generator:
+        '''
+        The Generator associated with evolution.
+
+        Must be set correctly for Callback to work
+        '''
         return self._generator
     
     @generator.setter
@@ -36,6 +55,11 @@ class Callback(Configurable):
     
     @property
     def evaluator(self) -> Evaluator:
+        '''
+        The Evaluator associated with evolution.
+
+        Must be set correctly for Callback to work
+        '''
         return self._evaluator
     
     @evaluator.setter
@@ -47,6 +71,11 @@ class Callback(Configurable):
 
     @property
     def callbacks(self) -> List[Callback]:
+        '''
+        Other callbacks associated with evolution
+
+        Must be set correctly for Callback to work
+        '''
         return self._callbacks
         
     @callbacks.setter
@@ -61,18 +90,38 @@ class Callback(Configurable):
         self._callbacks = value
 
         
-
-    def on_start(self) -> None: #NOSONAR
+    def on_start(self) -> None:
+        '''
+        Called when evolution start.
+        '''
         pass
 
-    def on_generator_start(self) -> None: #NOSONAR
+    def on_generator_start(self) -> None:
+        '''
+        Called before generator run.
+        '''
         pass
 
-    def on_generator_end(self, population:np.ndarray) -> None: #NOSONAR
+    def on_generator_end(self, population:np.ndarray) -> None:
+        '''
+        Called after generator run, before evaluator.
+
+        Args:
+            population (np.ndarray): The generated population.
+        '''
         pass
 
-    def on_evaluator_end(self, fitness:np.ndarray) -> None: #NOSONAR
+    def on_evaluator_end(self, fitness:np.ndarray) -> None:
+        '''
+        Called after evaluator run.
+
+        Args:
+            fitness (np.ndarray): The population fitness.
+        '''
         pass
 
-    def on_stop(self) -> None: #NOSONAR
+    def on_stop(self) -> None:
+        '''
+        Called on evolution end.
+        '''
         pass

@@ -5,9 +5,6 @@ from evolvepy.generator import Generator
 from evolvepy.evaluator import Evaluator
 from evolvepy.callbacks import Callback
 
-from tensorflow.python.keras.models import Model
-
-
 class Evolver:
     '''
     Basic class for evolving generations.

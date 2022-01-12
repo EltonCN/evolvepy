@@ -5,8 +5,6 @@ import numpy as np
 import os
 from evolvepy.callbacks.logger import Logger
 
-from tensorflow.python.keras.layers import Dense
-
 class WandbLogger(Logger):
     '''
     Logger class to log data to “Weights & Biases”.
