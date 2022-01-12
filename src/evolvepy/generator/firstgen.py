@@ -44,7 +44,7 @@ class FirstGenLayer(ChromossomeOperator):
 		elif dtype.char in np.typecodes["AllInteger"]:
 			chromossome = np.random.randint(chromossome_range[0], chromossome_range[1], shape)
 		else:
-			chromossome = np.random.choice([False, True], shape)
+			chromossome = np.random.choice([0, 1], shape)
 
 		return chromossome
 	

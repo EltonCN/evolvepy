@@ -53,7 +53,7 @@ class Descriptor:
 					self._chromossome_ranges[i] = (0.0, 1.0)
 				elif np.dtype(types[i]).char in np.typecodes["AllInteger"]:
 					self._chromossome_ranges[i] = (0, 10)
-				elif np.dtype(types[i]).char in ["All"]:
+				else:
 					self._chromossome_ranges[i] = (0, 1)
 
 		self._dtype = np.dtype(dtype)
