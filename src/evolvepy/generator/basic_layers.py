@@ -72,3 +72,19 @@ class RandomPredation(Layer):
 			index -= 1
 
 		return new_population, new_fitness
+class ElitismLayer(Layer):
+	def __init__(self, n_to_pass:int = 1, name: str = None):
+		parameters = {"n_to_pass":n_to_pass}
+		dynamic_parameters = {"n_to_pass":True}
+		super().__init__(name=name, dynamic_parameters=dynamic_parameters, parameters=parameters)
+
+		self._layer_sort = Sort()
+		self._layer_filter = FilterFirsts(n_to_pass)
+
+	def call(self, population: np.ndarray, fitness: np.ndarray, context: Context) -> Tuple[np.ndarray, np.ndarray]:
+		if context.sorted == False:
+			population, fitness = self._layer_sort(population, fitness, context)
+		
+		population, fitness = self._layer_filter(population, fitness, context)
+		
+		return population, fitness
