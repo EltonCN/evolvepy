@@ -1,3 +1,7 @@
+'''
+EvolvePy's evaluators. Objects used to evaluate individuals.
+'''
+
 from .evaluator import Evaluator
 from .dispatcher import MultipleEvaluation
 from .aggregator import FitnessAggregator

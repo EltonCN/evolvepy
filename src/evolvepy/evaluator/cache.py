@@ -6,8 +6,21 @@ import numpy as np
 from evolvepy.evaluator.evaluator import EvaluationStage, Evaluator
 
 class FitnessCache(EvaluationStage):
+    '''
+    Evaluations cache. 
+    
+    It allows recovering the previous evaluation of an already evaluated individual, increasing the performance.
+    '''
 
     def __init__(self, evaluator:Evaluator, n_generation:int = None, max_decimals:int=None):
+        '''
+        FitnessCache constructor.
+
+        Args:
+            evaluator (Evaluator): Evaluator used to evaluate the individuals.
+            n_generation (int, optional): Amounts of generations to wait before deleting an old rating. Defaults to None (never deletes).
+            max_decimals (int, optional): Decimal places to consider when comparing two individuals. Defaults to None (all places).
+        '''
         parameters = {"n_generation":n_generation, "max_decimals":max_decimals}
         super().__init__(evaluator, parameters=parameters)
         
@@ -18,6 +31,15 @@ class FitnessCache(EvaluationStage):
         self._generation = 0
         
     def get_individual_representation(self, individual:np.ndarray) -> bytes:
+        '''
+        Generates the byte representation of an individual, considering the precision in decimal places.
+
+        Args:
+            individual (np.ndarray): Individual who will have representation generated.
+
+        Returns:
+            bytes: Generated representation.
+        '''
         if self._max_decimals is not None:
             if individual.dtype.names is not None:
                 for name in individual.dtype.names:
@@ -29,6 +51,15 @@ class FitnessCache(EvaluationStage):
 
 
     def __call__(self, population:np.ndarray) -> np.ndarray:
+        '''
+        Returns the stored fitness of individuals, or evaluates them if it doesn't have it.
+
+        Args:
+            population (np.ndarray): Population to be evaluated.
+
+        Returns:
+            np.ndarray: Population fitness.
+        '''
         pop_size = len(population)
         
         fitness = np.empty((pop_size, self._evaluator._n_scores), np.float64)
@@ -68,6 +99,9 @@ class FitnessCache(EvaluationStage):
         return fitness
 
     def _delete_old(self) -> None:
+        '''
+        Delete old fitness.
+        '''
         if self._n_generation is None:
             return
 

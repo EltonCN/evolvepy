@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>evolvepy.generator.layer &mdash; EvolvePy 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> EvolvePy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.evaluator.html">evolvepy.evaluator package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.generator.html">evolvepy.generator package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.basic_layers">evolvepy.generator.basic_layers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.combine">evolvepy.generator.combine module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.context">evolvepy.generator.context module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.descriptor">evolvepy.generator.descriptor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.integrations.html">evolvepy.integrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.integrations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples_link.html#examples-index">Examples index</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/development.html">EvolvePy’s Development Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dev/how_to_build_link.html">How to build and release</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EvolvePy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>evolvepy.generator.layer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for evolvepy.generator.layer</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="k">import</span> <span class="n">ArrayLike</span>
+
+<span class="kn">from</span> <span class="nn">evolvepy.configurable</span> <span class="k">import</span> <span class="n">Configurable</span>
+<span class="kn">from</span> <span class="nn">evolvepy.generator.context</span> <span class="k">import</span> <span class="n">Context</span>
+
+<div class="viewcode-block" id="Layer"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.Layer">[docs]</a><span class="k">class</span> <span class="nc">Layer</span><span class="p">(</span><span class="n">Configurable</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Base Layer class with essential properties and methods, can be used as base for especialized layers of as simple layer in the pipeline</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+
+
+<div class="viewcode-block" id="Layer.__init__"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.Layer.__init__">[docs]</a>	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Base initialization for a layer and it&#39;s dynamic and static parameters</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			name (string): Layer&#39;s name</span>
+<span class="sd">			dynamic_parameters (Dict[string, bool]): Dictionary of mutable parameters</span>
+<span class="sd">			static_parameters (Dict[string, object]): Dictionary of immutable parameters</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>        
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Layer</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+	   
+		<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_context</span> <span class="o">=</span> <span class="kc">None</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_prev_count</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+	<span class="nd">@property</span>
+	<span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Layer</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Return the layer sucessor, so the generator and evolver only need to know the first and last layer of the pipeline.</span>
+<span class="sd">		</span>
+<span class="sd">		Returns:</span>
+<span class="sd">			next(List[Layer]): List of immediate successors of the current layer, it is possible that the layers has n sucessors leading to n different pipes.</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span>
+	
+	<span class="nd">@next</span><span class="o">.</span><span class="n">setter</span>
+	<span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span><span class="n">Layer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Set the layer sucessor, so the generator and evolver only need to know the first and last layer of the pipeline.</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			layer(Layer): Layer to succeed the current one.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			next(List[Layer]): List of immediate successor sucessor layers</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">if</span> <span class="n">layer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_next</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+
+			<span class="n">layer</span><span class="o">.</span><span class="n">_prev_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+	<span class="nd">@property</span>
+	<span class="k">def</span> <span class="nf">population</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Returns the population array</span>
+<span class="sd">		</span>
+<span class="sd">		Retuns:</span>
+<span class="sd">			population (np.ndarray): Population array</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_population</span>
+	
+	<span class="nd">@property</span>
+	<span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Returns the fitness array</span>
+<span class="sd">		</span>
+<span class="sd">		Retuns:</span>
+<span class="sd">			fitness (np.ndarray): Fitness array</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span>
+
+	<span class="nd">@property</span>
+	<span class="k">def</span> <span class="nf">context</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Context</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Returns the context object</span>
+<span class="sd">		</span>
+<span class="sd">		Retuns:</span>
+<span class="sd">			context (Context): Context object for the next layers</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context</span>
+
+	<span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">fitness</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">Context</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generic call to use the object as a funtion call, applying the layer oparetion</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): Population array</span>
+<span class="sd">			fitness (np.ndarray): Fitness array</span>
+<span class="sd">			context (Context): Context object for the next layers</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			population (np.ndarray): New population array</span>
+<span class="sd">			fitness (np.ndarray): New fitness array</span>
+<span class="sd">		&#39;&#39;&#39;</span>         
+
+		<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">population</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">fitness</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+			<span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+
+			<span class="k">if</span> <span class="n">fitness</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+				<span class="n">fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+			<span class="n">fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">fitness</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+			<span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+				<span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">),</span> <span class="n">population</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
+
+			<span class="k">if</span> <span class="ow">not</span> <span class="n">context</span><span class="o">.</span><span class="n">block_all</span><span class="p">:</span>
+				<span class="n">population</span><span class="p">,</span> <span class="n">fitness</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+		
+		<span class="bp">self</span><span class="o">.</span><span class="n">send_next</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+		
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_context</span> <span class="o">=</span> <span class="n">context</span>
+
+		<span class="k">return</span> <span class="n">population</span><span class="p">,</span> <span class="n">fitness</span>
+
+<div class="viewcode-block" id="Layer.send_next"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.Layer.send_next">[docs]</a>	<span class="k">def</span> <span class="nf">send_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Send context, population and fitness to the next layers</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): Population array</span>
+<span class="sd">			fitness (np.ndarray): Fitness array</span>
+<span class="sd">			context (Context): Context object for the next layers</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="n">population</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="n">fitness</span>
+
+		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span><span class="p">:</span>
+			<span class="n">next_context</span> <span class="o">=</span> <span class="n">context</span>
+			<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_next</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+				<span class="n">next_context</span> <span class="o">=</span> <span class="n">next_context</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+				
+			<span class="n">layer</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">next_context</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Layer.call"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.Layer.call">[docs]</a>	<span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+		<span class="k">return</span> <span class="n">population</span><span class="p">,</span> <span class="n">fitness</span></div></div>
+
+
+<div class="viewcode-block" id="Concatenate"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.Concatenate">[docs]</a><span class="k">class</span> <span class="nc">Concatenate</span><span class="p">(</span><span class="n">Layer</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Concatenation layer to join 2 or more layers</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="Concatenate.__init__"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.Concatenate.__init__">[docs]</a>	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Initialization for thr Cconcatenate layer with the number of layers</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			name (string): Layer&#39;s name</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_received_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+	<span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">Context</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span> <span class="c1"># NOSONAR</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generic call to concatenate the layers using the object as a funtion call</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): Population array</span>
+<span class="sd">			fitness (np.ndarray): Fitness array</span>
+<span class="sd">			context (Context): Context object for the next layers</span>
+<span class="sd">		</span>
+<span class="sd">		Returns:</span>
+<span class="sd">			population (np.ndarray): New population array</span>
+<span class="sd">			fitness (np.ndarray): New fitness array</span>
+
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">population</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">fitness</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+			<span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+
+			<span class="k">if</span> <span class="n">fitness</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+				<span class="n">fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fitness</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+			<span class="n">fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">fitness</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+			<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_received_count</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="n">population</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="n">fitness</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_population</span><span class="p">,</span> <span class="n">population</span><span class="p">))</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span><span class="p">,</span> <span class="n">fitness</span><span class="p">))</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_received_count</span> <span class="o">+=</span> <span class="mi">1</span>
+		<span class="n">context</span><span class="o">.</span><span class="n">sorted</span> <span class="o">=</span> <span class="kc">False</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prev_count</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_received_count</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_received_count</span> <span class="o">=</span> <span class="mi">0</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">send_next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_population</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_context</span> <span class="o">=</span> <span class="n">context</span>
+
+		<span class="k">return</span> <span class="n">population</span><span class="p">,</span> <span class="n">fitness</span></div>
+
+
+<div class="viewcode-block" id="ChromosomeOperator"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator">[docs]</a><span class="k">class</span> <span class="nc">ChromosomeOperator</span><span class="p">(</span><span class="n">Layer</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Base layer for chromossome operations such as numeric and boolean mutations</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="ChromosomeOperator.__init__"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator.__init__">[docs]</a>	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Initialization for the chromossome operator layer with name and parameters</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			name (string): Layer&#39;s name</span>
+<span class="sd">			dynamic_parameters (Dict[string, bool]): Dictionary of mutable parameters</span>
+<span class="sd">			parameters (Dict[string, object]): Dictionary of immutable parameters</span>
+<span class="sd">			chromosome_names (List[str]): Name of each chromosome</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="o">=</span><span class="n">dynamic_parameters</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+
+		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chromosome_names</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_chromosome_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">chromosome_names</span><span class="p">]</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_chromosome_names</span> <span class="o">=</span> <span class="n">chromosome_names</span></div>
+
+	
+<div class="viewcode-block" id="ChromosomeOperator.call"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator.call">[docs]</a>	<span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generic call to use the object as a funtion call, applying the layer oparetion</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): Population array</span>
+<span class="sd">			fitness (np.ndarray): Fitness array</span>
+<span class="sd">			context (Context): Context object for the next layers</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			population (np.ndarray): New population array</span>
+<span class="sd">			fitness (np.ndarray): New fitness array</span>
+<span class="sd">		&#39;&#39;&#39;</span>   
+
+		<span class="n">result</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chromosome_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># Without specified name</span>
+			<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">context</span><span class="o">.</span><span class="n">blocked</span><span class="p">:</span> <span class="c1"># and only one chromosome</span>
+				<span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_chromosomes</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">population</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">:</span> <span class="c1"># and multiple chrmossomes</span>
+					<span class="k">if</span> <span class="ow">not</span> <span class="n">context</span><span class="o">.</span><span class="n">blocked</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span>
+						<span class="n">result</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_chromosomes</span><span class="p">(</span><span class="n">population</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chromosome_names</span><span class="p">:</span>
+				<span class="k">if</span> <span class="ow">not</span> <span class="n">context</span><span class="o">.</span><span class="n">blocked</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span>
+						<span class="n">result</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_chromosomes</span><span class="p">(</span><span class="n">population</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+
+		<span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">fitness</span></div>
+	
+	<span class="c1">#?????</span>
+<div class="viewcode-block" id="ChromosomeOperator.call_chromosomes"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator.call_chromosomes">[docs]</a>	<span class="k">def</span> <span class="nf">call_chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chromosomes</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+		<span class="k">return</span> <span class="n">chromosomes</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, EvolvePy Developers..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

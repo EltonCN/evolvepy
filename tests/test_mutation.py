@@ -15,7 +15,7 @@ class TestMutation(unittest.TestCase):
 
     def test_numeric(self):
 
-        chromossome = np.random.rand(100)
+        chromosome = np.random.rand(100)
 
         for operator in TestMutation.operators:
             for i in range(10):
@@ -25,14 +25,14 @@ class TestMutation(unittest.TestCase):
 
                 mutation_range = np.sort(mutation_range)
 
-                new_ch = operator(chromossome, existence_rate, gene_rate, mutation_range)
+                new_ch = operator(chromosome, existence_rate, gene_rate, mutation_range)
 
                 self.assertEqual(type(new_ch), np.ndarray) #Correct type
                 self.assertEqual(new_ch.shape, (100,)) #Correct shape
 
     def test_binary(self):
-        chromossome = np.random.choice([0, 1], 1)
+        chromosome = np.random.choice([0, 1], 1)
 
-        new_ch = TestMutation.operators_bin[0](chromossome, 1.0, 0.0)
+        new_ch = TestMutation.operators_bin[0](chromosome, 1.0, 0.0)
 
-        print(chromossome, new_ch)
+        print(chromosome, new_ch)

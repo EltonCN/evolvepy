@@ -6,8 +6,22 @@ from evolvepy.evaluator.evaluator import Evaluator, EvaluationStage
 
         
 class MultipleEvaluation(EvaluationStage):
+    '''
+    Evaluates the same individual several times to avoid noise.
+    '''
 
     def __init__(self, evaluator:Evaluator, n_evaluation:int=1, agregator:Callable[[np.ndarray, int], np.ndarray]=np.mean, discard_min=False, discard_max=False) -> None:
+        '''
+        MultipleEvaluation constructor.
+
+        Args:
+            evaluator (Evaluator): Evaluator used to evaluate the individuals.
+            n_evaluation (int, optional): Number of evaluations to be carried out. Defaults to 1.
+            agregator (Callable[[np.ndarray, int], np.ndarray], optional): Function that will aggregate the fitness of the evaluations. Defaults to np.mean.
+            discard_min (bool, optional): Whether it should discard the lower fitness assessment. Defaults to False.
+            discard_max (bool, optional): Whether it should discard the higher fitness assessment. Defaults to False.
+        '''
+        
         parameters = {"n_evaluation": n_evaluation, "agregator_name":agregator.__name__, "discard_min":discard_min, "discard_max":discard_max}
 
         super().__init__(evaluator, parameters, dynamic_parameters={"n_evaluation":True})
@@ -17,6 +31,16 @@ class MultipleEvaluation(EvaluationStage):
         self._discard_max = discard_max
 
     def __call__(self, population: np.ndarray) -> np.ndarray:
+        '''
+        Evaluates the population several times, aggregating the evaluations
+
+        Args:
+            population (np.ndarray): Population to be evaluated.
+
+        Returns:
+            np.ndarray: Population aggregated fitness.
+        '''
+
         n_evaluation = self.parameters["n_evaluation"]
 
         fitness = np.empty((n_evaluation, len(population), self._evaluator._n_scores), dtype=np.float64)

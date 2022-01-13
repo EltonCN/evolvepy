@@ -122,7 +122,7 @@ class TestLayer(unittest.TestCase):
         assert_equal(layer.fitness, fitness)
     
     def test_block_layer(self):
-        context = Context(10, chromossome_names=["chr0", "chr1"])
+        context = Context(10, chromosome_names=["chr0", "chr1"])
         layer = Block("chr0", True)
         layer([], None, context)
 
@@ -130,7 +130,7 @@ class TestLayer(unittest.TestCase):
         assert_equal(context.blocked["chr1"], False)
         assert_equal(context.block_all, False)
 
-        context = Context(10, chromossome_names=["chr0", "chr1"])
+        context = Context(10, chromosome_names=["chr0", "chr1"])
         layer = Block(None, True)
         layer([], None, context)
 

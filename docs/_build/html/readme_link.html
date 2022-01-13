@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EvolvePy &mdash; EvolvePy 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> EvolvePy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="evolvepy.html">evolvepy package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EvolvePy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>EvolvePy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/readme_link.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="evolvepy">
+<h1>EvolvePy<a class="headerlink" href="#evolvepy" title="Permalink to this headline"></a></h1>
+</section>
+<section id="id1">
+<h1>EvolvePy<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<p>EvolvePy is a Python module created to allow the easy creation and execution of evolutionary algorithms.</p>
+<p><strong>Documentation</strong>: <span class="xref std std-doc">EvolvePy’s documentation</span>.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<p>(Links to example using feature)</p>
+<ul class="simple">
+<li><p>Allows to create complex individual generators using different strategies:</p>
+<ul>
+<li><p><span class="xref std std-doc">Crossover</span> (one-point, n-point, mean)</p></li>
+<li><p>Mutation (<span class="xref std std-doc">sum</span>, multiplication, binary)</p></li>
+<li><p>Dynamic mutation</p></li>
+<li><p><span class="xref std std-doc">Elitism</span></p></li>
+<li><p><span class="xref std std-doc">Randomic predation</span></p></li>
+<li><p><span class="xref std std-doc">Incremental evolution</span></p></li>
+</ul>
+</li>
+<li><p>Define individuals with different chromosomes, with different types, ranges, sizes and parameters in the generator.</p></li>
+<li><p>Evaluate individuals using <span class="xref std std-doc">simple functions</span>  or <span class="xref std std-doc">multiple processes</span>.</p>
+<ul>
+<li><p><span class="xref std std-doc">Fitness cache</span> to avoid evaluate the same individual several times.</p></li>
+<li><p>Fitness functions with different scores, which can be aggregated with different strategies.</p></li>
+<li><p><span class="xref std std-doc">Evaluate the same individual several times to avoid noise</span>).</p></li>
+</ul>
+</li>
+<li><p><span class="xref std std-doc">Log the evolution data to analyze later</span>.</p></li>
+<li><p>Integrations with other modules:</p>
+<ul>
+<li><p><span class="xref std std-doc">Wandb</span></p></li>
+<li><p><span class="xref std std-doc">Tensorflow/Keras</span></p></li>
+<li><p><span class="xref std std-doc">Gym</span></p></li>
+<li><p><span class="xref std std-doc">Unity ML Agents</span> (using Gym)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<ul>
+<li><p>EvolvePy can be installed using pip:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --upgrade pip
+pip install evolvepy
+</pre></div>
+</div>
+</li>
+<li><p>For install with all integrations dependecies (gym, tensorflow, wandb, gym_unity):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --upgrade pip
+pip install evolvepy<span class="o">[</span>all_integrations<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>For installing from this repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --upgrade pip
+pip install .
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<p>The <span class="xref std std-doc">“examples”</span> folder have a lot of examples of how to use EvolvePy.</p>
+</section>
+<section id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this headline"></a></h2>
+<p>Created by students from Unicamp’s Institute of Computing (IC-Unicamp) as a project for the <a class="reference external" href="https://gitlab.com/simoesusp/disciplinas/tree/master/SSC0713-Sistemas-Evolutivos-Aplicados-a-Robotica">evolutionary systems subject</a> at ICMC-USP, taught by prof. Eduardo do Valle Simoes.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/EltonCN">EltonCN</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Joao-Pedro-MB">João Bonucci</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ThiagoDSL">Thiago Lacerda</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, EvolvePy Developers..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

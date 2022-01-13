@@ -16,7 +16,7 @@ class TestContext(unittest.TestCase):
         context = Context(1, dtype.names)
 
         assert_equal(context.blocked, {"chr0":False, "chr1": False})
-        assert_equal(context.chromossome_names, ["chr0", "chr1"])
+        assert_equal(context.chromosome_names, ["chr0", "chr1"])
         
 
         assert_equal(context.sorted, False)

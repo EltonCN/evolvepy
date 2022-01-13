@@ -10,13 +10,13 @@ class TestCrossover(unittest.TestCase):
 
     def test_crossover(self):
 
-        chromossomes = np.random.rand(2, 100)
+        chromosomes = np.random.rand(2, 100)
 
         for operator in TestCrossover.crossover_operators:
-            new_ch = operator(chromossomes)
+            new_ch = operator(chromosomes)
 
             self.assertEqual(type(new_ch), np.ndarray) #Correct type
             self.assertEqual(new_ch.shape, (100,)) #Correct shape
 
-            np.testing.assert_equal(np.any(np.not_equal(new_ch, chromossomes[0])), True)
-            np.testing.assert_equal(np.any(np.not_equal(new_ch, chromossomes[1])), True)
+            np.testing.assert_equal(np.any(np.not_equal(new_ch, chromosomes[0])), True)
+            np.testing.assert_equal(np.any(np.not_equal(new_ch, chromosomes[1])), True)

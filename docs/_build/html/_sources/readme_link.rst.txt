@@ -1,0 +1,4 @@
+EvolvePy
+========
+
+.. mdinclude:: ../README.md

@@ -4,14 +4,27 @@ import numpy as np
 from numpy.typing import ArrayLike, DTypeLike
 
 class Descriptor:
+	'''
+	Object for the caracteristics of the individuals in population
+	'''
 
-	def __init__(self, chromossome_sizes:Optional[ArrayLike]=1, chromossome_ranges:Union[None, List[Union[None, Tuple]], Tuple]=None, types:Union[list, DTypeLike]=[np.float32], names:Union[list, str, None]=None):
-		chromossome_sizes = np.asarray(chromossome_sizes)
+	def __init__(self, chromosome_sizes:Optional[ArrayLike]=1, chromosome_ranges:Union[None, List[Union[None, Tuple]], Tuple]=None, types:Union[list, DTypeLike]=[np.float32], names:Union[list, str, None]=None):
+		'''
+		Defines the initial population caracteristics
 
-		if chromossome_sizes.shape == ():
-			chromossome_sizes = np.array([chromossome_sizes])
+		Args:
+			chromosome_sizes (int): Number of chromosomes per individual
+			chromosome_ranges (Tuple[float, float]): Range of possible values for each chromosome
+			types (List[DTypeLikes]): Data type of chromosome
+			names (List[string]): Names of the chromossomes
 
-		n_chromossome = len(chromossome_sizes)
+		'''
+		chromosome_sizes = np.asarray(chromosome_sizes)
+
+		if chromosome_sizes.shape == ():
+			chromosome_sizes = np.array([chromosome_sizes])
+
+		n_chromosome = len(chromosome_sizes)
 
 		if names is None:
 			names = []
@@ -19,53 +32,72 @@ class Descriptor:
 			names = [names]
 		
 
-		if chromossome_ranges is None:
-			chromossome_ranges = [None] * n_chromossome
-		elif isinstance(chromossome_ranges, tuple):
-			chromossome_ranges = [chromossome_ranges]
+		if chromosome_ranges is None:
+			chromosome_ranges = [None] * n_chromosome
+		elif isinstance(chromosome_ranges, tuple):
+			chromosome_ranges = [chromosome_ranges]
 
 		if not isinstance(types, list):
 			types = [types]
 
-		self._chromossome_sizes = chromossome_sizes
-		self._n_chromossome = n_chromossome
-		self._chromossome_ranges = chromossome_ranges
+		self._chromosome_sizes = chromosome_sizes
+		self._n_chromosome = n_chromosome
+		self._chromosome_ranges = chromosome_ranges
 		
 		self._create_dtype_names_ranges(names, types)
 	
 	def _create_dtype_names_ranges(self, names, types):
+		'''
+		Defines the maximum ranges based on the given data types
+		
+		Args:
+			names (List[string]): Names for the chromosomes
+			types (List[DtypeLike]): Data types of the chromosomes
+		'''
 		self._names = []
 
 		dtype = []
-		for i in range(self._n_chromossome):
+		for i in range(self._n_chromosome):
 			name = "chr"+str(i)
 			if len(names)-1 >= i:
 				name = names[i]
 			self._names.append(name)
 
-			size = np.atleast_1d(self._chromossome_sizes[i])
+			size = np.atleast_1d(self._chromosome_sizes[i])
 			size = tuple(size)
 
 			dtype.append((name, types[i], size))
 
-			if self._chromossome_ranges[i] is None:
+			if self._chromosome_ranges[i] is None:
 				if np.dtype(types[i]).char in np.typecodes["AllFloat"]:
-					self._chromossome_ranges[i] = (0.0, 1.0)
+					self._chromosome_ranges[i] = (0.0, 1.0)
 				elif np.dtype(types[i]).char in np.typecodes["AllInteger"]:
-					self._chromossome_ranges[i] = (0, 10)
+					self._chromosome_ranges[i] = (0, 10)
 				else:
-					self._chromossome_ranges[i] = (0, 1)
+					self._chromosome_ranges[i] = (0, 1)
 
 		self._dtype = np.dtype(dtype)
 
 	@property
 	def dtype(self):
+		'''
+		Returns:
+			Data type of the individuals
+		'''
 		return self._dtype
 	
 	@property
-	def chromossome_names(self):
+	def chromosome_names(self):
+		'''
+		Returns:
+			Chromosome names of the individuals
+		'''
 		return self._names
 
 	@property
-	def chromossome_ranges(self):
-		return self._chromossome_ranges
+	def chromosome_ranges(self):
+		'''
+		Returns:
+			Chromosome ranges of the individuals
+		'''
+		return self._chromosome_ranges

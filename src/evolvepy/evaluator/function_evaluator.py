@@ -15,14 +15,32 @@ JIT_PARALLEL = 3
 NJIT_PARALLEL = 3
 
 class FunctionEvaluator(Evaluator):
+    '''
+    Evaluates individuals using a simple function.
+    '''
 
     PYTHON = 0
     JIT = 1
     NJIT = 2
     JIT_PARALLEL = 3
-    NJIT_PARALLEL = 3
+    NJIT_PARALLEL = 4
 
     def __init__(self, function:Callable[[np.ndarray], ArrayLike], n_scores:int=1, mode:int=NJIT, individual_per_call:int = 1) -> None:
+        '''
+        FunctionEvaluator constructor.
+
+        Args:
+            function (Callable[[np.ndarray], ArrayLike]): Function that will be used to evaluate individuals.
+            n_scores (int, optional): Number of scores generated for each individual. Defaults to 1.
+            mode (int, optional): In which compilation mode to use the fitness function. Defaults to FunctionEvaluator.NJIT.
+                                One of the class constants can be used:
+                                PYTHON: No JIT compilation
+                                JIT: With Numba JIT compilation
+                                NJIT: With Numba No Python mode.
+                                JIT_PARALLEL: With JIT and parallel assessments.
+                                NJIT_PARALLEL: With NJIT and parallel assessments.
+            individual_per_call (int, optional): Number of individuals that are evaluated at each function call. Defaults to 1.
+        '''
         super().__init__(n_scores, individual_per_call, other_parameters={"evaluation_function_name":function.__name__})
 
         if mode == JIT:
@@ -44,11 +62,34 @@ class FunctionEvaluator(Evaluator):
         self._mode = mode
 
     def __call__(self, population: np.ndarray) -> np.ndarray:
+        '''
+        Evaluates a population using the fitness function.
+
+        Args:
+            population (np.ndarray): Population to be evaluated.
+
+        Returns:
+            np.ndarray: Population fitness.
+        '''
         self._scores  = self._static_call(self._function, self._individual_per_call, self._n_scores, population)
         return self._scores
 
     @staticmethod
     def call(function:Callable, individual_per_call:int, n_scores:int, population:np.ndarray) -> np.ndarray:
+        '''
+        Call the fitness function in the desired mode.
+
+        Static method to enable just-in-time compilation using Numba.
+
+        Args:
+            function (Callable): Function that will be used to evaluate individuals.
+            individual_per_call (int): Number of individuals that are evaluated at each function call.
+            n_scores (int): Number of scores generated for each individual.
+            population (np.ndarray): Population to be evaluated
+
+        Returns:
+            np.ndarray: Population fitness
+        '''
         n = population.shape[0]//individual_per_call
 
         #Can't raise exception with Numba

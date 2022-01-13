@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>evolvepy.integrations.tf_keras package &mdash; EvolvePy 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="evolvepy.integrations.unity_gym package" href="evolvepy.integrations.unity_gym.html" />
+    <link rel="prev" title="evolvepy.integrations.gym package" href="evolvepy.integrations.gym.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> EvolvePy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="evolvepy.html">evolvepy package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="evolvepy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html">evolvepy.evaluator package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html">evolvepy.generator package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.basic_layers">evolvepy.generator.basic_layers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.combine">evolvepy.generator.combine module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.context">evolvepy.generator.context module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.descriptor">evolvepy.generator.descriptor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="evolvepy.integrations.html">evolvepy.integrations package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="evolvepy.integrations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples_link.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples_link.html#examples-index">Examples index</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev/development.html">EvolvePy’s Development Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/how_to_build_link.html">How to build and release</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EvolvePy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="evolvepy.html">evolvepy package</a> &raquo;</li>
+          <li><a href="evolvepy.integrations.html">evolvepy.integrations package</a> &raquo;</li>
+      <li>evolvepy.integrations.tf_keras package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/evolvepy.integrations.tf_keras.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-evolvepy.integrations.tf_keras">
+<span id="evolvepy-integrations-tf-keras-package"></span><h1>evolvepy.integrations.tf_keras package<a class="headerlink" href="#module-evolvepy.integrations.tf_keras" title="Permalink to this headline"></a></h1>
+<p>EvolvePy’s integration with Tensorflow/Keras (<a class="reference external" href="https://www.tensorflow.org/">https://www.tensorflow.org/</a>)</p>
+<hr class="docutils" />
+<span class="target" id="module-evolvepy.integrations.tf_keras.tf_keras"></span><dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.integrations.tf_keras.tf_keras.</span></span><span class="sig-name descname"><span class="pre">EvolutionaryModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#EvolutionaryModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tensorflow.python.keras.engine.sequential.Sequential</span></code></p>
+<p>Model class to optimize using EvolvePy.</p>
+<p>Each generation will evolve by one batch (total generations = epochs*batches)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#EvolutionaryModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>EvolutionaryModel constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layers</strong> (<em>[</em><em>type</em><em>]</em><em>, </em><em>optional</em>) – Sequential layers of the model. Defaults to None.</p></li>
+<li><p><strong>name</strong> (<em>[</em><em>type</em><em>]</em><em>, </em><em>optional</em>) – Model name. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel.compile">
+<span class="sig-name descname"><span class="pre">compile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><span class="pre">evolvepy.generator.generator.Generator</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ep_callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">evolvepy.callbacks.callback.Callback</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weighted_metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps_per_execution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#EvolutionaryModel.compile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel.compile" title="Permalink to this definition"></a></dt>
+<dd><p>Compiles the model.</p>
+<p>Undescribed arguments must be used in the same way as the tf/keras Model base class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generator</strong> (<a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><em>Generator</em></a><em>, </em><em>optional</em>) – Individual generator to optimize the model. Defaults to None (optimize won’t work).</p></li>
+<li><p><strong>population_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Population size for the generator. Defaults to None.</p></li>
+<li><p><strong>ep_callbacks</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.Callback"><em>Callback</em></a><em>]</em><em>]</em><em>, </em><em>optional</em>) – EvolvePy’s callbacks to use during optimization. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel.descriptor">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">descriptor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.descriptor.Descriptor" title="evolvepy.generator.descriptor.Descriptor"><span class="pre">evolvepy.generator.descriptor.Descriptor</span></a></em><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel.descriptor" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the descriptor of an individual that represents the model weights.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The generated descriptor.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.descriptor.Descriptor" title="evolvepy.generator.descriptor.Descriptor">Descriptor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel.train_step">
+<span class="sig-name descname"><span class="pre">train_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#EvolutionaryModel.train_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel.train_step" title="Permalink to this definition"></a></dt>
+<dd><p>Evolves the model one step. If you use multiple batches, each generation will evolve by one batch.</p>
+<p>Arguments and returns are the same of tf/keras Model train_step.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.LossFitnessFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.integrations.tf_keras.tf_keras.</span></span><span class="sig-name descname"><span class="pre">LossFitnessFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tensorflow.python.keras.losses.Loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tensorflow.python.framework.ops.Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tensorflow.python.framework.ops.Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'LossFitnessFunction'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#LossFitnessFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.LossFitnessFunction" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Fitness function to evaluate models with a keras loss function.</p>
+<p>Prefer to use an EvolutionaryModel to use other tensorflow/keras features such as batching and validation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.LossFitnessFunction.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loss</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tensorflow.python.keras.losses.Loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tensorflow.python.framework.ops.Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tensorflow.python.framework.ops.Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'LossFitnessFunction'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#LossFitnessFunction.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.LossFitnessFunction.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>LossFitnessFunction constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loss</strong> (<em>keras.losses.Loss</em>) – The loss to evaluate the individuals.</p></li>
+<li><p><strong>x</strong> (<em>Union</em><em>[</em><em>np.ndarray</em><em>, </em><em>tf.Tensor</em><em>]</em>) – Train features.</p></li>
+<li><p><strong>y</strong> (<em>Union</em><em>[</em><em>np.ndarray</em><em>, </em><em>tf.Tensor</em><em>]</em>) – Train targets.</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Fitness function name. Defaults to “LossFitnessFunction”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasEvaluator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.integrations.tf_keras.tf_keras.</span></span><span class="sig-name descname"><span class="pre">ProcessTFKerasEvaluator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessFitnessFunction" title="evolvepy.evaluator.process_evaluator.ProcessFitnessFunction"><span class="pre">evolvepy.evaluator.process_evaluator.ProcessFitnessFunction</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel" title="evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel"><span class="pre">evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_process</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">individual_per_call</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#ProcessTFKerasEvaluator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasEvaluator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessEvaluator" title="evolvepy.evaluator.process_evaluator.ProcessEvaluator"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.evaluator.process_evaluator.ProcessEvaluator</span></code></a></p>
+<p>Evaluator to evaluate models using multiple processes.</p>
+<p>It’s under development, it doesn’t work properly.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasEvaluator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessFitnessFunction" title="evolvepy.evaluator.process_evaluator.ProcessFitnessFunction"><span class="pre">evolvepy.evaluator.process_evaluator.ProcessFitnessFunction</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel" title="evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel"><span class="pre">evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_process</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">individual_per_call</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#ProcessTFKerasEvaluator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasEvaluator.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>ProcessTFKerasEvaluator constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fitness_function</strong> (<em>Type</em><em>[</em><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessFitnessFunction" title="evolvepy.evaluator.process_evaluator.ProcessFitnessFunction"><em>ProcessFitnessFunction</em></a><em>]</em>) – Fitness function to evaluate the models.</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="#evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel" title="evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel"><em>EvolutionaryModel</em></a>) – Model to be optimized.</p></li>
+<li><p><strong>n_process</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of process to use. Defaults to None (same number as cpu_count).</p></li>
+<li><p><strong>timeout</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum time to wait for a new evaluation. Defaults to None (infinity).</p></li>
+<li><p><strong>n_scores</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of scores generated by fitness function. Defaults to 1.</p></li>
+<li><p><strong>individual_per_call</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of individuals that the fitness function receives. Defaults to 1.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasFitnessFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.integrations.tf_keras.tf_keras.</span></span><span class="sig-name descname"><span class="pre">ProcessTFKerasFitnessFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#ProcessTFKerasFitnessFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasFitnessFunction" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessFitnessFunction" title="evolvepy.evaluator.process_evaluator.ProcessFitnessFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.evaluator.process_evaluator.ProcessFitnessFunction</span></code></a></p>
+<p>TFKeras Fitness Function for multiprocessing.</p>
+<p>It’s under development, it doesn’t work properly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ProcessFitnessFunction</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasFitnessFunction.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#ProcessTFKerasFitnessFunction.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasFitnessFunction.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>ProcessTFKerasFitnessFunction constructor.</p>
+<p>Instantiates the model using the settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Model configs, generated by the model’s “get_config” method.</p></li>
+<li><p><strong>reset</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to restart the evaluator before evaluating.. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasFitnessFunction.evaluate">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tensorflow.python.keras.engine.training.Model</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#ProcessTFKerasFitnessFunction.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasFitnessFunction.evaluate" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluates a model. Must be defined by the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>keras.Model</em>) – Model to evaluate.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Model scores.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.TFKerasEvaluator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.integrations.tf_keras.tf_keras.</span></span><span class="sig-name descname"><span class="pre">TFKerasEvaluator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tensorflow.python.keras.engine.training.Model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">tensorflow.python.keras.engine.training.Model</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">individual_per_call</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#TFKerasEvaluator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.TFKerasEvaluator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.evaluator.evaluator.Evaluator</span></code></a></p>
+<p>Evaluates individuals representing TFKeras models with a arbitrary function.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.TFKerasEvaluator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tensorflow.python.keras.engine.training.Model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">tensorflow.python.keras.engine.training.Model</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">individual_per_call</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#TFKerasEvaluator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.TFKerasEvaluator.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>TFKerasEvaluator constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>keras.Model</em>) – Model to evaluate.</p></li>
+<li><p><strong>fitness_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>List</em><em>[</em><em>keras.Model</em><em>]</em><em>]</em><em>, </em><em>np.ndarray</em><em>]</em>) – Fitness function to evaluate the individuals.</p></li>
+<li><p><strong>individual_per_call</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of individuals that the fitness function receives. Defaults to 1.</p></li>
+<li><p><strong>n_scores</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of scores that the fitness function generates.. Defaults to 1.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.TFKerasEvaluator.descriptor">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">descriptor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.descriptor.Descriptor" title="evolvepy.generator.descriptor.Descriptor"><span class="pre">evolvepy.generator.descriptor.Descriptor</span></a></em><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.TFKerasEvaluator.descriptor" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the descriptor of an individual that represents the model weights.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The generated descriptor.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.descriptor.Descriptor" title="evolvepy.generator.descriptor.Descriptor">Descriptor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.get_descriptor">
+<span class="sig-prename descclassname"><span class="pre">evolvepy.integrations.tf_keras.tf_keras.</span></span><span class="sig-name descname"><span class="pre">get_descriptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tensorflow.python.keras.engine.training.Model</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.descriptor.Descriptor" title="evolvepy.generator.descriptor.Descriptor"><span class="pre">evolvepy.generator.descriptor.Descriptor</span></a></span></span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#get_descriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.get_descriptor" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a descriptor from a keras Model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>keras.Model</em>) – Model to create descriptor.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Descriptor for individuals containing the model weights and bias.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.descriptor.Descriptor" title="evolvepy.generator.descriptor.Descriptor">Descriptor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="evolvepy.integrations.tf_keras.tf_keras.transfer_weights">
+<span class="sig-prename descclassname"><span class="pre">evolvepy.integrations.tf_keras.tf_keras.</span></span><span class="sig-name descname"><span class="pre">transfer_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tensorflow.python.keras.engine.training.Model</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/integrations/tf_keras/tf_keras.html#transfer_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.tf_keras.tf_keras.transfer_weights" title="Permalink to this definition"></a></dt>
+<dd><p>Transfer weights from individual to model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>individual</strong> (<em>np.ndarray</em>) – EvolvePy’s individual. Chromosomes must contains. layers weights and biases.
+Chromosomes names must be model’s weights names (model.weights[i].name), or
+in same sequence of model’s weights, with “weights+str(i)” name (weights0, weights1, …).</p></li>
+<li><p><strong>model</strong> (<em>keras.Model</em>) – [description]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="evolvepy.integrations.gym.html" class="btn btn-neutral float-left" title="evolvepy.integrations.gym package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="evolvepy.integrations.unity_gym.html" class="btn btn-neutral float-right" title="evolvepy.integrations.unity_gym package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, EvolvePy Developers..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

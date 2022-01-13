@@ -9,14 +9,21 @@ import matplotlib.pyplot as plt
 from evolvepy.evaluator import ProcessFitnessFunction
 
 class GymFitnessFunction(ProcessFitnessFunction, ABC):
+    '''
+    Evaluates individuals using a Gym. Must be inherited by the user.
+    
+    Can be used with ProcessEvaluator.
+    As the sum of the rewards obtained by the individual during the evaluation.
+    '''
 
     def __init__(self, env_name:str, show:bool=False, save:bool=False ) -> None:
         '''
-            GymFitnessFunction constructor.
+        GymFitnessFunction constructor.
 
-            Args:
-                show (bool): whether to show the graphical output of the environment.
-                save (bool): whether to save the graphical output in a file.
+        Args:
+            env_name (str): Name of the environment that will be used for the evaluation.
+            show (bool, optional): Whether to show the graphical output of the environment. Defaults to False.
+            save (bool, optional): Whether to save the graphical output in a file. Defaults to False.
         '''
         super().__init__(reset=save)
 
@@ -46,11 +53,29 @@ class GymFitnessFunction(ProcessFitnessFunction, ABC):
 
     @abstractmethod
     def behaviour(self, obs:object, individual:np.ndarray) -> object:
+        '''
+        Individual behavior. Receives the observation and returns the action.
+
+        Must be implemented by the user.
+
+        Args:
+            obs (object): Environment observation.
+            individual (np.ndarray): Individual being evaluated.
+
+        Returns:
+            object: Individual action.
+        '''
         ...
     
     def evaluate(self, individuals:np.ndarray) -> np.ndarray:
         '''
-            Evaluates the individual throug the environment.
+        Evaluates the individual through the environment.
+
+        Args:
+            individuals (np.ndarray): Individuals to be evaluated. Evaluates only the first individual.
+
+        Returns:
+            np.ndarray: Individuals scores.
         '''
         individual = individuals[0]
 
@@ -73,6 +98,9 @@ class GymFitnessFunction(ProcessFitnessFunction, ABC):
         return total_reward
     
     def _show_env(self):
+        '''
+        Shows the environment graphic output.
+        '''
         if self._jupyter:
             self._env.render()
         else:
@@ -87,5 +115,10 @@ class GymFitnessFunction(ProcessFitnessFunction, ABC):
             self._env.render()
     
     def __del__(self):
+        '''
+        GymFitnessFunction desconstructor.
+
+        Closes the environment.
+        '''
         self._env.close()
         self._env = None

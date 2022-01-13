@@ -24,8 +24,8 @@ class TestIncrementalEvolution(unittest.TestCase):
 
 		layer1 = Block("chr1")
 		layer2 = NumericMutationLayer(sum_mutation, 1.0, 0.0, (0.0, 100.0))
-		layer3 = FirstGenLayer(descriptor, initialize_zeros=True, chromossome_names="chr0")
-		layer4 = FirstGenLayer(descriptor, chromossome_names="chr1", run=False)
+		layer3 = FirstGenLayer(descriptor, initialize_zeros=True, chromosome_names="chr0")
+		layer4 = FirstGenLayer(descriptor, chromosome_names="chr1", run=False)
 
 		layers = [layer1, layer2, layer3, layer4]
 		for i in range(len(layers)-1):
