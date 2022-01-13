@@ -7,7 +7,7 @@ EvolvePy is a Python module created to allow the easy creation and execution of 
 **Documentation**: [EvolvePy's documentation](https://eltoncn.github.io/evolvepy/_build/html/index.html).
 
 Presentation video (Portuguese, click on the image):
-[![Presentation Video](https://github.com/EltonCN/evolvepy/blob/main/Thumbnail.png)](https://www.youtube.com/watch?v=Hfo1XkzEcis&list=PLXcCIm-yDGGfBveHj_f_31GkythkJpeUl&index=1)
+[![Presentation Video](https://raw.githubusercontent.com/EltonCN/evolvepy/main/Thumbnail.png)](https://www.youtube.com/watch?v=Hfo1XkzEcis&list=PLXcCIm-yDGGfBveHj_f_31GkythkJpeUl&index=1)
 
 ## Features
 

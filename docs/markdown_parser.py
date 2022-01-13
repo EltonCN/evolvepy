@@ -4,7 +4,7 @@ from typing import List
 FILES_PATHS = ["../README.md", "../examples/Examples.md"]
 
 replaces = {"](/examples": "](https://github.com/EltonCN/evolvepy/blob/main/examples",
-            "](/Thumbnail.png":"](https://github.com/EltonCN/evolvepy/blob/main/Thumbnail.png"}
+            "](/Thumbnail.png":"](https://raw.githubusercontent.com/EltonCN/evolvepy/main/Thumbnail.png"}
 
 def parse_files():
     for path in FILES_PATHS:
