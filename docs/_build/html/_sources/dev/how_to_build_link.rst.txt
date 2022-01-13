@@ -1,0 +1,1 @@
+.. mdinclude:: How-to-build.md

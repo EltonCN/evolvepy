@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>evolvepy.integrations.unity_gym package &mdash; EvolvePy 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="evolvepy.integrations.wandb package" href="evolvepy.integrations.wandb.html" />
+    <link rel="prev" title="evolvepy.integrations.tf_keras package" href="evolvepy.integrations.tf_keras.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> EvolvePy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="evolvepy.html">evolvepy package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="evolvepy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html">evolvepy.evaluator package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html">evolvepy.generator package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.basic_layers">evolvepy.generator.basic_layers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.combine">evolvepy.generator.combine module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.context">evolvepy.generator.context module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.descriptor">evolvepy.generator.descriptor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="evolvepy.integrations.html">evolvepy.integrations package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="evolvepy.integrations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples_link.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples_link.html#examples-index">Examples index</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev/development.html">EvolvePy’s Development Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/how_to_build_link.html">How to build and release</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EvolvePy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="evolvepy.html">evolvepy package</a> &raquo;</li>
+          <li><a href="evolvepy.integrations.html">evolvepy.integrations package</a> &raquo;</li>
+      <li>evolvepy.integrations.unity_gym package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/evolvepy.integrations.unity_gym.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-evolvepy.integrations.unity_gym">
+<span id="evolvepy-integrations-unity-gym-package"></span><h1>evolvepy.integrations.unity_gym package<a class="headerlink" href="#module-evolvepy.integrations.unity_gym" title="Permalink to this headline"></a></h1>
+<p>EvolvePy’s integration with Unity’s ML Agents (<a class="reference external" href="https://github.com/Unity-Technologies/ml-agents">https://github.com/Unity-Technologies/ml-agents</a>).</p>
+<hr class="docutils" />
+<span class="target" id="module-evolvepy.integrations.unity_gym.unity"></span><dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.integrations.unity_gym.unity.UnityFitnessFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.integrations.unity_gym.unity.</span></span><span class="sig-name descname"><span class="pre">UnityFitnessFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/integrations/unity_gym/unity.html#UnityFitnessFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.unity_gym.unity.UnityFitnessFunction" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="evolvepy.integrations.gym.html#evolvepy.integrations.gym.gym.GymFitnessFunction" title="evolvepy.integrations.gym.gym.GymFitnessFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.integrations.gym.gym.GymFitnessFunction</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Evaluates individuals using a Unity’s environment. Must be inherited by the user.</p>
+<p>Can be used with ProcessEvaluator.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.integrations.unity_gym.unity.UnityFitnessFunction.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/integrations/unity_gym/unity.html#UnityFitnessFunction.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.unity_gym.unity.UnityFitnessFunction.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>UnityFitnessFunction constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>env_path</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – The path for the environment build. Defaults to None (waits for connection with Unity Editor (play button)).</p></li>
+<li><p><strong>show</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to show the environment graphic output. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.integrations.unity_gym.unity.UnityFitnessFunction.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/integrations/unity_gym/unity.html#UnityFitnessFunction.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.integrations.unity_gym.unity.UnityFitnessFunction.setup" title="Permalink to this definition"></a></dt>
+<dd><p>Prepares the environment instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="evolvepy.integrations.tf_keras.html" class="btn btn-neutral float-left" title="evolvepy.integrations.tf_keras package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="evolvepy.integrations.wandb.html" class="btn btn-neutral float-right" title="evolvepy.integrations.wandb package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, EvolvePy Developers..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

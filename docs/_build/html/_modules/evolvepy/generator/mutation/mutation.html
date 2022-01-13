@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>evolvepy.generator.mutation.mutation &mdash; EvolvePy 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> EvolvePy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../evolvepy.html">evolvepy package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../evolvepy.evaluator.html">evolvepy.evaluator package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.evaluator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../evolvepy.generator.html">evolvepy.generator package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.generator.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.generator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.generator.html#module-evolvepy.generator.basic_layers">evolvepy.generator.basic_layers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.generator.html#module-evolvepy.generator.combine">evolvepy.generator.combine module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.generator.html#module-evolvepy.generator.context">evolvepy.generator.context module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.generator.html#module-evolvepy.generator.descriptor">evolvepy.generator.descriptor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../evolvepy.integrations.html">evolvepy.integrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.integrations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples_link.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples_link.html#examples-index">Examples index</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dev/development.html">EvolvePy’s Development Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../dev/how_to_build_link.html">How to build and release</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">EvolvePy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>evolvepy.generator.mutation.mutation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for evolvepy.generator.mutation.mutation</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="k">import</span> <span class="n">ArrayLike</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numba</span>
+
+<span class="kn">from</span> <span class="nn">evolvepy.generator.context</span> <span class="k">import</span> <span class="n">Context</span>
+
+
+<span class="kn">from</span> <span class="nn">.numeric_mutation</span> <span class="k">import</span> <span class="n">sum_mutation</span>
+<span class="kn">from</span> <span class="nn">.binary_mutation</span> <span class="k">import</span> <span class="n">bit_mutation</span>
+
+<span class="kn">from</span> <span class="nn">evolvepy.generator</span> <span class="k">import</span> <span class="n">ChromosomeOperator</span>
+
+<div class="viewcode-block" id="default_mutation"><a class="viewcode-back" href="../../../../evolvepy.generator.mutation.html#evolvepy.generator.mutation.mutation.default_mutation">[docs]</a><span class="k">def</span> <span class="nf">default_mutation</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="o">.</span><span class="n">char</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">typecodes</span><span class="p">[</span><span class="s2">&quot;AllFloat&quot;</span><span class="p">]</span> <span class="ow">or</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="o">.</span><span class="n">char</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">typecodes</span><span class="p">[</span><span class="s2">&quot;AllInteger&quot;</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="n">sum_mutation</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bit_mutation</span></div>
+
+<div class="viewcode-block" id="NumericMutationLayer"><a class="viewcode-back" href="../../../../evolvepy.generator.mutation.html#evolvepy.generator.mutation.mutation.NumericMutationLayer">[docs]</a><span class="k">class</span> <span class="nc">NumericMutationLayer</span><span class="p">(</span><span class="n">ChromosomeOperator</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Layer destinated to apply the Numeric chromosome operations.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mutation_function</span><span class="p">:</span><span class="n">Callable</span><span class="p">,</span> <span class="n">existence_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">mutation_range</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Generic caller to a mutation function passed as parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            mutation_function (class Callable): Define the function which will be used</span>
+<span class="sd">            existence_rate (float): Probability of first mutation</span>
+<span class="sd">            gene_rate (float): Probability of another gene mutation</span>
+<span class="sd">            name (string): Name for the layer</span>
+<span class="sd">            chromosome_names (Union[str, List[str], None]): Array of chromosomes names (optional)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;existence_rate&quot;</span><span class="p">:</span><span class="n">existence_rate</span><span class="p">,</span> <span class="s2">&quot;gene_rate&quot;</span><span class="p">:</span><span class="n">gene_rate</span><span class="p">,</span> <span class="s2">&quot;mutation_range_min&quot;</span><span class="p">:</span><span class="n">mutation_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;mutation_range_max&quot;</span><span class="p">:</span><span class="n">mutation_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
+        <span class="n">dynamic_parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;mutation_function_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mutation_function</span><span class="o">.</span><span class="vm">__name__</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="o">=</span><span class="n">dynamic_parameters</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="o">=</span><span class="n">chromosome_names</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mutation_function</span> <span class="o">=</span> <span class="n">mutation_function</span>
+
+<div class="viewcode-block" id="NumericMutationLayer.call_chromosomes"><a class="viewcode-back" href="../../../../evolvepy.generator.mutation.html#evolvepy.generator.mutation.mutation.NumericMutationLayer.call_chromosomes">[docs]</a>    <span class="k">def</span> <span class="nf">call_chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chromosomes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="n">existence_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;existence_rate&quot;</span><span class="p">]</span>
+        <span class="n">gene_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;gene_rate&quot;</span><span class="p">]</span>
+        <span class="n">mutation_range</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;mutation_range_min&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;mutation_range_max&quot;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">NumericMutationLayer</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mutation_function</span><span class="p">,</span> <span class="n">existence_rate</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">,</span> <span class="n">mutation_range</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NumericMutationLayer.mutate"><a class="viewcode-back" href="../../../../evolvepy.generator.mutation.html#evolvepy.generator.mutation.mutation.NumericMutationLayer.mutate">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span><span class="p">()</span><span class="c1">#parallel=True)</span>
+    <span class="k">def</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">mutation_function</span><span class="p">:</span><span class="n">Callable</span><span class="p">,</span> <span class="n">existence_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">mutation_range</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Generic caller to a mutation function passed as parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            chromosomes (np.ArrayLike): Array of chromosomes</span>
+<span class="sd">            existence_rate (float): Probability of first mutation</span>
+<span class="sd">            gene_rate (float): Probability of another gene mutation</span>
+<span class="sd">            mutation_function (class Callable): Define the function which will be used</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            result (np.ArrayLike): return a new mutated population</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">)</span>
+
+        <span class="n">n</span> <span class="o">=</span> <span class="n">chromosomes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numba</span><span class="o">.</span><span class="n">prange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mutation_function</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">existence_rate</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">,</span> <span class="n">mutation_range</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span></div></div>
+
+
+<div class="viewcode-block" id="BinaryMutationLayer"><a class="viewcode-back" href="../../../../evolvepy.generator.mutation.html#evolvepy.generator.mutation.mutation.BinaryMutationLayer">[docs]</a><span class="k">class</span> <span class="nc">BinaryMutationLayer</span><span class="p">(</span><span class="n">ChromosomeOperator</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Layer destinated to apply the Binary chromosome operations.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mutation_function</span><span class="p">:</span><span class="n">Callable</span><span class="p">,</span> <span class="n">existence_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Generic caller to a mutation function passed as parameters.</span>
+<span class="sd">            </span>
+<span class="sd">        Args:</span>
+<span class="sd">            mutation_function (class Callable): Define the function which will be used</span>
+<span class="sd">            existence_rate (float): Probability of first mutation</span>
+<span class="sd">            gene_rate (float): Probability of another gene mutation</span>
+<span class="sd">            name (string): Name for the layer</span>
+<span class="sd">            chromosome_names (Union[str, List[str], None]): Array of chromosomes names (optional)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;existence_rate&quot;</span><span class="p">:</span><span class="n">existence_rate</span><span class="p">,</span> <span class="s2">&quot;gene_rate&quot;</span><span class="p">:</span><span class="n">gene_rate</span><span class="p">}</span>
+        <span class="n">dynamic_parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;mutation_function_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mutation_function</span><span class="o">.</span><span class="vm">__name__</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="o">=</span><span class="n">dynamic_parameters</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="o">=</span><span class="n">chromosome_names</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mutation_function</span> <span class="o">=</span> <span class="n">mutation_function</span>
+
+<div class="viewcode-block" id="BinaryMutationLayer.call_chromosomes"><a class="viewcode-back" href="../../../../evolvepy.generator.mutation.html#evolvepy.generator.mutation.mutation.BinaryMutationLayer.call_chromosomes">[docs]</a>    <span class="k">def</span> <span class="nf">call_chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chromosomes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Apply the mutation on the chromosomes</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            chromosomes (np.ArrayLike): Array of chromosomes</span>
+<span class="sd">            fitness (np.array): Probability of first mutation</span>
+<span class="sd">            context (class Context): Probability of another gene mutation</span>
+<span class="sd">            name (string): Define the function which will be </span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            BinaryMutationLayer.mutate: mutation function</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="n">existence_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;existence_rate&quot;</span><span class="p">]</span>
+        <span class="n">gene_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;gene_rate&quot;</span><span class="p">]</span>
+
+
+        <span class="k">return</span> <span class="n">BinaryMutationLayer</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mutation_function</span><span class="p">,</span> <span class="n">existence_rate</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BinaryMutationLayer.mutate"><a class="viewcode-back" href="../../../../evolvepy.generator.mutation.html#evolvepy.generator.mutation.mutation.BinaryMutationLayer.mutate">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">mutation_function</span><span class="p">:</span><span class="n">Callable</span><span class="p">,</span> <span class="n">existence_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Generic caller to a mutation function passed as parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            chromosomes (np.ArrayLike): array of chromosomes</span>
+<span class="sd">            existence_rate (float): probability of first mutation</span>
+<span class="sd">            gene_rate (float): probability of another gene mutation</span>
+<span class="sd">            mutation_function (class Callable): Define the function which will be used</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            result (np.ArrayLike): return a new mutated population</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">)</span>
+
+        <span class="n">n</span> <span class="o">=</span> <span class="n">chromosomes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">numba</span><span class="o">.</span><span class="n">prange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mutation_function</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">existence_rate</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, EvolvePy Developers..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

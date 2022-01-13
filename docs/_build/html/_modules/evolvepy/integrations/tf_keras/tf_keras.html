@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>evolvepy.integrations.tf_keras.tf_keras &mdash; EvolvePy 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> EvolvePy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../evolvepy.html">evolvepy package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dev/development.html">EvolvePy’s Development Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">EvolvePy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>evolvepy.integrations.tf_keras.tf_keras</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for evolvepy.integrations.tf_keras.tf_keras</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">tensorflow.keras</span> <span class="k">as</span> <span class="nn">keras</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">evolvepy.evaluator</span> <span class="k">import</span> <span class="n">Evaluator</span>
+<span class="kn">from</span> <span class="nn">evolvepy.evaluator.process_evaluator</span> <span class="k">import</span> <span class="n">ProcessEvaluator</span><span class="p">,</span> <span class="n">ProcessFitnessFunction</span>
+<span class="kn">from</span> <span class="nn">evolvepy.generator</span> <span class="k">import</span> <span class="n">Descriptor</span><span class="p">,</span> <span class="n">Generator</span>
+<span class="kn">from</span> <span class="nn">evolvepy</span> <span class="k">import</span> <span class="n">Evolver</span>
+<span class="kn">from</span> <span class="nn">evolvepy.callbacks</span> <span class="k">import</span> <span class="n">Callback</span>
+
+<div class="viewcode-block" id="transfer_weights"><a class="viewcode-back" href="../../../../evolvepy.integrations.tf_keras.html#evolvepy.integrations.tf_keras.tf_keras.transfer_weights">[docs]</a><span class="k">def</span> <span class="nf">transfer_weights</span><span class="p">(</span><span class="n">individual</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Transfer weights from individual to model.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        individual (np.ndarray): EvolvePy&#39;s individual. Chromosomes must contains. layers weights and biases.</span>
+<span class="sd">                                 Chromosomes names must be model&#39;s weights names (model.weights[i].name), or </span>
+<span class="sd">                                 in same sequence of model&#39;s weights, with &quot;weights+str(i)&quot; name (weights0, weights1, ...).</span>
+<span class="sd">        model (keras.Model): [description]</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">individual</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span><span class="mi">7</span>  <span class="ow">and</span> <span class="n">individual</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;weights&quot;</span><span class="p">:</span> 
+        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="n">weights</span><span class="p">:</span><span class="n">tf</span><span class="o">.</span><span class="n">Variable</span>
+        <span class="k">for</span> <span class="n">weights</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">weights</span><span class="p">:</span>
+            <span class="n">weights</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">individual</span><span class="p">[</span><span class="s2">&quot;weights&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>    
+    
+        <span class="n">weights</span><span class="p">:</span><span class="n">tf</span><span class="o">.</span><span class="n">Variable</span>
+        <span class="k">for</span> <span class="n">weights</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">weights</span><span class="p">:</span>
+            <span class="n">weights</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">individual</span><span class="p">[</span><span class="n">weights</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="get_descriptor"><a class="viewcode-back" href="../../../../evolvepy.integrations.tf_keras.html#evolvepy.integrations.tf_keras.tf_keras.get_descriptor">[docs]</a><span class="k">def</span> <span class="nf">get_descriptor</span><span class="p">(</span><span class="n">model</span><span class="p">:</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Descriptor</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Creates a descriptor from a keras Model.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (keras.Model): Model to create descriptor.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Descriptor: Descriptor for individuals containing the model weights and bias.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">chromosome_sizes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">chromosome_ranges</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">weights</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">weights</span><span class="p">:</span>
+        <span class="n">chromosome_sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">num_elements</span><span class="p">())</span>
+        <span class="n">chromosome_ranges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+        <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;weights&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+        <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">descriptor</span> <span class="o">=</span> <span class="n">Descriptor</span><span class="p">(</span><span class="n">chromosome_sizes</span><span class="p">,</span> <span class="n">chromosome_ranges</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">descriptor</span></div>
+
+<div class="viewcode-block" id="TFKerasEvaluator"><a class="viewcode-back" href="../../../../evolvepy.integrations.tf_keras.html#evolvepy.integrations.tf_keras.tf_keras.TFKerasEvaluator">[docs]</a><span class="k">class</span> <span class="nc">TFKerasEvaluator</span><span class="p">(</span><span class="n">Evaluator</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Evaluates individuals representing TFKeras models with a arbitrary function.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">fitness_function</span><span class="p">:</span><span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">]],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">individual_per_call</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_scores</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        TFKerasEvaluator constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model (keras.Model): Model to evaluate.</span>
+<span class="sd">            fitness_function (Callable[[List[keras.Model]], np.ndarray]): Fitness function to evaluate the individuals.</span>
+<span class="sd">            individual_per_call (int, optional): Number of individuals that the fitness function receives. Defaults to 1.</span>
+<span class="sd">            n_scores (int, optional): Number of scores that the fitness function generates.. Defaults to 1.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;fitness_function_name&quot;</span><span class="p">:</span> <span class="n">fitness_function</span><span class="o">.</span><span class="vm">__name__</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">n_scores</span><span class="o">=</span><span class="n">n_scores</span><span class="p">,</span> <span class="n">individual_per_call</span><span class="o">=</span><span class="n">individual_per_call</span><span class="p">,</span> <span class="n">other_parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fitness_function</span> <span class="o">=</span> <span class="n">fitness_function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_individual_per_call</span> <span class="o">=</span> <span class="n">individual_per_call</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model_clones</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">individual_per_call</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_model_clones</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">clone_model</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">descriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Descriptor</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Returns the descriptor of an individual that represents the model weights.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Descriptor: The generated descriptor.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">get_descriptor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">)</span> 
+
+    <span class="k">def</span> <span class="nf">_construct_models</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">individuals</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Transfers the weights of individuals to the models.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            individuals (np.ndarray): [description]</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_individual_per_call</span><span class="p">):</span>
+            <span class="n">individual</span> <span class="o">=</span> <span class="n">individuals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_clones</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">transfer_weights</span><span class="p">(</span><span class="n">individual</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Evaluates a population.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            population (np.ndarray): Population to be evaluated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Population fitness.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="bp">self</span><span class="o">.</span><span class="n">_individual_per_call</span>
+
+        <span class="n">fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">population</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_scores</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_individual_per_call</span>
+            <span class="n">first</span> <span class="o">=</span> <span class="n">index</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">index</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">_individual_per_call</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_construct_models</span><span class="p">(</span><span class="n">population</span><span class="p">[</span><span class="n">first</span><span class="p">:</span><span class="n">last</span><span class="p">])</span>
+
+            <span class="n">scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitness_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_clones</span><span class="p">)</span>
+
+            <span class="n">fitness</span><span class="p">[</span><span class="n">first</span><span class="p">:</span><span class="n">last</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_individual_per_call</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_scores</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scores</span> <span class="o">=</span> <span class="n">fitness</span>
+
+        <span class="k">return</span> <span class="n">fitness</span></div>
+
+<div class="viewcode-block" id="LossFitnessFunction"><a class="viewcode-back" href="../../../../evolvepy.integrations.tf_keras.html#evolvepy.integrations.tf_keras.tf_keras.LossFitnessFunction">[docs]</a><span class="k">class</span> <span class="nc">LossFitnessFunction</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Fitness function to evaluate models with a keras loss function.</span>
+
+<span class="sd">    Prefer to use an EvolutionaryModel to use other tensorflow/keras features such as batching and validation.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss</span><span class="p">:</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">Loss</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">y</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;LossFitnessFunction&quot;</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        LossFitnessFunction constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            loss (keras.losses.Loss): The loss to evaluate the individuals.</span>
+<span class="sd">            x (Union[np.ndarray, tf.Tensor]): Train features.</span>
+<span class="sd">            y (Union[np.ndarray, tf.Tensor]): Train targets.</span>
+<span class="sd">            name (str, optional): Fitness function name. Defaults to &quot;LossFitnessFunction&quot;.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_loss</span> <span class="o">=</span> <span class="n">loss</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">name</span>
+    
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Evaluates one model.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            models (List[keras.Model]): Model to evaluate. Only evaluates the first model in the list.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: The negative of the model loss</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">compiled_loss</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;sgd&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_loss</span><span class="p">)</span>
+
+        <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_x</span><span class="p">)</span>
+
+        <span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loss</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_y</span><span class="p">,</span> <span class="n">prediction</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">score</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EvolutionaryModel"><a class="viewcode-back" href="../../../../evolvepy.integrations.tf_keras.html#evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel">[docs]</a><span class="k">class</span> <span class="nc">EvolutionaryModel</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Model class to optimize using EvolvePy.</span>
+
+<span class="sd">    Each generation will evolve by one batch (total generations = epochs*batches)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        EvolutionaryModel constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            layers ([type], optional): Sequential layers of the model. Defaults to None.</span>
+<span class="sd">            name ([type], optional): Model name. Defaults to None.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">layers</span><span class="o">=</span><span class="n">layers</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_evolver</span> <span class="o">=</span> <span class="kc">None</span>
+
+        
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">descriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Descriptor</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Returns the descriptor of an individual that represents the model weights.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Descriptor: The generated descriptor.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">get_descriptor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="EvolutionaryModel.compile"><a class="viewcode-back" href="../../../../evolvepy.integrations.tf_keras.html#evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel.compile">[docs]</a>    <span class="k">def</span> <span class="nf">compile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generator</span><span class="p">:</span><span class="n">Generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">population_size</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ep_callbacks</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Callback</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loss_weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weighted_metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps_per_execution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Compiles the model.</span>
+
+<span class="sd">        Undescribed arguments must be used in the same way as the tf/keras Model base class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            generator (Generator, optional): Individual generator to optimize the model. Defaults to None (optimize won&#39;t work).</span>
+<span class="sd">            population_size (int, optional): Population size for the generator. Defaults to None.</span>
+<span class="sd">            ep_callbacks (Optional[List[Callback]], optional): EvolvePy&#39;s callbacks to use during optimization. Defaults to None.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">evaluator</span> <span class="o">=</span> <span class="n">TFKerasEvaluator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitness_function</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        
+        
+        <span class="k">if</span> <span class="n">generator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">population_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_evolver</span> <span class="o">=</span> <span class="n">Evolver</span><span class="p">(</span><span class="n">generator</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="n">ep_callbacks</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">run_eagerly</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;sgd&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">,</span> <span class="n">loss_weights</span><span class="o">=</span><span class="n">loss_weights</span><span class="p">,</span> <span class="n">weighted_metrics</span><span class="o">=</span><span class="n">weighted_metrics</span><span class="p">,</span> <span class="n">steps_per_execution</span><span class="o">=</span><span class="n">steps_per_execution</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="EvolutionaryModel.train_step"><a class="viewcode-back" href="../../../../evolvepy.integrations.tf_keras.html#evolvepy.integrations.tf_keras.tf_keras.EvolutionaryModel.train_step">[docs]</a>    <span class="k">def</span> <span class="nf">train_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Evolves the model one step. If you use multiple batches, each generation will evolve by one batch.</span>
+
+<span class="sd">        Arguments and returns are the same of tf/keras Model train_step.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">train_step</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sample_weight</span> <span class="o">=</span> <span class="n">sample_weight</span>
+
+        <span class="n">hist</span><span class="p">,</span> <span class="n">last_pop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evolver</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">best</span> <span class="o">=</span> <span class="n">last_pop</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">hist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]</span>
+        <span class="n">transfer_weights</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">compiled_loss</span><span class="o">.</span><span class="n">reset_state</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compiled_loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">regularization_losses</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compiled_metrics</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="n">m</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">}</span></div>
+
+    <span class="k">def</span> <span class="nf">_fitness_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Fitness function for the evolver, computes the actual batch loss.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model (List[keras.Model], optional): Model to evaluate. It&#39;s not used, it&#39;s here for compatibility only, </span>
+<span class="sd">                                                 as the TFKeras evaluator will transfer the weights to this model instance. </span>
+<span class="sd">                                                 Defaults to None.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Model&#39;s batch loss.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_x</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">compiled_loss</span><span class="o">.</span><span class="n">reset_state</span><span class="p">()</span>
+
+        <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compiled_loss</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_sample_weight</span><span class="p">,</span> <span class="n">regularization_losses</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_debug_loss</span> <span class="o">=</span> <span class="n">loss</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProcessTFKerasFitnessFunction"><a class="viewcode-back" href="../../../../evolvepy.integrations.tf_keras.html#evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasFitnessFunction">[docs]</a><span class="k">class</span> <span class="nc">ProcessTFKerasFitnessFunction</span><span class="p">(</span><span class="n">ProcessFitnessFunction</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    TFKeras Fitness Function for multiprocessing.</span>
+
+<span class="sd">    It&#39;s under development, it doesn&#39;t work properly.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ProcessFitnessFunction ([type]): [description]</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">reset</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        ProcessTFKerasFitnessFunction constructor.</span>
+
+<span class="sd">        Instantiates the model using the settings.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            config (Dict[str, Any]): Model configs, generated by the model&#39;s &quot;get_config&quot; method.</span>
+<span class="sd">            reset (bool, optional): Whether to restart the evaluator before evaluating.. Defaults to False.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Feature not yet fully implemented, is high on memory. Not recommended to use.&quot;</span><span class="p">,</span> <span class="ne">RuntimeWarning</span><span class="p">)</span>
+        
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="n">reset</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">EvolutionaryModel</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;sgd&quot;</span><span class="p">,</span> <span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">MeanSquaredError</span><span class="p">())</span>
+    
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">individuals</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Evaluates the individuals representing the models.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            individuals (np.ndarray): Individuals to evaluate.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Individuals fitness.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">individual</span> <span class="o">=</span> <span class="n">individuals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">transfer_weights</span><span class="p">(</span><span class="n">individual</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="ProcessTFKerasFitnessFunction.evaluate"><a class="viewcode-back" href="../../../../evolvepy.integrations.tf_keras.html#evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasFitnessFunction.evaluate">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Evaluates a model. Must be defined by the user.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            model (keras.Model): Model to evaluate.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Model scores.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="o">...</span></div></div>
+
+<div class="viewcode-block" id="ProcessTFKerasEvaluator"><a class="viewcode-back" href="../../../../evolvepy.integrations.tf_keras.html#evolvepy.integrations.tf_keras.tf_keras.ProcessTFKerasEvaluator">[docs]</a><span class="k">class</span> <span class="nc">ProcessTFKerasEvaluator</span><span class="p">(</span><span class="n">ProcessEvaluator</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Evaluator to evaluate models using multiple processes.</span>
+
+<span class="sd">    It&#39;s under development, it doesn&#39;t work properly.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitness_function</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ProcessFitnessFunction</span><span class="p">],</span> <span class="n">model</span><span class="p">:</span><span class="n">EvolutionaryModel</span><span class="p">,</span> <span class="n">n_process</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">n_scores</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">individual_per_call</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        ProcessTFKerasEvaluator constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            fitness_function (Type[ProcessFitnessFunction]): Fitness function to evaluate the models.</span>
+<span class="sd">            model (EvolutionaryModel): Model to be optimized.</span>
+<span class="sd">            n_process (int, optional): Number of process to use. Defaults to None (same number as cpu_count).</span>
+<span class="sd">            timeout (int, optional): Maximum time to wait for a new evaluation. Defaults to None (infinity).</span>
+<span class="sd">            n_scores (int, optional): Number of scores generated by fitness function. Defaults to 1.</span>
+<span class="sd">            individual_per_call (int, optional): Number of individuals that the fitness function receives. Defaults to 1.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Feature not yet fully implemented, is high on memory. Not recommended to use.&quot;</span><span class="p">,</span> <span class="ne">RuntimeWarning</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">fitness_function</span><span class="p">,</span> <span class="n">n_process</span><span class="o">=</span><span class="n">n_process</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">n_scores</span><span class="o">=</span><span class="n">n_scores</span><span class="p">,</span> <span class="n">individual_per_call</span><span class="o">=</span><span class="n">individual_per_call</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">get_config</span><span class="p">())</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, EvolvePy Developers..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

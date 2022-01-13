@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>evolvepy.generator.selection package &mdash; EvolvePy 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="evolvepy.integrations package" href="evolvepy.integrations.html" />
+    <link rel="prev" title="evolvepy.generator.mutation package" href="evolvepy.generator.mutation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> EvolvePy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="evolvepy.html">evolvepy package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="evolvepy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html">evolvepy.evaluator package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="evolvepy.generator.html">evolvepy.generator package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="evolvepy.generator.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.basic_layers">evolvepy.generator.basic_layers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.combine">evolvepy.generator.combine module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.context">evolvepy.generator.context module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.descriptor">evolvepy.generator.descriptor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.html">evolvepy.integrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples_link.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples_link.html#examples-index">Examples index</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev/development.html">EvolvePy’s Development Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/how_to_build_link.html">How to build and release</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EvolvePy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="evolvepy.html">evolvepy package</a> &raquo;</li>
+          <li><a href="evolvepy.generator.html">evolvepy.generator package</a> &raquo;</li>
+      <li>evolvepy.generator.selection package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/evolvepy.generator.selection.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="evolvepy-generator-selection-package">
+<h1>evolvepy.generator.selection package<a class="headerlink" href="#evolvepy-generator-selection-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-evolvepy.generator.selection.selection">
+<span id="evolvepy-generator-selection-selection-module"></span><h2>evolvepy.generator.selection.selection module<a class="headerlink" href="#module-evolvepy.generator.selection.selection" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="evolvepy.generator.selection.selection.choice">
+<span class="sig-prename descclassname"><span class="pre">evolvepy.generator.selection.selection.</span></span><span class="sig-name descname"><span class="pre">choice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#evolvepy.generator.selection.selection.choice" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a random sample from a given 1-D array</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.7.0.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New code should use the <code class="docutils literal notranslate"><span class="pre">choice</span></code> method of a <code class="docutils literal notranslate"><span class="pre">default_rng()</span></code>
+instance instead; please see the <span class="xref std std-ref">random-quick-start</span>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>1-D array-like</em><em> or </em><em>int</em>) – If an ndarray, a random sample is generated from its elements.
+If an int, the random sample is generated as if a were np.arange(a)</p></li>
+<li><p><strong>size</strong> (<em>int</em><em> or </em><em>tuple of ints</em><em>, </em><em>optional</em>) – Output shape.  If the given shape is, e.g., <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">n,</span> <span class="pre">k)</span></code>, then
+<code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">*</span> <span class="pre">n</span> <span class="pre">*</span> <span class="pre">k</span></code> samples are drawn.  Default is None, in which case a
+single value is returned.</p></li>
+<li><p><strong>replace</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Whether the sample is with or without replacement</p></li>
+<li><p><strong>p</strong> (<em>1-D array-like</em><em>, </em><em>optional</em>) – The probabilities associated with each entry in a.
+If not given the sample assumes a uniform distribution over all
+entries in a.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>samples</strong> – The generated random samples</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>single item or ndarray</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If a is an int and less than zero, if a or p are not 1-dimensional,
+    if a is an array-like of size 0, if p is not a vector of
+    probabilities, if a and p have different lengths, or if
+    replace=False and the sample size is greater than the population
+    size</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">randint</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">shuffle</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">permutation</span></code></p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">Generator.choice</span></code></dt><dd><p>which should be used in new code</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Sampling random rows from a 2-D array is not possible with this function,
+but is possible with <cite>Generator.choice</cite> through its <code class="docutils literal notranslate"><span class="pre">axis</span></code> keyword.</p>
+<p class="rubric">Examples</p>
+<p>Generate a uniform random sample from np.arange(5) of size 3:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">array([0, 3, 4]) # random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#This is equivalent to np.random.randint(0,5,3)</span>
+</pre></div>
+</div>
+<p>Generate a non-uniform random sample from np.arange(5) of size 3:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="go">array([3, 3, 0]) # random</span>
+</pre></div>
+</div>
+<p>Generate a uniform random sample from np.arange(5) of size 3 without
+replacement:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">array([3,1,0]) # random</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#This is equivalent to np.random.permutation(np.arange(5))[:3]</span>
+</pre></div>
+</div>
+<p>Generate a non-uniform random sample from np.arange(5) of size
+3 without replacement:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="go">array([2, 3, 0]) # random</span>
+</pre></div>
+</div>
+<p>Any of the above can be repeated with an arbitrary array-like
+instead of just integers. For instance:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aa_milne_arr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pooh&#39;</span><span class="p">,</span> <span class="s1">&#39;rabbit&#39;</span><span class="p">,</span> <span class="s1">&#39;piglet&#39;</span><span class="p">,</span> <span class="s1">&#39;Christopher&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">aa_milne_arr</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+<span class="go">array([&#39;pooh&#39;, &#39;pooh&#39;, &#39;pooh&#39;, &#39;Christopher&#39;, &#39;piglet&#39;], # random</span>
+<span class="go">      dtype=&#39;&lt;U11&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="evolvepy.generator.selection.selection.default_selection">
+<span class="sig-prename descclassname"><span class="pre">evolvepy.generator.selection.selection.</span></span><span class="sig-name descname"><span class="pre">default_selection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/selection/selection.html#default_selection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.selection.selection.default_selection" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="evolvepy.generator.selection.selection.isin">
+<span class="sig-prename descclassname"><span class="pre">evolvepy.generator.selection.selection.</span></span><span class="sig-name descname"><span class="pre">isin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/selection/selection.html#isin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.selection.selection.isin" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="evolvepy.generator.selection.selection.rank">
+<span class="sig-prename descclassname"><span class="pre">evolvepy.generator.selection.selection.</span></span><span class="sig-name descname"><span class="pre">rank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.typing._array_like._SupportsArray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_selection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/selection/selection.html#rank"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.selection.selection.rank" title="Permalink to this definition"></a></dt>
+<dd><p>Select the n best individuals assuming the fitness_array is decreasingly sorted.</p>
+<p>Args:
+fitness_array (np.typing.ArrayLike): array with evaluated fitness from the generation
+n_selection (int): number of individuals that will be selected</p>
+<p>Returns:
+np.arange(0, n_selection, 1, dtype=np.int32) (np.ndarray): array with indexs of selected individuals</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="evolvepy.generator.selection.selection.roulette">
+<span class="sig-prename descclassname"><span class="pre">evolvepy.generator.selection.selection.</span></span><span class="sig-name descname"><span class="pre">roulette</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.typing._array_like._SupportsArray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_selection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/selection/selection.html#roulette"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.selection.selection.roulette" title="Permalink to this definition"></a></dt>
+<dd><p>Select the best individuals stocaticaly with the probability of beign chosen
+equivalent to the individual fitness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fitness_array</strong> (<em>np.typing.ArrayLike</em>) – array with evaluated fitness from the generation</p></li>
+<li><p><strong>n_selection</strong> (<em>int</em>) – number of individuals that will be selected</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array with indexs of selected individuals</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>selected (np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="evolvepy.generator.selection.selection.tournament">
+<span class="sig-prename descclassname"><span class="pre">evolvepy.generator.selection.selection.</span></span><span class="sig-name descname"><span class="pre">tournament</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.typing._array_like._SupportsArray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_selection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/selection/selection.html#tournament"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.selection.selection.tournament" title="Permalink to this definition"></a></dt>
+<dd><p>Select the best individuals in a one vs one test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fitness_array</strong> (<em>np.typing.ArrayLike</em>) – Array with evaluated fitness from the generation</p></li>
+<li><p><strong>n_selection</strong> (<em>int</em>) – Number of individuals that will be selected</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array with indexs of selected individuals</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>selected (np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-evolvepy.generator.selection">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evolvepy.generator.selection" title="Permalink to this headline"></a></h2>
+<p>EvolvePy’s callbacks. Objects that can be called upon during evolution to change its behavior.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="evolvepy.generator.mutation.html" class="btn btn-neutral float-left" title="evolvepy.generator.mutation package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="evolvepy.integrations.html" class="btn btn-neutral float-right" title="evolvepy.integrations package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, EvolvePy Developers..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
