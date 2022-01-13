@@ -63,10 +63,15 @@ html_static_path = ['_static']
 
 source_suffix = ['.rst', '.md']
 
+def skip(app, what, name, obj, would_skip, options):
+    if name == "__init__":
+        return False
+    return would_skip
 
 def setup(app):
 
     app.config.m2r_parse_relative_links = True
+    app.connect("autodoc-skip-member", skip)
 
 
 sys.path.insert(0, os.path.abspath('.'))
