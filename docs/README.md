@@ -1,4 +1,4 @@
-[![](https://img.shields.io/pypi/v/evolvepy?style=for-the-badge)]() [![](https://img.shields.io/github/license/EltonCN/evolvepy?style=for-the-badge)](https://github.com/EltonCN/evolvepy/blob/main/LICENSE)
+[![](https://img.shields.io/pypi/v/evolvepy?style=for-the-badge)](https://pypi.org/project/evolvepy) [![](https://img.shields.io/github/license/EltonCN/evolvepy?style=for-the-badge)](https://github.com/EltonCN/evolvepy/blob/main/LICENSE)
 
 # EvolvePy
 
