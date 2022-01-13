@@ -8,8 +8,22 @@ from evolvepy.generator.layer import ChromosomeOperator
 from evolvepy.generator.context import Context
 
 class FirstGenLayer(ChromosomeOperator):
+	'''
+	Generates the first population for the pipeline
+	'''
 
 	def __init__(self, descriptor:Descriptor, initialize_zeros:bool=False, name:str=None, chromosome_names: Union[str, List[str], None] = None, run:bool=True):
+		'''
+		Initialization fr the first population, it defines the base of the evolution
+
+		Args:
+			descriptor (class Descriptor): Descriptor object defining the individuals
+			initialize_zeros (bool): Flag to indentify type of initialization, if True the population will init with zero value individuals
+			name (string): Name of the layer
+			chromosome_names (List[string]): Names of the chromossomes of each inidividual
+			run (bool): Flag to define if the code will run or not, it is needed to make it run only on command
+
+		'''
 		parameters = {"run":run, "initialize_zeros":initialize_zeros}
 		dynamic_parameters = {"run":True}
 
@@ -21,6 +35,16 @@ class FirstGenLayer(ChromosomeOperator):
 		self._chromosome_ranges = descriptor.chromosome_ranges
 
 	def _generate_chromosome(self, population_size:int, name:str) -> np.ndarray:
+		'''
+		Initialize each chromosome and calculate its fitness
+		
+		Args:
+			population_size (int): Number of inidividuals in each generation
+			name (string): Chromosome name
+
+		Returns:
+			chromosome (np.ndarray): new chromosome
+		'''
 
 		index = -1
 		for i in range(self._descriptor._n_chromosome):
@@ -57,6 +81,19 @@ class FirstGenLayer(ChromosomeOperator):
 		return super().__call__(population, fitness=fitness, context=context)
 
 	def call(self, population: np.ndarray, fitness: np.ndarray, context: Context) -> Tuple[np.ndarray, np.ndarray]:
+
+		'''
+		Generic call to initialize the population nd its fitness
+		
+		Args:
+			population (np.ndarray): Population array
+			fitness (np.ndarray): Fitness array
+			context(Context): COntext and restrictions from previous layers
+			
+		Returns:
+			population (np.ndarray): New population array
+			fitness (np.ndarray): New fitness array
+		'''
 		if population is None and self.parameters["run"]:
 			population = np.empty(context.population_size, dtype=self._dtype)
 
@@ -68,9 +105,20 @@ class FirstGenLayer(ChromosomeOperator):
 			return population, fitness
 
 	def call_chromosomes(self, chromosomes:np.ndarray, fitness:np.ndarray, context:Context, name:Optional[str]) -> np.ndarray:
-		population_size = context.population_size
-
+		'''
+		Return chromosome values
 		
+		Args:
+			chromosomes (np.ndarray): Array of chromosomes
+			fitness (np.ndarray): Array of population fitness
+			context (Context): Context from previous layers
+			name (string) : Layer name
+
+		Returns:
+			chromosomes (np.ndarray): Array of chromosomes
+		
+		'''
+		population_size = context.population_size
 
 		chromosomes =  self._generate_chromosome(population_size, name)
 
