@@ -126,9 +126,20 @@
 <span class="kn">from</span> <span class="nn">evolvepy.generator.context</span> <span class="k">import</span> <span class="n">Context</span>
 
 <div class="viewcode-block" id="Layer"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.Layer">[docs]</a><span class="k">class</span> <span class="nc">Layer</span><span class="p">(</span><span class="n">Configurable</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Base Layer class with essential properties and methods, can be used as base for especialized layers of as simple layer in the pipeline</span>
+<span class="sd">	&#39;&#39;&#39;</span>
 
 
-	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Layer.__init__"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.Layer.__init__">[docs]</a>	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Base initialization for a layer and it&#39;s dynamic and static parameters</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			name (string): Layer&#39;s name</span>
+<span class="sd">			dynamic_parameters (Dict[string, bool]): Dictionary of mutable parameters</span>
+<span class="sd">			static_parameters (Dict[string, object]): Dictionary of immutable parameters</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>        
 
 		<span class="bp">self</span><span class="o">.</span><span class="n">_next</span> <span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Layer</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -137,14 +148,29 @@
 		<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="kc">None</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">_context</span> <span class="o">=</span> <span class="kc">None</span>
 
-		<span class="bp">self</span><span class="o">.</span><span class="n">_prev_count</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_prev_count</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></div>
 
 	<span class="nd">@property</span>
 	<span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Layer</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Return the layer sucessor, so the generator and evolver only need to know the first and last layer of the pipeline.</span>
+<span class="sd">		</span>
+<span class="sd">		Returns:</span>
+<span class="sd">			next(List[Layer]): List of immediate successors of the current layer, it is possible that the layers has n sucessors leading to n different pipes.</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span>
 	
 	<span class="nd">@next</span><span class="o">.</span><span class="n">setter</span>
 	<span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span><span class="n">Layer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Set the layer sucessor, so the generator and evolver only need to know the first and last layer of the pipeline.</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			layer(Layer): Layer to succeed the current one.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			next(List[Layer]): List of immediate successor sucessor layers</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">if</span> <span class="n">layer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next</span><span class="p">:</span>
 			<span class="bp">self</span><span class="o">.</span><span class="n">_next</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 
@@ -152,17 +178,47 @@
 
 	<span class="nd">@property</span>
 	<span class="k">def</span> <span class="nf">population</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Returns the population array</span>
+<span class="sd">		</span>
+<span class="sd">		Retuns:</span>
+<span class="sd">			population (np.ndarray): Population array</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_population</span>
 	
 	<span class="nd">@property</span>
 	<span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Returns the fitness array</span>
+<span class="sd">		</span>
+<span class="sd">		Retuns:</span>
+<span class="sd">			fitness (np.ndarray): Fitness array</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span>
 
 	<span class="nd">@property</span>
 	<span class="k">def</span> <span class="nf">context</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Context</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Returns the context object</span>
+<span class="sd">		</span>
+<span class="sd">		Retuns:</span>
+<span class="sd">			context (Context): Context object for the next layers</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context</span>
 
-	<span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">fitness</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">Context</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>          
+	<span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">fitness</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">Context</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generic call to use the object as a funtion call, applying the layer oparetion</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): Population array</span>
+<span class="sd">			fitness (np.ndarray): Fitness array</span>
+<span class="sd">			context (Context): Context object for the next layers</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			population (np.ndarray): New population array</span>
+<span class="sd">			fitness (np.ndarray): New fitness array</span>
+<span class="sd">		&#39;&#39;&#39;</span>         
 
 		<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">population</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">fitness</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
 			<span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
@@ -186,6 +242,14 @@
 		<span class="k">return</span> <span class="n">population</span><span class="p">,</span> <span class="n">fitness</span>
 
 <div class="viewcode-block" id="Layer.send_next"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.Layer.send_next">[docs]</a>	<span class="k">def</span> <span class="nf">send_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Send context, population and fitness to the next layers</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): Population array</span>
+<span class="sd">			fitness (np.ndarray): Fitness array</span>
+<span class="sd">			context (Context): Context object for the next layers</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="n">population</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="n">fitness</span>
 
@@ -201,16 +265,38 @@
 
 
 <div class="viewcode-block" id="Concatenate"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.Concatenate">[docs]</a><span class="k">class</span> <span class="nc">Concatenate</span><span class="p">(</span><span class="n">Layer</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Concatenation layer to join 2 or more layers</span>
+<span class="sd">	&#39;&#39;&#39;</span>
 
-	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Concatenate.__init__"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.Concatenate.__init__">[docs]</a>	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Initialization for thr Cconcatenate layer with the number of layers</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			name (string): Layer&#39;s name</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
 		<span class="bp">self</span><span class="o">.</span><span class="n">_received_count</span> <span class="o">=</span> <span class="mi">0</span>
 
 		<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="kc">None</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 	<span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">Context</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span> <span class="c1"># NOSONAR</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generic call to concatenate the layers using the object as a funtion call</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): Population array</span>
+<span class="sd">			fitness (np.ndarray): Fitness array</span>
+<span class="sd">			context (Context): Context object for the next layers</span>
+<span class="sd">		</span>
+<span class="sd">		Returns:</span>
+<span class="sd">			population (np.ndarray): New population array</span>
+<span class="sd">			fitness (np.ndarray): New fitness array</span>
+
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">population</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">fitness</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
 			<span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
 
@@ -238,16 +324,43 @@
 
 
 <div class="viewcode-block" id="ChromosomeOperator"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator">[docs]</a><span class="k">class</span> <span class="nc">ChromosomeOperator</span><span class="p">(</span><span class="n">Layer</span><span class="p">):</span>
-	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Base layer for chromossome operations such as numeric and boolean mutations</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="ChromosomeOperator.__init__"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator.__init__">[docs]</a>	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Initialization for the chromossome operator layer with name and parameters</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			name (string): Layer&#39;s name</span>
+<span class="sd">			dynamic_parameters (Dict[string, bool]): Dictionary of mutable parameters</span>
+<span class="sd">			parameters (Dict[string, object]): Dictionary of immutable parameters</span>
+<span class="sd">			chromosome_names (List[str]): Name of each chromosome</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+
 		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="o">=</span><span class="n">dynamic_parameters</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
 
 		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chromosome_names</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
 			<span class="bp">self</span><span class="o">.</span><span class="n">_chromosome_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">chromosome_names</span><span class="p">]</span>
 		<span class="k">else</span><span class="p">:</span>
-			<span class="bp">self</span><span class="o">.</span><span class="n">_chromosome_names</span> <span class="o">=</span> <span class="n">chromosome_names</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_chromosome_names</span> <span class="o">=</span> <span class="n">chromosome_names</span></div>
 
 	
-<div class="viewcode-block" id="ChromosomeOperator.call"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator.call">[docs]</a>	<span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>        
+<div class="viewcode-block" id="ChromosomeOperator.call"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator.call">[docs]</a>	<span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generic call to use the object as a funtion call, applying the layer oparetion</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): Population array</span>
+<span class="sd">			fitness (np.ndarray): Fitness array</span>
+<span class="sd">			context (Context): Context object for the next layers</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			population (np.ndarray): New population array</span>
+<span class="sd">			fitness (np.ndarray): New fitness array</span>
+<span class="sd">		&#39;&#39;&#39;</span>   
+
 		<span class="n">result</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
 		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chromosome_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># Without specified name</span>
@@ -265,6 +378,7 @@
 
 		<span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">fitness</span></div>
 	
+	<span class="c1">#?????</span>
 <div class="viewcode-block" id="ChromosomeOperator.call_chromosomes"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator.call_chromosomes">[docs]</a>	<span class="k">def</span> <span class="nf">call_chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chromosomes</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 		<span class="k">return</span> <span class="n">chromosomes</span></div></div>
 </pre></div>

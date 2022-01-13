@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -131,8 +126,21 @@
 <span class="kn">from</span> <span class="nn">evolvepy.generator.descriptor</span> <span class="k">import</span> <span class="n">Descriptor</span>
 
 <div class="viewcode-block" id="Generator"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator">[docs]</a><span class="k">class</span> <span class="nc">Generator</span><span class="p">:</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Main class of the pipeline, it defines the layers oder, bifurcations and parameters</span>
+<span class="sd">	&#39;&#39;&#39;</span>
 
-	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layers</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Layer</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">first_layer</span><span class="p">:</span><span class="n">Layer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_layer</span><span class="p">:</span><span class="n">Layer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">descriptor</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="n">Descriptor</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>    
+<div class="viewcode-block" id="Generator.__init__"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.__init__">[docs]</a>	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layers</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Layer</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">first_layer</span><span class="p">:</span><span class="n">Layer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_layer</span><span class="p">:</span><span class="n">Layer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">descriptor</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="n">Descriptor</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>    
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Initialization for the Generator class with the desired layer order and individuasl description</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			layers (List[Layer]): List of layers used in the pieline</span>
+<span class="sd">			first_layer (Layer): First layer of the pipeline</span>
+<span class="sd">			last_layer (Layer): Last layer of a pipeline</span>
+<span class="sd">			descriptor (Descriptor): Object describing the individuals chromosome number, type and range</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+
 		<span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">False</span>
 
 		<span class="k">if</span> <span class="n">layers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -189,29 +197,73 @@
 		<span class="bp">self</span><span class="o">.</span><span class="n">_layers</span> <span class="o">=</span> <span class="n">layers</span>
 
 		<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="kc">None</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Generator.set_parameter"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.set_parameter">[docs]</a>	<span class="k">def</span> <span class="nf">set_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">parameter_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Defines the value of a specified parameter for a specified layer</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			layer_name (string): Name of the desired layer</span>
+<span class="sd">			parameter_name (string): Name of th desired parameter</span>
+<span class="sd">			value (object): Value to update the parameter</span>
+<span class="sd">		</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
 			<span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">layer_name</span><span class="p">:</span>
 				<span class="n">layer</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">(</span><span class="n">parameter_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Generator.set_parameters"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.set_parameters">[docs]</a>	<span class="k">def</span> <span class="nf">set_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Defines the value of n specified parameters for a specified layer</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			layer_name (string): Name of the desired layer</span>
+<span class="sd">			parameters (Dict[str, object]): Dict of parameters to update and their new values</span>
+<span class="sd">		</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
 			<span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">layer_name</span><span class="p">:</span>
 				<span class="n">layer</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span></div>
 
 <div class="viewcode-block" id="Generator.get_parameter"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.get_parameter">[docs]</a>	<span class="k">def</span> <span class="nf">get_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">parameter_name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Recover the value of a specified parameter for a specified layer</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			layer_name (string): Name of the desired layer</span>
+<span class="sd">			parameter_name (string): Name of th desired parameter</span>
+<span class="sd">			</span>
+<span class="sd">		Returns:</span>
+<span class="sd">			parameter (object): Object containing the parameter values</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+
 		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
 			<span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">layer_name</span><span class="p">:</span>
 				<span class="k">return</span> <span class="n">layer</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">parameter_name</span><span class="p">]</span></div>
 	
 <div class="viewcode-block" id="Generator.get_parameters"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.get_parameters">[docs]</a>	<span class="k">def</span> <span class="nf">get_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Recover the value of all parameters for a specified layer</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			layer_name (string): Name of the desired layer</span>
+<span class="sd">		</span>
+<span class="sd">		Returns:</span>
+<span class="sd">			parameters (Dict[str, object]): Dict of parameters and their values</span>
+<span class="sd">		</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
 			<span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">layer_name</span><span class="p">:</span>
 				<span class="k">return</span> <span class="n">layer</span><span class="o">.</span><span class="n">parameters</span></div>
 
 <div class="viewcode-block" id="Generator.get_all_static_parameters"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.get_all_static_parameters">[docs]</a>	<span class="k">def</span> <span class="nf">get_all_static_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Recover all static imutable parameters</span>
+<span class="sd">		</span>
+<span class="sd">		Returns:</span>
+<span class="sd">			static_parameters (Dict[string, object]): Dictionay of pipeline&#39;s static parameters</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="n">static_parameters</span> <span class="o">=</span> <span class="p">{}</span>
 		
 		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
@@ -223,6 +275,12 @@
 		<span class="k">return</span> <span class="n">static_parameters</span></div>
 
 <div class="viewcode-block" id="Generator.get_all_dynamic_parameters"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.get_all_dynamic_parameters">[docs]</a>	<span class="k">def</span> <span class="nf">get_all_dynamic_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Recover all static imutable parameters</span>
+<span class="sd">		</span>
+<span class="sd">		Returns:</span>
+<span class="sd">			dynamic_parameters (Dict[string, object]): Dictionay of pipeline&#39;s dynamic parameters</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="n">dynamic_parameters</span> <span class="o">=</span> <span class="p">{}</span>
 
 		<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">:</span>
@@ -234,6 +292,12 @@
 		<span class="k">return</span> <span class="n">dynamic_parameters</span></div>
 
 <div class="viewcode-block" id="Generator.add"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.add">[docs]</a>	<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span><span class="n">Layer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Add layer to the pipeline</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			layer (Layer): Logical Layer to be added to the pipeline</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
 			<span class="bp">self</span><span class="o">.</span><span class="n">_layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">layer</span>
 
@@ -241,13 +305,33 @@
 	
 	<span class="nd">@property</span>
 	<span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Return fitness atribute from population</span>
+<span class="sd">		</span>
+<span class="sd">		Returns:</span>
+<span class="sd">			fitness (np.ndarray): Array of population fitness&#39;&#39;&#39;</span>
 		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span>
 
 	<span class="nd">@fitness</span><span class="o">.</span><span class="n">setter</span>
 	<span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Set fitness for each individual in the population</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			value (ArrayLike): Array of fitness values</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">_fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Generator.generate"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.generator.Generator.generate">[docs]</a>	<span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population_size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generate the pipeline from the given layers and atributes building the evolution model to pass to the evolver</span>
+<span class="sd">		</span>
+<span class="sd">		Args:</span>
+<span class="sd">			population_size (int): Number of individuals in a population</span>
+<span class="sd">			</span>
+<span class="sd">		Returns:</span>
+<span class="sd">			population (np.ndarray): generated population</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		
 		<span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="n">population_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_descriptor</span><span class="o">.</span><span class="n">chromosome_names</span><span class="p">)</span>
 

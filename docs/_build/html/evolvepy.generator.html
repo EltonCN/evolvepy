@@ -18,7 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="evolvepy.generator.arrangement package" href="evolvepy.generator.arrangement.html" />
+    <link rel="next" title="evolvepy.generator.crossover package" href="evolvepy.generator.crossover.html" />
     <link rel="prev" title="evolvepy.evaluator package" href="evolvepy.evaluator.html" /> 
 </head>
 
@@ -122,14 +122,6 @@
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="evolvepy.generator.arrangement.html">evolvepy.generator.arrangement package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.arrangement.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.arrangement.html#evolvepy-generator-arrangement-arrangement-module">evolvepy.generator.arrangement.arrangement module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.arrangement.html#evolvepy-generator-arrangement-ramdom-predation-module">evolvepy.generator.arrangement.ramdom_predation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.arrangement.html#evolvepy-generator-arrangement-sintatic-predation-module">evolvepy.generator.arrangement.sintatic_predation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.arrangement.html#module-contents">Module contents</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="evolvepy.generator.crossover.html">evolvepy.generator.crossover package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.crossover.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.crossover.html#module-evolvepy.generator.crossover.crossover">evolvepy.generator.crossover.crossover module</a></li>
@@ -164,6 +156,21 @@
 <dd><p>Bases: <a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.generator.layer.Layer</span></code></a></p>
 <p>Block a determined chromosome for the next layers</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.basic_layers.Block.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chromosome_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#Block.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.Block.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialization for the Block class with the blocked chromosomes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chromosome_names</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>str</em><em>]</em>) – names of the chromosomes</p></li>
+<li><p><strong>run</strong> (<em>bool</em>) – define the flag to run the code only once</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – name of the layer</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.basic_layers.Block.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><span class="pre">evolvepy.generator.context.Context</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#Block.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.Block.call" title="Permalink to this definition"></a></dt>
 <dd><p>Generic call to apply the mutation function</p>
@@ -192,6 +199,20 @@ fitness (np.ndarray): new array of individuals fitness</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.generator.basic_layers.</span></span><span class="sig-name descname"><span class="pre">ElitismLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_to_pass</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#ElitismLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.ElitismLayer" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.generator.layer.Layer</span></code></a></p>
 <p>Chooses the best n_to_pass individuals from the population</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.basic_layers.ElitismLayer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_to_pass</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#ElitismLayer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.ElitismLayer.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Generic initialization for the object, used only for the parent class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_to_pass</strong> (<em>int</em>) – Number of individuals to be selected. Defaults 1.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Layer’s name. Defaults None (will use class name).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.basic_layers.ElitismLayer.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><span class="pre">evolvepy.generator.context.Context</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#ElitismLayer.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.ElitismLayer.call" title="Permalink to this definition"></a></dt>
@@ -222,6 +243,20 @@ fitness (np.ArrayLike): Array of fitness per individual.</p>
 <dd><p>Bases: <a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.generator.layer.Layer</span></code></a></p>
 <p>Filter to get the first n_to_pass individuals.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.basic_layers.FilterFirsts.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_to_pass</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#FilterFirsts.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.FilterFirsts.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the Filter from the top layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_to_pass</strong> (<em>int</em>) – Number of best individuals selected.</p></li>
+<li><p><strong>name</strong> (<em>strig</em>) – Name of the layer.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.basic_layers.FilterFirsts.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><span class="pre">evolvepy.generator.context.Context</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#FilterFirsts.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.FilterFirsts.call" title="Permalink to this definition"></a></dt>
 <dd><p>Generic call to funcion to use the class as funtion call</p>
@@ -249,6 +284,20 @@ fitness (np.ArrayLike): Array of fitness per individual.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.generator.basic_layers.</span></span><span class="sig-name descname"><span class="pre">RandomPredation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_to_predate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#RandomPredation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.RandomPredation" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.generator.layer.Layer</span></code></a></p>
 <p>Replaces the last n_to_predate individuals for random ones</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.basic_layers.RandomPredation.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_to_predate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#RandomPredation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.RandomPredation.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialization for the RandomPredation class with the number individuals to be replaced.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_to_predate</strong> (<em>int</em>) – number of individuals to be replaced.</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – name of the layer</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.basic_layers.RandomPredation.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><span class="pre">evolvepy.generator.context.Context</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#RandomPredation.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.RandomPredation.call" title="Permalink to this definition"></a></dt>
@@ -278,6 +327,17 @@ fitness (np.ndarray): New array of individuals fitness</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.generator.basic_layers.</span></span><span class="sig-name descname"><span class="pre">Sort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#Sort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.Sort" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.generator.layer.Layer</span></code></a></p>
 <p>Sorting class for the model pipeline, it sorts the population acording to fitness</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.basic_layers.Sort.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#Sort.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.Sort.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Generic initialization for the object, used only for the parent class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – name of the layer</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.basic_layers.Sort.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><span class="pre">evolvepy.generator.context.Context</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/generator/basic_layers.html#Sort.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.basic_layers.Sort.call" title="Permalink to this definition"></a></dt>
@@ -310,6 +370,23 @@ fitness (np.ArrayLike): Array of fitness per individual.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.generator.combine.</span></span><span class="sig-name descname"><span class="pre">CombineLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selection_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_combine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosome_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/combine.html#CombineLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.combine.CombineLayer" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#evolvepy.generator.layer.ChromosomeOperator" title="evolvepy.generator.layer.ChromosomeOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.generator.layer.ChromosomeOperator</span></code></a></p>
 <p>Layer to join different pipeline paths</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.combine.CombineLayer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selection_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crossover_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_combine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosome_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/combine.html#CombineLayer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.combine.CombineLayer.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialization for combine layer setting selection, crossover and n_combine parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>selection_function</strong> (<em>Callable</em>) – Selection function used fot the layer</p></li>
+<li><p><strong>crossover_function</strong> (<em>Callable</em>) – Crossover function used for the layer</p></li>
+<li><p><strong>n_combine</strong> (<em>int</em>) – Number of layers to be combined</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – Name of the layer</p></li>
+<li><p><strong>chromosome_names</strong> (<em>List</em><em>[</em><em>string</em><em>]</em>) – list of names from the chromosomes</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.combine.CombineLayer.call_chromosomes">
 <span class="sig-name descname"><span class="pre">call_chromosomes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chromosomes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><span class="pre">evolvepy.generator.context.Context</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/combine.html#CombineLayer.call_chromosomes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.combine.CombineLayer.call_chromosomes" title="Permalink to this definition"></a></dt>
@@ -349,6 +426,21 @@ fitness (np.ArrayLike): Array of fitness per individual.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.generator.context.</span></span><span class="sig-name descname"><span class="pre">Context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosome_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sorted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/context.html#Context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.context.Context" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Layer to pass the context and restrictions from the previous layers</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.context.Context.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosome_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sorted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/context.html#Context.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.context.Context.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialization for the context layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>population_size</strong> (<em>int</em>) – Number of individuals</p></li>
+<li><p><strong>chromosome_names</strong> (<em>List</em><em>[</em><em>string</em><em>]</em>) – Names of chromosomes</p></li>
+<li><p><strong>sorted</strong> (<em>bool</em>) – Flag to indicate f the population is sorted or not.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.generator.context.Context.block_all">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">block_all</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#evolvepy.generator.context.Context.block_all" title="Permalink to this definition"></a></dt>
@@ -429,20 +521,43 @@ fitness (np.ArrayLike): Array of fitness per individual.</p>
 <dt class="sig sig-object py" id="evolvepy.generator.descriptor.Descriptor">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.generator.descriptor.</span></span><span class="sig-name descname"><span class="pre">Descriptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">chromosome_sizes:</span> <span class="pre">Optional[Union[int,</span> <span class="pre">float,</span> <span class="pre">complex,</span> <span class="pre">str,</span> <span class="pre">bytes,</span> <span class="pre">numpy.generic,</span> <span class="pre">Sequence[Union[int,</span> <span class="pre">float,</span> <span class="pre">complex,</span> <span class="pre">str,</span> <span class="pre">bytes,</span> <span class="pre">numpy.generic]],</span> <span class="pre">Sequence[Sequence[Any]],</span> <span class="pre">numpy.typing._array_like._SupportsArray]]</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">chromosome_ranges:</span> <span class="pre">Union[None,</span> <span class="pre">List[Union[None,</span> <span class="pre">Tuple]],</span> <span class="pre">Tuple]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">types:</span> <span class="pre">Union[list,</span> <span class="pre">numpy.dtype,</span> <span class="pre">None,</span> <span class="pre">type,</span> <span class="pre">numpy.typing._dtype_like._SupportsDType,</span> <span class="pre">str,</span> <span class="pre">Tuple[Any,</span> <span class="pre">int],</span> <span class="pre">Tuple[Any,</span> <span class="pre">Union[int,</span> <span class="pre">Sequence[int]]],</span> <span class="pre">List[Any],</span> <span class="pre">numpy.typing._dtype_like._DTypeDict,</span> <span class="pre">Tuple[Any,</span> <span class="pre">Any]]</span> <span class="pre">=</span> <span class="pre">[&lt;class</span> <span class="pre">'numpy.float32'&gt;],</span> <span class="pre">names:</span> <span class="pre">Optional[Union[list,</span> <span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/descriptor.html#Descriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.descriptor.Descriptor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object for the caracteristics of the individuals in population</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.descriptor.Descriptor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">chromosome_sizes:</span> <span class="pre">Optional[Union[int,</span> <span class="pre">float,</span> <span class="pre">complex,</span> <span class="pre">str,</span> <span class="pre">bytes,</span> <span class="pre">numpy.generic,</span> <span class="pre">Sequence[Union[int,</span> <span class="pre">float,</span> <span class="pre">complex,</span> <span class="pre">str,</span> <span class="pre">bytes,</span> <span class="pre">numpy.generic]],</span> <span class="pre">Sequence[Sequence[Any]],</span> <span class="pre">numpy.typing._array_like._SupportsArray]]</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">chromosome_ranges:</span> <span class="pre">Union[None,</span> <span class="pre">List[Union[None,</span> <span class="pre">Tuple]],</span> <span class="pre">Tuple]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">types:</span> <span class="pre">Union[list,</span> <span class="pre">numpy.dtype,</span> <span class="pre">None,</span> <span class="pre">type,</span> <span class="pre">numpy.typing._dtype_like._SupportsDType,</span> <span class="pre">str,</span> <span class="pre">Tuple[Any,</span> <span class="pre">int],</span> <span class="pre">Tuple[Any,</span> <span class="pre">Union[int,</span> <span class="pre">Sequence[int]]],</span> <span class="pre">List[Any],</span> <span class="pre">numpy.typing._dtype_like._DTypeDict,</span> <span class="pre">Tuple[Any,</span> <span class="pre">Any]]</span> <span class="pre">=</span> <span class="pre">[&lt;class</span> <span class="pre">'numpy.float32'&gt;],</span> <span class="pre">names:</span> <span class="pre">Optional[Union[list,</span> <span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/descriptor.html#Descriptor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.descriptor.Descriptor.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Defines the initial population caracteristics</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chromosome_sizes</strong> (<em>int</em>) – Number of chromosomes per individual</p></li>
+<li><p><strong>chromosome_ranges</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em>) – Range of possible values for each chromosome</p></li>
+<li><p><strong>types</strong> (<em>List</em><em>[</em><em>DTypeLikes</em><em>]</em>) – Data type of chromosome</p></li>
+<li><p><strong>names</strong> (<em>List</em><em>[</em><em>string</em><em>]</em>) – Names of the chromossomes</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.generator.descriptor.Descriptor.chromosome_names">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chromosome_names</span></span><a class="headerlink" href="#evolvepy.generator.descriptor.Descriptor.chromosome_names" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Returns:
+Chromosome names of the individuals</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.generator.descriptor.Descriptor.chromosome_ranges">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chromosome_ranges</span></span><a class="headerlink" href="#evolvepy.generator.descriptor.Descriptor.chromosome_ranges" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Returns:
+Chromosome ranges of the individuals</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.generator.descriptor.Descriptor.dtype">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#evolvepy.generator.descriptor.Descriptor.dtype" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Returns:
+Data type of the individuals</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -453,15 +568,67 @@ fitness (np.ArrayLike): Array of fitness per individual.</p>
 <dt class="sig sig-object py" id="evolvepy.generator.firstgen.FirstGenLayer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.generator.firstgen.</span></span><span class="sig-name descname"><span class="pre">FirstGenLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">descriptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.descriptor.Descriptor" title="evolvepy.generator.descriptor.Descriptor"><span class="pre">evolvepy.generator.descriptor.Descriptor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialize_zeros</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosome_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/firstgen.html#FirstGenLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.firstgen.FirstGenLayer" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#evolvepy.generator.layer.ChromosomeOperator" title="evolvepy.generator.layer.ChromosomeOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.generator.layer.ChromosomeOperator</span></code></a></p>
+<p>Generates the first population for the pipeline</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.firstgen.FirstGenLayer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">descriptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.descriptor.Descriptor" title="evolvepy.generator.descriptor.Descriptor"><span class="pre">evolvepy.generator.descriptor.Descriptor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialize_zeros</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosome_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/firstgen.html#FirstGenLayer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.firstgen.FirstGenLayer.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialization fr the first population, it defines the base of the evolution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>descriptor</strong> (<em>class Descriptor</em>) – Descriptor object defining the individuals</p></li>
+<li><p><strong>initialize_zeros</strong> (<em>bool</em>) – Flag to indentify type of initialization, if True the population will init with zero value individuals</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – Name of the layer</p></li>
+<li><p><strong>chromosome_names</strong> (<em>List</em><em>[</em><em>string</em><em>]</em>) – Names of the chromossomes of each inidividual</p></li>
+<li><p><strong>run</strong> (<em>bool</em>) – Flag to define if the code will run or not, it is needed to make it run only on command</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.firstgen.FirstGenLayer.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><span class="pre">evolvepy.generator.context.Context</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/generator/firstgen.html#FirstGenLayer.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.firstgen.FirstGenLayer.call" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Generic call to initialize the population nd its fitness</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>population</strong> (<em>np.ndarray</em>) – Population array</p></li>
+<li><p><strong>fitness</strong> (<em>np.ndarray</em>) – Fitness array</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><em>Context</em></a>) – COntext and restrictions from previous layers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>New population array
+fitness (np.ndarray): New fitness array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>population (np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.firstgen.FirstGenLayer.call_chromosomes">
 <span class="sig-name descname"><span class="pre">call_chromosomes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chromosomes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><span class="pre">evolvepy.generator.context.Context</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/firstgen.html#FirstGenLayer.call_chromosomes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.firstgen.FirstGenLayer.call_chromosomes" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return chromosome values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chromosomes</strong> (<em>np.ndarray</em>) – Array of chromosomes</p></li>
+<li><p><strong>fitness</strong> (<em>np.ndarray</em>) – Array of population fitness</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><em>Context</em></a>) – Context from previous layers</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – Layer name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array of chromosomes</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>chromosomes (np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -472,50 +639,158 @@ fitness (np.ArrayLike): Array of fitness per individual.</p>
 <dt class="sig sig-object py" id="evolvepy.generator.generator.Generator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.generator.generator.</span></span><span class="sig-name descname"><span class="pre">Generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><span class="pre">evolvepy.generator.layer.Layer</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><span class="pre">evolvepy.generator.layer.Layer</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><span class="pre">evolvepy.generator.layer.Layer</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descriptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.generator.descriptor.Descriptor" title="evolvepy.generator.descriptor.Descriptor"><span class="pre">evolvepy.generator.descriptor.Descriptor</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/generator.html#Generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.generator.Generator" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Main class of the pipeline, it defines the layers oder, bifurcations and parameters</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.generator.Generator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><span class="pre">evolvepy.generator.layer.Layer</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><span class="pre">evolvepy.generator.layer.Layer</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><span class="pre">evolvepy.generator.layer.Layer</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descriptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.generator.descriptor.Descriptor" title="evolvepy.generator.descriptor.Descriptor"><span class="pre">evolvepy.generator.descriptor.Descriptor</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/generator.html#Generator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.generator.Generator.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialization for the Generator class with the desired layer order and individuasl description</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layers</strong> (<em>List</em><em>[</em><a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><em>Layer</em></a><em>]</em>) – List of layers used in the pieline</p></li>
+<li><p><strong>first_layer</strong> (<a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><em>Layer</em></a>) – First layer of the pipeline</p></li>
+<li><p><strong>last_layer</strong> (<a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><em>Layer</em></a>) – Last layer of a pipeline</p></li>
+<li><p><strong>descriptor</strong> (<a class="reference internal" href="#evolvepy.generator.descriptor.Descriptor" title="evolvepy.generator.descriptor.Descriptor"><em>Descriptor</em></a>) – Object describing the individuals chromosome number, type and range</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.generator.Generator.add">
 <span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><span class="pre">evolvepy.generator.layer.Layer</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/generator.html#Generator.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.generator.Generator.add" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Add layer to the pipeline</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layer</strong> (<a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><em>Layer</em></a>) – Logical Layer to be added to the pipeline</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.generator.generator.Generator.fitness">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#evolvepy.generator.generator.Generator.fitness" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return fitness atribute from population</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Array of population fitness</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>fitness (np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.generator.Generator.generate">
 <span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/generator.html#Generator.generate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.generator.Generator.generate" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Generate the pipeline from the given layers and atributes building the evolution model to pass to the evolver</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>population_size</strong> (<em>int</em>) – Number of individuals in a population</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>generated population</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>population (np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.generator.Generator.get_all_dynamic_parameters">
 <span class="sig-name descname"><span class="pre">get_all_dynamic_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/generator/generator.html#Generator.get_all_dynamic_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.generator.Generator.get_all_dynamic_parameters" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Recover all static imutable parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Dictionay of pipeline’s dynamic parameters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dynamic_parameters (Dict[string, object])</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.generator.Generator.get_all_static_parameters">
 <span class="sig-name descname"><span class="pre">get_all_static_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/generator/generator.html#Generator.get_all_static_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.generator.Generator.get_all_static_parameters" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Recover all static imutable parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Dictionay of pipeline’s static parameters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>static_parameters (Dict[string, object])</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.generator.Generator.get_parameter">
 <span class="sig-name descname"><span class="pre">get_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/generator.html#Generator.get_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.generator.Generator.get_parameter" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Recover the value of a specified parameter for a specified layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer_name</strong> (<em>string</em>) – Name of the desired layer</p></li>
+<li><p><strong>parameter_name</strong> (<em>string</em>) – Name of th desired parameter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Object containing the parameter values</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>parameter (object)</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.generator.Generator.get_parameters">
 <span class="sig-name descname"><span class="pre">get_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/generator/generator.html#Generator.get_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.generator.Generator.get_parameters" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Recover the value of all parameters for a specified layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layer_name</strong> (<em>string</em>) – Name of the desired layer</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dict of parameters and their values</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>parameters (Dict[str, object])</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.generator.Generator.set_parameter">
 <span class="sig-name descname"><span class="pre">set_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/generator.html#Generator.set_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.generator.Generator.set_parameter" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Defines the value of a specified parameter for a specified layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer_name</strong> (<em>string</em>) – Name of the desired layer</p></li>
+<li><p><strong>parameter_name</strong> (<em>string</em>) – Name of th desired parameter</p></li>
+<li><p><strong>value</strong> (<em>object</em>) – Value to update the parameter</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.generator.Generator.set_parameters">
 <span class="sig-name descname"><span class="pre">set_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/generator.html#Generator.set_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.generator.Generator.set_parameters" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Defines the value of n specified parameters for a specified layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer_name</strong> (<em>string</em>) – Name of the desired layer</p></li>
+<li><p><strong>parameters</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>object</em><em>]</em>) – Dict of parameters to update and their new values</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -526,10 +801,44 @@ fitness (np.ArrayLike): Array of fitness per individual.</p>
 <dt class="sig sig-object py" id="evolvepy.generator.layer.ChromosomeOperator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.generator.layer.</span></span><span class="sig-name descname"><span class="pre">ChromosomeOperator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosome_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/layer.html#ChromosomeOperator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.layer.ChromosomeOperator" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.generator.layer.Layer</span></code></a></p>
+<p>Base layer for chromossome operations such as numeric and boolean mutations</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.layer.ChromosomeOperator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosome_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/layer.html#ChromosomeOperator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.layer.ChromosomeOperator.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialization for the chromossome operator layer with name and parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>string</em>) – Layer’s name</p></li>
+<li><p><strong>dynamic_parameters</strong> (<em>Dict</em><em>[</em><em>string</em><em>, </em><em>bool</em><em>]</em>) – Dictionary of mutable parameters</p></li>
+<li><p><strong>parameters</strong> (<em>Dict</em><em>[</em><em>string</em><em>, </em><em>object</em><em>]</em>) – Dictionary of immutable parameters</p></li>
+<li><p><strong>chromosome_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – Name of each chromosome</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.layer.ChromosomeOperator.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><span class="pre">evolvepy.generator.context.Context</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/generator/layer.html#ChromosomeOperator.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.layer.ChromosomeOperator.call" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Generic call to use the object as a funtion call, applying the layer oparetion</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>population</strong> (<em>np.ndarray</em>) – Population array</p></li>
+<li><p><strong>fitness</strong> (<em>np.ndarray</em>) – Fitness array</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><em>Context</em></a>) – Context object for the next layers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>New population array
+fitness (np.ndarray): New fitness array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>population (np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.layer.ChromosomeOperator.call_chromosomes">
@@ -542,12 +851,40 @@ fitness (np.ArrayLike): Array of fitness per individual.</p>
 <dt class="sig sig-object py" id="evolvepy.generator.layer.Concatenate">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.generator.layer.</span></span><span class="sig-name descname"><span class="pre">Concatenate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/layer.html#Concatenate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.layer.Concatenate" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.generator.layer.Layer</span></code></a></p>
+<p>Concatenation layer to join 2 or more layers</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.layer.Concatenate.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/layer.html#Concatenate.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.layer.Concatenate.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialization for thr Cconcatenate layer with the number of layers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>string</em>) – Layer’s name</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="evolvepy.generator.layer.Layer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.generator.layer.</span></span><span class="sig-name descname"><span class="pre">Layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/layer.html#Layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.layer.Layer" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable" title="evolvepy.configurable.Configurable"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.configurable.Configurable</span></code></a></p>
+<p>Base Layer class with essential properties and methods, can be used as base for especialized layers of as simple layer in the pipeline</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.generator.layer.Layer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/layer.html#Layer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.layer.Layer.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Base initialization for a layer and it’s dynamic and static parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>string</em>) – Layer’s name</p></li>
+<li><p><strong>dynamic_parameters</strong> (<em>Dict</em><em>[</em><em>string</em><em>, </em><em>bool</em><em>]</em>) – Dictionary of mutable parameters</p></li>
+<li><p><strong>static_parameters</strong> (<em>Dict</em><em>[</em><em>string</em><em>, </em><em>object</em><em>]</em>) – Dictionary of immutable parameters</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.layer.Layer.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><span class="pre">evolvepy.generator.context.Context</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/generator/layer.html#Layer.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.layer.Layer.call" title="Permalink to this definition"></a></dt>
@@ -556,27 +893,61 @@ fitness (np.ArrayLike): Array of fitness per individual.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.generator.layer.Layer.context">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><span class="pre">evolvepy.generator.context.Context</span></a></em><a class="headerlink" href="#evolvepy.generator.layer.Layer.context" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Returns the context object</p>
+<dl class="simple">
+<dt>Retuns:</dt><dd><p>context (Context): Context object for the next layers</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.generator.layer.Layer.fitness">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#evolvepy.generator.layer.Layer.fitness" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Returns the fitness array</p>
+<dl class="simple">
+<dt>Retuns:</dt><dd><p>fitness (np.ndarray): Fitness array</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.generator.layer.Layer.next">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">next</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer"><span class="pre">evolvepy.generator.layer.Layer</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#evolvepy.generator.layer.Layer.next" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return the layer sucessor, so the generator and evolver only need to know the first and last layer of the pipeline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of immediate successors of the current layer, it is possible that the layers has n sucessors leading to n different pipes.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>next(List[<a class="reference internal" href="#evolvepy.generator.layer.Layer" title="evolvepy.generator.layer.Layer">Layer</a>])</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.generator.layer.Layer.population">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">population</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#evolvepy.generator.layer.Layer.population" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Returns the population array</p>
+<dl class="simple">
+<dt>Retuns:</dt><dd><p>population (np.ndarray): Population array</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.generator.layer.Layer.send_next">
 <span class="sig-name descname"><span class="pre">send_next</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/generator/layer.html#Layer.send_next"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.layer.Layer.send_next" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Send context, population and fitness to the next layers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>population</strong> (<em>np.ndarray</em>) – Population array</p></li>
+<li><p><strong>fitness</strong> (<em>np.ndarray</em>) – Fitness array</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="#evolvepy.generator.context.Context" title="evolvepy.generator.context.Context"><em>Context</em></a>) – Context object for the next layers</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -592,7 +963,7 @@ fitness (np.ArrayLike): Array of fitness per individual.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="evolvepy.evaluator.html" class="btn btn-neutral float-left" title="evolvepy.evaluator package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="evolvepy.generator.arrangement.html" class="btn btn-neutral float-right" title="evolvepy.generator.arrangement package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="evolvepy.generator.crossover.html" class="btn btn-neutral float-right" title="evolvepy.generator.crossover package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

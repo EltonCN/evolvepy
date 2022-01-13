@@ -7,7 +7,6 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   evolvepy.generator.arrangement
    evolvepy.generator.crossover
    evolvepy.generator.mutation
    evolvepy.generator.selection

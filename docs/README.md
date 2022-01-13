@@ -1,3 +1,5 @@
+[![](https://img.shields.io/pypi/v/evolvepy?style=for-the-badge)]() [![](https://img.shields.io/github/license/EltonCN/evolvepy?style=for-the-badge)](https://github.com/EltonCN/evolvepy/blob/main/LICENSE)
+
 # EvolvePy
 
 EvolvePy is a Python module created to allow the easy creation and execution of evolutionary algorithms.
@@ -47,6 +49,8 @@ EvolvePy is a Python module created to allow the easy creation and execution of 
 - For installing from the repository:
 
     ```bash
+    git clone https://github.com/EltonCN/evolvepy
+    cd evolvepy
     pip install --upgrade pip
     pip install .
     ```

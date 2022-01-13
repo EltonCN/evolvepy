@@ -138,14 +138,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="evolvepy.generator.html">evolvepy.generator package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.arrangement.html">evolvepy.generator.arrangement package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.arrangement.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.arrangement.html#evolvepy-generator-arrangement-arrangement-module">evolvepy.generator.arrangement.arrangement module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.arrangement.html#evolvepy-generator-arrangement-ramdom-predation-module">evolvepy.generator.arrangement.ramdom_predation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.arrangement.html#evolvepy-generator-arrangement-sintatic-predation-module">evolvepy.generator.arrangement.sintatic_predation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.arrangement.html#module-contents">Module contents</a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.crossover.html">evolvepy.generator.crossover package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.crossover.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.crossover.html#module-evolvepy.generator.crossover.crossover">evolvepy.generator.crossover.crossover module</a></li>
@@ -205,6 +197,22 @@
 <p>Basic class for evolving generations.</p>
 <p>It combines the generator, evaluator and callbacks and runs the evolutionary process.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.evolver.Evolver.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><span class="pre">evolvepy.generator.generator.Generator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><span class="pre">evolvepy.evaluator.evaluator.Evaluator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">evolvepy.callbacks.callback.Callback</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">evolvepy.callbacks.callback.Callback</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/evolver.html#Evolver.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.evolver.Evolver.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Evolver constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generator</strong> (<a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><em>Generator</em></a>) – Generator for generating populations.</p></li>
+<li><p><strong>evaluator</strong> (<a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><em>Evaluator</em></a>) – Evaluator for evaluating individuals.</p></li>
+<li><p><strong>population_size</strong> (<em>int</em>) – Size of population.</p></li>
+<li><p><strong>callbacks</strong> (<em>Union</em><em>[</em><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.Callback"><em>Callback</em></a><em>, </em><em>List</em><em>[</em><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.Callback"><em>Callback</em></a><em>]</em><em>]</em><em>, </em><em>optional</em>) – Callabacks that will be called during evolution.. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.evolver.Evolver.evolve">
 <span class="sig-name descname"><span class="pre">evolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/evolver.html#Evolver.evolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.evolver.Evolver.evolve" title="Permalink to this definition"></a></dt>
 <dd><p>Evolves the population for a few generations</p>
@@ -243,6 +251,22 @@
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.configurable.Configurable.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/configurable.html#Configurable.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.configurable.Configurable.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Configurable constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameters</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>object</em><em>]</em>) – Object logable parameters.</p></li>
+<li><p><strong>dynamic_parameters</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>bool</em><em>]</em>) – Parameters that may change mid-run.
+The existence of a key indicates that it can change,
+its value indicates whether the change is locked (False) or not (True).</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
