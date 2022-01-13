@@ -42,11 +42,6 @@
 <li class="toctree-l1 current"><a class="reference internal" href="evolvepy.html">evolvepy package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="evolvepy.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -86,9 +81,10 @@
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="examples_link.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples_link.html#examples-index">Examples index</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dev/development.html">EvolvePy’s Development Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dev/how_to_build_link.html">How to build and release</a></li>
 </ul>
@@ -228,6 +224,18 @@ instead of just integers. For instance:</p>
 <dt class="sig sig-object py" id="evolvepy.generator.selection.selection.rank">
 <span class="sig-prename descclassname"><span class="pre">evolvepy.generator.selection.selection.</span></span><span class="sig-name descname"><span class="pre">rank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.typing._array_like._SupportsArray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_selection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/selection/selection.html#rank"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.selection.selection.rank" title="Permalink to this definition"></a></dt>
 <dd><p>Select the n best individuals assuming the fitness_array is decreasingly sorted.</p>
+<p>Args:
+fitness_array (np.typing.ArrayLike): array with evaluated fitness from the generation
+n_selection (int): number of individuals that will be selected</p>
+<p>Returns:
+np.arange(0, n_selection, 1, dtype=np.int32) (np.ndarray): array with indexs of selected individuals</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="evolvepy.generator.selection.selection.roulette">
+<span class="sig-prename descclassname"><span class="pre">evolvepy.generator.selection.selection.</span></span><span class="sig-name descname"><span class="pre">roulette</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.typing._array_like._SupportsArray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_selection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/selection/selection.html#roulette"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.selection.selection.roulette" title="Permalink to this definition"></a></dt>
+<dd><p>Select the best individuals stocaticaly with the probability of beign chosen
+equivalent to the individual fitness.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -239,38 +247,9 @@ instead of just integers. For instance:</p>
 <dd class="field-even"><p>array with indexs of selected individuals</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>np.ndarray</p>
+<dd class="field-odd"><p>selected (np.ndarray)</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evolvepy.generator.selection.selection.roulette">
-<span class="sig-prename descclassname"><span class="pre">evolvepy.generator.selection.selection.</span></span><span class="sig-name descname"><span class="pre">roulette</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">complex</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.generic</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.typing._array_like._SupportsArray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_selection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="_modules/evolvepy/generator/selection/selection.html#roulette"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.generator.selection.selection.roulette" title="Permalink to this definition"></a></dt>
-<dd><p>Select the best individuals stocaticaly with the probability of beign chosen
-equivalent to the individual fitness.</p>
-<blockquote>
-<div><dl class="field-list simple">
-<dt class="field-odd">param fitness_array</dt>
-<dd class="field-odd"><p>array with evaluated fitness from the generation</p>
-</dd>
-<dt class="field-even">type fitness_array</dt>
-<dd class="field-even"><p>np.typing.ArrayLike</p>
-</dd>
-<dt class="field-odd">param n_selection</dt>
-<dd class="field-odd"><p>number of individuals that will be selected</p>
-</dd>
-<dt class="field-even">type n_selection</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">return</dt>
-<dd class="field-odd"><p>array with indexs of selected individuals</p>
-</dd>
-<dt class="field-even">rtype</dt>
-<dd class="field-even"><p>np.ndarray</p>
-</dd>
-</dl>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
@@ -280,15 +259,15 @@ equivalent to the individual fitness.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>fitness_array</strong> (<em>np.typing.ArrayLike</em>) – array with evaluated fitness from the generation</p></li>
-<li><p><strong>n_selection</strong> (<em>int</em>) – number of individuals that will be selected</p></li>
+<li><p><strong>fitness_array</strong> (<em>np.typing.ArrayLike</em>) – Array with evaluated fitness from the generation</p></li>
+<li><p><strong>n_selection</strong> (<em>int</em>) – Number of individuals that will be selected</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>array with indexs of selected individuals</p>
+<dd class="field-even"><p>Array with indexs of selected individuals</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>np.ndarray</p>
+<dd class="field-odd"><p>selected (np.ndarray)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -296,6 +275,7 @@ equivalent to the individual fitness.</p>
 </section>
 <section id="module-evolvepy.generator.selection">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evolvepy.generator.selection" title="Permalink to this headline"></a></h2>
+<p>EvolvePy’s callbacks. Objects that can be called upon during evolution to change its behavior.</p>
 </section>
 </section>
 

@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples_link.html">Examples</a><ul>
@@ -132,15 +127,15 @@
 
 <div class="viewcode-block" id="tournament"><a class="viewcode-back" href="../../../../evolvepy.generator.selection.html#evolvepy.generator.selection.selection.tournament">[docs]</a><span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">tournament</span><span class="p">(</span><span class="n">fitness_array</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">n_selection</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-	<span class="sd">&#39;&#39;&#39;Select the best individuals in a one vs one test.</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Select the best individuals in a one vs one test.</span>
 <span class="sd">		</span>
-<span class="sd">		:param fitness_array: array with evaluated fitness from the generation</span>
-<span class="sd">		:type fitness_array: np.typing.ArrayLike</span>
-<span class="sd">		:param n_selection: number of individuals that will be selected</span>
-<span class="sd">		:type n_selection: int</span>
+<span class="sd">	Args:</span>
+<span class="sd">		fitness_array (np.typing.ArrayLike): Array with evaluated fitness from the generation</span>
+<span class="sd">		n_selection (int): Number of individuals that will be selected</span>
 
-<span class="sd">		:return: array with indexs of selected individuals</span>
-<span class="sd">		:rtype: np.ndarray</span>
+<span class="sd">	Returns:</span>
+<span class="sd">		selected (np.ndarray): Array with indexs of selected individuals</span>
 <span class="sd">	&#39;&#39;&#39;</span>
 
 	<span class="n">fitness_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">fitness_array</span><span class="p">)</span>
@@ -166,16 +161,16 @@
 
 <div class="viewcode-block" id="roulette"><a class="viewcode-back" href="../../../../evolvepy.generator.selection.html#evolvepy.generator.selection.selection.roulette">[docs]</a><span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">roulette</span><span class="p">(</span><span class="n">fitness_array</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">n_selection</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-	<span class="sd">&#39;&#39;&#39;Select the best individuals stocaticaly with the probability of beign chosen</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Select the best individuals stocaticaly with the probability of beign chosen</span>
 <span class="sd">	equivalent to the individual fitness.</span>
-<span class="sd">		</span>
-<span class="sd">		:param fitness_array: array with evaluated fitness from the generation</span>
-<span class="sd">		:type fitness_array: np.typing.ArrayLike</span>
-<span class="sd">		:param n_selection: number of individuals that will be selected</span>
-<span class="sd">		:type n_selection: int</span>
+<span class="sd">	</span>
+<span class="sd">	Args:</span>
+<span class="sd">		fitness_array (np.typing.ArrayLike): array with evaluated fitness from the generation</span>
+<span class="sd">		n_selection (int): number of individuals that will be selected</span>
 
-<span class="sd">		:return: array with indexs of selected individuals</span>
-<span class="sd">		:rtype: np.ndarray</span>
+<span class="sd">	Returns:</span>
+<span class="sd">		selected (np.ndarray): array with indexs of selected individuals</span>
 <span class="sd">	&#39;&#39;&#39;</span>
 
 	<span class="n">fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">fitness_array</span><span class="p">)</span>
@@ -203,15 +198,15 @@
 
 <div class="viewcode-block" id="rank"><a class="viewcode-back" href="../../../../evolvepy.generator.selection.html#evolvepy.generator.selection.selection.rank">[docs]</a><span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">rank</span><span class="p">(</span><span class="n">fitness_array</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">n_selection</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&#39;&#39;&#39;Select the n best individuals assuming the fitness_array is decreasingly sorted.</span>
-<span class="sd">        </span>
-<span class="sd">        :param fitness_array: array with evaluated fitness from the generation</span>
-<span class="sd">        :type fitness_array: np.typing.ArrayLike</span>
-<span class="sd">        :param n_selection: number of individuals that will be selected</span>
-<span class="sd">        :type n_selection: int</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Select the n best individuals assuming the fitness_array is decreasingly sorted.</span>
+<span class="sd">    </span>
+<span class="sd">	Args:</span>
+<span class="sd">    	fitness_array (np.typing.ArrayLike): array with evaluated fitness from the generation</span>
+<span class="sd">    	n_selection (int): number of individuals that will be selected</span>
 
-<span class="sd">        :return: array with indexs of selected individuals</span>
-<span class="sd">        :rtype: np.ndarray</span>
+<span class="sd">	Returns:</span>
+<span class="sd">        np.arange(0, n_selection, 1, dtype=np.int32) (np.ndarray): array with indexs of selected individuals</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_selection</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span></div>

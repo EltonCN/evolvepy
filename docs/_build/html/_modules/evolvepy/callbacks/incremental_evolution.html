@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -123,7 +118,7 @@
 <span class="kn">from</span> <span class="nn">evolvepy.callbacks</span> <span class="k">import</span> <span class="n">Callback</span>
 <span class="kn">from</span> <span class="nn">evolvepy.generator</span> <span class="k">import</span> <span class="n">Block</span><span class="p">,</span> <span class="n">FirstGenLayer</span>
 
-<div class="viewcode-block" id="IncrementalEvolution"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.incremental_evolution.IncrementalEvolution">[docs]</a><span class="k">class</span> <span class="nc">IncrementalEvolution</span><span class="p">(</span><span class="n">Callback</span><span class="p">):</span>
+<div class="viewcode-block" id="IncrementalEvolution"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.IncrementalEvolution">[docs]</a><span class="k">class</span> <span class="nc">IncrementalEvolution</span><span class="p">(</span><span class="n">Callback</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Callback that implements the behavior of a incremental evolution.</span>
 
@@ -168,7 +163,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_first_gen_layer</span> <span class="o">=</span> <span class="n">first_gen_layer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks_to_stop</span> <span class="o">=</span> <span class="n">callbacks</span>
 
-<div class="viewcode-block" id="IncrementalEvolution.on_generator_start"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.incremental_evolution.IncrementalEvolution.on_generator_start">[docs]</a>    <span class="k">def</span> <span class="nf">on_generator_start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="IncrementalEvolution.on_generator_start"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.IncrementalEvolution.on_generator_start">[docs]</a>    <span class="k">def</span> <span class="nf">on_generator_start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Called after generator run, performs the incremental evolution logic.</span>
 

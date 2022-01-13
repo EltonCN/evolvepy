@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -126,11 +121,32 @@
 <span class="kn">from</span> <span class="nn">.layer</span> <span class="k">import</span> <span class="n">Layer</span>
 
 <div class="viewcode-block" id="Sort"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.basic_layers.Sort">[docs]</a><span class="k">class</span> <span class="nc">Sort</span><span class="p">(</span><span class="n">Layer</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Sorting class for the model pipeline, it sorts the population acording to fitness</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generic initialization for the object, used only for the parent class</span>
 
-	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="p">):</span>
+<span class="sd">		Args:</span>
+<span class="sd">			name (str): name of the layer</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Sort.call"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.basic_layers.Sort.call">[docs]</a>	<span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Sort the population by fitness.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): </span>
+<span class="sd">			fitness (np.ndarray):</span>
+<span class="sd">			context (Context):</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			population (np.ArrayLike): Array of individuals.</span>
+<span class="sd">			fitness (np.ArrayLike): Array of fitness per individual.</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="n">indexs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">fitness</span><span class="p">)</span>
 		<span class="n">indexs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">indexs</span><span class="p">)</span>
 
@@ -139,20 +155,53 @@
 		<span class="k">return</span> <span class="n">population</span><span class="p">[</span><span class="n">indexs</span><span class="p">],</span> <span class="n">fitness</span><span class="p">[</span><span class="n">indexs</span><span class="p">]</span></div></div>
 
 <div class="viewcode-block" id="FilterFirsts"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.basic_layers.FilterFirsts">[docs]</a><span class="k">class</span> <span class="nc">FilterFirsts</span><span class="p">(</span><span class="n">Layer</span><span class="p">):</span>
-
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Filter to get the first n_to_pass individuals.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	
 	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_to_pass</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Initialize the Filter from the top layer</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			n_to_pass (int): Number of best individuals selected.</span>
+<span class="sd">			name (strig): Name of the layer.</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n_to_pass&quot;</span><span class="p">:</span><span class="n">n_to_pass</span><span class="p">}</span>
 		<span class="n">dynamic_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n_to_pass&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span>
 		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="o">=</span><span class="n">dynamic_parameters</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FilterFirsts.call"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.basic_layers.FilterFirsts.call">[docs]</a>	<span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generic call to funcion to use the class as funtion call</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ArrayLike): array of individuals</span>
+<span class="sd">			parameters (Dict(string, string)): parameters for the function</span>
+<span class="sd">			dynamic_parameters (Dit(string, string)): dinamic parameters of the function</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			n_to_pass (int): Number of best individuals selected</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="n">n_to_pass</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;n_to_pass&quot;</span><span class="p">]</span>
 		
 		<span class="k">return</span> <span class="n">population</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n_to_pass</span><span class="p">],</span> <span class="n">fitness</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n_to_pass</span><span class="p">]</span></div></div>
 
 <div class="viewcode-block" id="Block"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.basic_layers.Block">[docs]</a><span class="k">class</span> <span class="nc">Block</span><span class="p">(</span><span class="n">Layer</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Block a determined chromosome for the next layers</span>
+<span class="sd">	&#39;&#39;&#39;</span>
 
 	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">run</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Initialization for the Block class with the blocked chromosomes.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			chromosome_names (Union[List[str], str]): names of the chromosomes</span>
+<span class="sd">			run (bool): define the flag to run the code only once</span>
+<span class="sd">			name (string): name of the layer</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+
 		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chromosome_names</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
 			<span class="n">chromosome_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">chromosome_names</span><span class="p">]</span>
 
@@ -161,6 +210,18 @@
 		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Block.call"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.basic_layers.Block.call">[docs]</a>	<span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generic call to apply the mutation function</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): array of inidividuals</span>
+<span class="sd">			fitness (np.ndarray): array of individuals fitness</span>
+<span class="sd">			context (Context): context of the population from the previous layers</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			population (np.ndarray): new array of inidividuals</span>
+<span class="sd">			fitness (np.ndarray): new array of individuals fitness</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]:</span>
 			<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;chromosome_names&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 				<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;chromosome_names&quot;</span><span class="p">]:</span>
@@ -171,13 +232,41 @@
 		<span class="k">return</span> <span class="n">population</span><span class="p">,</span> <span class="n">fitness</span></div></div>
 
 <div class="viewcode-block" id="RandomPredation"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.basic_layers.RandomPredation">[docs]</a><span class="k">class</span> <span class="nc">RandomPredation</span><span class="p">(</span><span class="n">Layer</span><span class="p">):</span>
-
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Replaces the last n_to_predate individuals for random ones</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	
 	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_to_predate</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Initialization for the RandomPredation class with the number individuals to be replaced.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			n_to_predate (int): number of individuals to be replaced.</span>
+<span class="sd">			name (string): name of the layer</span>
+<span class="sd">		&#39;&#39;&#39;</span>
 		<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n_to_predate&quot;</span><span class="p">:</span><span class="n">n_to_predate</span><span class="p">}</span>
 		<span class="n">dynamic_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n_to_predate&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span>
 		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="o">=</span><span class="n">dynamic_parameters</span><span class="p">)</span>
 
+		<span class="bp">self</span><span class="o">.</span><span class="n">_sort</span> <span class="o">=</span> <span class="n">Sort</span><span class="p">()</span>
+
 <div class="viewcode-block" id="RandomPredation.call"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.basic_layers.RandomPredation.call">[docs]</a>	<span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generic call to apply the mutation function</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): Array of inidividuals</span>
+<span class="sd">			fitness (np.ndarray): Array of individuals fitness</span>
+<span class="sd">			context (Context): Context of the population from the previous layers</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			population (np.ndarray): New array of inidividuals</span>
+<span class="sd">			fitness (np.ndarray): New array of individuals fitness</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">if</span> <span class="ow">not</span> <span class="n">context</span><span class="o">.</span><span class="n">sorted</span><span class="p">:</span>
+			<span class="n">population</span><span class="p">,</span> <span class="n">fitness</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sort</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+			<span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sort</span><span class="o">.</span><span class="n">context</span>
+
 		<span class="n">n_to_predate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;n_to_predate&quot;</span><span class="p">]</span>
 		<span class="n">indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="n">n_to_predate</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n_to_predate</span><span class="p">)</span>
 
@@ -192,6 +281,46 @@
 			<span class="n">index</span> <span class="o">-=</span> <span class="mi">1</span>
 
 		<span class="k">return</span> <span class="n">new_population</span><span class="p">,</span> <span class="n">new_fitness</span></div></div>
+
+
+<div class="viewcode-block" id="ElitismLayer"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.basic_layers.ElitismLayer">[docs]</a><span class="k">class</span> <span class="nc">ElitismLayer</span><span class="p">(</span><span class="n">Layer</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">	Chooses the best n_to_pass individuals from the population</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_to_pass</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Generic initialization for the object, used only for the parent class</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			n_to_pass (int): Number of individuals to be selected. Defaults 1.</span>
+<span class="sd">			name (str): Layer&#39;s name. Defaults None (will use class name).</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n_to_pass&quot;</span><span class="p">:</span><span class="n">n_to_pass</span><span class="p">}</span>
+		<span class="n">dynamic_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n_to_pass&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="o">=</span><span class="n">dynamic_parameters</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_layer_sort</span> <span class="o">=</span> <span class="n">Sort</span><span class="p">()</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_layer_filter</span> <span class="o">=</span> <span class="n">FilterFirsts</span><span class="p">(</span><span class="n">n_to_pass</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ElitismLayer.call"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.basic_layers.ElitismLayer.call">[docs]</a>	<span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		Sort the population by fitness and then filter the best n_to_pass individuals</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			population (np.ndarray): New array of inidividuals</span>
+<span class="sd">			fitness (np.ndarray): New array of individuals fitness</span>
+<span class="sd">			context (Context): Context of the population from the previous layers</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			population (np.ArrayLike): Array of individuals.</span>
+<span class="sd">			fitness (np.ArrayLike): Array of fitness per individual.</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">sorted</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+			<span class="n">population</span><span class="p">,</span> <span class="n">fitness</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layer_sort</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+		
+		<span class="n">population</span><span class="p">,</span> <span class="n">fitness</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layer_filter</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+		
+		<span class="k">return</span> <span class="n">population</span><span class="p">,</span> <span class="n">fitness</span></div></div>
 </pre></div>
 
            </div>

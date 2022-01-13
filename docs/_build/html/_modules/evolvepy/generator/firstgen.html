@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -124,10 +119,10 @@
 <span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="k">import</span> <span class="n">ArrayLike</span>
 
 <span class="kn">from</span> <span class="nn">evolvepy.generator.descriptor</span> <span class="k">import</span> <span class="n">Descriptor</span>
-<span class="kn">from</span> <span class="nn">evolvepy.generator.layer</span> <span class="k">import</span> <span class="n">chromosomeOperator</span>
+<span class="kn">from</span> <span class="nn">evolvepy.generator.layer</span> <span class="k">import</span> <span class="n">ChromosomeOperator</span>
 <span class="kn">from</span> <span class="nn">evolvepy.generator.context</span> <span class="k">import</span> <span class="n">Context</span>
 
-<div class="viewcode-block" id="FirstGenLayer"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer">[docs]</a><span class="k">class</span> <span class="nc">FirstGenLayer</span><span class="p">(</span><span class="n">chromosomeOperator</span><span class="p">):</span>
+<div class="viewcode-block" id="FirstGenLayer"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer">[docs]</a><span class="k">class</span> <span class="nc">FirstGenLayer</span><span class="p">(</span><span class="n">ChromosomeOperator</span><span class="p">):</span>
 
 	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">descriptor</span><span class="p">:</span><span class="n">Descriptor</span><span class="p">,</span> <span class="n">initialize_zeros</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">run</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 		<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;run&quot;</span><span class="p">:</span><span class="n">run</span><span class="p">,</span> <span class="s2">&quot;initialize_zeros&quot;</span><span class="p">:</span><span class="n">initialize_zeros</span><span class="p">}</span>
@@ -164,7 +159,7 @@
 		<span class="k">elif</span> <span class="n">dtype</span><span class="o">.</span><span class="n">char</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">typecodes</span><span class="p">[</span><span class="s2">&quot;AllInteger&quot;</span><span class="p">]:</span>
 			<span class="n">chromosome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">chromosome_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">chromosome_range</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">shape</span><span class="p">)</span>
 		<span class="k">else</span><span class="p">:</span>
-			<span class="n">chromosome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="n">shape</span><span class="p">)</span>
+			<span class="n">chromosome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">)</span>
 
 		<span class="k">return</span> <span class="n">chromosome</span>
 	

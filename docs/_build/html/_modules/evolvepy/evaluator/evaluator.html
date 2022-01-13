@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -126,8 +121,23 @@
 <span class="kn">from</span> <span class="nn">evolvepy.configurable</span> <span class="k">import</span> <span class="n">Configurable</span>
 
 <div class="viewcode-block" id="Evaluator"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator">[docs]</a><span class="k">class</span> <span class="nc">Evaluator</span><span class="p">(</span><span class="n">Configurable</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Base evaluator class.</span>
+
+<span class="sd">    Must be inherited to be used.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_scores</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">individual_per_call</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">other_parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">object</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">bool</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Evalutor constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            n_scores (int, optional): Number of scores generated when evaluating an individual. Defaults to 1.</span>
+<span class="sd">            individual_per_call (int, optional): Number of individuals that are evaluated at each call. Defaults to 1.</span>
+<span class="sd">            other_parameters (Dict[str,object], optional): Other parameters defined by the inheritor class. Defaults to None.</span>
+<span class="sd">            dynamic_parameters (Dict[str,bool], optional): Other dynamic parameters defined by the inheritor class. Defaults to None.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
         <span class="k">if</span> <span class="n">other_parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">other_parameters</span><span class="o">=</span><span class="p">{}</span>
         
@@ -142,20 +152,54 @@
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Evaluates the population.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            population (np.ndarray): Population to be evaluated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Population fitness</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="o">...</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">scores</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Scores of the last evaluated individuals.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scores</span></div>
 
 <div class="viewcode-block" id="EvaluationStage"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.evaluator.EvaluationStage">[docs]</a><span class="k">class</span> <span class="nc">EvaluationStage</span><span class="p">(</span><span class="n">Evaluator</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    An evaluation stage. Allows you to modify the behavior of an evaluator.</span>
+
+<span class="sd">    Can be chained with other stages.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">:</span><span class="n">Evaluator</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        EvaluationStage constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            evaluator (Evaluator): Evaluator that will be modified.</span>
+<span class="sd">            parameters (Dict[str, object], optional): Evaluator parameters. Defaults to None.</span>
+<span class="sd">            dynamic_parameters (Dict[str, bool], optional): Evaluator dynamic parameters description. Defaults to None.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">evaluator</span><span class="o">.</span><span class="n">_n_scores</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">_individual_per_call</span><span class="p">,</span> <span class="n">other_parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span> <span class="n">dynamic_parameters</span><span class="o">=</span><span class="n">dynamic_parameters</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_evaluator</span> <span class="o">=</span> <span class="n">evaluator</span>
     
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Evaluates the population using the evaluator.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            population (np.ndarray): Population to be evaluated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Population fitness.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluator</span><span class="p">(</span><span class="n">population</span><span class="p">)</span></div>
 </pre></div>
 

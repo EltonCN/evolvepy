@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -122,10 +117,20 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
 
 <div class="viewcode-block" id="Context"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.context.Context">[docs]</a><span class="k">class</span> <span class="nc">Context</span><span class="p">:</span>
-
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Layer to pass the context and restrictions from the previous layers</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">default_values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sorted&quot;</span><span class="p">,</span> <span class="s2">&quot;_sorted&quot;</span><span class="p">,</span> <span class="s2">&quot;blocked&quot;</span><span class="p">,</span> <span class="s2">&quot;_chromosome_names&quot;</span><span class="p">,</span> <span class="s2">&quot;chromosome_names&quot;</span><span class="p">,</span> <span class="s2">&quot;_values&quot;</span><span class="p">,</span> <span class="s2">&quot;have_value&quot;</span><span class="p">,</span> <span class="s2">&quot;copy&quot;</span><span class="p">,</span> <span class="s2">&quot;_block_all&quot;</span><span class="p">,</span> <span class="s2">&quot;block_all&quot;</span><span class="p">,</span> <span class="s2">&quot;population_size&quot;</span><span class="p">,</span> <span class="s2">&quot;_population_size&quot;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population_size</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">sorted</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Initialization for the context layer</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            population_size (int): Number of individuals</span>
+<span class="sd">            chromosome_names (List[string]): Names of chromosomes</span>
+<span class="sd">            sorted (bool): Flag to indicate f the population is sorted or not.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span> <span class="o">=</span> <span class="nb">sorted</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_population_size</span> <span class="o">=</span> <span class="n">population_size</span>
 
@@ -140,14 +145,33 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">population_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return population size</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            population_size (int): population</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_population_size</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">chromosome_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return chromosome names</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            chromosome_names (int): chromosome names</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chromosome_names</span>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return if the population and fitness are sorted or not</span>
+
+<span class="sd">        Setter:</span>
+<span class="sd">            Raises:</span>
+<span class="sd">                ValueError: raised if value is not a boolean.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sorted</span>
     
     <span class="nd">@sorted</span><span class="o">.</span><span class="n">setter</span>
@@ -159,6 +183,13 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">block_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Prevents any alteration on all chromosomes</span>
+
+<span class="sd">        Setter:</span>
+<span class="sd">            Raises:</span>
+<span class="sd">                ValueError: raised if block_all is not a boolean.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_block_all</span>
     
     <span class="nd">@block_all</span><span class="o">.</span><span class="n">setter</span>
@@ -170,12 +201,18 @@
 
     
     <span class="k">def</span> <span class="nf">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">__name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">__value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Set the atribute</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">__name</span> <span class="ow">in</span> <span class="n">Context</span><span class="o">.</span><span class="n">default_values</span><span class="p">:</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">__name</span><span class="p">,</span> <span class="n">__value</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">__name</span><span class="p">]</span> <span class="o">=</span> <span class="n">__value</span>
 
     <span class="k">def</span> <span class="nf">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">__name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Returns the instance&#39;s attribute</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">__name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;__getstate__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setstate__&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">Context</span><span class="o">.</span><span class="n">default_values</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">__name</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">__name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">:</span>
@@ -184,12 +221,18 @@
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Context doesn&#39;t have &quot;</span><span class="o">+</span><span class="n">__name</span><span class="o">+</span><span class="s2">&quot; value&quot;</span><span class="p">)</span>
     
 <div class="viewcode-block" id="Context.have_value"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.context.Context.have_value">[docs]</a>    <span class="k">def</span> <span class="nf">have_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Returns if name if within the registered values</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span> <span class="ow">or</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">Context</span><span class="o">.</span><span class="n">default_values</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
 <div class="viewcode-block" id="Context.copy"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.context.Context.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Context</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Create a copy of this instance</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">context</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">population_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chromosome_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sorted</span><span class="p">)</span>
         
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">blocked</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>

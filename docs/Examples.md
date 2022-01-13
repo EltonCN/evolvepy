@@ -24,6 +24,8 @@ Examples are shown in the recommended reading sequence.
   - Evolution log using memory, file or wandb integration.
 - [Incremental Evolution](https://github.com/EltonCN/evolvepy/blob/main/examples/Incremental%20Evolution.ipynb)
 - [Random Predation](https://github.com/EltonCN/evolvepy/blob/main/examples/Random%20Predation.ipynb)
+- [3-CNF-SAT](https://github.com/EltonCN/evolvepy/blob/main/examples/3-CNF-SAT.ipynb) 
+  - Binary operators.
 - [TF-Keras Integration](https://github.com/EltonCN/evolvepy/blob/main/examples/TF-Keras%20Integration.ipynb)
   - TF/Keras integration using EvolutionaryModel
 - [Car PID Control](https://github.com/EltonCN/evolvepy/blob/main/examples/Car%20PID%20Control.ipynb)

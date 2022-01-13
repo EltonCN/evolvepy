@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -135,14 +130,32 @@
 <span class="n">NJIT_PARALLEL</span> <span class="o">=</span> <span class="mi">3</span>
 
 <div class="viewcode-block" id="FunctionEvaluator"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.function_evaluator.FunctionEvaluator">[docs]</a><span class="k">class</span> <span class="nc">FunctionEvaluator</span><span class="p">(</span><span class="n">Evaluator</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Evaluates individuals using a simple function.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">PYTHON</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">JIT</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">NJIT</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">JIT_PARALLEL</span> <span class="o">=</span> <span class="mi">3</span>
-    <span class="n">NJIT_PARALLEL</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">NJIT_PARALLEL</span> <span class="o">=</span> <span class="mi">4</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span><span class="n">Callable</span><span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">ArrayLike</span><span class="p">],</span> <span class="n">n_scores</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="n">NJIT</span><span class="p">,</span> <span class="n">individual_per_call</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        FunctionEvaluator constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            function (Callable[[np.ndarray], ArrayLike]): Function that will be used to evaluate individuals.</span>
+<span class="sd">            n_scores (int, optional): Number of scores generated for each individual. Defaults to 1.</span>
+<span class="sd">            mode (int, optional): In which compilation mode to use the fitness function. Defaults to FunctionEvaluator.NJIT.</span>
+<span class="sd">                                One of the class constants can be used:</span>
+<span class="sd">                                PYTHON: No JIT compilation</span>
+<span class="sd">                                JIT: With Numba JIT compilation</span>
+<span class="sd">                                NJIT: With Numba No Python mode.</span>
+<span class="sd">                                JIT_PARALLEL: With JIT and parallel assessments.</span>
+<span class="sd">                                NJIT_PARALLEL: With NJIT and parallel assessments.</span>
+<span class="sd">            individual_per_call (int, optional): Number of individuals that are evaluated at each function call. Defaults to 1.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">n_scores</span><span class="p">,</span> <span class="n">individual_per_call</span><span class="p">,</span> <span class="n">other_parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;evaluation_function_name&quot;</span><span class="p">:</span><span class="n">function</span><span class="o">.</span><span class="vm">__name__</span><span class="p">})</span>
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">JIT</span><span class="p">:</span>
@@ -164,11 +177,34 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span> <span class="o">=</span> <span class="n">mode</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Evaluates a population using the fitness function.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            population (np.ndarray): Population to be evaluated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Population fitness.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_scores</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_static_call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_individual_per_call</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_scores</span><span class="p">,</span> <span class="n">population</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scores</span>
 
 <div class="viewcode-block" id="FunctionEvaluator.call"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.function_evaluator.FunctionEvaluator.call">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">function</span><span class="p">:</span><span class="n">Callable</span><span class="p">,</span> <span class="n">individual_per_call</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">n_scores</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Call the fitness function in the desired mode.</span>
+
+<span class="sd">        Static method to enable just-in-time compilation using Numba.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            function (Callable): Function that will be used to evaluate individuals.</span>
+<span class="sd">            individual_per_call (int): Number of individuals that are evaluated at each function call.</span>
+<span class="sd">            n_scores (int): Number of scores generated for each individual.</span>
+<span class="sd">            population (np.ndarray): Population to be evaluated</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Population fitness</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="n">individual_per_call</span>
 
         <span class="c1">#Can&#39;t raise exception with Numba</span>

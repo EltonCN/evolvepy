@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -127,12 +122,32 @@
 <span class="kn">from</span> <span class="nn">.evaluator</span> <span class="k">import</span> <span class="n">Evaluator</span>
 
 <div class="viewcode-block" id="ProcessFitnessFunction"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessFitnessFunction">[docs]</a><span class="k">class</span> <span class="nc">ProcessFitnessFunction</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Base class of fitness function to be used to evaluate individuals in parallel with multiple processes.</span>
+
+<span class="sd">    It must be inherited in a class that will implement the evaluation.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reset</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        ProcessFitnessFunction constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            reset (bool, optional): Whether to reset the evaluator status at each evaluation. Defaults to False.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_setted</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span> <span class="o">=</span> <span class="n">reset</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">individuals</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Evaluates the individuals.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            individuals (np.ndarray): Individuals who will be evaluated</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Individuals fitness.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setted</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_setted</span> <span class="o">=</span> <span class="kc">True</span>
@@ -142,13 +157,40 @@
 
 <div class="viewcode-block" id="ProcessFitnessFunction.setup"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessFitnessFunction.setup">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Method that prepares the evaluator to evaluate individuals.</span>
+
+<span class="sd">        Called before the first evaluation, and before all evaluations if &quot;reset&quot; is true.</span>
+
+<span class="sd">        Must be implemented by the inheriting class.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="o">...</span></div>
 
 <div class="viewcode-block" id="ProcessFitnessFunction.evaluate"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessFitnessFunction.evaluate">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">individuals</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Implements the evaluation of individuals.</span>
+
+<span class="sd">        Must be implemented by the inheriting class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            population (np.ndarray): Individuals to be evaluated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Individuals fitness.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="o">...</span></div></div>
     
-<div class="viewcode-block" id="evaluate_forever"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.evaluate_forever">[docs]</a><span class="k">def</span> <span class="nf">evaluate_forever</span><span class="p">(</span><span class="n">fitness_function</span><span class="p">:</span><span class="n">Type</span><span class="p">[</span><span class="n">ProcessFitnessFunction</span><span class="p">],</span> <span class="n">individuals_queue</span><span class="p">:</span><span class="n">mp</span><span class="o">.</span><span class="n">Queue</span><span class="p">,</span> <span class="n">scores_queue</span><span class="p">:</span><span class="n">mp</span><span class="o">.</span><span class="n">Queue</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span><span class="n">Any</span><span class="p">):</span>
+<div class="viewcode-block" id="evaluate_forever"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.evaluate_forever">[docs]</a><span class="k">def</span> <span class="nf">evaluate_forever</span><span class="p">(</span><span class="n">fitness_function</span><span class="p">:</span><span class="n">Type</span><span class="p">[</span><span class="n">ProcessFitnessFunction</span><span class="p">],</span> <span class="n">individuals_queue</span><span class="p">:</span><span class="n">mp</span><span class="o">.</span><span class="n">Queue</span><span class="p">,</span> <span class="n">scores_queue</span><span class="p">:</span><span class="n">mp</span><span class="o">.</span><span class="n">Queue</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Prepared the cost function to evaluate the individuals, waits for the receipt of individuals and returns the scores.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fitness_function (Type[ProcessFitnessFunction]): Class to be used to evaluate individuals.</span>
+<span class="sd">        individuals_queue (mp.Queue): Queue in which individuals who need to be evaluated will arrive.</span>
+<span class="sd">        scores_queue (mp.Queue): Queue in which the generated scores will be placed.</span>
+<span class="sd">        args (Dict[str, object]): Other evaluator class constructor arguments.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">evaluator</span> <span class="o">=</span> <span class="n">fitness_function</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
 
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -159,7 +201,23 @@
 
 
 <div class="viewcode-block" id="ProcessEvaluator"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessEvaluator">[docs]</a><span class="k">class</span> <span class="nc">ProcessEvaluator</span><span class="p">(</span><span class="n">Evaluator</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitness_function</span><span class="p">:</span><span class="n">Type</span><span class="p">[</span><span class="n">ProcessFitnessFunction</span><span class="p">],</span> <span class="n">n_process</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_scores</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">individual_per_call</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span><span class="n">Any</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Evaluates individuals using multiple process.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitness_function</span><span class="p">:</span><span class="n">Type</span><span class="p">[</span><span class="n">ProcessFitnessFunction</span><span class="p">],</span> <span class="n">n_process</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_scores</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">individual_per_call</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        ProcessEvaluator constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            fitness_function (Type[ProcessFitnessFunction]): Class that will be used to evaluate individuals.</span>
+<span class="sd">            n_process (int, optional): Number of process to use. Defaults to None (same number as cpu_count).</span>
+<span class="sd">            timeout (int, optional): Maximum time to wait for a new evaluation. Defaults to None (infinity).</span>
+<span class="sd">            n_scores (int, optional): Number of scores generated by fitness function. Defaults to 1.</span>
+<span class="sd">            individual_per_call (int, optional): Number of individuals that the fitness function receives. Defaults to 1.</span>
+<span class="sd">            args (Dict[str, object], optional): Other arguments for the fitness_function constructor. Defaults to None.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">n_process</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">n_process</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
         
@@ -182,6 +240,9 @@
 
 
     <span class="k">def</span> <span class="nf">_prepare_process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Prepares the processes for evaluating individuals.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setted</span><span class="p">:</span>
             <span class="k">return</span>
 
@@ -196,6 +257,18 @@
 
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Evaluates the population</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            population (np.ndarray): Population to be evaluated.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            RuntimeError: Raised if population size is not divisible by individual_per_call.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Population fitness.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="n">n</span> <span class="o">=</span> <span class="n">population</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="bp">self</span><span class="o">.</span><span class="n">_individual_per_call</span>
 

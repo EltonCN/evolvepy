@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples_link.html">Examples</a><ul>
@@ -127,6 +122,19 @@
 
 <div class="viewcode-block" id="sum_mutation"><a class="viewcode-back" href="../../../../evolvepy.generator.mutation.html#evolvepy.generator.mutation.numeric_mutation.sum_mutation">[docs]</a><span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">sum_mutation</span><span class="p">(</span><span class="n">chromosome</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">existence_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">mutation_range</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    It takes a chromosome and add a random value between the mutation range to its gene, then repeats the process with</span>
+<span class="sd">    the given probability.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        chromosome (np.ArrayLike): array of chromosomes</span>
+<span class="sd">        existence_rate (float): probability of first mutation</span>
+<span class="sd">        gene_rate (float): probability of another gene mutation</span>
+<span class="sd">        mutation_range (Tuple[float, float]):</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        new_cromosome (np.ArrayLike): new mutated individual</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">chromosome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)</span>
     <span class="n">new_chromosome</span> <span class="o">=</span> <span class="n">chromosome</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     
@@ -143,6 +151,19 @@
     <span class="k">return</span> <span class="n">new_chromosome</span></div>
 
 <div class="viewcode-block" id="mul_mutation"><a class="viewcode-back" href="../../../../evolvepy.generator.mutation.html#evolvepy.generator.mutation.numeric_mutation.mul_mutation">[docs]</a><span class="k">def</span> <span class="nf">mul_mutation</span><span class="p">(</span><span class="n">chromosome</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">existence_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">mutation_range</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    It takes a chromosome and multiply a random value between the mutation range to its gene, then repeats the process with</span>
+<span class="sd">    the given probability.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        chromosome (np.ArrayLike): array of chromosomes</span>
+<span class="sd">        existence_rate (float): probability of first mutation</span>
+<span class="sd">        gene_rate (float): probability of another gene mutation</span>
+<span class="sd">        mutation_range (Tuple[float, float]):</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        new_cromosome (np.ArrayLike): new mutated individual</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">chromosome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)</span>
     <span class="n">new_chromosome</span> <span class="o">=</span> <span class="n">chromosome</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     

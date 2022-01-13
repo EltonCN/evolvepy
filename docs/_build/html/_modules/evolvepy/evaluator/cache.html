@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -126,8 +121,21 @@
 <span class="kn">from</span> <span class="nn">evolvepy.evaluator.evaluator</span> <span class="k">import</span> <span class="n">EvaluationStage</span><span class="p">,</span> <span class="n">Evaluator</span>
 
 <div class="viewcode-block" id="FitnessCache"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.cache.FitnessCache">[docs]</a><span class="k">class</span> <span class="nc">FitnessCache</span><span class="p">(</span><span class="n">EvaluationStage</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Evaluations cache. </span>
+<span class="sd">    </span>
+<span class="sd">    It allows recovering the previous evaluation of an already evaluated individual, increasing the performance.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">:</span><span class="n">Evaluator</span><span class="p">,</span> <span class="n">n_generation</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">max_decimals</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        FitnessCache constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            evaluator (Evaluator): Evaluator used to evaluate the individuals.</span>
+<span class="sd">            n_generation (int, optional): Amounts of generations to wait before deleting an old rating. Defaults to None (never deletes).</span>
+<span class="sd">            max_decimals (int, optional): Decimal places to consider when comparing two individuals. Defaults to None (all places).</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n_generation&quot;</span><span class="p">:</span><span class="n">n_generation</span><span class="p">,</span> <span class="s2">&quot;max_decimals&quot;</span><span class="p">:</span><span class="n">max_decimals</span><span class="p">}</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">evaluator</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
         
@@ -138,6 +146,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_generation</span> <span class="o">=</span> <span class="mi">0</span>
         
 <div class="viewcode-block" id="FitnessCache.get_individual_representation"><a class="viewcode-back" href="../../../evolvepy.evaluator.html#evolvepy.evaluator.cache.FitnessCache.get_individual_representation">[docs]</a>    <span class="k">def</span> <span class="nf">get_individual_representation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">individual</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Generates the byte representation of an individual, considering the precision in decimal places.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            individual (np.ndarray): Individual who will have representation generated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bytes: Generated representation.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_decimals</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">individual</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">individual</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">:</span>
@@ -149,6 +166,15 @@
 
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Returns the stored fitness of individuals, or evaluates them if it doesn&#39;t have it.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            population (np.ndarray): Population to be evaluated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Population fitness.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">pop_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
         
         <span class="n">fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">pop_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluator</span><span class="o">.</span><span class="n">_n_scores</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
@@ -188,6 +214,9 @@
         <span class="k">return</span> <span class="n">fitness</span>
 
     <span class="k">def</span> <span class="nf">_delete_old</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Delete old fitness.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_generation</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
 

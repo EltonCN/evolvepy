@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -124,11 +119,24 @@
 <span class="kn">import</span> <span class="nn">numba</span>
 <span class="kn">from</span> <span class="nn">numba.misc.special</span> <span class="k">import</span> <span class="n">prange</span>
 
-<span class="kn">from</span> <span class="nn">evolvepy.generator</span> <span class="k">import</span> <span class="n">chromosomeOperator</span>
+<span class="kn">from</span> <span class="nn">evolvepy.generator</span> <span class="k">import</span> <span class="n">ChromosomeOperator</span>
 <span class="kn">from</span> <span class="nn">evolvepy.generator.context</span> <span class="k">import</span> <span class="n">Context</span>
 
-<div class="viewcode-block" id="CombineLayer"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.combine.CombineLayer">[docs]</a><span class="k">class</span> <span class="nc">CombineLayer</span><span class="p">(</span><span class="n">chromosomeOperator</span><span class="p">):</span>
+<div class="viewcode-block" id="CombineLayer"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.combine.CombineLayer">[docs]</a><span class="k">class</span> <span class="nc">CombineLayer</span><span class="p">(</span><span class="n">ChromosomeOperator</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Layer to join different pipeline paths</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">selection_function</span><span class="p">:</span><span class="n">Callable</span><span class="p">,</span> <span class="n">crossover_function</span><span class="p">:</span><span class="n">Callable</span><span class="p">,</span> <span class="n">n_combine</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Initialization for combine layer setting selection, crossover and n_combine parameters</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            selection_function (Callable): Selection function used fot the layer</span>
+<span class="sd">            crossover_function (Callable): Crossover function used for the layer</span>
+<span class="sd">            n_combine (int): Number of layers to be combined</span>
+<span class="sd">            name (string): Name of the layer</span>
+<span class="sd">            chromosome_names (List[string]): list of names from the chromosomes</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;selection_function_name&quot;</span><span class="p">:</span><span class="n">selection_function</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">&quot;crossover_function_name&quot;</span><span class="p">:</span><span class="n">crossover_function</span><span class="o">.</span><span class="vm">__name__</span><span class="p">}</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="o">=</span><span class="n">chromosome_names</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
 
@@ -137,12 +145,29 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_n_combine</span> <span class="o">=</span> <span class="n">n_combine</span>
 
 <div class="viewcode-block" id="CombineLayer.call_chromosomes"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.combine.CombineLayer.call_chromosomes">[docs]</a>    <span class="k">def</span> <span class="nf">call_chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chromosomes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Generic call for combine function</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="n">CombineLayer</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">,</span> <span class="n">fitness</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_selection_function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crossover_function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_combine</span><span class="p">)</span></div>
 
     
 <div class="viewcode-block" id="CombineLayer.combine"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.combine.CombineLayer.combine">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span><span class="p">()</span><span class="c1">#parallel=True)</span>
     <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">selection_function</span><span class="p">:</span><span class="n">Callable</span><span class="p">,</span> <span class="n">crossover_function</span><span class="p">:</span><span class="n">Callable</span><span class="p">,</span> <span class="n">n_combine</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Combine two or more layers</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            chromossomes (np.ndarray): Array of chromosomes</span>
+<span class="sd">            fitness (np.ndarray): Array of inidividuals fitness</span>
+<span class="sd">            selection_function (Callable): Selection function for the layer</span>
+<span class="sd">            crossover_function (Callable): Crossover function for the layer</span>
+<span class="sd">            n_combine (int): Number of layers to combine</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            result (np.ArrayLike): Array of new population</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">)</span>
 
         <span class="n">n</span> <span class="o">=</span> <span class="n">fitness</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>

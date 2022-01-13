@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -123,7 +118,7 @@
 
 <span class="kn">from</span> <span class="nn">evolvepy.callbacks</span> <span class="k">import</span> <span class="n">Callback</span>
 
-<div class="viewcode-block" id="DynamicMutation"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.dynamic_mutation.DynamicMutation">[docs]</a><span class="k">class</span> <span class="nc">DynamicMutation</span><span class="p">(</span><span class="n">Callback</span><span class="p">):</span>
+<div class="viewcode-block" id="DynamicMutation"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.DynamicMutation">[docs]</a><span class="k">class</span> <span class="nc">DynamicMutation</span><span class="p">(</span><span class="n">Callback</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Callback that implements the behavior of a dynamic mutation.</span>
 
@@ -197,7 +192,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_original_parameters</span> <span class="o">=</span> <span class="p">{}</span>
 
-<div class="viewcode-block" id="DynamicMutation.on_evaluator_end"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.dynamic_mutation.DynamicMutation.on_evaluator_end">[docs]</a>    <span class="k">def</span> <span class="nf">on_evaluator_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="DynamicMutation.on_evaluator_end"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.DynamicMutation.on_evaluator_end">[docs]</a>    <span class="k">def</span> <span class="nf">on_evaluator_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Called on evaluator end.</span>
 

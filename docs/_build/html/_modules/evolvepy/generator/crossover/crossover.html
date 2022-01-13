@@ -39,11 +39,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -79,8 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#evolvepy-evolver-module">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#evolvepy-configurable-module">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples_link.html">Examples</a><ul>
@@ -124,13 +119,14 @@
 
 <div class="viewcode-block" id="mean"><a class="viewcode-back" href="../../../../evolvepy.generator.crossover.html#evolvepy.generator.crossover.crossover.mean">[docs]</a><span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&#39;&#39;&#39;Crossover computing the mean of chromosomes</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Crossover computing the mean of chromosomes</span>
 
-<span class="sd">        :param chromosomes: array of chromosomes</span>
-<span class="sd">        :type chromosomes: np.typing.ArrayLike</span>
+<span class="sd">    Args:</span>
+<span class="sd">        chromosomes (np.typing.ArrayLike): array of chromosomes</span>
 
-<span class="sd">        :return: new chromosome</span>
-<span class="sd">        :rtype: np.ndarray</span>
+<span class="sd">    Returns:</span>
+<span class="sd">		np.ndarray: new chromosome.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">chromosomes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">)</span>
@@ -139,13 +135,13 @@
     
 <div class="viewcode-block" id="one_point"><a class="viewcode-back" href="../../../../evolvepy.generator.crossover.html#evolvepy.generator.crossover.crossover.one_point">[docs]</a><span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">one_point</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
-    <span class="sd">&#39;&#39;&#39;Crossover joining in one point</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Crossover joining in one point</span>
+<span class="sd">    Args:</span>
+<span class="sd">        chromosomes (np.typing.ArrayLike): array of chromosomes</span>
 
-<span class="sd">        :param chromosomes: array of chromosomes</span>
-<span class="sd">        :type chromosomes: np.typing.ArrayLike</span>
-
-<span class="sd">        :return: new chromosome</span>
-<span class="sd">        :rtype: np.ndarray</span>
+<span class="sd">    Returns:</span>
+<span class="sd">		np.ndarray: new chromosome.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">chromosomes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -158,15 +154,15 @@
 
 <div class="viewcode-block" id="n_point"><a class="viewcode-back" href="../../../../evolvepy.generator.crossover.html#evolvepy.generator.crossover.crossover.n_point">[docs]</a><span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">n_point</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
-    <span class="sd">&#39;&#39;&#39;Crossover joining in n points</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Crossover joining in n points</span>
 
-<span class="sd">        :param chromosomes: array of chromosomes</span>
-<span class="sd">        :type chromosomes: np.typing.ArrayLike</span>
-<span class="sd">        :param n: number of points to join</span>
-<span class="sd">        :type n: int</span>
+<span class="sd">    Args:</span>
+<span class="sd">        chromosomes (np.typing.ArrayLike): array of chromosomes</span>
+<span class="sd">        n (int): number of points to join</span>
 
-<span class="sd">        :return: new chromosome</span>
-<span class="sd">        :rtype: np.ndarray</span>
+<span class="sd">    Returns:</span>
+<span class="sd">		np.ndarray: new chromosome.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">indexs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">chromosomes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
 
@@ -188,10 +184,6 @@
             <span class="n">ind_index</span> <span class="o">=</span> <span class="mi">0</span>
     
     <span class="k">return</span> <span class="n">new_chromosome</span></div>
-
-<div class="viewcode-block" id="default_crossover"><a class="viewcode-back" href="../../../../evolvepy.generator.crossover.html#evolvepy.generator.crossover.crossover.default_crossover">[docs]</a><span class="k">def</span> <span class="nf">default_crossover</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">one_point</span></div>
-
 </pre></div>
 
            </div>
