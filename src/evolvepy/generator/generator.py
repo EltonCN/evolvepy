@@ -11,8 +11,21 @@ from evolvepy.generator.firstgen import FirstGenLayer
 from evolvepy.generator.descriptor import Descriptor
 
 class Generator:
+	'''
+	Main class of the pipeline, it defines the layers oder, bifurcations and parameters
+	'''
 
 	def __init__(self, layers:Union[None, List[Layer]]=None, first_layer:Layer=None, last_layer:Layer=None, descriptor:Optional[Descriptor]=None):    
+		'''
+		Initialization for the Generator class with the desired layer order and individuasl description
+
+		Args:
+			layers (List[Layer]): List of layers used in the pieline
+			first_layer (Layer): First layer of the pipeline
+			last_layer (Layer): Last layer of a pipeline
+			descriptor (Descriptor): Object describing the individuals chromosome number, type and range
+		'''
+
 		self._connected = False
 
 		if layers is None:
@@ -72,26 +85,70 @@ class Generator:
 		self._population = None
 
 	def set_parameter(self, layer_name:str, parameter_name:str, value:object) -> None:
+		'''
+		Defines the value of a specified parameter for a specified layer
+		
+		Args:
+			layer_name (string): Name of the desired layer
+			parameter_name (string): Name of th desired parameter
+			value (object): Value to update the parameter
+		
+		'''
 		for layer in self._layers:
 			if layer.name == layer_name:
 				layer.parameters = (parameter_name, value)
 
 	def set_parameters(self, layer_name:str, parameters:Dict[str, object]) -> None:
+		'''
+		Defines the value of n specified parameters for a specified layer
+		
+		Args:
+			layer_name (string): Name of the desired layer
+			parameters (Dict[str, object]): Dict of parameters to update and their new values
+		
+		'''
 		for layer in self._layers:
 			if layer.name == layer_name:
 				layer.parameters = parameters
 
 	def get_parameter(self, layer_name:str, parameter_name:str=None) -> object:
+		'''
+		Recover the value of a specified parameter for a specified layer
+		
+		Args:
+			layer_name (string): Name of the desired layer
+			parameter_name (string): Name of th desired parameter
+			
+		Returns:
+			parameter (object): Object containing the parameter values
+		'''
+
 		for layer in self._layers:
 			if layer.name == layer_name:
 				return layer.parameters[parameter_name]
 	
 	def get_parameters(self, layer_name:str) -> Dict[str, object]:
+		'''
+		Recover the value of all parameters for a specified layer
+		
+		Args:
+			layer_name (string): Name of the desired layer
+		
+		Returns:
+			parameters (Dict[str, object]): Dict of parameters and their values
+		
+		'''
 		for layer in self._layers:
 			if layer.name == layer_name:
 				return layer.parameters
 
 	def get_all_static_parameters(self) -> Dict[str, object]:
+		'''
+		Recover all static imutable parameters
+		
+		Returns:
+			static_parameters (Dict[string, object]): Dictionay of pipeline's static parameters
+		'''
 		static_parameters = {}
 		
 		for layer in self._layers:
@@ -103,6 +160,12 @@ class Generator:
 		return static_parameters
 
 	def get_all_dynamic_parameters(self) -> Dict[str, object]:
+		'''
+		Recover all static imutable parameters
+		
+		Returns:
+			dynamic_parameters (Dict[string, object]): Dictionay of pipeline's dynamic parameters
+		'''
 		dynamic_parameters = {}
 
 		for layer in self._layers:
@@ -114,6 +177,12 @@ class Generator:
 		return dynamic_parameters
 
 	def add(self, layer:Layer) -> None:
+		'''
+		Add layer to the pipeline
+		
+		Args:
+			layer (Layer): Logical Layer to be added to the pipeline
+		'''
 		if len(self._layers) != 0:
 			self._layers[-1].next = layer
 
@@ -121,13 +190,33 @@ class Generator:
 	
 	@property
 	def fitness(self) -> np.ndarray:
+		'''
+		Return fitness atribute from population
+		
+		Returns:
+			fitness (np.ndarray): Array of population fitness'''
 		return self._fitness
 
 	@fitness.setter
 	def fitness(self, value:ArrayLike):
+		'''
+		Set fitness for each individual in the population
+		
+		Args:
+			value (ArrayLike): Array of fitness values
+		'''
 		self._fitness = np.asarray(value)
 
 	def generate(self, population_size:int) -> np.ndarray:
+		'''
+		Generate the pipeline from the given layers and atributes building the evolution model to pass to the evolver
+		
+		Args:
+			population_size (int): Number of individuals in a population
+			
+		Returns:
+			population (np.ndarray): generated population
+		'''
 		
 		context = Context(population_size, self._descriptor.chromosome_names)
 

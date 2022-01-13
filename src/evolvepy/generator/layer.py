@@ -11,9 +11,20 @@ from evolvepy.configurable import Configurable
 from evolvepy.generator.context import Context
 
 class Layer(Configurable):
+	'''
+	Base Layer class with essential properties and methods, can be used as base for especialized layers of as simple layer in the pipeline
+	'''
 
 
 	def __init__(self, name:str=None, dynamic_parameters:Dict[str, bool] = None, parameters:Dict[str, object] = None):
+		'''
+		Base initialization for a layer and it's dynamic and static parameters
+		
+		Args:
+			name (string): Layer's name
+			dynamic_parameters (Dict[string, bool]): Dictionary of mutable parameters
+			static_parameters (Dict[string, object]): Dictionary of immutable parameters
+		'''
 		super().__init__(parameters, dynamic_parameters, name=name)        
 
 		self._next : List[Layer] = []
@@ -26,10 +37,25 @@ class Layer(Configurable):
 
 	@property
 	def next(self) -> List[Layer]:
+		'''
+		Return the layer sucessor, so the generator and evolver only need to know the first and last layer of the pipeline.
+		
+		Returns:
+			next(List[Layer]): List of immediate successors of the current layer, it is possible that the layers has n sucessors leading to n different pipes.
+		'''
 		return self._next
 	
 	@next.setter
 	def next(self, layer:Layer) -> None:
+		'''
+		Set the layer sucessor, so the generator and evolver only need to know the first and last layer of the pipeline.
+		
+		Args:
+			layer(Layer): Layer to succeed the current one.
+
+		Returns:
+			next(List[Layer]): List of immediate successor sucessor layers
+		'''
 		if layer not in self._next:
 			self._next.append(layer)
 
@@ -37,17 +63,47 @@ class Layer(Configurable):
 
 	@property
 	def population(self) -> np.ndarray:
+		'''
+		Returns the population array
+		
+		Retuns:
+			population (np.ndarray): Population array
+		'''
 		return self._population
 	
 	@property
 	def fitness(self) -> np.ndarray:
+		'''
+		Returns the fitness array
+		
+		Retuns:
+			fitness (np.ndarray): Fitness array
+		'''
 		return self._fitness
 
 	@property
 	def context(self) -> Context:
+		'''
+		Returns the context object
+		
+		Retuns:
+			context (Context): Context object for the next layers
+		'''
 		return self._context
 
-	def __call__(self, population:Union[ArrayLike, None], fitness:Union[ArrayLike, None]=None, context:Union[Context, None]=None) -> np.ndarray:          
+	def __call__(self, population:Union[ArrayLike, None], fitness:Union[ArrayLike, None]=None, context:Union[Context, None]=None) -> np.ndarray:
+		'''
+		Generic call to use the object as a funtion call, applying the layer oparetion
+		
+		Args:
+			population (np.ndarray): Population array
+			fitness (np.ndarray): Fitness array
+			context (Context): Context object for the next layers
+
+		Returns:
+			population (np.ndarray): New population array
+			fitness (np.ndarray): New fitness array
+		'''         
 
 		if not (population is None and fitness is None):
 			population = np.asarray(population)
@@ -71,6 +127,14 @@ class Layer(Configurable):
 		return population, fitness
 
 	def send_next(self, population, fitness, context):
+		'''
+		Send context, population and fitness to the next layers
+		
+		Args:
+			population (np.ndarray): Population array
+			fitness (np.ndarray): Fitness array
+			context (Context): Context object for the next layers
+		'''
 		self._population = population
 		self._fitness = fitness
 
@@ -86,8 +150,17 @@ class Layer(Configurable):
 
 
 class Concatenate(Layer):
+	'''
+	Concatenation layer to join 2 or more layers
+	'''
 
 	def __init__(self, name: str = None):
+		'''
+		Initialization for thr Cconcatenate layer with the number of layers
+		
+		Args:
+			name (string): Layer's name
+		'''
 		super().__init__(name=name)
 
 		self._received_count = 0
@@ -96,6 +169,19 @@ class Concatenate(Layer):
 		self._fitness = None
 
 	def __call__(self, population: np.ndarray, fitness: np.ndarray, context:Union[Context, None]=None) -> Tuple[np.ndarray, np.ndarray]: # NOSONAR
+		'''
+		Generic call to concatenate the layers using the object as a funtion call
+		
+		Args:
+			population (np.ndarray): Population array
+			fitness (np.ndarray): Fitness array
+			context (Context): Context object for the next layers
+		
+		Returns:
+			population (np.ndarray): New population array
+			fitness (np.ndarray): New fitness array
+
+		'''
 		if not (population is None and fitness is None):
 			population = np.asarray(population)
 
@@ -123,7 +209,21 @@ class Concatenate(Layer):
 
 
 class ChromosomeOperator(Layer):
+	'''
+	Base layer for chromossome operations such as numeric and boolean mutations
+	'''
+
 	def __init__(self, name: str = None, dynamic_parameters: Dict[str, bool] = None, parameters: Dict[str, object] = None, chromosome_names: Union[str, List[str], None] = None):
+		'''
+		Initialization for the chromossome operator layer with name and parameters
+		
+		Args:
+			name (string): Layer's name
+			dynamic_parameters (Dict[string, bool]): Dictionary of mutable parameters
+			parameters (Dict[string, object]): Dictionary of immutable parameters
+			chromosome_names (List[str]): Name of each chromosome
+		'''
+
 		super().__init__(name=name, dynamic_parameters=dynamic_parameters, parameters=parameters)
 
 		if isinstance(chromosome_names, str):
@@ -132,7 +232,20 @@ class ChromosomeOperator(Layer):
 			self._chromosome_names = chromosome_names
 
 	
-	def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:        
+	def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:
+		'''
+		Generic call to use the object as a funtion call, applying the layer oparetion
+		
+		Args:
+			population (np.ndarray): Population array
+			fitness (np.ndarray): Fitness array
+			context (Context): Context object for the next layers
+
+		Returns:
+			population (np.ndarray): New population array
+			fitness (np.ndarray): New fitness array
+		'''   
+
 		result = population.copy()
 
 		if self._chromosome_names is None: # Without specified name
@@ -150,5 +263,6 @@ class ChromosomeOperator(Layer):
 
 		return result, fitness
 	
+	#?????
 	def call_chromosomes(self, chromosomes:np.ndarray, fitness:np.ndarray, context:Context, name:Optional[str]) -> np.ndarray:
 		return chromosomes
