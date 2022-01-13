@@ -22,6 +22,6 @@ class TestSelection(unittest.TestCase):
 
 			self.assertEqual(len(population), len(selected))
 			self.assertEqual(len(fitness), len(selected_fitness))
-			
-			for i in range(n_selected):
-				self.assertLessEqual(selected_fitness[i], fitness[-n_selected])
+
+			for j in range(n_selected):
+				self.assertLessEqual(fitness[-n_selected], selected_fitness[j])
