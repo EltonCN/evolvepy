@@ -189,12 +189,12 @@ class ElitismLayer(Layer):
 
 	def call(self, population: np.ndarray, fitness: np.ndarray, context: Context) -> Tuple[np.ndarray, np.ndarray]:
 		'''
-		Sort the population by fitness and then
+		Sort the population by fitness and then filter the best n_to_pass individuals
 
 		Args:
-			population (np.ndarray): 
-			fitness (np.ndarray):
-			context (Context):
+			population (np.ndarray): New array of inidividuals
+			fitness (np.ndarray): New array of individuals fitness
+			context (Context): Context of the population from the previous layers
 
 		Returns:
 			population (np.ArrayLike): Array of individuals.
