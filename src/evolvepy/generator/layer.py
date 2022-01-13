@@ -122,33 +122,33 @@ class Concatenate(Layer):
 		return population, fitness
 
 
-class ChromossomeOperator(Layer):
-	def __init__(self, name: str = None, dynamic_parameters: Dict[str, bool] = None, parameters: Dict[str, object] = None, chromossome_names: Union[str, List[str], None] = None):
+class ChromosomeOperator(Layer):
+	def __init__(self, name: str = None, dynamic_parameters: Dict[str, bool] = None, parameters: Dict[str, object] = None, chromosome_names: Union[str, List[str], None] = None):
 		super().__init__(name=name, dynamic_parameters=dynamic_parameters, parameters=parameters)
 
-		if isinstance(chromossome_names, str):
-			self._chromossome_names = [chromossome_names]
+		if isinstance(chromosome_names, str):
+			self._chromosome_names = [chromosome_names]
 		else:
-			self._chromossome_names = chromossome_names
+			self._chromosome_names = chromosome_names
 
 	
 	def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:        
 		result = population.copy()
 
-		if self._chromossome_names is None: # Without specified name
-			if len(population.dtype) == 0 and not context.blocked: # and only one chromossome
-				result = self.call_chromossomes(population, fitness, context, None)
+		if self._chromosome_names is None: # Without specified name
+			if len(population.dtype) == 0 and not context.blocked: # and only one chromosome
+				result = self.call_chromosomes(population, fitness, context, None)
 			else:
 				for name in population.dtype.names: # and multiple chrmossomes
 					if not context.blocked[name]:
-						result[name] = self.call_chromossomes(population[name], fitness, context, name)
+						result[name] = self.call_chromosomes(population[name], fitness, context, name)
 		else:
-			for name in self._chromossome_names:
+			for name in self._chromosome_names:
 				if not context.blocked[name]:
-						result[name] = self.call_chromossomes(population[name], fitness, context, name)
+						result[name] = self.call_chromosomes(population[name], fitness, context, name)
 
 
 		return result, fitness
 	
-	def call_chromossomes(self, chromossomes:np.ndarray, fitness:np.ndarray, context:Context, name:Optional[str]) -> np.ndarray:
-		return chromossomes
+	def call_chromosomes(self, chromosomes:np.ndarray, fitness:np.ndarray, context:Context, name:Optional[str]) -> np.ndarray:
+		return chromosomes

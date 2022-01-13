@@ -43,7 +43,7 @@ class TestCombineLayer(unittest.TestCase):
         population[5:]["chr1"] *= 2.0
         fitness = np.random.rand(10)
 
-        layer = CombineLayer(tournament, one_point, 2, name="combine_test", chromossome_names="chr0")
+        layer = CombineLayer(tournament, one_point, 2, name="combine_test", chromosome_names="chr0")
         changed, _ = layer(population, fitness)
 
         assert_equal(changed.dtype, population.dtype)

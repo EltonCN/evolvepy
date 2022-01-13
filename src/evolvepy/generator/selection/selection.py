@@ -12,15 +12,15 @@ def isin(val, arr):
 
 @numba.njit
 def tournament(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
-	'''Select the best individuals in a one vs one test.
+	'''
+	Select the best individuals in a one vs one test.
 		
-		:param fitness_array: array with evaluated fitness from the generation
-		:type fitness_array: np.typing.ArrayLike
-		:param n_selection: number of individuals that will be selected
-		:type n_selection: int
+	Args:
+		fitness_array (np.typing.ArrayLike): Array with evaluated fitness from the generation
+		n_selection (int): Number of individuals that will be selected
 
-		:return: array with indexs of selected individuals
-		:rtype: np.ndarray
+	Returns:
+		selected (np.ndarray): Array with indexs of selected individuals
 	'''
 
 	fitness_array = np.asarray(fitness_array)
@@ -46,16 +46,16 @@ def tournament(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 
 @numba.njit
 def roulette(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
-	'''Select the best individuals stocaticaly with the probability of beign chosen
+	'''
+	Select the best individuals stocaticaly with the probability of beign chosen
 	equivalent to the individual fitness.
-		
-		:param fitness_array: array with evaluated fitness from the generation
-		:type fitness_array: np.typing.ArrayLike
-		:param n_selection: number of individuals that will be selected
-		:type n_selection: int
+	
+	Args:
+		fitness_array (np.typing.ArrayLike): array with evaluated fitness from the generation
+		n_selection (int): number of individuals that will be selected
 
-		:return: array with indexs of selected individuals
-		:rtype: np.ndarray
+	Returns:
+		selected (np.ndarray): array with indexs of selected individuals
 	'''
 
 	fitness = np.asarray(fitness_array)
@@ -83,15 +83,15 @@ def roulette(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 
 @numba.njit
 def rank(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
-    '''Select the n best individuals assuming the fitness_array is decreasingly sorted.
-        
-        :param fitness_array: array with evaluated fitness from the generation
-        :type fitness_array: np.typing.ArrayLike
-        :param n_selection: number of individuals that will be selected
-        :type n_selection: int
+    '''
+	Select the n best individuals assuming the fitness_array is decreasingly sorted.
+    
+	Args:
+    	fitness_array (np.typing.ArrayLike): array with evaluated fitness from the generation
+    	n_selection (int): number of individuals that will be selected
 
-        :return: array with indexs of selected individuals
-        :rtype: np.ndarray
+	Returns:
+        np.arange(0, n_selection, 1, dtype=np.int32) (np.ndarray): array with indexs of selected individuals
     '''
 
     return np.arange(0, n_selection, 1, dtype=np.int32)

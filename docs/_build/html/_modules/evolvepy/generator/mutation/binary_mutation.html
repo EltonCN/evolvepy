@@ -124,12 +124,12 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Tuple</span>
 
 <div class="viewcode-block" id="bit_mutation"><a class="viewcode-back" href="../../../../evolvepy.generator.mutation.html#evolvepy.generator.mutation.binary_mutation.bit_mutation">[docs]</a><span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">bit_mutation</span><span class="p">(</span><span class="n">chromossome</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">existence_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">mutation_range</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
-    <span class="sd">&#39;&#39;&#39; it takes a number n of genes and randomicaly change n gene bits in a chromossome.</span>
+<span class="k">def</span> <span class="nf">bit_mutation</span><span class="p">(</span><span class="n">chromosome</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">existence_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">gene_rate</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">mutation_range</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
+    <span class="sd">&#39;&#39;&#39; it takes a number n of genes and randomicaly change n gene bits in a chromosome.</span>
 <span class="sd">		If gener_rate = 1 this mutaions behaves like a flipbit mutation, else it is a bitstring mutaion</span>
 <span class="sd">	&#39;&#39;&#39;</span>
-    <span class="n">chromossome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">chromossome</span><span class="p">)</span>
-    <span class="n">new_chromossome</span> <span class="o">=</span> <span class="n">chromossome</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">chromosome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)</span>
+    <span class="n">new_chromosome</span> <span class="o">=</span> <span class="n">chromosome</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
     <span class="n">first</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -137,8 +137,8 @@
         <span class="k">while</span> <span class="n">first</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">gene_rate</span><span class="p">:</span>
             <span class="n">first</span> <span class="o">=</span> <span class="kc">False</span>
 
-            <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">chromossome</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">new_chromossome</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">chromossome</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span></div>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">chromosome</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">new_chromosome</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">chromosome</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span></div>
 </pre></div>
 
            </div>

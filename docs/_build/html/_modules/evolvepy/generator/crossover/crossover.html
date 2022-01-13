@@ -150,11 +150,11 @@
 
     <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">chromosomes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-    <span class="n">new_chromossome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">new_chromossome</span><span class="p">[:</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">chromosomes</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="n">index</span><span class="p">]</span>
-    <span class="n">new_chromossome</span><span class="p">[</span><span class="n">index</span><span class="p">:]</span> <span class="o">=</span> <span class="n">chromosomes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">index</span><span class="p">:]</span>
+    <span class="n">new_chromosome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">new_chromosome</span><span class="p">[:</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">chromosomes</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="n">index</span><span class="p">]</span>
+    <span class="n">new_chromosome</span><span class="p">[</span><span class="n">index</span><span class="p">:]</span> <span class="o">=</span> <span class="n">chromosomes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">index</span><span class="p">:]</span>
 
-    <span class="k">return</span> <span class="n">new_chromossome</span></div>
+    <span class="k">return</span> <span class="n">new_chromosome</span></div>
 
 <div class="viewcode-block" id="n_point"><a class="viewcode-back" href="../../../../evolvepy.generator.crossover.html#evolvepy.generator.crossover.crossover.n_point">[docs]</a><span class="nd">@numba</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">n_point</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">:</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
@@ -172,14 +172,14 @@
 
     <span class="n">indexs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">indexs</span><span class="p">)</span>
 
-    <span class="n">new_chromossome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">new_chromosome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">chromosomes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
     <span class="n">ant</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="n">ind_index</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">new_chromossome</span><span class="p">[</span><span class="n">ant</span><span class="p">:</span><span class="n">indexs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">chromosomes</span><span class="p">[</span><span class="n">ind_index</span><span class="p">][</span><span class="n">ant</span><span class="p">:</span><span class="n">indexs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="n">new_chromosome</span><span class="p">[</span><span class="n">ant</span><span class="p">:</span><span class="n">indexs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">chromosomes</span><span class="p">[</span><span class="n">ind_index</span><span class="p">][</span><span class="n">ant</span><span class="p">:</span><span class="n">indexs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
         <span class="n">ant</span> <span class="o">=</span> <span class="n">indexs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">ind_index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -187,7 +187,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ind_index</span> <span class="o">=</span> <span class="mi">0</span>
     
-    <span class="k">return</span> <span class="n">new_chromossome</span></div>
+    <span class="k">return</span> <span class="n">new_chromosome</span></div>
 
 <div class="viewcode-block" id="default_crossover"><a class="viewcode-back" href="../../../../evolvepy.generator.crossover.html#evolvepy.generator.crossover.crossover.default_crossover">[docs]</a><span class="k">def</span> <span class="nf">default_crossover</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">one_point</span></div>

@@ -45,21 +45,21 @@ def get_descriptor(model:keras.Model) -> Descriptor:
     Returns:
         Descriptor: Descriptor for individuals containing the model weights and bias.
     '''
-    chromossome_sizes = []
-    chromossome_ranges = []
+    chromosome_sizes = []
+    chromosome_ranges = []
     types = []
     names = []
 
     index = 0
 
     for weights in model.weights:
-        chromossome_sizes.append(weights.shape.num_elements())
-        chromossome_ranges.append((-1.0, 1.0))
+        chromosome_sizes.append(weights.shape.num_elements())
+        chromosome_ranges.append((-1.0, 1.0))
         types.append(np.float32)
         names.append("weights"+str(index))
         index += 1
 
-    descriptor = Descriptor(chromossome_sizes, chromossome_ranges, types, names)
+    descriptor = Descriptor(chromosome_sizes, chromosome_ranges, types, names)
     return descriptor
 
 class TFKerasEvaluator(Evaluator):

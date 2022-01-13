@@ -30,7 +30,7 @@ class TestGenerator(unittest.TestCase):
 		assert_equal(population["single"].shape, (10,10))
 
 	def test_bool(self):
-		descriptor = Descriptor(chromossome_sizes= 10, types=bool, names = "bool")
+		descriptor = Descriptor(chromosome_sizes= 10, types=bool, names = "bool")
 		gen = Generator(descriptor = descriptor)
 
 		population = gen.generate(5)
@@ -121,16 +121,16 @@ class TestGenerator(unittest.TestCase):
 	
 	def test_multiple_generator(self):
 		descriptor = Descriptor((1,3), [(0,1), (3,5)], [np.float32, np.float32])
-		context = Context(10, descriptor.chromossome_names)
+		context = Context(10, descriptor.chromosome_names)
 
-		layer1 = FirstGenLayer(descriptor, chromossome_names=["chr0"], initialize_zeros=True)
+		layer1 = FirstGenLayer(descriptor, chromosome_names=["chr0"], initialize_zeros=True)
 		
 		pop, _ = layer1(None, context=context)
 
 		assert_equal(np.bitwise_and(pop["chr0"] <=1, pop["chr0"] >=0), True)
 		assert_equal(pop["chr1"] == 0, True)
 
-		layer2 = FirstGenLayer(descriptor, chromossome_names=["chr1"])
+		layer2 = FirstGenLayer(descriptor, chromosome_names=["chr1"])
 
 		layer1.next = layer2
 

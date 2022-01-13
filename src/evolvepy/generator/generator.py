@@ -129,7 +129,7 @@ class Generator:
 
 	def generate(self, population_size:int) -> np.ndarray:
 		
-		context = Context(population_size, self._descriptor.chromossome_names)
+		context = Context(population_size, self._descriptor.chromosome_names)
 
 		if self._population is not None and len(self._population) > population_size:
 			self._population = self._population[:population_size]
