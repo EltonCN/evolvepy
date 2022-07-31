@@ -1,4 +1,5 @@
 from typing import List, Tuple, Union
+import time
 import numpy as np
 
 from evolvepy.generator import Generator
@@ -20,7 +21,7 @@ class Evolver:
             generator (Generator): Generator for generating populations.
             evaluator (Evaluator): Evaluator for evaluating individuals.
             population_size (int): Size of population.
-            callbacks (Union[Callback, List[Callback]], optional): Callabacks that will be called during evolution.. Defaults to None.
+            callbacks (Union[Callback, List[Callback]], optional): Callabacks that will be called during evolution. Defaults to None.
         '''
         
         self._generator = generator
@@ -40,12 +41,13 @@ class Evolver:
 
         self._started = False
 
-    def evolve(self, generations:int) -> Tuple[np.ndarray, np.ndarray]:
+    def evolve(self, generations:int, verbose:bool=False) -> Tuple[np.ndarray, np.ndarray]:
         '''
         Evolves the population for a few generations
 
         Args:
             generations (int): Number of generations to evolve
+            verbose (bool): If should print the generation number, maximum fitness and time. Defaults to False.
 
         Returns:
             Tuple[np.ndarray, np.ndarray]: The first element is the fitness history of all generations, in order. 
@@ -60,6 +62,9 @@ class Evolver:
             self._started = True
 
         for i in range(generations):
+            if verbose:
+                start_time = time.time()
+
             for callback in self._callbacks:
                 if callback.parameters["run"]:
                     callback.on_generator_start()
@@ -79,6 +84,13 @@ class Evolver:
             self._generator.fitness = fitness
 
             self._history[i] = fitness.flatten()
+
+            if verbose:
+                end_time = time.time()
+                delta_t = end_time-start_time
+                print("Generation "+str(i)
+                        +" | Max fitness "+str(np.max(fitness))
+                        +" | Time "+str(delta_t)+" s")
         
 
         for callback in self._callbacks:
