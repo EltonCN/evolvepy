@@ -2,6 +2,9 @@ import numpy as np
 from numpy.typing import ArrayLike
 import numba
 
+from evolvepy.integrations import nvtx
+
+@nvtx.annotate(domain="evolvepy", category="generator_operator")
 @numba.njit
 def mean(chromosomes:ArrayLike) -> np.ndarray:
     '''
@@ -17,7 +20,8 @@ def mean(chromosomes:ArrayLike) -> np.ndarray:
     chromosomes = np.asarray(chromosomes)
 
     return np.sum(chromosomes, axis=0)/chromosomes.shape[0]
-    
+
+@nvtx.annotate(domain="evolvepy", category="generator_operator")
 @numba.njit
 def one_point(chromosomes:ArrayLike) -> np.array:
     '''
@@ -37,6 +41,7 @@ def one_point(chromosomes:ArrayLike) -> np.array:
 
     return new_chromosome
 
+@nvtx.annotate(domain="evolvepy", category="generator_operator")
 @numba.njit
 def n_point(chromosomes:ArrayLike, n:int=1) -> np.array:
     '''

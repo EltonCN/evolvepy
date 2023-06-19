@@ -1,6 +1,8 @@
 from __future__ import annotations
 from typing import Any, Dict, List, Union
 
+from evolvepy.integrations import nvtx
+
 class Context:
     '''
     Layer to pass the context and restrictions from the previous layers
@@ -113,7 +115,8 @@ class Context:
             return True
         else:
             return False
-
+    
+    @nvtx.annotate(domain="evolvepy", category="generator")
     def copy(self) -> Context:
         '''
         Create a copy of this instance

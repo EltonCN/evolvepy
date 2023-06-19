@@ -3,6 +3,9 @@ from numpy.typing import ArrayLike
 from numpy.random import choice
 import numba
 
+from evolvepy.integrations import nvtx
+
+@nvtx.annotate(domain="evolvepy", category="generator_operator")
 @numba.njit(fastmath=True)
 def isin(val, arr):
     for i in range(arr.shape[0]):
@@ -10,6 +13,7 @@ def isin(val, arr):
             return True
     return False
 
+@nvtx.annotate(domain="evolvepy", category="generator_operator")
 @numba.njit
 def tournament(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 	'''
@@ -44,6 +48,7 @@ def tournament(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 
 	return selected
 
+@nvtx.annotate(domain="evolvepy", category="generator_operator")
 @numba.njit
 def roulette(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 	'''
@@ -81,6 +86,7 @@ def roulette(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 		
 	return selected
 
+@nvtx.annotate(domain="evolvepy", category="generator_operator")
 @numba.njit
 def rank(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
     '''
