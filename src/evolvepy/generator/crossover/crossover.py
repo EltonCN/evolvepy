@@ -21,7 +21,7 @@ def mean(chromosomes:ArrayLike) -> np.ndarray:
 
     return np.sum(chromosomes, axis=0)/chromosomes.shape[0]
 
-@nvtx.annotate(domain="evolvepy", category="generator_operator")
+#@nvtx.annotate(domain="evolvepy", category="generator_operator")
 @numba.njit
 def one_point(chromosomes:ArrayLike) -> np.array:
     '''

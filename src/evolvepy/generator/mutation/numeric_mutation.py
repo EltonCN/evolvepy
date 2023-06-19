@@ -5,7 +5,7 @@ import numba
 from typing import Tuple
 from evolvepy.integrations import nvtx
 
-@nvtx.annotate(domain="evolvepy", category="generator_operator")
+#@nvtx.annotate(domain="evolvepy", category="generator_operator")
 @numba.njit
 def sum_mutation(chromosome:ArrayLike, existence_rate:float, gene_rate:float, mutation_range:Tuple[float, float]):
     '''
