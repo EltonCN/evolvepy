@@ -38,3 +38,9 @@ assert_equal(population.dtype, dtype)
 assert_equal(population.shape, (5,))
 assert_equal(population["chr0"].shape, (5, 5))
 #assert_not_equal(first_pop, population)
+
+population = gen.generate(5)
+
+assert_equal(population.dtype, dtype)
+assert_equal(population.shape, (5,))
+assert_equal(population["chr0"].shape, (5, 5))
