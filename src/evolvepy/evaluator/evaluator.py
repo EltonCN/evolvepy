@@ -35,7 +35,6 @@ class Evaluator(Configurable, ABC):
         self._n_scores = n_scores
         self._scores : np.ndarray = None
 
-    @abstractmethod
     def __call__(self, population:np.ndarray) -> np.ndarray:
         '''
         Evaluates the population.
@@ -46,7 +45,7 @@ class Evaluator(Configurable, ABC):
         Returns:
             np.ndarray: Population fitness
         '''
-        ...
+        return self.call(population)
 
     @property
     def scores(self) -> np.ndarray:
@@ -54,6 +53,10 @@ class Evaluator(Configurable, ABC):
         Scores of the last evaluated individuals.
         '''
         return self._scores
+    
+    @abstractmethod
+    def call(self, population:np.ndarray) -> np.ndarray:
+        ...
 
 class EvaluationStage(Evaluator):
     '''
@@ -85,4 +88,8 @@ class EvaluationStage(Evaluator):
         Returns:
             np.ndarray: Population fitness.
         '''
+        return self.call(population)
+        
+    
+    def call(self, population:np.ndarray) -> np.ndarray:
         return self._evaluator(population)

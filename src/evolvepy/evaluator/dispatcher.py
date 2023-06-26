@@ -30,7 +30,7 @@ class MultipleEvaluation(EvaluationStage):
         self._discard_min = discard_min
         self._discard_max = discard_max
 
-    def __call__(self, population: np.ndarray) -> np.ndarray:
+    def call(self, population: np.ndarray) -> np.ndarray:
         '''
         Evaluates the population several times, aggregating the evaluations
 

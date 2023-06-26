@@ -50,7 +50,7 @@ class FitnessCache(EvaluationStage):
         return individual.data.tobytes()
 
 
-    def __call__(self, population:np.ndarray) -> np.ndarray:
+    def call(self, population:np.ndarray) -> np.ndarray:
         '''
         Returns the stored fitness of individuals, or evaluates them if it doesn't have it.
 

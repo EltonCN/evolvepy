@@ -141,7 +141,7 @@ class ProcessEvaluator(Evaluator):
         self._setted = True
 
 
-    def __call__(self, population: np.ndarray) -> np.ndarray:
+    def call(self, population: np.ndarray) -> np.ndarray:
         '''
         Evaluates the population
 
