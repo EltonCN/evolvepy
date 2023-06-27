@@ -7,6 +7,7 @@ class annotate(contextlib.nullcontext):
         def __call__(self, func):
             return func
 
+annotate_se = annotate
 
 def mark(*args, **kwargs): pass
 def push_range(*args, **kwargs): pass
