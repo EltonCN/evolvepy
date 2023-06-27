@@ -6,6 +6,7 @@ from evolvepy.configurable import Configurable
 
 from evolvepy.generator import Generator
 from evolvepy.evaluator import Evaluator
+from evolvepy.integrations import nvtx
 
 class Callback(Configurable):
     '''
@@ -89,7 +90,57 @@ class Callback(Configurable):
         
         self._callbacks = value
 
+    #To call in Evolver
+
+    def _on_start(self) -> None:
+        '''
+        Called when evolution start.
+        '''
+        range_name = "{0}_start".format(self.name)
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback"):
+            self.on_start()
+
+    def _on_generator_start(self) -> None:
+        '''
+        Called before generator run.
+        '''
+        range_name = "{0}_generator_start".format(self.name)
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback"):
+            self.on_generator_start()
         
+
+    def _on_generator_end(self, population:np.ndarray) -> None:
+        '''
+        Called after generator run, before evaluator.
+
+        Args:
+            population (np.ndarray): The generated population.
+        '''
+        range_name = "{0}_generator_end".format(self.name)
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback"):
+            self.on_generator_end(population)
+
+    def _on_evaluator_end(self, fitness:np.ndarray) -> None:
+        '''
+        Called after evaluator run.
+
+        Args:
+            fitness (np.ndarray): The population fitness.
+        '''
+        range_name = "{0}_evaluator_end".format(self.name)
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback"):
+            self.on_evaluator_end(fitness)
+
+    def _on_stop(self) -> None:
+        '''
+        Called on evolution end.
+        '''
+        range_name = "{0}_stop".format(self.name)
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback"):
+            self.on_stop()
+
+
+    #To override
     def on_start(self) -> None:
         '''
         Called when evolution start.

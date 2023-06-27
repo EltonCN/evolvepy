@@ -36,9 +36,9 @@ class Evolver:
         self._callbacks = callbacks
 
         for callback in self._callbacks:
-            callback.generator = generator
-            callback.evaluator = evaluator
-            callback.callbacks = self._callbacks
+            callback._generator = generator
+            callback._evaluator = evaluator
+            callback._callbacks = self._callbacks
 
         self._started = False
 
@@ -60,7 +60,7 @@ class Evolver:
         if not self._started:
             with nvtx.annotate_se("callback_start", domain="evolvepy", category="evolution_stage"):
                 for callback in self._callbacks:
-                    callback.on_start()
+                    callback._on_start()
                 self._started = True
 
         for i in range(generations):
@@ -72,24 +72,24 @@ class Evolver:
 
             with nvtx.annotate_se("callback_generator_start", domain="evolvepy", category="evolution_stage"):
                 for callback in self._callbacks:
-                    if callback.parameters["run"]:
-                        callback.on_generator_start()
+                    if callback._parameters["run"]:
+                        callback._on_generator_start()
 
             with nvtx.annotate_se("generator", domain="evolvepy", category="evolution_stage"):
                 population = self._generator.generate(self._population_size)
 
             with nvtx.annotate_se("callback_generator_end", domain="evolvepy", category="evolution_stage"):
                 for callback in self._callbacks:
-                    if callback.parameters["run"]:
-                        callback.on_generator_end(population)
+                    if callback._parameters["run"]:
+                        callback._on_generator_end(population)
 
             with nvtx.annotate_se("evaluator", domain="evolvepy", category="evolution_stage"):
                 fitness = self._evaluator(population)
 
             with nvtx.annotate_se("callback_evaluator_end", domain="evolvepy", category="evolution_stage"):
                 for callback in self._callbacks:
-                    if callback.parameters["run"]:
-                        callback.on_evaluator_end(fitness)
+                    if callback._parameters["run"]:
+                        callback._on_evaluator_end(fitness)
 
             self._generator.fitness = fitness
 
@@ -107,8 +107,8 @@ class Evolver:
         
         with nvtx.annotate_se("callback_end", domain="evolvepy", category="evolution_stage"):
             for callback in self._callbacks:
-                if callback.parameters["run"]:
-                    callback.on_stop()
+                if callback._parameters["run"]:
+                    callback._on_stop()
 
         return self._history, population
 
