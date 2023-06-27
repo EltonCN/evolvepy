@@ -4,6 +4,7 @@ from typing import Deque, Dict, List
 import numpy as np
 
 from evolvepy.evaluator.evaluator import EvaluationStage, Evaluator
+from evolvepy.integrations import nvtx
 
 class FitnessCache(EvaluationStage):
     '''
@@ -40,6 +41,7 @@ class FitnessCache(EvaluationStage):
         Returns:
             bytes: Generated representation.
         '''
+        
         if self._max_decimals is not None:
             if individual.dtype.names is not None:
                 for name in individual.dtype.names:
@@ -67,33 +69,41 @@ class FitnessCache(EvaluationStage):
         to_evaluate_repr = []
 
         # Check for cache hit
-        for i in range(pop_size):
+        range_name = "{0}_hit_check".format(self.name)
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+            for i in range(pop_size):
+                
+                range_name = "{0}_get_representation".format(self.name)
+                with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+                    ind_repr = self.get_individual_representation(population[i])
 
-            ind_repr = self.get_individual_representation(population[i])
+                if ind_repr not in self._cache:
+                    to_evaluate_indexs.append(i)
+                    to_evaluate_repr.append(ind_repr)
+                else:
+                    fitness[i] = self._cache[ind_repr]
 
-            if ind_repr not in self._cache:
-                to_evaluate_indexs.append(i)
-                to_evaluate_repr.append(ind_repr)
-            else:
-                fitness[i] = self._cache[ind_repr]
-
-            if ind_repr not in self._first_acess:
-                self._first_acess[ind_repr] = self._generation
+                if ind_repr not in self._first_acess:
+                    self._first_acess[ind_repr] = self._generation
 
         # Evaluate misses
-        if len(to_evaluate_indexs) != 0:
-            to_evaluate = population[to_evaluate_indexs]
+        range_name = "{0}_miss_evaluation".format(self.name)
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+            if len(to_evaluate_indexs) != 0:
+                to_evaluate = population[to_evaluate_indexs]
 
-            evaluated_fitness = self._evaluator(to_evaluate)
+                evaluated_fitness = self._evaluator(to_evaluate)
 
-            fitness[to_evaluate_indexs] = evaluated_fitness
+                fitness[to_evaluate_indexs] = evaluated_fitness
 
-            for i in range(len(to_evaluate_repr)):
-                self._cache[to_evaluate_repr[i]] = evaluated_fitness[i]
+                for i in range(len(to_evaluate_repr)):
+                    self._cache[to_evaluate_repr[i]] = evaluated_fitness[i]
 
         self._scores = self._evaluator.scores
 
-        self._delete_old()
+        range_name = "{0}_delete_old".format(self.name)
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+            self._delete_old()
         self._generation += 1
 
         return fitness

@@ -7,7 +7,7 @@ from evolvepy.generator.descriptor import Descriptor
 from evolvepy.generator.mutation import NumericMutationLayer, sum_mutation
 from evolvepy.generator.crossover import one_point
 from evolvepy.generator.selection import tournament
-from evolvepy.evaluator import FunctionEvaluator
+from evolvepy.evaluator import *
 from evolvepy import Evolver
 
 
@@ -39,9 +39,11 @@ def fitness_function(individuals):
     return score
 
 
-evaluator = FunctionEvaluator(fitness_function)
+func_evaluator = FunctionEvaluator(fitness_function)
+multiple_evaluator = MultipleEvaluation(func_evaluator, 10, discard_max=True, discard_min=True)
+cache_evaluator = FitnessCache(multiple_evaluator, 10, 4)
 
 # Here we specify for Evolver to use the previously created generator and evaluator, in generations of 100 individuals.
-evolver = Evolver(generator, evaluator, 100)
+evolver = Evolver(generator, cache_evaluator, 100)
 
 hist, last_population = evolver.evolve(1000, verbose=True) 
