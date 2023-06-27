@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 import numpy as np
 
 from .evaluator import Evaluator
+from evolvepy.integrations import nvtx
 
 class ProcessFitnessFunction(ABC):
     '''
@@ -34,10 +35,16 @@ class ProcessFitnessFunction(ABC):
             np.ndarray: Individuals fitness.
         '''
         if not self._setted or self._reset:
-            self.setup()
-            self._setted = True
+            range_name = "{0}_setup".format(self.__class__.__name__)
+            with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+                self.setup()
+                self._setted = True
         
-        return self.evaluate(individuals)
+        range_name = "{0}_evaluation".format(self.__class__.__name__)
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+            fitness = self.evaluate(individuals)
+        
+        return fitness 
 
 
     @abstractmethod

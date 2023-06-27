@@ -4,6 +4,7 @@ from typing import Dict, Union
 import numpy as np
 
 from evolvepy.configurable import Configurable
+from evolvepy.integrations import nvtx
 
 class Evaluator(Configurable, ABC):
     '''
@@ -45,7 +46,10 @@ class Evaluator(Configurable, ABC):
         Returns:
             np.ndarray: Population fitness
         '''
-        return self.call(population)
+        with nvtx.annotate_se(self.name, domain="evolvepy", category="evaluator"):
+            fitness = self.call(population)
+
+        return fitness
 
     @property
     def scores(self) -> np.ndarray:
@@ -76,19 +80,7 @@ class EvaluationStage(Evaluator):
         '''
         super().__init__(evaluator._n_scores, evaluator._individual_per_call, other_parameters=parameters, dynamic_parameters=dynamic_parameters)
         self._evaluator = evaluator
-    
 
-    def __call__(self, population:np.ndarray) -> np.ndarray:
-        '''
-        Evaluates the population using the evaluator.
-
-        Args:
-            population (np.ndarray): Population to be evaluated.
-
-        Returns:
-            np.ndarray: Population fitness.
-        '''
-        return self.call(population)
         
     
     def call(self, population:np.ndarray) -> np.ndarray:
