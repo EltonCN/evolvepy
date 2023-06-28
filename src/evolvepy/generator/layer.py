@@ -156,7 +156,7 @@ class Concatenate(Layer):
 
 	def __init__(self, name: str = None):
 		'''
-		Initialization for thr Cconcatenate layer with the number of layers
+		Initialization for thr Concatenate layer with the number of layers
 		
 		Args:
 			name (string): Layer's name

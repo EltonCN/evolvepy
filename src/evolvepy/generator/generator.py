@@ -20,7 +20,7 @@ class Generator:
 		Initialization for the Generator class with the desired layer order and individuasl description
 
 		Args:
-			layers (List[Layer]): List of layers used in the pieline
+			layers (List[Layer]): List of layers used in the pipeline
 			first_layer (Layer): First layer of the pipeline
 			last_layer (Layer): Last layer of a pipeline
 			descriptor (Descriptor): Object describing the individuals chromosome number, type and range
@@ -33,24 +33,11 @@ class Generator:
 		elif first_layer is not None or last_layer is not None:
 			raise ValueError("Generator 'layers' parameter must not be used together with 'first_layer' and 'last_layer'")
 		else:
-			for i in range(len(layers)-1):
-				layers[i].next = layers[i+1]
+			layers = connect_layers(layers)
 
 		if first_layer is not None and last_layer is not None:
-			layers.append(first_layer)
+			layers = connect_layers([first_layer, last_layer])
 
-			queue = deque()
-			for layer in first_layer.next:
-				queue.append(layer)
-			
-			while len(queue) != 0:
-				layer:Layer = queue.pop()
-				if layer != last_layer and layer not in layers:
-					layers.append(layer)
-					for next_layer in layer.next:
-						queue.append(next_layer)
-
-			layers.append(last_layer)
 		elif last_layer is not None or first_layer is not None:
 			raise ValueError("You must set Generator 'first_layer' with 'last_layer'")
 
@@ -231,3 +218,38 @@ class Generator:
 		self._population = self._layers[-1].population
 
 		return self._population
+	
+def connect_layers(layers: Union[None, List[Layer]] = None):
+	if layers is None:
+		return
+
+	layer_ids = set()
+	for i, layer in layers:
+		if id(layer) in layer_ids:
+			raise ValueError("Duplicate layer found in layers list, please check your layers list.")
+		layer_ids.add(id(layer))
+		if i < len(layers) - 1:
+			layer.next = layers[i+1]
+	
+	return layers
+
+def connect_layers(first_layer:Layer, last_layer:Layer):
+	layers = []
+	layers.append(first_layer)
+	queue = deque()
+	for layer in first_layer.next:
+		queue.append(layer)
+	
+	while len(queue) != 0:
+		layer:Layer = queue.pop()
+		if layer != last_layer and layer not in layers:
+			layers.append(layer)
+			for next_layer in layer.next:
+				queue.append(next_layer)
+	layers.append(last_layer)
+
+	layer_ids = set()
+	for layer in layers:
+		if id(layer) in layer_ids:
+			raise ValueError("Duplicate layer found in layers list, please check your layers list.")
+		layer_ids.add(id(layer))
