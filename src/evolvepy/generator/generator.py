@@ -92,6 +92,7 @@ class Generator:
 		for layer in self._layers:
 			if layer.name == layer_name:
 				layer.parameters = (parameter_name, value)
+		self._check_population_size()
 
 	def set_parameters(self, layer_name:str, parameters:Dict[str, object]) -> None:
 		'''
@@ -105,6 +106,7 @@ class Generator:
 		for layer in self._layers:
 			if layer.name == layer_name:
 				layer.parameters = parameters
+		self._check_population_size()
 
 	def get_parameter(self, layer_name:str, parameter_name:str=None) -> object:
 		'''
@@ -121,6 +123,7 @@ class Generator:
 		for layer in self._layers:
 			if layer.name == layer_name:
 				return layer.parameters[parameter_name]
+		self._check_population_size()
 	
 	def get_parameters(self, layer_name:str) -> Dict[str, object]:
 		'''
@@ -136,6 +139,7 @@ class Generator:
 		for layer in self._layers:
 			if layer.name == layer_name:
 				return layer.parameters
+		self._check_population_size()
 
 	def get_all_static_parameters(self) -> Dict[str, object]:
 		'''
@@ -232,25 +236,30 @@ class Generator:
 		connected_layers = set()
 		layer_names = set()
 		queue = deque([self._layers[0]])
-	
+
 		while queue:
 			layer = queue.pop()
 			connected_layers.add(layer)
-	
+
 			if layer.name in layer_names:
 				raise ValueError("Duplicated layers found, please check your layers")
 			layer_names.add(layer.name)
-	
+
 			for next_layer in layer.next:
 				if next_layer in visited:
 					raise ValueError("Loops detected between layers, please check your layers")
 				visited.add(next_layer)
 				if next_layer not in connected_layers:
 					queue.append(next_layer)
-	
+
 		if len(connected_layers) != len(self._layers):
 			raise ValueError("Unconnected layers found, please check your layers")
-	
+
 		if self._layers[-1] not in connected_layers:
 			raise ValueError("First and last layers are not connected")
-	
+
+	def _check_population_size(self):
+		if self._population is not None:
+			current_population_size = len(self._population)
+			if self._initial_population_size != current_population_size:
+				warnings.warn(f"Population size changed from {self._initial_population_size} to {current_population_size}")
