@@ -269,12 +269,13 @@ class Generator:
 			connected_layers.add(layer)
 
 			if layer in visited:
-				raise ValueError("Loops detected between layers, please check your layers")
+
+				raise ValueError(f"Loops detected with layer {layer}, please check your layers")
 			visited.add(layer)
 
 			for next_layer in layer.next:
 				if next_layer in visited:
-					raise ValueError("Loops detected between layers, please check your layers")
+					raise ValueError(f"Loops detected between next_layer {next_layer}, please check your layers")
 				visited.add(next_layer)
 				if next_layer not in connected_layers:
 					queue.append(next_layer)
