@@ -39,6 +39,7 @@ class Generator:
 			self._initialize_layers()
 
 		self._initialize_first_gen_layer(descriptor)
+		self._initial_population_size = len(self._population) if self._population is not None else None
 
 		self.check_layers()
 
