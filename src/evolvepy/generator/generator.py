@@ -40,6 +40,10 @@ class Generator:
 
 		self._initialize_first_gen_layer(descriptor)
 
+		if len(self._layers) != len(set([layer.name for layer in self._layers])):
+			raise ValueError("Duplicated layers found, please check your layers")
+
+
 	def _initialize_with_first_and_last_layer(self, first_layer: Layer, last_layer: Layer):
 		self._layers.append(first_layer)
 		queue = deque(first_layer.next)
