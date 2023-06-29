@@ -227,29 +227,30 @@ class Generator:
 
 		return self._population
 
-def check_layers(self):
-	visited = set()
-	connected_layers = set()
-	layer_names = set()
-	queue = deque([self._layers[0]])
-
-	while queue:
-		layer = queue.pop()
-		connected_layers.add(layer)
-
-		if layer.name in layer_names:
-			raise ValueError("Duplicated layers found, please check your layers")
-		layer_names.add(layer.name)
-
-		for next_layer in layer.next:
-			if next_layer in visited:
-				raise ValueError("Loops detected between layers, please check your layers")
-			visited.add(next_layer)
-			if next_layer not in connected_layers:
-				queue.append(next_layer)
-
-	if len(connected_layers) != len(self._layers):
-		raise ValueError("Unconnected layers found, please check your layers")
-
-	if self._layers[-1] not in connected_layers:
-		raise ValueError("First and last layers are not connected")
+	def check_layers(self):
+		visited = set()
+		connected_layers = set()
+		layer_names = set()
+		queue = deque([self._layers[0]])
+	
+		while queue:
+			layer = queue.pop()
+			connected_layers.add(layer)
+	
+			if layer.name in layer_names:
+				raise ValueError("Duplicated layers found, please check your layers")
+			layer_names.add(layer.name)
+	
+			for next_layer in layer.next:
+				if next_layer in visited:
+					raise ValueError("Loops detected between layers, please check your layers")
+				visited.add(next_layer)
+				if next_layer not in connected_layers:
+					queue.append(next_layer)
+	
+		if len(connected_layers) != len(self._layers):
+			raise ValueError("Unconnected layers found, please check your layers")
+	
+		if self._layers[-1] not in connected_layers:
+			raise ValueError("First and last layers are not connected")
+	
