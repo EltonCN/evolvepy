@@ -43,6 +43,8 @@ class Generator:
 		if len(self._layers) != len(set([layer.name for layer in self._layers])):
 			raise ValueError("Duplicated layers found, please check your layers")
 
+		if self.detect_loops():
+			raise ValueError("Loops detected between layers, please check your layers")
 
 	def _initialize_with_first_and_last_layer(self, first_layer: Layer, last_layer: Layer):
 		self._layers.append(first_layer)
@@ -227,3 +229,14 @@ class Generator:
 		self._population = self._layers[-1].population
 
 		return self._population
+
+	def detect_loops(self) -> bool:
+		visited = set()
+		for layer in self._layers:
+			if layer in visited:
+				return True
+			visited.add(layer)
+			for next_layer in layer.next:
+				if next_layer in visitedreturn True
+				visited.add(next_layer)
+		return False
