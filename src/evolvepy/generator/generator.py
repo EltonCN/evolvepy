@@ -12,78 +12,70 @@ from evolvepy.generator.descriptor import Descriptor
 
 class Generator:
 	'''
-	Main class of the pipeline, it defines the layers oder, bifurcations and parameters
+	Main class of the pipeline, it defines the layers order, bifurcations and parameters
 	'''
 
-	def __init__(self, layers:Union[None, List[Layer]]=None, first_layer:Layer=None, last_layer:Layer=None, descriptor:Optional[Descriptor]=None):    
+	def __init__(self, layers: Union[None, List[Layer]] = None, first_layer: Layer = None, last_layer: Layer = None, descriptor: Optional[Descriptor] = None):
 		'''
-		Initialization for the Generator class with the desired layer order and individuasl description
+		Initialization for the Generator class with the desired layer order and individuals description
 
 		Args:
-			layers (List[Layer]): List of layers used in the pieline
+			layers (List[Layer]): List of layers used in the pipeline
 			first_layer (Layer): First layer of the pipeline
 			last_layer (Layer): Last layer of a pipeline
 			descriptor (Descriptor): Object describing the individuals chromosome number, type and range
 		'''
 
 		self._connected = False
+		self._layers = layers or []
+		self._fitness = None
+		self._population = None
 
-		if layers is None:
-			layers = []
-		elif first_layer is not None or last_layer is not None:
-			raise ValueError("Generator 'layers' parameter must not be used together with 'first_layer' and 'last_layer'")
+		if first_layer is not None or last_layer is not None:
+			if layers is not None:
+				raise ValueError("Generator 'layers' parameter must not be used together with 'first_layer' and 'last_layer'")
+			self._initialize_with_first_and_last_layer(first_layer, last_layer)
 		else:
-			for i in range(len(layers)-1):
-				layers[i].next = layers[i+1]
+			self._initialize_layers()
 
-		if first_layer is not None and last_layer is not None:
-			layers.append(first_layer)
+		self._initialize_first_gen_layer(descriptor)
 
-			queue = deque()
-			for layer in first_layer.next:
-				queue.append(layer)
-			
-			while len(queue) != 0:
-				layer:Layer = queue.pop()
-				if layer != last_layer and layer not in layers:
-					layers.append(layer)
-					for next_layer in layer.next:
-						queue.append(next_layer)
+	def _initialize_with_first_and_last_layer(self, first_layer: Layer, last_layer: Layer):
+		self._layers.append(first_layer)
+		queue = deque(first_layer.next)
 
-			layers.append(last_layer)
-		elif last_layer is not None or first_layer is not None:
-			raise ValueError("You must set Generator 'first_layer' with 'last_layer'")
+		while queue:
+			layer = queue.pop()
+			if layer != last_layer and layer not in self._layers:
+				self._layers.append(layer)
+				queue.extend(layer.next)
 
-		have_first_generator = False
+		self._layers.append(last_layer)
 
-		for layer in layers:
-			if isinstance(layer, FirstGenLayer):
-				have_first_generator = True
+	def _initialize_layers(self):
+		for i in range(len(self._layers) - 1):
+			self._layers[i].next = self._layers[i + 1]
+
+	def _initialize_first_gen_layer(self, descriptor: Optional[Descriptor]):
+		have_first_generator = any(isinstance(layer, FirstGenLayer) for layer in self._layers)
 
 		if not have_first_generator:
 			if descriptor is None:
 				warnings.warn("You are creating a generator without FirstGenLayer and descriptor. Creating default descriptor.")
-				
 				descriptor = Descriptor()
-			
-			if len(layers) > 0 and isinstance(layers[-1], FirstGenLayer):
+
+			if self._layers and isinstance(self._layers[-1], FirstGenLayer):
 				raise RuntimeWarning("You are passing a descriptor, but also passing a FirstGenLayer. This can create unexpected behavior.")
 
 			first_gen = FirstGenLayer(descriptor)
 
-			if len(layers) > 0:
-				layers[-1].next = first_gen
+			if self._layers:
+				self._layers[-1].next = first_gen
 
-			layers.append(first_gen)
+			self._layers.append(first_gen)
 			self._descriptor = descriptor
 		else:
-			self._descriptor = layers[-1]._descriptor
-
-		self._layers = layers
-
-		self._fitness = None
-		self._population = None
-
+			self._descriptor = self._layers[-1]._descriptor
 	def set_parameter(self, layer_name:str, parameter_name:str, value:object) -> None:
 		'''
 		Defines the value of a specified parameter for a specified layer
