@@ -36,7 +36,7 @@ class Generator:
 			layers = connect_layers(layers)
 
 		if first_layer is not None and last_layer is not None:
-			layers = connect_layers(first_layer, last_layer)
+			layers = connect_layers_from_edges(first_layer, last_layer)
 
 		elif last_layer is not None or first_layer is not None:
 			raise ValueError("You must set Generator 'first_layer' with 'last_layer'")
@@ -233,7 +233,7 @@ def connect_layers(layers: Union[None, List[Layer]] = None):
 	
 	return layers
 
-def connect_layers(first_layer:Layer, last_layer:Layer):
+def connect_layers_from_edges(first_layer:Layer, last_layer:Layer):
 	layers = []
 	layers.append(first_layer)
 	queue = deque()
