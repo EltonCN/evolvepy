@@ -56,7 +56,9 @@ class Generator:
 
 		have_first_generator = False
 
-		have_first_generator = check_layers(layers)
+		for layer in layers:
+			if isinstance(layer, FirstGenLayer):
+				have_first_generator = True
 
 		if not have_first_generator:
 			if descriptor is None:
@@ -229,16 +231,3 @@ class Generator:
 		self._population = self._layers[-1].population
 
 		return self._population
-
-def check_layers(layers: Union[None, List[Layer]] = None):
-	have_first_generator = False
-	for layer in layers:
-		if id(layer) in layer_ids:
-			raise ValueError("Duplicate layer found in layers list, please check your layers list.")
-		layer_ids.add(id(layer))
-		
-		if isinstance(layer, FirstGenLayer):
-			have_first_generator = True
-	
-	return True
-
