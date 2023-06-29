@@ -44,7 +44,8 @@ class Generator:
 			raise ValueError("Duplicated layers found, please check your layers")
 
 		#self.detect_loops()
-		self._check_unconnected_layers()
+		#self._check_unconnected_layers()
+		self.validate_layers()
 
 	def _initialize_with_first_and_last_layer(self, first_layer: Layer, last_layer: Layer):
 		self._layers.append(first_layer)
@@ -82,6 +83,7 @@ class Generator:
 			self._descriptor = descriptor
 		else:
 			self._descriptor = self._layers[-1]._descriptor
+	
 	def set_parameter(self, layer_name:str, parameter_name:str, value:object) -> None:
 		'''
 		Defines the value of a specified parameter for a specified layer
@@ -250,6 +252,32 @@ class Generator:
 			layer = queue.pop()
 			connected_layers.add(layer)
 			queue.extend([next_layer for next_layer in layer.next if next_layer not in connected_layers])
+
+		if len(connected_layers) != len(self._layers):
+			raise ValueError("Unconnected layers found, please check your layers")
+
+		if self._layers[-1] not in connected_layers:
+			raise ValueError("First and last layers are not connected")
+
+	def validate_layers(self):
+		visited = set()
+		connected_layers = set()
+		queue = deque([self._layers[0]])
+
+		while queue:
+			layer = queue.pop()
+			connected_layers.add(layer)
+
+			if layer in visited:
+				raise ValueError("Loops detected between layers, please check your layers")
+			visited.add(layer)
+
+			for next_layer in layer.next:
+				if next_layer in visited:
+					raise ValueError("Loops detected between layers, please check your layers")
+				visited.add(next_layer)
+				if next_layer not in connected_layers:
+					queue.append(next_layer)
 
 		if len(connected_layers) != len(self._layers):
 			raise ValueError("Unconnected layers found, please check your layers")
