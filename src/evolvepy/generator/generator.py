@@ -40,12 +40,7 @@ class Generator:
 
 		self._initialize_first_gen_layer(descriptor)
 
-		if len(self._layers) != len(set([layer.name for layer in self._layers])):
-			raise ValueError("Duplicated layers found, please check your layers")
-
-		#self.detect_loops()
-		#self._check_unconnected_layers()
-		self.validate_layers()
+		self.check_layers()
 
 	def _initialize_with_first_and_last_layer(self, first_layer: Layer, last_layer: Layer):
 		self._layers.append(first_layer)
@@ -232,56 +227,29 @@ class Generator:
 
 		return self._population
 
-	def detect_loops(self) -> bool:
-		visited = set()
-		for layer in self._layers:
-			if layer in visited:
+def check_layers(self):
+	visited = set()
+	connected_layers = set()
+	layer_names = set()
+	queue = deque([self._layers[0]])
+
+	while queue:
+		layer = queue.pop()
+		connected_layers.add(layer)
+
+		if layer.name in layer_names:
+			raise ValueError("Duplicated layers found, please check your layers")
+		layer_names.add(layer.name)
+
+		for next_layer in layer.next:
+			if next_layer in visited:
 				raise ValueError("Loops detected between layers, please check your layers")
-			visited.add(layer)
-			for next_layer in layer.next:
-				if next_layer in visited:
-					raise ValueError("Loops detected between layers, please check your layers")
-				visited.add(next_layer)
-		return False
+			visited.add(next_layer)
+			if next_layer not in connected_layers:
+				queue.append(next_layer)
 
-	def _check_unconnected_layers(self):
-		connected_layers = set()
-		queue = deque([self._layers[0]])
+	if len(connected_layers) != len(self._layers):
+		raise ValueError("Unconnected layers found, please check your layers")
 
-		while queue:
-			layer = queue.pop()
-			connected_layers.add(layer)
-			queue.extend([next_layer for next_layer in layer.next if next_layer not in connected_layers])
-
-		if len(connected_layers) != len(self._layers):
-			raise ValueError("Unconnected layers found, please check your layers")
-
-		if self._layers[-1] not in connected_layers:
-			raise ValueError("First and last layers are not connected")
-
-	def validate_layers(self):
-		visited = set()
-		connected_layers = set()
-		queue = deque([self._layers[0]])
-
-		while queue:
-			layer = queue.pop()
-			connected_layers.add(layer)
-
-			if layer in visited:
-
-				raise ValueError(f"Loops detected with layer {layer}, please check your layers")
-			visited.add(layer)
-
-			for next_layer in layer.next:
-				if next_layer in visited:
-					raise ValueError(f"Loops detected between next_layer {next_layer}, please check your layers")
-				visited.add(next_layer)
-				if next_layer not in connected_layers:
-					queue.append(next_layer)
-
-		if len(connected_layers) != len(self._layers):
-			raise ValueError("Unconnected layers found, please check your layers")
-
-		if self._layers[-1] not in connected_layers:
-			raise ValueError("First and last layers are not connected")
+	if self._layers[-1] not in connected_layers:
+		raise ValueError("First and last layers are not connected")
