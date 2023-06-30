@@ -91,6 +91,16 @@ class Layer(Configurable):
 		'''
 		return self._context
 
+	@propoerty
+	def population_size(self) -> int:
+		'''
+		Returns the number of previous layers
+		
+		Returns:
+			prev_count (int): Number of previous layers
+		'''
+		return len(self._population)
+
 	def __call__(self, population:Union[ArrayLike, None], fitness:Union[ArrayLike, None]=None, context:Union[Context, None]=None) -> np.ndarray:
 		'''
 		Generic call to use the object as a funtion call, applying the layer oparetion

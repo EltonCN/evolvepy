@@ -39,7 +39,6 @@ class Generator:
 			self._initialize_layers()
 
 		self._initialize_first_gen_layer(descriptor)
-		self._initial_population_size = len(self._population) if self._population is not None else None
 
 		validate_layers(self._layers)
 
@@ -281,24 +280,31 @@ def get_previous_nodes(graph, node):
 			previous_nodes.append(curr_node)
 	return previous_nodes
 
-def has_duplicates(graph):
+def check_consistency(graph):
 	seen = set()
+	population_changed = False
+	has_duplicates = False
 
 	for node in graph:
+		if node.population_size != population_size:
+			population_changed = True
 		if node in seen:
-			return True
+			has_duplicates = True
 		seen.add(node)
 
-	return False
+	return has_duplicates, population_changed
 
 def validate_layers(graph):
 	init_cant_reach = find_unreachable_nodes(graph)
 	cant_reach_end = find_nodes_unable_to_reach_end(graph)
 	cycle_deteted = detect_cycle(graph)
-	duplicates = has_duplicates(graph)
+	has_duplicates, has_population_size_change = check_consistency(graph)
 
-	if duplicates:
+	if has_duplicates:
 		raise ValueError("The pipeline has duplicates")
+
+	if has_population_size_change:
+		warnings.warn("The pipeline has layers with different population size", Warning)
 
 	if cycle_deteted:
 		raise ValueError("The pipeline has a cycle")
