@@ -1,23 +1,36 @@
-
-
-
-
-
-
-from mlagents_envs.environment import UnityEnvironment
-from gym_unity.envs import UnityToGymWrapper
+#from mlagents_envs.environment import UnityEnvironment
+#from gym_unity.envs import UnityToGymWrapper
 
 
 import evolvepy as ep
 import numpy as np
 from matplotlib import pyplot as plt
-import unity_utils as uutils
+#import unity_utils as uutils
 
 
 if __name__ == "__main__":
 
     args = {"env_path": "D:\\Github\\ml-agents\\builds\\3dball_single\\UnityEnvironment.exe"}
-    evaluator = ep.evaluator.ProcessEvaluator(uutils.Unity3DBallEvaluator, args = args)
+    def fitness_function(individuals):
+        individual = individuals[0]["chr0"][0] 
+
+        score = 0
+
+        if individual < 500:
+            score = individual
+        elif individual < 1000:
+            score = 1000 - individual
+        elif individual < 2000:
+            score = individual - 1000
+        elif individual < 3000:
+            score = 3000 - individual
+        elif individual < 4000:
+            score = 2.0*(individual - 3000)
+        else:
+            score = 2.0*(5000-individual)
+
+        return score
+    evaluator = ep.evaluator.ProcessEvaluator(fitness_function=)
 
 
 

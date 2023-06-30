@@ -93,7 +93,6 @@ class Generator:
 			if layer.name == layer_name:
 				layer.parameters = (parameter_name, value)
 
-
 	def set_parameters(self, layer_name:str, parameters:Dict[str, object]) -> None:
 		'''
 		Defines the value of n specified parameters for a specified layer
@@ -216,8 +215,12 @@ class Generator:
 		
 		context = Context(population_size, self._descriptor.chromosome_names)
 
-		if self._population is not None and len(self._population) > population_size:
-			self._population = self._population[:population_size]
+		if self._population is not None:
+			if len(self._population) == population_size:
+				self._population = self._population
+			elif len(self._population) > population_size:
+				warnings.warn("The population size is bigger than the desired value passed as parameter. Truncating the population.")
+				self._population = self._population[:population_size]
 
 		self._layers[0](self._population, self._fitness, context)
 		
@@ -282,32 +285,23 @@ def get_previous_nodes(graph, node):
 
 def check_consistency(graph):
 	seen = set()
-	population_size = graph[0].population_size()
-	population_changed = False
 	has_duplicates = False
 
 	for node in graph:
-		if population_size == None:
-			population_size = node.population_size()
-		elif node.population_size != population_size:
-			population_changed = True
 		if node in seen:
 			has_duplicates = True
 		seen.add(node)
 
-	return has_duplicates, False
+	return has_duplicates
 
 def validate_layers(graph):
 	init_cant_reach = find_unreachable_nodes(graph)
 	cant_reach_end = find_nodes_unable_to_reach_end(graph)
 	cycle_deteted = detect_cycle(graph)
-	has_duplicates, has_population_size_change = check_consistency(graph)
+	has_duplicates = check_consistency(graph)
 
 	if has_duplicates:
 		raise ValueError("The pipeline has duplicates")
-
-	if has_population_size_change:
-		warnings.warn("The pipeline has layers with different population size", Warning)
 
 	if cycle_deteted:
 		raise ValueError("The pipeline has a cycle")
