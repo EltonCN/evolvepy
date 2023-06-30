@@ -231,14 +231,14 @@ class Generator:
 def detect_cycle(graph):
 	visited = set()
 	stack = set()
-	return cycle_search(graph[0])
+	return cycle_search(graph[0], visited, stack)
 
-def cycle_search(node):
+def cycle_search(node, visited, stack):
 	visited.add(node)
 	stack.add(node)
-	for next_node in node.next():
+	for next_node in node.next:
 		if next_node not in visited:
-			if dfs(next_node):
+			if cycle_search(next_node, visited, stack):
 				return True
 		elif next_node in stack:
 			return True
@@ -253,7 +253,7 @@ def find_unreachable_nodes(graph):
 		node = stack.pop()
 		reachable_nodes.add(node)
 
-		for next_node in node["next"]:
+		for next_node in node.next:
 			if next_node not in reachable_nodes:
 				stack.append(next_node)
 
@@ -276,23 +276,26 @@ def find_nodes_unable_to_reach_end(graph):
 def get_previous_nodes(graph, node):
 	previous_nodes = []
 	for curr_node in graph:
-		if node in curr_node["next"]:
+		if node in curr_node.next:
 			previous_nodes.append(curr_node)
 	return previous_nodes
 
 def check_consistency(graph):
 	seen = set()
+	population_size = graph[0].population_size()
 	population_changed = False
 	has_duplicates = False
 
 	for node in graph:
-		if node.population_size != population_size:
+		if population_size == None:
+			population_size = node.population_size()
+		elif node.population_size != population_size:
 			population_changed = True
 		if node in seen:
 			has_duplicates = True
 		seen.add(node)
 
-	return has_duplicates, population_changed
+	return has_duplicates, False
 
 def validate_layers(graph):
 	init_cant_reach = find_unreachable_nodes(graph)

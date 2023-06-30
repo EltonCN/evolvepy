@@ -91,7 +91,6 @@ class Layer(Configurable):
 		'''
 		return self._context
 
-	@propoerty
 	def population_size(self) -> int:
 		'''
 		Returns the number of previous layers
@@ -99,7 +98,7 @@ class Layer(Configurable):
 		Returns:
 			prev_count (int): Number of previous layers
 		'''
-		return len(self._population)
+		return len(self._population) if self._population is not None else None
 
 	def __call__(self, population:Union[ArrayLike, None], fitness:Union[ArrayLike, None]=None, context:Union[Context, None]=None) -> np.ndarray:
 		'''
