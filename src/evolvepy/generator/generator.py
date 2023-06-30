@@ -41,7 +41,7 @@ class Generator:
 		self._initialize_first_gen_layer(descriptor)
 		self._initial_population_size = len(self._population) if self._population is not None else None
 
-		self.check_layers()
+		validate_layers(self._layers)
 
 	def _initialize_with_first_and_last_layer(self, first_layer: Layer, last_layer: Layer):
 		self._layers.append(first_layer)
@@ -93,7 +93,7 @@ class Generator:
 		for layer in self._layers:
 			if layer.name == layer_name:
 				layer.parameters = (parameter_name, value)
-		self._check_population_size()
+
 
 	def set_parameters(self, layer_name:str, parameters:Dict[str, object]) -> None:
 		'''
@@ -107,7 +107,6 @@ class Generator:
 		for layer in self._layers:
 			if layer.name == layer_name:
 				layer.parameters = parameters
-		self._check_population_size()
 
 	def get_parameter(self, layer_name:str, parameter_name:str=None) -> object:
 		'''
@@ -124,7 +123,6 @@ class Generator:
 		for layer in self._layers:
 			if layer.name == layer_name:
 				return layer.parameters[parameter_name]
-		self._check_population_size()
 	
 	def get_parameters(self, layer_name:str) -> Dict[str, object]:
 		'''
@@ -140,7 +138,6 @@ class Generator:
 		for layer in self._layers:
 			if layer.name == layer_name:
 				return layer.parameters
-		self._check_population_size()
 
 	def get_all_static_parameters(self) -> Dict[str, object]:
 		'''
@@ -232,35 +229,90 @@ class Generator:
 
 		return self._population
 
-	def check_layers(self):
-		visited = set()
-		connected_layers = set()
-		layer_names = set()
-		queue = deque([self._layers[0]])
+def detect_cycle(graph):
+	visited = set()
+	stack = set()
+	return cycle_search(graph[0])
 
-		while queue:
-			layer = queue.pop()
-			connected_layers.add(layer)
+def cycle_search(node):
+	visited.add(node)
+	stack.add(node)
+	for next_node in node.next():
+		if next_node not in visited:
+			if dfs(next_node):
+				return True
+		elif next_node in stack:
+			return True
+	stack.remove(node)
+	return False
 
-			if layer.name in layer_names:
-				raise ValueError("Duplicated layers found, please check your layers")
-			layer_names.add(layer.name)
+def find_unreachable_nodes(graph):
+	reachable_nodes = set()
+	stack = [graph[0]]
 
-			for next_layer in layer.next:
-				if next_layer in visited:
-					raise ValueError("Loops detected between layers, please check your layers")
-				visited.add(next_layer)
-				if next_layer not in connected_layers:
-					queue.append(next_layer)
+	while stack:
+		node = stack.pop()
+		reachable_nodes.add(node)
 
-		if len(connected_layers) != len(self._layers):
-			raise ValueError("Unconnected layers found, please check your layers")
+		for next_node in node["next"]:
+			if next_node not in reachable_nodes:
+				stack.append(next_node)
 
-		if self._layers[-1] not in connected_layers:
-			raise ValueError("First and last layers are not connected")
+	return [node for node in graph if node not in reachable_nodes]
 
-	def _check_population_size(self):
-		if self._population is not None:
-			current_population_size = len(self._population)
-			if self._initial_population_size != current_population_size:
-				warnings.warn(f"Population size changed from {self._initial_population_size} to {current_population_size}")
+def find_nodes_unable_to_reach_end(graph):
+	unable_to_reach = set()
+	stack = [graph[-1]]
+
+	while stack:
+		node = stack.pop()
+		unable_to_reach.add(node)
+
+		for prev_node in get_previous_nodes(graph, node):
+			if prev_node not in unable_to_reach:
+				stack.append(prev_node)
+
+	return [node for node in graph if node not in unable_to_reach]
+
+def get_previous_nodes(graph, node):
+	previous_nodes = []
+	for curr_node in graph:
+		if node in curr_node["next"]:
+			previous_nodes.append(curr_node)
+	return previous_nodes
+
+def has_duplicates(graph):
+	seen = set()
+
+	for node in graph:
+		if node in seen:
+			return True
+		seen.add(node)
+
+	return False
+
+def validate_layers(graph):
+	init_cant_reach = find_unreachable_nodes(graph)
+	cant_reach_end = find_nodes_unable_to_reach_end(graph)
+	cycle_deteted = detect_cycle(graph)
+	duplicates = has_duplicates(graph)
+
+	if duplicates:
+		raise ValueError("The pipeline has duplicates")
+
+	if cycle_deteted:
+		raise ValueError("The pipeline has a cycle")
+
+	if graph[-1] in init_cant_reach:
+		raise ValueError("The last layer can not be reached by the first layer")
+
+	missing_items = set(init_cant_reach) - set(cant_reach_end)
+	if missing_items:
+		raise ValueError(f"The following Layers can be reached but does not end: {missing_items}")
+	
+	missing_items = set(cant_reach_end) - set(init_cant_reach)
+	if missing_items:
+		raise ValueError(f"The following Layers can end but can not be reached: {missing_items}")
+	
+	if init_cant_reach and cant_reach_end:
+		warnings.warn(f"The following Layers are deatached from the pipeline and should be removed: {init_cant_reach}", Warning)
