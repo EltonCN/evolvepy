@@ -8,12 +8,6 @@ import numpy as np
 from numpy.typing import ArrayLike
 import numba
 
-PYTHON = 0
-JIT = 1
-NJIT = 2
-JIT_PARALLEL = 3
-NJIT_PARALLEL = 3
-
 class FunctionEvaluator(Evaluator):
     '''
     Evaluates individuals using a simple function.
@@ -43,16 +37,16 @@ class FunctionEvaluator(Evaluator):
         '''
         super().__init__(n_scores, individual_per_call, other_parameters={"evaluation_function_name":function.__name__}, name=name)
 
-        if mode == JIT:
+        if mode == FunctionEvaluator.JIT:
             self._function = numba.jit()(function)
             self._static_call = numba.jit()(FunctionEvaluator.static_call)
-        elif mode == NJIT:
+        elif mode == FunctionEvaluator.NJIT:
             self._function = numba.njit()(function)
             self._static_call = numba.njit()(FunctionEvaluator.static_call)
-        elif mode == JIT_PARALLEL:
+        elif mode == FunctionEvaluator.JIT_PARALLEL:
             self._function = numba.jit(parallel=True)(function)
             self._static_call = numba.jit(parallel=True)(FunctionEvaluator.static_call)
-        elif mode == NJIT_PARALLEL:
+        elif mode == FunctionEvaluator.NJIT_PARALLEL:
             self._function = numba.njit(parallel=True)(function)
             self._static_call = numba.njit(parallel=True)(FunctionEvaluator.static_call)
         else:
