@@ -231,73 +231,65 @@ class Generator:
 
 		return self._population
 
-def detect_cycle(graph):
-	visited = set()
-	stack = set()
-	return cycle_search(graph[0], visited, stack)
-
-def cycle_search(node, visited, stack):
+def cycle_finder_dfs(node, visited):
 	visited.add(node)
-	stack.add(node)
+	for next_node in node.next:
+		if next_node in visited:
+			return False
+		if not cycle_finder_dfs(next_node, visited):
+			return False
+	visited.remove(node)
+	return True
+
+def simple_dfs(node, visited):
+	visited.add(node)
 	for next_node in node.next:
 		if next_node not in visited:
-			if cycle_search(next_node, visited, stack):
-				return True
-		elif next_node in stack:
-			return True
-	stack.remove(node)
-	return False
+			simple_dfs(next_node, visited)
+
+def end_finder_dfs(node, target_node, visited):
+    if node == target_node:
+        return True
+    visited.add(node)
+    for next_node in node.next:
+        if next_node not in visited:
+            if end_finder_dfs(next_node, target_node, visited):
+                return True
+    return False
+
+def is_dag(graph):
+	visited = set()
+	for node in graph:
+		if node not in visited:
+			if not cycle_finder_dfs(node, visited):
+				return False
+	return True
 
 def find_unreachable_nodes(graph):
-	reachable_nodes = set()
-	stack = [graph[0]]
-
-	while stack:
-		node = stack.pop()
-		reachable_nodes.add(node)
-
-		for next_node in node.next:
-			if next_node not in reachable_nodes:
-				stack.append(next_node)
-
-	return [node for node in graph if node not in reachable_nodes]
+	visited = set()
+	simple_dfs(graph[0], visited)
+	unvisited_nodes = [node for node in graph if node not in visited]
+	
+	return unvisited_nodes
 
 def find_nodes_unable_to_reach_end(graph):
-	unable_to_reach = set()
-	stack = [graph[-1]]
+    target_node = graph[-1]
+    visited = set()
+    for node in graph:
+        end_finder_dfs(node, target_node, visited)
+	
+    nodes_not_reaching_target = [node for node in graph if node not in visited and node != target_node]
 
-	while stack:
-		node = stack.pop()
-		unable_to_reach.add(node)
-
-		for prev_node in get_previous_nodes(graph, node):
-			if prev_node not in unable_to_reach:
-				stack.append(prev_node)
-
-	return [node for node in graph if node not in unable_to_reach]
-
-def get_previous_nodes(graph, node):
-	previous_nodes = []
-	for curr_node in graph:
-		if node in curr_node.next:
-			previous_nodes.append(curr_node)
-	return previous_nodes
+    return nodes_not_reaching_target
 
 def check_consistency(graph):
-	seen = set()
-	has_duplicates = False
-
-	for node in graph:
-		if node in seen:
-			has_duplicates = True
-		seen.add(node)
-
-	return has_duplicates
+    
+    return len(graph) != len(set(graph))
 
 def validate_layers(graph):
 	init_cant_reach = find_unreachable_nodes(graph)
 	cant_reach_end = find_nodes_unable_to_reach_end(graph)
-	cycle_deteted = detect_cycle(graph)
+	cycle_deteted = is_dag(graph)
 	has_duplicates = check_consistency(graph)
 
 	if has_duplicates:
