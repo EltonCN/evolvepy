@@ -25,7 +25,7 @@ class FunctionEvaluator(Evaluator):
     JIT_PARALLEL = 3
     NJIT_PARALLEL = 4
 
-    def __init__(self, function:Callable[[np.ndarray], ArrayLike], n_scores:int=1, mode:int=NJIT, individual_per_call:int = 1) -> None:
+    def __init__(self, function:Callable[[np.ndarray], ArrayLike], n_scores:int=1, mode:int=NJIT, individual_per_call:int = 1, name:str=None) -> None:
         '''
         FunctionEvaluator constructor.
 
@@ -41,7 +41,7 @@ class FunctionEvaluator(Evaluator):
                                 NJIT_PARALLEL: With NJIT and parallel assessments.
             individual_per_call (int, optional): Number of individuals that are evaluated at each function call. Defaults to 1.
         '''
-        super().__init__(n_scores, individual_per_call, other_parameters={"evaluation_function_name":function.__name__})
+        super().__init__(n_scores, individual_per_call, other_parameters={"evaluation_function_name":function.__name__}, name=name)
 
         if mode == JIT:
             self._function = numba.jit()(function)

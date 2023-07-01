@@ -13,7 +13,7 @@ class Evaluator(Configurable, ABC):
     Must be inherited to be used.
     '''
     
-    def __init__(self, n_scores:int=1, individual_per_call:int = 1, other_parameters:Dict[str,object]=None, dynamic_parameters:Dict[str,bool]=None) -> None:
+    def __init__(self, n_scores:int=1, individual_per_call:int = 1, other_parameters:Dict[str,object]=None, dynamic_parameters:Dict[str,bool]=None, name:str=None) -> None:
         '''
         Evalutor constructor.
 
@@ -30,7 +30,7 @@ class Evaluator(Configurable, ABC):
         other_parameters["n_scores"] = n_scores
         other_parameters["individual_per_call"] = individual_per_call
 
-        super().__init__(other_parameters, dynamic_parameters)
+        super().__init__(other_parameters, dynamic_parameters, name=name)
 
         self._individual_per_call = individual_per_call
         self._n_scores = n_scores
