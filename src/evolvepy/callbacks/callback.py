@@ -97,7 +97,7 @@ class Callback(Configurable):
         Called when evolution start.
         '''
         range_name = "{0}_start".format(self.name)
-        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback"):
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback", color=nvtx.callback_color):
             self.on_start()
 
     def _on_generator_start(self) -> None:
@@ -105,7 +105,7 @@ class Callback(Configurable):
         Called before generator run.
         '''
         range_name = "{0}_generator_start".format(self.name)
-        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback"):
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback", color=nvtx.callback_color):
             self.on_generator_start()
         
 
@@ -117,7 +117,7 @@ class Callback(Configurable):
             population (np.ndarray): The generated population.
         '''
         range_name = "{0}_generator_end".format(self.name)
-        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback"):
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback", color=nvtx.callback_color):
             self.on_generator_end(population)
 
     def _on_evaluator_end(self, fitness:np.ndarray) -> None:
@@ -128,7 +128,7 @@ class Callback(Configurable):
             fitness (np.ndarray): The population fitness.
         '''
         range_name = "{0}_evaluator_end".format(self.name)
-        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback"):
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback", color=nvtx.callback_color):
             self.on_evaluator_end(fitness)
 
     def _on_stop(self) -> None:
@@ -136,7 +136,7 @@ class Callback(Configurable):
         Called on evolution end.
         '''
         range_name = "{0}_stop".format(self.name)
-        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback"):
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="callback", color=nvtx.callback_color):
             self.on_stop()
 
 

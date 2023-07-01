@@ -70,11 +70,11 @@ class FitnessCache(EvaluationStage):
 
         # Check for cache hit
         range_name = "{0}_hit_check".format(self.name)
-        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
             for i in range(pop_size):
                 
                 range_name = "{0}_get_representation".format(self.name)
-                with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+                with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
                     ind_repr = self.get_individual_representation(population[i])
 
                 if ind_repr not in self._cache:
@@ -88,7 +88,7 @@ class FitnessCache(EvaluationStage):
 
         # Evaluate misses
         range_name = "{0}_miss_evaluation".format(self.name)
-        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
             if len(to_evaluate_indexs) != 0:
                 to_evaluate = population[to_evaluate_indexs]
 
@@ -102,7 +102,7 @@ class FitnessCache(EvaluationStage):
         self._scores = self._evaluator.scores
 
         range_name = "{0}_delete_old".format(self.name)
-        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
             self._delete_old()
         self._generation += 1
 

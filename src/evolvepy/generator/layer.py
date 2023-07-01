@@ -105,7 +105,7 @@ class Layer(Configurable):
 			population (np.ndarray): New population array
 			fitness (np.ndarray): New fitness array
 		'''         
-		profile_range = nvtx.start_range(self.name, domain="evolvepy", category="generator_layer")
+		profile_range = nvtx.start_range(self.name, domain="evolvepy", category="generator_layer", color=nvtx.generator_color)
 
 		if not (population is None and fitness is None):
 			population = np.asarray(population)
@@ -118,7 +118,7 @@ class Layer(Configurable):
 				context = Context(len(population), population.dtype.names)
 
 			if not context.block_all:
-				operation_profile_range = nvtx.start_range(self.name+"_call", domain="evolvepy", category="generator_layer")
+				operation_profile_range = nvtx.start_range(self.name+"_call", domain="evolvepy", category="generator_layer", color=nvtx.generator_color)
 				
 				population, fitness = self.call(population, fitness, context)
 				
@@ -267,7 +267,7 @@ class ChromosomeOperator(Layer):
 			for name in dim_to_operate:
 				if not context.blocked[name]:
 					range_name = "{0}_{1}".format(self.name, name)
-					profile_range = nvtx.start_range(range_name, domain="evolvepy", category="generator_layer")
+					profile_range = nvtx.start_range(range_name, domain="evolvepy", category="generator_layer", color=nvtx.generator_color)
 					
 					result[name] = self.call_chromosomes(population[name], fitness, context, name)
 					

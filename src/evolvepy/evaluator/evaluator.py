@@ -46,7 +46,7 @@ class Evaluator(Configurable, ABC):
         Returns:
             np.ndarray: Population fitness
         '''
-        with nvtx.annotate_se(self.name, domain="evolvepy", category="evaluator"):
+        with nvtx.annotate_se(self.name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
             fitness = self.call(population)
 
         return fitness

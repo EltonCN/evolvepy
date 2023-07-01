@@ -36,12 +36,12 @@ class ProcessFitnessFunction(ABC):
         '''
         if not self._setted or self._reset:
             range_name = "{0}_setup".format(self.__class__.__name__)
-            with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+            with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
                 self.setup()
                 self._setted = True
         
         range_name = "{0}_evaluation".format(self.__class__.__name__)
-        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
             fitness = self.evaluate(individuals)
         
         return fitness 

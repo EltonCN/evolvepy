@@ -47,13 +47,13 @@ class MultipleEvaluation(EvaluationStage):
 
         range_name = "{0}_iteration".format(self.name)
         for i in range(n_evaluation):
-            with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+            with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
                 fitness[i]  = self._evaluator(population)
 
 
         if self._discard_max or self._discard_min:
             range_name = "{0}_discard_maxmix".format(self.name)
-            with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+            with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
                 result_size = n_evaluation
                 if self._discard_max:
                     result_size -= 1
@@ -72,7 +72,7 @@ class MultipleEvaluation(EvaluationStage):
             result = fitness
 
         range_name = "{0}_agregator".format(self.name)
-        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator"):
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
             final_fitness = self._agregator(result, axis=0)
 
         self._scores = final_fitness
