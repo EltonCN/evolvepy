@@ -3,10 +3,12 @@ import time
 
 import numpy as np
 import numba
+import ray
 
 from evolvepy.generator import Descriptor
 from evolvepy.evaluator import FunctionEvaluator, ProcessEvaluator, ProcessFitnessFunction
 from evolvepy.integrations import nvtx
+from evolvepy.integrations.ray import DistributedEvaluator
 
 N_WORKER = 4 
 N_GENERATION = 10
@@ -41,13 +43,17 @@ if __name__ == "__main__":
     if args.overhead:
         func = dummy_func
 
+    ray.shutdown()
+    ray.init(num_cpus=N_WORKER)
+
     descriptor = Descriptor()
     
     evaluator_func = FunctionEvaluator(func, mode = FunctionEvaluator.NJIT, name="Base")
     evaluator_func_parallel = FunctionEvaluator(func, mode=FunctionEvaluator.NJIT_PARALLEL, name="Threads", n_thread=N_WORKER)
     evaluator_proc = ProcessEvaluator(ProcessFunc, n_process=N_WORKER, args={"func": func}, name="Processes")
-    
-    evaluators = [evaluator_func, evaluator_func_parallel, evaluator_proc]
+    evaluator_dist = DistributedEvaluator(ProcessFunc, n_worker=N_WORKER, args={"func": func}, name="Distributed")
+
+    evaluators = [evaluator_func, evaluator_func_parallel, evaluator_proc, evaluator_dist]
 
     for evaluator in evaluators:
         evaluator(np.empty(N_WORKER, descriptor.dtype))

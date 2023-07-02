@@ -10,7 +10,7 @@ from utils import plot_speedup, get_category_id
 NvtxCategory = 33
 NvtxStartEndRange = 60
 
-evaluator_names = ["Base", "Threads", "Processes"]
+evaluator_names = ["Base", "Threads", "Processes", "Distributed"]
 base = "Base"
 
 if __name__ == "__main__":
@@ -60,6 +60,8 @@ if __name__ == "__main__":
 
         plt.xticks(sizes)
         plt.legend()
+        plt.xlabel("Generation size")
+        plt.ylabel("Time [ns]")
 
         if experiment_name == "Overhead":
             plt.yscale("log")
@@ -68,10 +70,13 @@ if __name__ == "__main__":
         plt.title(experiment_name)
         fig.savefig("Evaluator_Paralelism_Times_{0}.png".format(experiment_name),  facecolor='white', transparent=False)
 
+        # Plot speedups
         fig = plt.figure()
         plot_speedup(sizes, evaluator_times, evaluator_stds, base)
         plt.suptitle("Evaluator Speedups")
         plt.title(experiment_name)
+        plt.xlabel("Generation size")
+        plt.ylabel("Speedup")
         plt.legend()
         if experiment_name == "Overhead":
             plt.yscale("log")
