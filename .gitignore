@@ -4,6 +4,7 @@ __pycache__/
 *.whl
 *.gz
 dist/
+.vscode
 coverage.xml
 create-reports.sh
 pytest-report.xml
