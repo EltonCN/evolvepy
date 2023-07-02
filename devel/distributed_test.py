@@ -1,19 +1,23 @@
-import numpy as np
-
-import matplotlib.pyplot as plt
-import multiprocessing as mp
-import evolvepy as ep
-
-from nn import compute
-import nn, gym
-
 from abc import ABC, abstractmethod
 from typing import Dict
-from gym.wrappers.record_video import RecordVideo
 
-from evolvepy.evaluator import ProcessFitnessFunction, FunctionEvaluator
+import numpy as np
+import matplotlib.pyplot as plt
+import multiprocessing as mp
+import ray, gym, nn
+
+import evolvepy as ep
+from evolvepy.evaluator import ProcessFitnessFunction
+from evolvepy.integrations.ray import DistributedEvaluator
 from evolvepy.integrations.gym import GymFitnessFunction
-   
+
+from nn import compute
+
+# ActorDispatcher: manda os indivíduos para os atores, e recebe os scores
+# Actor = Runner: recebe os indivíduos, instanci
+# ProcessFitnessFunction
+
+
 class BipedalWalkerFitnessFunction(GymFitnessFunction):
 
     def __init__(self, show=False, save=False) -> None:
@@ -34,15 +38,15 @@ class BipedalWalkerFitnessFunction(GymFitnessFunction):
         return action
 
 if __name__ == "__main__":
-
-    bipedal_evaluator = BipedalWalkerFitnessFunction()
-
-    evaluator = ep.evaluator.FunctionEvaluator(bipedal_evaluator.__call__, mode = FunctionEvaluator.PYTHON)
+    ray.shutdown()
+    ray.init()
+    
+    evaluator = DistributedEvaluator(fitness_function = BipedalWalkerFitnessFunction)
     multiple_evaluation = ep.evaluator.MultipleEvaluation(evaluator, 10, discard_max=True, discard_min=True)
     descriptor = nn.create_descriptor(input_size=24, output_size=4, units=[20,20])
     population_size = (100//mp.cpu_count())*mp.cpu_count()
+    population_size = 12
 
-    print(descriptor.dtype)
 
     first = ep.generator.Layer()
     combine = ep.generator.CombineLayer(ep.generator.selection.tournament, ep.generator.crossover.one_point)
@@ -64,21 +68,8 @@ if __name__ == "__main__":
     generator = ep.generator.Generator(first_layer=first, last_layer=concat, descriptor=descriptor)
 
     dyn_mut = ep.callbacks.DynamicMutation([mutation.name], refinement_patience=5, exploration_patience=5, refinement_steps=5)
-
+    print("iniciou evolver")
     evolver = ep.Evolver(generator, multiple_evaluation, population_size, [dyn_mut])
 
+    print("iniciou evolver.evolve")
     hist, last_pop = evolver.evolve(3)
-
-    raise ValueError
-
-    plt.plot(hist.max(axis=1))
-    plt.plot(np.mean(hist, axis=1))
-    plt.xlabel("Generation")
-    plt.ylabel("Fitness")
-    plt.title("Evolution History")
-    plt.legend(["Best", "Mean"])
-    plt.show()
-
-    best = last_pop[np.argmax(hist[-1])]
-    test_evaluator = BipedalWalkerFitnessFunction(save=True)
-    test_evaluator([best])
