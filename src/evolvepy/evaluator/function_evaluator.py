@@ -8,12 +8,6 @@ import numpy as np
 from numpy.typing import ArrayLike
 import numba
 
-PYTHON = 0
-JIT = 1
-NJIT = 2
-JIT_PARALLEL = 3
-NJIT_PARALLEL = 3
-
 class FunctionEvaluator(Evaluator):
     '''
     Evaluates individuals using a simple function.
@@ -25,7 +19,7 @@ class FunctionEvaluator(Evaluator):
     JIT_PARALLEL = 3
     NJIT_PARALLEL = 4
 
-    def __init__(self, function:Callable[[np.ndarray], ArrayLike], n_scores:int=1, mode:int=NJIT, individual_per_call:int = 1) -> None:
+    def __init__(self, function:Callable[[np.ndarray], ArrayLike], n_scores:int=1, mode:int=NJIT, individual_per_call:int = 1, name:str=None, n_thread:int=None) -> None:
         '''
         FunctionEvaluator constructor.
 
@@ -41,27 +35,33 @@ class FunctionEvaluator(Evaluator):
                                 NJIT_PARALLEL: With NJIT and parallel assessments.
             individual_per_call (int, optional): Number of individuals that are evaluated at each function call. Defaults to 1.
         '''
-        super().__init__(n_scores, individual_per_call, other_parameters={"evaluation_function_name":function.__name__})
+        other_parameters = {"evaluation_function_name":function.__name__, "mode":mode}
+        if mode == FunctionEvaluator.JIT_PARALLEL or mode == FunctionEvaluator.NJIT_PARALLEL:
+            other_parameters["n_thread"] = n_thread
 
-        if mode == JIT:
+        super().__init__(n_scores, individual_per_call, other_parameters, name=name)
+
+        if mode == FunctionEvaluator.JIT:
             self._function = numba.jit()(function)
-            self._static_call = numba.jit()(FunctionEvaluator.call)
-        elif mode == NJIT:
+            self._static_call = numba.jit()(FunctionEvaluator.static_call)
+        elif mode == FunctionEvaluator.NJIT:
             self._function = numba.njit()(function)
-            self._static_call = numba.njit()(FunctionEvaluator.call)
-        elif mode == JIT_PARALLEL:
+            self._static_call = numba.njit()(FunctionEvaluator.static_call)
+        elif mode == FunctionEvaluator.JIT_PARALLEL:
             self._function = numba.jit(parallel=True)(function)
-            self._static_call = numba.jit(parallel=True)(FunctionEvaluator.call)
-        elif mode == NJIT_PARALLEL:
+            self._static_call = numba.jit(parallel=True)(FunctionEvaluator.static_call)
+        elif mode == FunctionEvaluator.NJIT_PARALLEL:
             self._function = numba.njit(parallel=True)(function)
-            self._static_call = numba.njit(parallel=True)(FunctionEvaluator.call)
+            self._static_call = numba.njit(parallel=True)(FunctionEvaluator.static_call)
         else:
             self._function = function
-            self._static_call = FunctionEvaluator.call
+            self._static_call = FunctionEvaluator.static_call
 
         self._mode = mode
+        self._n_thread = n_thread
+        
 
-    def __call__(self, population: np.ndarray) -> np.ndarray:
+    def call(self, population: np.ndarray) -> np.ndarray:
         '''
         Evaluates a population using the fitness function.
 
@@ -71,11 +71,19 @@ class FunctionEvaluator(Evaluator):
         Returns:
             np.ndarray: Population fitness.
         '''
+        if self._n_thread is not None:
+            orig_num_threads = numba.get_num_threads()
+            numba.set_num_threads(self._n_thread)
+
         self._scores  = self._static_call(self._function, self._individual_per_call, self._n_scores, population)
+
+        if self._n_thread is not None:
+            numba.set_num_threads(orig_num_threads)
+
         return self._scores
 
     @staticmethod
-    def call(function:Callable, individual_per_call:int, n_scores:int, population:np.ndarray) -> np.ndarray:
+    def static_call(function:Callable, individual_per_call:int, n_scores:int, population:np.ndarray) -> np.ndarray:
         '''
         Call the fitness function in the desired mode.
 
