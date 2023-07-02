@@ -9,6 +9,7 @@ from evolvepy.generator.context import Context
 from evolvepy.generator.layer import Layer
 from evolvepy.generator.firstgen import FirstGenLayer
 from evolvepy.generator.descriptor import Descriptor
+from evolvepy.generator.thread_pool import ThreadPool
 
 class Generator:
 	'''
@@ -224,6 +225,8 @@ class Generator:
 			self._population = self._population[:population_size]
 
 		self._layers[0](self._population, self._fitness, context)
+
+		ThreadPool.wait_for_end()
 		
 		if len(self._layers[-1].population) != population_size:
 			raise RuntimeError("The generator generated a population with wrong size. Expected "+str(population_size)+", got "+str(len(self._layers[-1].population)))

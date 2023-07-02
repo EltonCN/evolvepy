@@ -10,6 +10,7 @@ from numpy.typing import ArrayLike
 from evolvepy.configurable import Configurable
 from evolvepy.generator.context import Context
 from evolvepy.integrations import nvtx
+from evolvepy.generator.thread_pool import ThreadPool
 
 class Layer(Configurable):
 	'''
@@ -149,8 +150,11 @@ class Layer(Configurable):
 			next_context = context
 			if len(self._next) != 1:
 				next_context = next_context.copy()
-				
-			layer(population, fitness, next_context)
+				job = (layer, population, fitness, next_context)
+				ThreadPool.add_job(job)
+			else:
+				layer(population, fitness, next_context)
+			
 
 	def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:
 		return population, fitness
