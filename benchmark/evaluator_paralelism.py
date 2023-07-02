@@ -45,9 +45,9 @@ if __name__ == "__main__":
 
     descriptor = Descriptor()
     
-    evaluator_func = FunctionEvaluator(func, mode = FunctionEvaluator.NJIT)
-    evaluator_func_parallel = FunctionEvaluator(func, mode=FunctionEvaluator.NJIT_PARALLEL, name="FunctionParallel")
-    evaluator_proc = ProcessEvaluator(ProcessFunc, n_process=4, args={"func": func})
+    evaluator_func = FunctionEvaluator(func, mode = FunctionEvaluator.NJIT, name="Base")
+    evaluator_func_parallel = FunctionEvaluator(func, mode=FunctionEvaluator.NJIT_PARALLEL, name="Threads")
+    evaluator_proc = ProcessEvaluator(ProcessFunc, n_process=4, args={"func": func}, name="Processes")
     
     evaluators = [evaluator_func, evaluator_func_parallel, evaluator_proc]
 
