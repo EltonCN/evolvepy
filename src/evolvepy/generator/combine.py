@@ -37,7 +37,7 @@ class CombineLayer(ChromosomeOperator):
 
     
     @staticmethod
-    @numba.njit()#parallel=True)
+    @numba.njit(nogil=True)#parallel=True)
     def combine(chromosomes:np.ndarray, fitness:np.ndarray, selection_function:Callable, crossover_function:Callable, n_combine:int):
         '''
         Combine two or more layers

@@ -6,10 +6,12 @@ import numpy as np
 
 from evolvepy.generator import Generator, Layer, Context, Concatenate, FilterFirsts, Descriptor
 from evolvepy.integrations import nvtx
+from evolvepy.generator.thread_pool import ThreadPool 
 
 N_GENERATION = 10
 POPULATION_SIZES = list(range(1, 21, 1))
 DELAY_PER_INDIVIDUAL = 5E-2
+N_THREAD = 2
 
 class DelayLayer(Layer):
     def __init__(self, name: str = None, time_per_individual=1E-4):
@@ -33,6 +35,8 @@ if __name__ == "__main__":
 
     if args.overhead:
         DELAY_PER_INDIVIDUAL = 0
+
+    ThreadPool.n_thread = N_THREAD
 
     population_size = 10
     
@@ -58,12 +62,19 @@ if __name__ == "__main__":
     descriptor = Descriptor()
     generator = Generator(first_layer=li, last_layer=lf, descriptor=descriptor)
     generator.generate(population_size)
+    generator.generate(population_size)
 
     for population_size in POPULATION_SIZES:
         generator.set_parameter(l_flow1_2.name, "n_to_pass", int(np.ceil(population_size/2.0)))
         generator.set_parameter(l_flow2_2.name, "n_to_pass", int(np.floor(population_size/2.0)))
 
         for name in ["Serial", "Parallel"]:
+
+            if name == "Serial":
+                ThreadPool.serial = True
+            else:
+                ThreadPool.serial = False
+
             range_name = "{0}_{1}".format(name, population_size)
             with nvtx.annotate_se(range_name, category="benchmark", domain="evolvepy"):
                 generator.generate(population_size)

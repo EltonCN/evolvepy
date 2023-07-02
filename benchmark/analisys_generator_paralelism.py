@@ -66,13 +66,21 @@ if __name__ == "__main__":
 
         plt.suptitle("Generator Times")
         plt.title(experiment_name)
-        fig.savefig("Generator_Paralelism_Times_{0}.png".format(experiment_name),  facecolor='white', transparent=False)
+        plt.xlabel("Generation size")
+        plt.ylabel("Time [ns]")
 
+        fig.savefig("Generator_Paralelism_Times_{0}.png".format(experiment_name),  facecolor='white', transparent=False, bbox_inches='tight')
+
+        # Plot speedups
         fig = plt.figure()
         plot_speedup(sizes, generator_times, generator_stds, base)
         plt.suptitle("Generator Speedups")
         plt.title(experiment_name)
         plt.legend()
+        
+        plt.xlabel("Generation size")
+        plt.ylabel("Speedup")
+
         if experiment_name == "Overhead":
             plt.yscale("log")
-        fig.savefig("Generator_Paralelism_Speedups_{0}.png".format(experiment_name),  facecolor='white', transparent=False)
+        fig.savefig("Generator_Paralelism_Speedups_{0}.png".format(experiment_name),  facecolor='white', transparent=False, bbox_inches='tight')

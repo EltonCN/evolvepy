@@ -6,6 +6,7 @@ from numpy.testing import assert_equal, assert_raises
 from evolvepy.generator.basic_layers import Block
 
 from evolvepy.generator.context import Context
+from evolvepy.generator.thread_pool import ThreadPool
 
 from .utils import assert_not_equal
 
@@ -28,6 +29,7 @@ class TestLayer(unittest.TestCase):
         fitness = np.empty(10)
 
         layer1(pop, fitness)
+        ThreadPool.wait_for_end()
 
         assert_equal(pop, layer2.population)
         assert_equal(pop, layer3.population)
@@ -48,6 +50,7 @@ class TestLayer(unittest.TestCase):
 
         for _ in range(2):
             layer1(pop, fitness)
+            ThreadPool.wait_for_end()
 
             pop_result = np.concatenate((pop, pop))
             fitness_result = np.concatenate((fitness, fitness))

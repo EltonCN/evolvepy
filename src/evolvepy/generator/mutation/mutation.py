@@ -50,7 +50,7 @@ class NumericMutationLayer(ChromosomeOperator):
         return NumericMutationLayer.mutate(chromosomes, self._mutation_function, existence_rate, gene_rate, mutation_range)
 
     @staticmethod
-    @numba.njit()#parallel=True)
+    @numba.njit(nogil=True)#parallel=True)
     def mutate(chromosomes:np.ndarray, mutation_function:Callable, existence_rate:float, gene_rate:float, mutation_range:Tuple[float, float]):
         '''
         Generic caller to a mutation function passed as parameters.
@@ -116,7 +116,7 @@ class BinaryMutationLayer(ChromosomeOperator):
         return BinaryMutationLayer.mutate(chromosomes, self._mutation_function, existence_rate, gene_rate)
 
     @staticmethod
-    @numba.njit()
+    @numba.njit(nogil=True)
     def mutate(chromosomes:np.ndarray, mutation_function:Callable, existence_rate:float, gene_rate:float):
         '''
         Generic caller to a mutation function passed as parameters.
