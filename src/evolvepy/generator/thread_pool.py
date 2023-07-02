@@ -87,6 +87,9 @@ class ThreadPool:
 
     @staticmethod
     def wait_for_end():
+        if not ThreadPool.initialized:
+            return
+        
         while len(ThreadPool.waiting) != 0:
             ended_layer = ThreadPool.end_queue.get()
             ThreadPool.waiting.remove(ended_layer)
