@@ -1,0 +1,3 @@
+nsys profile -t nvtx --cpuctxsw=none --sample=none --stats true --nvtx-domain-include=evolvepy --force-overwrite true -o evaluator_paralelism_overhead C:\Python38\python.exe evaluator_paralelism.py --overhead
+nsys profile -t nvtx --cpuctxsw=none --sample=none --stats true --nvtx-domain-include=evolvepy --force-overwrite true -o evaluator_paralelism C:\Python38\python.exe evaluator_paralelism.py
+python analisys_evaluator_paralelism.py evaluator_paralelism.sqlite evaluator_paralelism_overhead.sqlite

@@ -62,8 +62,9 @@ if __name__ == "__main__":
     for population_size in POPULATION_SIZES:
         generator.set_parameter(l_flow1_2.name, "n_to_pass", int(np.ceil(population_size/2.0)))
         generator.set_parameter(l_flow2_2.name, "n_to_pass", int(np.floor(population_size/2.0)))
-        
-        range_name = "{0}_{1}".format("serial", population_size)
-        with nvtx.annotate_se(range_name, category="benchmark", domain="evolvepy"):
-            generator.generate(population_size)
+
+        for name in ["Serial", "Parallel"]:
+            range_name = "{0}_{1}".format(name, population_size)
+            with nvtx.annotate_se(range_name, category="benchmark", domain="evolvepy"):
+                generator.generate(population_size)
 

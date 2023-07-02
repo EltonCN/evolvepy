@@ -1,0 +1,3 @@
+nsys profile -t nvtx --cpuctxsw=none --sample=none --stats true --nvtx-domain-include=evolvepy --force-overwrite true -o generator_paralelism_overhead C:\Python38\python.exe generator_paralelism.py --overhead
+nsys profile -t nvtx --cpuctxsw=none --sample=none --stats true --nvtx-domain-include=evolvepy --force-overwrite true -o generator_paralelism C:\Python38\python.exe generator_paralelism.py
+python analisys_generator_paralelism.py generator_paralelism.sqlite generator_paralelism_overhead.sqlite
