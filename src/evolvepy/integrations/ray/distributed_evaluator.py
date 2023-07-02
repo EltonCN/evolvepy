@@ -1,12 +1,12 @@
 from typing import Any, Dict, Type
 from abc import ABC, abstractmethod
 import ray
+from ray.util.queue import Queue
 
 import numpy as np
 
-from .evaluator import Evaluator
+from evolvepy.evaluator import Evaluator
 
-@ray.remote
 class DistributedFitnessFunction(ABC):
     '''
     Base class of fitness function to be used to evaluate individuals in parallel with multiple processes.
@@ -34,12 +34,29 @@ class DistributedFitnessFunction(ABC):
         Returns:
             np.ndarray: Individuals fitness.
         '''
-        if not self._setted or self._reset:
+        if not self.is_setted() or self.has_reset():
             self.setup()
             self._setted = True
         
         return self.evaluate(individuals)
 
+    def is_setted(self) -> bool:
+        '''
+        Returns whether the evaluator is set.
+
+        Returns:
+            bool: Whether the evaluator is set.
+        '''
+        return self._setted
+    
+    def has_reset(self) -> bool:
+        '''
+        Returns whether the evaluator has reset.
+
+        Returns:
+            bool: Whether the evaluator has reset.
+        '''
+        return self._reset
 
     @abstractmethod
     def setup(self) -> None:
@@ -68,17 +85,17 @@ class DistributedFitnessFunction(ABC):
         ...
 
 @ray.remote
-def evaluate_forever(fitness_function: Type[DistributedFitnessFunction], individuals_queue: ray.Queue, scores_queue: ray.Queue, args: Dict[str, object]):
+def evaluate_forever(fitness_function: Type[DistributedFitnessFunction], individuals_queue: Queue, scores_queue: Queue, args: Dict[str, object]):
     '''
     Prepared the cost function to evaluate the individuals, waits for the receipt of individuals and returns the scores.
 
     Args:
         fitness_function (Type[ProcessFitnessFunction]): Class to be used to evaluate individuals.
-        individuals_queue (ray.Queue): Queue in which individuals who need to be evaluated will arrive.
-        scores_queue (ray.Queue): Queue in which the generated scores will be placed.
+        individuals_queue (Queue): Queue in which individuals who need to be evaluated will arrive.
+        scores_queue (Queue): Queue in which the generated scores will be placed.
         args (Dict[str, object]): Other evaluator class constructor arguments.
     '''
-    evaluator = fitness_function.start_evaluation.remote(**args)
+    evaluator = fitness_function.start_evaluation(individuals_queue)
 
     while True:
         individuals, first, last = ray.get(individuals_queue.get.remote(block=True))
@@ -104,17 +121,18 @@ class DistributedEvaluator(Evaluator):
             args (Dict[str, object], optional): Other arguments for the fitness_function constructor. Defaults to None.
         '''
         if n_process is None:
-            n_process = ray.nodes()
+            print(len(ray.nodes()))
+            n_process = len(ray.nodes())
 
-        other_parameters = {"evaluation_function_name": fitness_function.__name__, "n_process": n_process, "timeout": timeout}
+        other_parameters = {"evaluation_function_name": "distributed evaluator", "n_process": n_process, "timeout": timeout}
         super().__init__(n_scores=n_scores, individual_per_call=individual_per_call, other_parameters=other_parameters)
 
         self._fitness_function = fitness_function
         self._n_process = n_process
         self._timeout = timeout
 
-        self._individuals_queue = ray.Queue()
-        self._scores_queue = ray.Queue()
+        self._individuals_queue = Queue()
+        self._scores_queue = Queue()
 
         self._setted = False
 
@@ -129,6 +147,7 @@ class DistributedEvaluator(Evaluator):
         if self._setted:
             return
 
+        print(self._n_process)
         for _ in range(self._n_process):
             evaluate_forever.remote(self._fitness_function, self._individuals_queue, self._scores_queue, self._args)
 
@@ -161,13 +180,13 @@ class DistributedEvaluator(Evaluator):
 
             individuals = population[first:last]
 
-            self._individuals_queue.put.remote((individuals, first, last))
+            self._individuals_queue.put((individuals, first, last))
 
         received = 0
         fitness = np.empty((population.shape[0], self._n_scores), dtype=np.float64)
 
         while received < n:
-            scores, first, last = ray.get(self._scores_queue.get.remote(block=True, timeout=self._timeout))
+            scores, first, last = ray.get(self._scores_queue.get(block=True, timeout=self._timeout))
 
             fitness[first:last] = np.asarray(scores).reshape((self._individual_per_call, self._n_scores))
 
