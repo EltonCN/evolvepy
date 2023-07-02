@@ -41,13 +41,11 @@ if __name__ == "__main__":
     if args.overhead:
         func = dummy_func
 
-    numba.set_num_threads(N_WORKER)
-
     descriptor = Descriptor()
     
-    evaluator_func = FunctionEvaluator(func, mode = FunctionEvaluator.NJIT, name="Base")
+    evaluator_func = FunctionEvaluator(func, mode = FunctionEvaluator.NJIT, name="Base", n_thread=N_WORKER)
     evaluator_func_parallel = FunctionEvaluator(func, mode=FunctionEvaluator.NJIT_PARALLEL, name="Threads")
-    evaluator_proc = ProcessEvaluator(ProcessFunc, n_process=4, args={"func": func}, name="Processes")
+    evaluator_proc = ProcessEvaluator(ProcessFunc, n_process=N_WORKER, args={"func": func}, name="Processes")
     
     evaluators = [evaluator_func, evaluator_func_parallel, evaluator_proc]
 
