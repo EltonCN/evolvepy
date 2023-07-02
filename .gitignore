@@ -11,3 +11,6 @@ pytest-report.xml
 .coverage
 build/
 wandb/
+*.sqlite
+*.nsys-rep
+*.etl
