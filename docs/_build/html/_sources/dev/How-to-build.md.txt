@@ -8,6 +8,7 @@ To build and release EvolvePy, you need to follow these steps:
   - New dependencies created
 - Update documentation (develop branch)
   - Install all extra dependencies (`pip install .[extras]`)
+  - In docs folder, `sphinx-apidoc --force ../src -o .`
   - In docs folder, `make html`
 - Merge develop into main (all tests must pass)
 - Build: `python -m build`

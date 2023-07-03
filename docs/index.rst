@@ -13,6 +13,7 @@ EvolvePy's Documentation
    evolvepy
    examples_link
    dev/development
+   changelog
 
 .. mdinclude:: README.md
 
