@@ -1,6 +1,8 @@
 from __future__ import annotations
 from typing import Any, Dict, List, Union
 
+from evolvepy.integrations import nvtx
+
 class Context:
     '''
     Layer to pass the context and restrictions from the previous layers
@@ -113,19 +115,20 @@ class Context:
             return True
         else:
             return False
-
+    
     def copy(self) -> Context:
         '''
         Create a copy of this instance
         '''
-        context = Context(self.population_size, self.chromosome_names, self.sorted)
-        
-        if isinstance(self.blocked, bool):
-            context.blocked = self.blocked
-        else:
-            context.blocked = dict(zip(self.blocked.keys(), self.blocked.values()))
-        
-        context._values = dict(zip(self._values.keys(), self._values.values()))
+        with nvtx.annotate_se(domain="evolvepy", category="generator", color=nvtx.generator_color):
+            context = Context(self.population_size, self.chromosome_names, self.sorted)
+            
+            if isinstance(self.blocked, bool):
+                context.blocked = self.blocked
+            else:
+                context.blocked = dict(zip(self.blocked.keys(), self.blocked.values()))
+            
+            context._values = dict(zip(self._values.keys(), self._values.values()))
 
         return context
         

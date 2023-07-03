@@ -65,7 +65,7 @@ class FirstGenLayer(ChromosomeOperator):
 			chromosome = np.random.rand(population_size, n_gene)
 			chromosome *= chromosome_range[1] - chromosome_range[0]
 			chromosome += chromosome_range[0]
-		elif dtype.char in np.typecodes["AllInteger"]:
+		elif dtype.base.char in np.typecodes["AllInteger"]:
 			chromosome = np.random.randint(chromosome_range[0], chromosome_range[1], shape)
 		else:
 			chromosome = np.random.choice([0, 1], shape).astype(np.bool_)

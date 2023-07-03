@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>evolvepy package &mdash; EvolvePy 1.0.0 documentation</title>
+  <title>evolvepy package &mdash; EvolvePy 2.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -27,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> EvolvePy
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EvolvePy
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,6 +47,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -49,9 +59,9 @@
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.multiple">evolvepy.evaluator.multiple module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
 </ul>
@@ -66,19 +76,42 @@
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.thread_pool">evolvepy.generator.thread_pool module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.html">evolvepy.integrations package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-evolvepy.evolver">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-evolvepy.configurable">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-evolvepy.configurable">evolvepy.configurable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#evolvepy.configurable.Configurable"><code class="docutils literal notranslate"><span class="pre">Configurable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#evolvepy.configurable.Configurable.__element_count"><code class="docutils literal notranslate"><span class="pre">Configurable.__element_count</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evolvepy.configurable.Configurable.__init__"><code class="docutils literal notranslate"><span class="pre">Configurable.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evolvepy.configurable.Configurable.dynamic_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.dynamic_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evolvepy.configurable.Configurable.lock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.lock_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evolvepy.configurable.Configurable.name"><code class="docutils literal notranslate"><span class="pre">Configurable.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evolvepy.configurable.Configurable.parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evolvepy.configurable.Configurable.reset_count"><code class="docutils literal notranslate"><span class="pre">Configurable.reset_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evolvepy.configurable.Configurable.static_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.static_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evolvepy.configurable.Configurable.unlock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.unlock_parameter()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-evolvepy.evolver">evolvepy.evolver module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#evolvepy.evolver.Evolver"><code class="docutils literal notranslate"><span class="pre">Evolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#evolvepy.evolver.Evolver.__init__"><code class="docutils literal notranslate"><span class="pre">Evolver.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#evolvepy.evolver.Evolver.evolve"><code class="docutils literal notranslate"><span class="pre">Evolver.evolve()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-evolvepy">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples_link.html">Examples</a><ul>
@@ -87,6 +120,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dev/development.html">EvolvePy’s Development Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dev/how_to_build_link.html">How to build and release</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id1">2.0.0</a></li>
 </ul>
 </li>
 </ul>
@@ -104,8 +141,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>evolvepy package</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">evolvepy package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/evolvepy.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -116,23 +153,206 @@
            <div itemprop="articleBody">
              
   <section id="evolvepy-package">
-<h1>evolvepy package<a class="headerlink" href="#evolvepy-package" title="Permalink to this headline"></a></h1>
+<h1>evolvepy package<a class="headerlink" href="#evolvepy-package" title="Permalink to this heading"></a></h1>
 <section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline"></a></h2>
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.callbacks.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback"><code class="docutils literal notranslate"><span class="pre">Callback</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback.__init__"><code class="docutils literal notranslate"><span class="pre">Callback.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback.callbacks"><code class="docutils literal notranslate"><span class="pre">Callback.callbacks</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback.evaluator"><code class="docutils literal notranslate"><span class="pre">Callback.evaluator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback.generator"><code class="docutils literal notranslate"><span class="pre">Callback.generator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback.on_evaluator_end"><code class="docutils literal notranslate"><span class="pre">Callback.on_evaluator_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback.on_generator_end"><code class="docutils literal notranslate"><span class="pre">Callback.on_generator_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback.on_generator_start"><code class="docutils literal notranslate"><span class="pre">Callback.on_generator_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback.on_start"><code class="docutils literal notranslate"><span class="pre">Callback.on_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback.on_stop"><code class="docutils literal notranslate"><span class="pre">Callback.on_stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.dynamic_mutation.DynamicMutation"><code class="docutils literal notranslate"><span class="pre">DynamicMutation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.dynamic_mutation.DynamicMutation.EXPLORATION"><code class="docutils literal notranslate"><span class="pre">DynamicMutation.EXPLORATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.dynamic_mutation.DynamicMutation.NORMAL"><code class="docutils literal notranslate"><span class="pre">DynamicMutation.NORMAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.dynamic_mutation.DynamicMutation.REFINEMENT"><code class="docutils literal notranslate"><span class="pre">DynamicMutation.REFINEMENT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.dynamic_mutation.DynamicMutation.__init__"><code class="docutils literal notranslate"><span class="pre">DynamicMutation.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.dynamic_mutation.DynamicMutation.on_evaluator_end"><code class="docutils literal notranslate"><span class="pre">DynamicMutation.on_evaluator_end()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.incremental_evolution.IncrementalEvolution"><code class="docutils literal notranslate"><span class="pre">IncrementalEvolution</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.incremental_evolution.IncrementalEvolution.__init__"><code class="docutils literal notranslate"><span class="pre">IncrementalEvolution.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.incremental_evolution.IncrementalEvolution.on_generator_start"><code class="docutils literal notranslate"><span class="pre">IncrementalEvolution.on_generator_start()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.FileStoreLogger"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.FileStoreLogger.__init__"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.FileStoreLogger.log_name"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger.log_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.FileStoreLogger.on_start"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger.on_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.FileStoreLogger.save_dynamic_log"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger.save_dynamic_log()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.FileStoreLogger.save_static_log"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger.save_static_log()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger"><code class="docutils literal notranslate"><span class="pre">Logger</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.__init__"><code class="docutils literal notranslate"><span class="pre">Logger.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.on_evaluator_end"><code class="docutils literal notranslate"><span class="pre">Logger.on_evaluator_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.on_generator_end"><code class="docutils literal notranslate"><span class="pre">Logger.on_generator_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.on_start"><code class="docutils literal notranslate"><span class="pre">Logger.on_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.save_dynamic_log"><code class="docutils literal notranslate"><span class="pre">Logger.save_dynamic_log()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.save_static_log"><code class="docutils literal notranslate"><span class="pre">Logger.save_static_log()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.MemoryStoreLogger"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.MemoryStoreLogger.__init__"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.MemoryStoreLogger.config_log"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger.config_log</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.MemoryStoreLogger.log"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger.log</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.MemoryStoreLogger.save_dynamic_log"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger.save_dynamic_log()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.logger.MemoryStoreLogger.save_static_log"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger.save_static_log()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback"><code class="docutils literal notranslate"><span class="pre">Callback</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback.__init__"><code class="docutils literal notranslate"><span class="pre">Callback.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback.callbacks"><code class="docutils literal notranslate"><span class="pre">Callback.callbacks</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback.evaluator"><code class="docutils literal notranslate"><span class="pre">Callback.evaluator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback.generator"><code class="docutils literal notranslate"><span class="pre">Callback.generator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback.on_evaluator_end"><code class="docutils literal notranslate"><span class="pre">Callback.on_evaluator_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback.on_generator_end"><code class="docutils literal notranslate"><span class="pre">Callback.on_generator_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback.on_generator_start"><code class="docutils literal notranslate"><span class="pre">Callback.on_generator_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback.on_start"><code class="docutils literal notranslate"><span class="pre">Callback.on_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback.on_stop"><code class="docutils literal notranslate"><span class="pre">Callback.on_stop()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.DynamicMutation"><code class="docutils literal notranslate"><span class="pre">DynamicMutation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.DynamicMutation.EXPLORATION"><code class="docutils literal notranslate"><span class="pre">DynamicMutation.EXPLORATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.DynamicMutation.NORMAL"><code class="docutils literal notranslate"><span class="pre">DynamicMutation.NORMAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.DynamicMutation.REFINEMENT"><code class="docutils literal notranslate"><span class="pre">DynamicMutation.REFINEMENT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.DynamicMutation.__init__"><code class="docutils literal notranslate"><span class="pre">DynamicMutation.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.DynamicMutation.on_evaluator_end"><code class="docutils literal notranslate"><span class="pre">DynamicMutation.on_evaluator_end()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.FileStoreLogger"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.FileStoreLogger.__init__"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.FileStoreLogger.log_name"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger.log_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.FileStoreLogger.on_start"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger.on_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.FileStoreLogger.save_dynamic_log"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger.save_dynamic_log()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.FileStoreLogger.save_static_log"><code class="docutils literal notranslate"><span class="pre">FileStoreLogger.save_static_log()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.IncrementalEvolution"><code class="docutils literal notranslate"><span class="pre">IncrementalEvolution</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.IncrementalEvolution.__init__"><code class="docutils literal notranslate"><span class="pre">IncrementalEvolution.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.IncrementalEvolution.on_generator_start"><code class="docutils literal notranslate"><span class="pre">IncrementalEvolution.on_generator_start()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Logger"><code class="docutils literal notranslate"><span class="pre">Logger</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Logger.__init__"><code class="docutils literal notranslate"><span class="pre">Logger.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Logger.on_evaluator_end"><code class="docutils literal notranslate"><span class="pre">Logger.on_evaluator_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Logger.on_generator_end"><code class="docutils literal notranslate"><span class="pre">Logger.on_generator_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Logger.on_start"><code class="docutils literal notranslate"><span class="pre">Logger.on_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Logger.save_dynamic_log"><code class="docutils literal notranslate"><span class="pre">Logger.save_dynamic_log()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Logger.save_static_log"><code class="docutils literal notranslate"><span class="pre">Logger.save_static_log()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.MemoryStoreLogger"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.MemoryStoreLogger.__init__"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.MemoryStoreLogger.config_log"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger.config_log</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.MemoryStoreLogger.log"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger.log</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.MemoryStoreLogger.save_dynamic_log"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger.save_dynamic_log()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.MemoryStoreLogger.save_static_log"><code class="docutils literal notranslate"><span class="pre">MemoryStoreLogger.save_static_log()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="evolvepy.evaluator.html">evolvepy.evaluator package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.aggregator.FitnessAggregator"><code class="docutils literal notranslate"><span class="pre">FitnessAggregator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.aggregator.FitnessAggregator.MAX"><code class="docutils literal notranslate"><span class="pre">FitnessAggregator.MAX</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.aggregator.FitnessAggregator.MEAN"><code class="docutils literal notranslate"><span class="pre">FitnessAggregator.MEAN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.aggregator.FitnessAggregator.MEDIAN"><code class="docutils literal notranslate"><span class="pre">FitnessAggregator.MEDIAN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.aggregator.FitnessAggregator.MIN"><code class="docutils literal notranslate"><span class="pre">FitnessAggregator.MIN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.aggregator.FitnessAggregator.MODE_NAMES"><code class="docutils literal notranslate"><span class="pre">FitnessAggregator.MODE_NAMES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.aggregator.FitnessAggregator.__init__"><code class="docutils literal notranslate"><span class="pre">FitnessAggregator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.aggregator.FitnessAggregator.call"><code class="docutils literal notranslate"><span class="pre">FitnessAggregator.call()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.aggregator.FitnessAggregator.func"><code class="docutils literal notranslate"><span class="pre">FitnessAggregator.func</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.cache.FitnessCache"><code class="docutils literal notranslate"><span class="pre">FitnessCache</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.cache.FitnessCache.__init__"><code class="docutils literal notranslate"><span class="pre">FitnessCache.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.cache.FitnessCache.call"><code class="docutils literal notranslate"><span class="pre">FitnessCache.call()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.cache.FitnessCache.get_individual_representation"><code class="docutils literal notranslate"><span class="pre">FitnessCache.get_individual_representation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.EvaluationStage"><code class="docutils literal notranslate"><span class="pre">EvaluationStage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.EvaluationStage.__init__"><code class="docutils literal notranslate"><span class="pre">EvaluationStage.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.EvaluationStage.call"><code class="docutils literal notranslate"><span class="pre">EvaluationStage.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator"><code class="docutils literal notranslate"><span class="pre">Evaluator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator.__init__"><code class="docutils literal notranslate"><span class="pre">Evaluator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator.call"><code class="docutils literal notranslate"><span class="pre">Evaluator.call()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator.scores"><code class="docutils literal notranslate"><span class="pre">Evaluator.scores</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.function_evaluator.FunctionEvaluator"><code class="docutils literal notranslate"><span class="pre">FunctionEvaluator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.function_evaluator.FunctionEvaluator.JIT"><code class="docutils literal notranslate"><span class="pre">FunctionEvaluator.JIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.function_evaluator.FunctionEvaluator.JIT_PARALLEL"><code class="docutils literal notranslate"><span class="pre">FunctionEvaluator.JIT_PARALLEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.function_evaluator.FunctionEvaluator.NJIT"><code class="docutils literal notranslate"><span class="pre">FunctionEvaluator.NJIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.function_evaluator.FunctionEvaluator.NJIT_PARALLEL"><code class="docutils literal notranslate"><span class="pre">FunctionEvaluator.NJIT_PARALLEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.function_evaluator.FunctionEvaluator.PYTHON"><code class="docutils literal notranslate"><span class="pre">FunctionEvaluator.PYTHON</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.function_evaluator.FunctionEvaluator.__init__"><code class="docutils literal notranslate"><span class="pre">FunctionEvaluator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.function_evaluator.FunctionEvaluator.call"><code class="docutils literal notranslate"><span class="pre">FunctionEvaluator.call()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.function_evaluator.FunctionEvaluator.static_call"><code class="docutils literal notranslate"><span class="pre">FunctionEvaluator.static_call()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.multiple">evolvepy.evaluator.multiple module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.multiple.MultipleEvaluation"><code class="docutils literal notranslate"><span class="pre">MultipleEvaluation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.multiple.MultipleEvaluation.__init__"><code class="docutils literal notranslate"><span class="pre">MultipleEvaluation.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.multiple.MultipleEvaluation.call"><code class="docutils literal notranslate"><span class="pre">MultipleEvaluation.call()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessEvaluator"><code class="docutils literal notranslate"><span class="pre">ProcessEvaluator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessEvaluator.__init__"><code class="docutils literal notranslate"><span class="pre">ProcessEvaluator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessEvaluator.call"><code class="docutils literal notranslate"><span class="pre">ProcessEvaluator.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessFitnessFunction"><code class="docutils literal notranslate"><span class="pre">ProcessFitnessFunction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessFitnessFunction.__init__"><code class="docutils literal notranslate"><span class="pre">ProcessFitnessFunction.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessFitnessFunction.evaluate"><code class="docutils literal notranslate"><span class="pre">ProcessFitnessFunction.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.ProcessFitnessFunction.setup"><code class="docutils literal notranslate"><span class="pre">ProcessFitnessFunction.setup()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.process_evaluator.evaluate_forever"><code class="docutils literal notranslate"><span class="pre">evaluate_forever()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
 </ul>
 </li>
@@ -161,87 +381,191 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.basic_layers">evolvepy.generator.basic_layers module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.combine">evolvepy.generator.combine module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.context">evolvepy.generator.context module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.descriptor">evolvepy.generator.descriptor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.basic_layers">evolvepy.generator.basic_layers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Block"><code class="docutils literal notranslate"><span class="pre">Block</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Block.__init__"><code class="docutils literal notranslate"><span class="pre">Block.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Block.call"><code class="docutils literal notranslate"><span class="pre">Block.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.ElitismLayer"><code class="docutils literal notranslate"><span class="pre">ElitismLayer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.ElitismLayer.__init__"><code class="docutils literal notranslate"><span class="pre">ElitismLayer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.ElitismLayer.call"><code class="docutils literal notranslate"><span class="pre">ElitismLayer.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.FilterFirsts"><code class="docutils literal notranslate"><span class="pre">FilterFirsts</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.FilterFirsts.__init__"><code class="docutils literal notranslate"><span class="pre">FilterFirsts.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.FilterFirsts.call"><code class="docutils literal notranslate"><span class="pre">FilterFirsts.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.RandomPredation"><code class="docutils literal notranslate"><span class="pre">RandomPredation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.RandomPredation.__init__"><code class="docutils literal notranslate"><span class="pre">RandomPredation.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.RandomPredation.call"><code class="docutils literal notranslate"><span class="pre">RandomPredation.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Sort"><code class="docutils literal notranslate"><span class="pre">Sort</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Sort.__init__"><code class="docutils literal notranslate"><span class="pre">Sort.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Sort.call"><code class="docutils literal notranslate"><span class="pre">Sort.call()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.combine">evolvepy.generator.combine module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.combine.CombineLayer"><code class="docutils literal notranslate"><span class="pre">CombineLayer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.combine.CombineLayer.__init__"><code class="docutils literal notranslate"><span class="pre">CombineLayer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.combine.CombineLayer.call_chromosomes"><code class="docutils literal notranslate"><span class="pre">CombineLayer.call_chromosomes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.combine.CombineLayer.combine"><code class="docutils literal notranslate"><span class="pre">CombineLayer.combine()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.context">evolvepy.generator.context module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.context.Context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.context.Context.__init__"><code class="docutils literal notranslate"><span class="pre">Context.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.context.Context.block_all"><code class="docutils literal notranslate"><span class="pre">Context.block_all</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.context.Context.chromosome_names"><code class="docutils literal notranslate"><span class="pre">Context.chromosome_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.context.Context.copy"><code class="docutils literal notranslate"><span class="pre">Context.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.context.Context.default_values"><code class="docutils literal notranslate"><span class="pre">Context.default_values</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.context.Context.have_value"><code class="docutils literal notranslate"><span class="pre">Context.have_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.context.Context.population_size"><code class="docutils literal notranslate"><span class="pre">Context.population_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.context.Context.sorted"><code class="docutils literal notranslate"><span class="pre">Context.sorted</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.descriptor">evolvepy.generator.descriptor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.descriptor.Descriptor"><code class="docutils literal notranslate"><span class="pre">Descriptor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.descriptor.Descriptor.__init__"><code class="docutils literal notranslate"><span class="pre">Descriptor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.descriptor.Descriptor.chromosome_names"><code class="docutils literal notranslate"><span class="pre">Descriptor.chromosome_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.descriptor.Descriptor.chromosome_ranges"><code class="docutils literal notranslate"><span class="pre">Descriptor.chromosome_ranges</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.descriptor.Descriptor.dtype"><code class="docutils literal notranslate"><span class="pre">Descriptor.dtype</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer"><code class="docutils literal notranslate"><span class="pre">FirstGenLayer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer.__init__"><code class="docutils literal notranslate"><span class="pre">FirstGenLayer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer.call"><code class="docutils literal notranslate"><span class="pre">FirstGenLayer.call()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer.call_chromosomes"><code class="docutils literal notranslate"><span class="pre">FirstGenLayer.call_chromosomes()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator"><code class="docutils literal notranslate"><span class="pre">Generator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator.__init__"><code class="docutils literal notranslate"><span class="pre">Generator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator.add"><code class="docutils literal notranslate"><span class="pre">Generator.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator.fitness"><code class="docutils literal notranslate"><span class="pre">Generator.fitness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator.generate"><code class="docutils literal notranslate"><span class="pre">Generator.generate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator.get_all_dynamic_parameters"><code class="docutils literal notranslate"><span class="pre">Generator.get_all_dynamic_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator.get_all_static_parameters"><code class="docutils literal notranslate"><span class="pre">Generator.get_all_static_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator.get_parameter"><code class="docutils literal notranslate"><span class="pre">Generator.get_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator.get_parameters"><code class="docutils literal notranslate"><span class="pre">Generator.get_parameters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator.set_parameter"><code class="docutils literal notranslate"><span class="pre">Generator.set_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator.set_parameters"><code class="docutils literal notranslate"><span class="pre">Generator.set_parameters()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator"><code class="docutils literal notranslate"><span class="pre">ChromosomeOperator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator.__init__"><code class="docutils literal notranslate"><span class="pre">ChromosomeOperator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator.call"><code class="docutils literal notranslate"><span class="pre">ChromosomeOperator.call()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.ChromosomeOperator.call_chromosomes"><code class="docutils literal notranslate"><span class="pre">ChromosomeOperator.call_chromosomes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.Concatenate"><code class="docutils literal notranslate"><span class="pre">Concatenate</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.Concatenate.__init__"><code class="docutils literal notranslate"><span class="pre">Concatenate.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.Layer"><code class="docutils literal notranslate"><span class="pre">Layer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.Layer.__init__"><code class="docutils literal notranslate"><span class="pre">Layer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.Layer.call"><code class="docutils literal notranslate"><span class="pre">Layer.call()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.Layer.context"><code class="docutils literal notranslate"><span class="pre">Layer.context</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.Layer.fitness"><code class="docutils literal notranslate"><span class="pre">Layer.fitness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.Layer.next"><code class="docutils literal notranslate"><span class="pre">Layer.next</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.Layer.population"><code class="docutils literal notranslate"><span class="pre">Layer.population</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.layer.Layer.send_next"><code class="docutils literal notranslate"><span class="pre">Layer.send_next()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.thread_pool">evolvepy.generator.thread_pool module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool"><code class="docutils literal notranslate"><span class="pre">ThreadPool</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool.add_job"><code class="docutils literal notranslate"><span class="pre">ThreadPool.add_job()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool.end_queue"><code class="docutils literal notranslate"><span class="pre">ThreadPool.end_queue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool.initialized"><code class="docutils literal notranslate"><span class="pre">ThreadPool.initialized</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool.job_queue"><code class="docutils literal notranslate"><span class="pre">ThreadPool.job_queue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool.n_thread"><code class="docutils literal notranslate"><span class="pre">ThreadPool.n_thread</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool.serial"><code class="docutils literal notranslate"><span class="pre">ThreadPool.serial</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool.thread_pool"><code class="docutils literal notranslate"><span class="pre">ThreadPool.thread_pool</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool.wait_for_end"><code class="docutils literal notranslate"><span class="pre">ThreadPool.wait_for_end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool.waiting"><code class="docutils literal notranslate"><span class="pre">ThreadPool.waiting</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.thread_pool.thread_function"><code class="docutils literal notranslate"><span class="pre">thread_function()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="evolvepy.integrations.html">evolvepy.integrations package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.integrations.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.gym.html">evolvepy.integrations.gym package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.tf_keras.html">evolvepy.integrations.tf_keras package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.unity_gym.html">evolvepy.integrations.unity_gym package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.wandb.html">evolvepy.integrations.wandb package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.gym.html">evolvepy.integrations.gym package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.gym.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.gym.html#module-evolvepy.integrations.gym.gym">evolvepy.integrations.gym.gym module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.gym.html#module-evolvepy.integrations.gym">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.nvtx.html">evolvepy.integrations.nvtx package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.nvtx.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.nvtx.html#module-evolvepy.integrations.nvtx.annotate_se">evolvepy.integrations.nvtx.annotate_se module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.nvtx.html#module-evolvepy.integrations.nvtx.colors">evolvepy.integrations.nvtx.colors module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.nvtx.html#module-evolvepy.integrations.nvtx.mock">evolvepy.integrations.nvtx.mock module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.nvtx.html#module-evolvepy.integrations.nvtx">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.ray.html">evolvepy.integrations.ray package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.ray.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.ray.html#module-evolvepy.integrations.ray.distributed_evaluator">evolvepy.integrations.ray.distributed_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.ray.html#module-evolvepy.integrations.ray">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.tf_keras.html">evolvepy.integrations.tf_keras package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.tf_keras.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.tf_keras.html#evolvepy-integrations-tf-keras-tf-keras-module">evolvepy.integrations.tf_keras.tf_keras module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.tf_keras.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.unity_gym.html">evolvepy.integrations.unity_gym package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.unity_gym.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.unity_gym.html#evolvepy-integrations-unity-gym-unity-module">evolvepy.integrations.unity_gym.unity module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.unity_gym.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.wandb.html">evolvepy.integrations.wandb package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.wandb.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.wandb.html#module-evolvepy.integrations.wandb.wandb">evolvepy.integrations.wandb.wandb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.wandb.html#module-evolvepy.integrations.wandb">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </section>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
-</section>
-<section id="module-evolvepy.evolver">
-<span id="evolvepy-evolver-module"></span><h2>evolvepy.evolver module<a class="headerlink" href="#module-evolvepy.evolver" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="evolvepy.evolver.Evolver">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.evolver.</span></span><span class="sig-name descname"><span class="pre">Evolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><span class="pre">evolvepy.generator.generator.Generator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><span class="pre">evolvepy.evaluator.evaluator.Evaluator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">evolvepy.callbacks.callback.Callback</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">evolvepy.callbacks.callback.Callback</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/evolver.html#Evolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.evolver.Evolver" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Basic class for evolving generations.</p>
-<p>It combines the generator, evaluator and callbacks and runs the evolutionary process.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="evolvepy.evolver.Evolver.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><span class="pre">evolvepy.generator.generator.Generator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><span class="pre">evolvepy.evaluator.evaluator.Evaluator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">evolvepy.callbacks.callback.Callback</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">evolvepy.callbacks.callback.Callback</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/evolver.html#Evolver.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.evolver.Evolver.__init__" title="Permalink to this definition"></a></dt>
-<dd><p>Evolver constructor.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>generator</strong> (<a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><em>Generator</em></a>) – Generator for generating populations.</p></li>
-<li><p><strong>evaluator</strong> (<a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><em>Evaluator</em></a>) – Evaluator for evaluating individuals.</p></li>
-<li><p><strong>population_size</strong> (<em>int</em>) – Size of population.</p></li>
-<li><p><strong>callbacks</strong> (<em>Union</em><em>[</em><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.Callback"><em>Callback</em></a><em>, </em><em>List</em><em>[</em><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.Callback" title="evolvepy.callbacks.Callback"><em>Callback</em></a><em>]</em><em>]</em><em>, </em><em>optional</em>) – Callabacks that will be called during evolution.. Defaults to None.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="evolvepy.evolver.Evolver.evolve">
-<span class="sig-name descname"><span class="pre">evolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/evolver.html#Evolver.evolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.evolver.Evolver.evolve" title="Permalink to this definition"></a></dt>
-<dd><p>Evolves the population for a few generations</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>generations</strong> (<em>int</em>) – Number of generations to evolve</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>The first element is the fitness history of all generations, in order.</dt><dd><p>The second is the last population evaluated.</p>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Tuple[np.ndarray, np.ndarray]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-evolvepy.configurable">
-<span id="evolvepy-configurable-module"></span><h2>evolvepy.configurable module<a class="headerlink" href="#module-evolvepy.configurable" title="Permalink to this headline"></a></h2>
+<span id="evolvepy-configurable-module"></span><h2>evolvepy.configurable module<a class="headerlink" href="#module-evolvepy.configurable" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="evolvepy.configurable.Configurable">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.configurable.</span></span><span class="sig-name descname"><span class="pre">Configurable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/configurable.html#Configurable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.configurable.Configurable" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.configurable.</span></span><span class="sig-name descname"><span class="pre">Configurable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/configurable.html#Configurable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.configurable.Configurable" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <p>Base class for Configurable classes.</p>
 <p>Configurable elements classes have parameters that can be logged using EvolvePy’s loggers.</p>
 <dl class="py attribute">
@@ -249,7 +573,7 @@
 <span class="sig-name descname"><span class="pre">__element_count</span></span><a class="headerlink" href="#evolvepy.configurable.Configurable.__element_count" title="Permalink to this definition"></a></dt>
 <dd><p>The number of created class instances. Is a class attribute.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -257,10 +581,10 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.configurable.Configurable.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/configurable.html#Configurable.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.configurable.Configurable.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/configurable.html#Configurable.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.configurable.Configurable.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Configurable constructor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parameters</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>object</em><em>]</em>) – Object logable parameters.</p></li>
 <li><p><strong>dynamic_parameters</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>bool</em><em>]</em>) – Parameters that may change mid-run.
@@ -282,7 +606,7 @@ its value indicates whether the change is locked (False) or not (True).</p></li>
 <span class="sig-name descname"><span class="pre">lock_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/configurable.html#Configurable.lock_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.configurable.Configurable.lock_parameter" title="Permalink to this definition"></a></dt>
 <dd><p>Lock some parameter, avoiding its change.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The parameter name.</p>
 </dd>
 </dl>
@@ -299,9 +623,9 @@ its value indicates whether the change is locked (False) or not (True).</p></li>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#evolvepy.configurable.Configurable.parameters" title="Permalink to this definition"></a></dt>
 <dd><p>Object parameters.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Setter</dt>
+<dt class="field-odd">Setter<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
-<dt class="field-even">Parameters</dt>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>value</strong> (<em>Union</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>object</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><em>str</em><em>, </em><em>object</em><em>]</em><em>]</em>) – If Dict[str, object], changes the value of all valid keys,
 if Tuple[str, object], changes the single key value, if valid.</p>
 </dd>
@@ -325,7 +649,7 @@ if Tuple[str, object], changes the single key value, if valid.</p>
 <span class="sig-name descname"><span class="pre">unlock_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/configurable.html#Configurable.unlock_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.configurable.Configurable.unlock_parameter" title="Permalink to this definition"></a></dt>
 <dd><p>Unlock some parameter, allowing its change.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The parameter name.</p>
 </dd>
 </dl>
@@ -333,6 +657,60 @@ if Tuple[str, object], changes the single key value, if valid.</p>
 
 </dd></dl>
 
+</section>
+<section id="module-evolvepy.evolver">
+<span id="evolvepy-evolver-module"></span><h2>evolvepy.evolver module<a class="headerlink" href="#module-evolvepy.evolver" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.evolver.Evolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.evolver.</span></span><span class="sig-name descname"><span class="pre">Evolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><span class="pre">Generator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><span class="pre">Evaluator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">Callback</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">Callback</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/evolver.html#Evolver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.evolver.Evolver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Basic class for evolving generations.</p>
+<p>It combines the generator, evaluator and callbacks and runs the evolutionary process.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.evolver.Evolver.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><span class="pre">Generator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><span class="pre">Evaluator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">Callback</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">Callback</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/evolver.html#Evolver.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.evolver.Evolver.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Evolver constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generator</strong> (<a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><em>Generator</em></a>) – Generator for generating populations.</p></li>
+<li><p><strong>evaluator</strong> (<a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><em>Evaluator</em></a>) – Evaluator for evaluating individuals.</p></li>
+<li><p><strong>population_size</strong> (<em>int</em>) – Size of population.</p></li>
+<li><p><strong>callbacks</strong> (<em>Union</em><em>[</em><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><em>Callback</em></a><em>, </em><em>List</em><em>[</em><a class="reference internal" href="evolvepy.callbacks.html#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><em>Callback</em></a><em>]</em><em>]</em><em>, </em><em>optional</em>) – Callabacks that will be called during evolution. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.evolver.Evolver.evolve">
+<span class="sig-name descname"><span class="pre">evolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/evolvepy/evolver.html#Evolver.evolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.evolver.Evolver.evolve" title="Permalink to this definition"></a></dt>
+<dd><p>Evolves the population for a few generations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generations</strong> (<em>int</em>) – Number of generations to evolve</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – If should print the generation number, maximum fitness and time. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The first element is the fitness history of all generations, in order.</dt><dd><p>The second is the last population evaluated.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[np.ndarray, np.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-evolvepy">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evolvepy" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 

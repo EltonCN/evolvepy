@@ -15,7 +15,13 @@ Subpackages
 Submodules
 ----------
 
+evolvepy.configurable module
+----------------------------
 
+.. automodule:: evolvepy.configurable
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 evolvepy.evolver module
 -----------------------
@@ -25,10 +31,10 @@ evolvepy.evolver module
    :undoc-members:
    :show-inheritance:
 
-evolvepy.configurable module
-----------------------------
+Module contents
+---------------
 
-.. automodule:: evolvepy.configurable
+.. automodule:: evolvepy
    :members:
    :undoc-members:
    :show-inheritance:

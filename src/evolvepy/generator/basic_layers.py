@@ -52,7 +52,7 @@ class FilterFirsts(Layer):
 			n_to_pass (int): Number of best individuals selected.
 			name (strig): Name of the layer.
 		'''
-		parameters = {"n_to_pass":n_to_pass}
+		parameters = {"n_to_pass":int(n_to_pass)}
 		dynamic_parameters = {"n_to_pass":True}
 		super().__init__(name=name, parameters=parameters, dynamic_parameters=dynamic_parameters)
 
@@ -69,7 +69,6 @@ class FilterFirsts(Layer):
 			n_to_pass (int): Number of best individuals selected
 		'''
 		n_to_pass = self.parameters["n_to_pass"]
-		
 		return population[0:n_to_pass], fitness[0:n_to_pass]
 
 class Block(Layer):

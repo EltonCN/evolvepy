@@ -41,7 +41,7 @@ class FitnessAggregator(EvaluationStage):
         self._mode = mode
         self._n_scores = 1
 
-    def __call__(self, population:np.ndarray) -> np.ndarray:
+    def call(self, population:np.ndarray) -> np.ndarray:
         '''
         Evaluates a population aggregating the scores.
 

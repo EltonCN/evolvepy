@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>evolvepy.generator.firstgen &mdash; EvolvePy 0.1.0 documentation</title>
+  <title>evolvepy.generator.firstgen &mdash; EvolvePy 2.0.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -24,11 +25,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> EvolvePy
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            EvolvePy
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -39,6 +44,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -46,9 +56,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.multiple">evolvepy.evaluator.multiple module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
 </ul>
@@ -63,19 +73,42 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.thread_pool">evolvepy.generator.thread_pool module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.integrations.html">evolvepy.integrations package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.integrations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable"><code class="docutils literal notranslate"><span class="pre">Configurable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.__element_count"><code class="docutils literal notranslate"><span class="pre">Configurable.__element_count</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.__init__"><code class="docutils literal notranslate"><span class="pre">Configurable.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.dynamic_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.dynamic_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.lock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.lock_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.name"><code class="docutils literal notranslate"><span class="pre">Configurable.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.reset_count"><code class="docutils literal notranslate"><span class="pre">Configurable.reset_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.static_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.static_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.unlock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.unlock_parameter()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.html#evolvepy.evolver.Evolver"><code class="docutils literal notranslate"><span class="pre">Evolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.evolver.Evolver.__init__"><code class="docutils literal notranslate"><span class="pre">Evolver.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.evolver.Evolver.evolve"><code class="docutils literal notranslate"><span class="pre">Evolver.evolve()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -101,9 +134,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>evolvepy.generator.firstgen</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">evolvepy.generator.firstgen</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -113,22 +146,22 @@
            <div itemprop="articleBody">
              
   <h1>Source code for evolvepy.generator.firstgen</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="k">import</span> <span class="n">ArrayLike</span>
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">ArrayLike</span>
 
-<span class="kn">from</span> <span class="nn">evolvepy.generator.descriptor</span> <span class="k">import</span> <span class="n">Descriptor</span>
-<span class="kn">from</span> <span class="nn">evolvepy.generator.layer</span> <span class="k">import</span> <span class="n">ChromosomeOperator</span>
-<span class="kn">from</span> <span class="nn">evolvepy.generator.context</span> <span class="k">import</span> <span class="n">Context</span>
+<span class="kn">from</span> <span class="nn">evolvepy.generator.descriptor</span> <span class="kn">import</span> <span class="n">Descriptor</span>
+<span class="kn">from</span> <span class="nn">evolvepy.generator.layer</span> <span class="kn">import</span> <span class="n">ChromosomeOperator</span>
+<span class="kn">from</span> <span class="nn">evolvepy.generator.context</span> <span class="kn">import</span> <span class="n">Context</span>
 
 <div class="viewcode-block" id="FirstGenLayer"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer">[docs]</a><span class="k">class</span> <span class="nc">FirstGenLayer</span><span class="p">(</span><span class="n">ChromosomeOperator</span><span class="p">):</span>
-	<span class="sd">&#39;&#39;&#39;</span>
+<span class="w">	</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">	Generates the first population for the pipeline</span>
 <span class="sd">	&#39;&#39;&#39;</span>
 
-<div class="viewcode-block" id="FirstGenLayer.__init__"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer.__init__">[docs]</a>	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">descriptor</span><span class="p">:</span><span class="n">Descriptor</span><span class="p">,</span> <span class="n">initialize_zeros</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">run</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="FirstGenLayer.__init__"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer.__init__">[docs]</a>	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">descriptor</span><span class="p">:</span><span class="n">Descriptor</span><span class="p">,</span> <span class="n">initialize_zeros</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chromosome_names</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">run</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Initialization fr the first population, it defines the base of the evolution</span>
 
 <span class="sd">		Args:</span>
@@ -150,7 +183,7 @@
 		<span class="bp">self</span><span class="o">.</span><span class="n">_chromosome_ranges</span> <span class="o">=</span> <span class="n">descriptor</span><span class="o">.</span><span class="n">chromosome_ranges</span></div>
 
 	<span class="k">def</span> <span class="nf">_generate_chromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population_size</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Initialize each chromosome and calculate its fitness</span>
 <span class="sd">		</span>
 <span class="sd">		Args:</span>
@@ -180,14 +213,14 @@
 			<span class="n">chromosome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">population_size</span><span class="p">,</span> <span class="n">n_gene</span><span class="p">)</span>
 			<span class="n">chromosome</span> <span class="o">*=</span> <span class="n">chromosome_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">chromosome_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 			<span class="n">chromosome</span> <span class="o">+=</span> <span class="n">chromosome_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-		<span class="k">elif</span> <span class="n">dtype</span><span class="o">.</span><span class="n">char</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">typecodes</span><span class="p">[</span><span class="s2">&quot;AllInteger&quot;</span><span class="p">]:</span>
+		<span class="k">elif</span> <span class="n">dtype</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">char</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">typecodes</span><span class="p">[</span><span class="s2">&quot;AllInteger&quot;</span><span class="p">]:</span>
 			<span class="n">chromosome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">chromosome_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">chromosome_range</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">shape</span><span class="p">)</span>
 		<span class="k">else</span><span class="p">:</span>
 			<span class="n">chromosome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">)</span>
 
 		<span class="k">return</span> <span class="n">chromosome</span>
 	
-	<span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Context</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+	<span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Context</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 		<span class="k">if</span> <span class="n">population</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 			<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;initialize_zeros&quot;</span><span class="p">]:</span>
 				<span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">population_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dtype</span><span class="p">)</span>
@@ -197,7 +230,7 @@
 
 <div class="viewcode-block" id="FirstGenLayer.call"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer.call">[docs]</a>	<span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 
-		<span class="sd">&#39;&#39;&#39;</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Generic call to initialize the population nd its fitness</span>
 <span class="sd">		</span>
 <span class="sd">		Args:</span>
@@ -220,7 +253,7 @@
 			<span class="k">return</span> <span class="n">population</span><span class="p">,</span> <span class="n">fitness</span></div>
 
 <div class="viewcode-block" id="FirstGenLayer.call_chromosomes"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer.call_chromosomes">[docs]</a>	<span class="k">def</span> <span class="nf">call_chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chromosomes</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span><span class="n">Context</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Return chromosome values</span>
 <span class="sd">		</span>
 <span class="sd">		Args:</span>

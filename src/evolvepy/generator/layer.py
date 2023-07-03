@@ -9,6 +9,8 @@ from numpy.typing import ArrayLike
 
 from evolvepy.configurable import Configurable
 from evolvepy.generator.context import Context
+from evolvepy.integrations import nvtx
+from evolvepy.generator.thread_pool import ThreadPool
 
 class Layer(Configurable):
 	'''
@@ -104,6 +106,7 @@ class Layer(Configurable):
 			population (np.ndarray): New population array
 			fitness (np.ndarray): New fitness array
 		'''         
+		profile_range = nvtx.start_range(self.name, domain="evolvepy", category="generator_layer", color=nvtx.generator_color)
 
 		if not (population is None and fitness is None):
 			population = np.asarray(population)
@@ -116,9 +119,14 @@ class Layer(Configurable):
 				context = Context(len(population), population.dtype.names)
 
 			if not context.block_all:
+				operation_profile_range = nvtx.start_range(self.name+"_call", domain="evolvepy", category="generator_layer", color=nvtx.generator_color)
+				
 				population, fitness = self.call(population, fitness, context)
+				
+				nvtx.end_range(operation_profile_range)
+				
+		nvtx.end_range(profile_range)
 
-		
 		self.send_next(population, fitness, context)
 		
 
@@ -142,8 +150,11 @@ class Layer(Configurable):
 			next_context = context
 			if len(self._next) != 1:
 				next_context = next_context.copy()
-				
-			layer(population, fitness, next_context)
+				job = (layer, population, fitness, next_context)
+				ThreadPool.add_job(job)
+			else:
+				layer(population, fitness, next_context)
+			
 
 	def call(self, population:np.ndarray, fitness:np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:
 		return population, fitness
@@ -248,17 +259,23 @@ class ChromosomeOperator(Layer):
 
 		result = population.copy()
 
-		if self._chromosome_names is None: # Without specified name
-			if len(population.dtype) == 0 and not context.blocked: # and only one chromosome
-				result = self.call_chromosomes(population, fitness, context, None)
-			else:
-				for name in population.dtype.names: # and multiple chrmossomes
-					if not context.blocked[name]:
-						result[name] = self.call_chromosomes(population[name], fitness, context, name)
+		if len(population.dtype) == 0 and not context.blocked:
+			result = self.call_chromosomes(population, fitness, context, None)
+			
 		else:
-			for name in self._chromosome_names:
+			dim_to_operate = population.dtype.names
+
+			if self._chromosome_names is not None:
+				dim_to_operate = self._chromosome_names
+			
+			for name in dim_to_operate:
 				if not context.blocked[name]:
-						result[name] = self.call_chromosomes(population[name], fitness, context, name)
+					range_name = "{0}_{1}".format(self.name, name)
+					profile_range = nvtx.start_range(range_name, domain="evolvepy", category="generator_layer", color=nvtx.generator_color)
+					
+					result[name] = self.call_chromosomes(population[name], fitness, context, name)
+					
+					nvtx.end_range(profile_range)
 
 
 		return result, fitness

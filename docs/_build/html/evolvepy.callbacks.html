@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>evolvepy.callbacks package &mdash; EvolvePy 1.0.0 documentation</title>
+  <title>evolvepy.callbacks package &mdash; EvolvePy 2.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -27,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> EvolvePy
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EvolvePy
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,6 +47,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="evolvepy.html">evolvepy package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="evolvepy.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -49,9 +59,9 @@
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.multiple">evolvepy.evaluator.multiple module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
 </ul>
@@ -66,19 +76,42 @@
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.thread_pool">evolvepy.generator.thread_pool module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.html">evolvepy.integrations package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable"><code class="docutils literal notranslate"><span class="pre">Configurable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.__element_count"><code class="docutils literal notranslate"><span class="pre">Configurable.__element_count</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.__init__"><code class="docutils literal notranslate"><span class="pre">Configurable.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.dynamic_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.dynamic_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.lock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.lock_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.name"><code class="docutils literal notranslate"><span class="pre">Configurable.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.reset_count"><code class="docutils literal notranslate"><span class="pre">Configurable.reset_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.static_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.static_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.unlock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.unlock_parameter()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.html#evolvepy.evolver.Evolver"><code class="docutils literal notranslate"><span class="pre">Evolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.evolver.Evolver.__init__"><code class="docutils literal notranslate"><span class="pre">Evolver.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.evolver.Evolver.evolve"><code class="docutils literal notranslate"><span class="pre">Evolver.evolve()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples_link.html">Examples</a><ul>
@@ -87,6 +120,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dev/development.html">EvolvePy’s Development Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dev/how_to_build_link.html">How to build and release</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id1">2.0.0</a></li>
 </ul>
 </li>
 </ul>
@@ -104,9 +141,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="evolvepy.html">evolvepy package</a> &raquo;</li>
-      <li>evolvepy.callbacks package</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="evolvepy.html">evolvepy package</a></li>
+      <li class="breadcrumb-item active">evolvepy.callbacks package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/evolvepy.callbacks.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,22 +154,456 @@
            <div itemprop="articleBody">
              
   <section id="evolvepy-callbacks-package">
-<h1>evolvepy.callbacks package<a class="headerlink" href="#evolvepy-callbacks-package" title="Permalink to this headline"></a></h1>
+<h1>evolvepy.callbacks package<a class="headerlink" href="#evolvepy-callbacks-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-evolvepy.callbacks.callback">
+<span id="evolvepy-callbacks-callback-module"></span><h2>evolvepy.callbacks.callback module<a class="headerlink" href="#module-evolvepy.callbacks.callback" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.callbacks.callback.Callback">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.callback.</span></span><span class="sig-name descname"><span class="pre">Callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.callback.Callback" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable" title="evolvepy.configurable.Configurable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configurable</span></code></a></p>
+<p>Base Callback class.</p>
+<p>Callbacks are objects that can be called upon during evolution to change its behavior.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.callback.Callback.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.callback.Callback.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Callback constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether the object should run. Defaults to True.</p></li>
+<li><p><strong>parameters</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>object</em><em>]</em><em>, </em><em>optional</em>) – Other callback parameters. Defaults to None.</p></li>
+<li><p><strong>dynamic_parameters</strong> (<em>Dict</em><em>[</em><em>str</em><em>,</em><em>bool</em><em>]</em><em>, </em><em>optional</em>) – Other callback dynamic parameters description. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="evolvepy.callbacks.callback.Callback.callbacks">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">callbacks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">Callback</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#evolvepy.callbacks.callback.Callback.callbacks" title="Permalink to this definition"></a></dt>
+<dd><p>Other callbacks associated with evolution</p>
+<p>Must be set correctly for Callback to work</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="evolvepy.callbacks.callback.Callback.evaluator">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><span class="pre">Evaluator</span></a></em><a class="headerlink" href="#evolvepy.callbacks.callback.Callback.evaluator" title="Permalink to this definition"></a></dt>
+<dd><p>The Evaluator associated with evolution.</p>
+<p>Must be set correctly for Callback to work</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="evolvepy.callbacks.callback.Callback.generator">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><span class="pre">Generator</span></a></em><a class="headerlink" href="#evolvepy.callbacks.callback.Callback.generator" title="Permalink to this definition"></a></dt>
+<dd><p>The Generator associated with evolution.</p>
+<p>Must be set correctly for Callback to work</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.callback.Callback.on_evaluator_end">
+<span class="sig-name descname"><span class="pre">on_evaluator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.on_evaluator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.callback.Callback.on_evaluator_end" title="Permalink to this definition"></a></dt>
+<dd><p>Called after evaluator run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fitness</strong> (<em>np.ndarray</em>) – The population fitness.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.callback.Callback.on_generator_end">
+<span class="sig-name descname"><span class="pre">on_generator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.on_generator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.callback.Callback.on_generator_end" title="Permalink to this definition"></a></dt>
+<dd><p>Called after generator run, before evaluator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>population</strong> (<em>np.ndarray</em>) – The generated population.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.callback.Callback.on_generator_start">
+<span class="sig-name descname"><span class="pre">on_generator_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.on_generator_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.callback.Callback.on_generator_start" title="Permalink to this definition"></a></dt>
+<dd><p>Called before generator run.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.callback.Callback.on_start">
+<span class="sig-name descname"><span class="pre">on_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.on_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.callback.Callback.on_start" title="Permalink to this definition"></a></dt>
+<dd><p>Called when evolution start.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.callback.Callback.on_stop">
+<span class="sig-name descname"><span class="pre">on_stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.on_stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.callback.Callback.on_stop" title="Permalink to this definition"></a></dt>
+<dd><p>Called on evolution end.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-evolvepy.callbacks.dynamic_mutation">
+<span id="evolvepy-callbacks-dynamic-mutation-module"></span><h2>evolvepy.callbacks.dynamic_mutation module<a class="headerlink" href="#module-evolvepy.callbacks.dynamic_mutation" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.callbacks.dynamic_mutation.DynamicMutation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.dynamic_mutation.</span></span><span class="sig-name descname"><span class="pre">DynamicMutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_divider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_multiplier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_refinement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/dynamic_mutation.html#DynamicMutation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.dynamic_mutation.DynamicMutation" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></a></p>
+<p>Callback that implements the behavior of a dynamic mutation.</p>
+<p>Dynamic mutation is the process of changing mutation ranges during the process of evolution,
+to prevent the population from stagnating at a local maximum,
+or never adjusting correctly to that maximum.</p>
+<p>It works in three stages, in order:</p>
+<p>Normal: Mutation occurs without changes.
+Refinement: Mutation decreases gradually, to correctly adjust to a maximum. It takes place in several steps.
+Exploration: Mutation gradually increases, to look for other maximums. It takes place in several steps.</p>
+<blockquote>
+<div><p>It is stopped earlier if there is an improvement in fitness (it is understood that another local maximum has been found)</p>
+</div></blockquote>
+<p>A stage transition occurs when the best fitness does not change after a few generations.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="evolvepy.callbacks.dynamic_mutation.DynamicMutation.EXPLORATION">
+<span class="sig-name descname"><span class="pre">EXPLORATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#evolvepy.callbacks.dynamic_mutation.DynamicMutation.EXPLORATION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="evolvepy.callbacks.dynamic_mutation.DynamicMutation.NORMAL">
+<span class="sig-name descname"><span class="pre">NORMAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#evolvepy.callbacks.dynamic_mutation.DynamicMutation.NORMAL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="evolvepy.callbacks.dynamic_mutation.DynamicMutation.REFINEMENT">
+<span class="sig-name descname"><span class="pre">REFINEMENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#evolvepy.callbacks.dynamic_mutation.DynamicMutation.REFINEMENT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.dynamic_mutation.DynamicMutation.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_divider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_multiplier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_refinement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/dynamic_mutation.html#DynamicMutation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.dynamic_mutation.DynamicMutation.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>DynamicMutation constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – Names of the NumericMutation layers that will be affected by this callback.</p></li>
+<li><p><strong>patience</strong> (<em>int</em><em>, </em><em>optional</em>) – How many generations in normal mode to wait before starting a transition (to refinement). Defaults to 10.</p></li>
+<li><p><strong>refinement_patience</strong> (<em>int</em><em>, </em><em>optional</em>) – How many generations in refinement mode to wait before starting a transition (to refinement or exploration). Defaults to 2.</p></li>
+<li><p><strong>exploration_patience</strong> (<em>int</em><em>, </em><em>optional</em>) – How many generations in exploration mode to wait before starting a transition (to exploration or normal). Defaults to 2.</p></li>
+<li><p><strong>refinement_steps</strong> (<em>int</em><em>, </em><em>optional</em>) – How many refinement steps will be performed. Defaults to 2.</p></li>
+<li><p><strong>exploration_steps</strong> (<em>int</em><em>, </em><em>optional</em>) – How many exploration steps will be performed. Defaults to 5.</p></li>
+<li><p><strong>refinement_divider</strong> (<em>int</em><em>, </em><em>optional</em>) – How much to divide the mutation rates at each refinement step. Defaults to 2.</p></li>
+<li><p><strong>exploration_multiplier</strong> (<em>int</em><em>, </em><em>optional</em>) – How much to multiply the mutation rates at each exploration step. Defaults to 2.</p></li>
+<li><p><strong>stop_refinement</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to stop refining if you find an improvement in fitness. Defaults to False.</p></li>
+<li><p><strong>run</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether this callback should be executed. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – raised if layer_names is not a list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.dynamic_mutation.DynamicMutation.on_evaluator_end">
+<span class="sig-name descname"><span class="pre">on_evaluator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/dynamic_mutation.html#DynamicMutation.on_evaluator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.dynamic_mutation.DynamicMutation.on_evaluator_end" title="Permalink to this definition"></a></dt>
+<dd><p>Called on evaluator end.</p>
+<p>Checks for maximum fitness and performs the dynamic mutation process as described in the class documentation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fitness</strong> (<em>np.ndarray</em>) – Population fitness.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-evolvepy.callbacks.incremental_evolution">
+<span id="evolvepy-callbacks-incremental-evolution-module"></span><h2>evolvepy.callbacks.incremental_evolution module<a class="headerlink" href="#module-evolvepy.callbacks.incremental_evolution" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.callbacks.incremental_evolution.IncrementalEvolution">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.incremental_evolution.</span></span><span class="sig-name descname"><span class="pre">IncrementalEvolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generation_to_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Block" title="evolvepy.generator.basic_layers.Block"><span class="pre">Block</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_gen_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer" title="evolvepy.generator.firstgen.FirstGenLayer"><span class="pre">FirstGenLayer</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">Callback</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/incremental_evolution.html#IncrementalEvolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.incremental_evolution.IncrementalEvolution" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></a></p>
+<p>Callback that implements the behavior of a incremental evolution.</p>
+<p>Incremental evolution is the process of evolving some aspects of the solution sought at each moment.</p>
+<p>It works by preventing some pieces of the individuals from being altered,
+allowing the adjustment of a part of them, usually that is more essential to the problem
+(e.g. learning to process the readings of a robot’s sensors before getting around)</p>
+<p>The piece of individuals that will be blocked must be on its own chromosome.</p>
+<dl class="simple">
+<dt>This callback works in conjunction with two layers:</dt><dd><ul class="simple">
+<li><p>Block layer: prevents the chromosome to be changed. It must be in the generator before the layers that can alter the chromosome.</p></li>
+<li><p>FirstGenLayer: generates the random distribution of the chromosome after its unlocking</p></li>
+</ul>
+</dd>
+</dl>
+<p>See the incremental evolution example to better understand how to use this callback:
+<a class="reference external" href="https://github.com/EltonCN/evolvepy/blob/main/examples/Incremental%20Evolution.ipynb">https://github.com/EltonCN/evolvepy/blob/main/examples/Incremental%20Evolution.ipynb</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.incremental_evolution.IncrementalEvolution.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generation_to_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Block" title="evolvepy.generator.basic_layers.Block"><span class="pre">Block</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_gen_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer" title="evolvepy.generator.firstgen.FirstGenLayer"><span class="pre">FirstGenLayer</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">Callback</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/incremental_evolution.html#IncrementalEvolution.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.incremental_evolution.IncrementalEvolution.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>IncrementalEvolution constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generation_to_start</strong> (<em>int</em>) – In which generation to unlock the chromosome.</p></li>
+<li><p><strong>block_layer</strong> (<a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Block" title="evolvepy.generator.basic_layers.Block"><em>Block</em></a>) – Layer that will prevent the chromosome to be changed.</p></li>
+<li><p><strong>first_gen_layer</strong> (<a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer" title="evolvepy.generator.firstgen.FirstGenLayer"><em>FirstGenLayer</em></a>) – Layer that will generate the random distribution of the chromosome after its unlocking</p></li>
+<li><p><strong>callbacks</strong> (<em>List</em><em>[</em><a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><em>Callback</em></a><em>]</em><em>, </em><em>optional</em>) – Callbacks that will be disabled along the chromosome. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.incremental_evolution.IncrementalEvolution.on_generator_start">
+<span class="sig-name descname"><span class="pre">on_generator_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/incremental_evolution.html#IncrementalEvolution.on_generator_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.incremental_evolution.IncrementalEvolution.on_generator_start" title="Permalink to this definition"></a></dt>
+<dd><p>Called after generator run, performs the incremental evolution logic.</p>
+<p>See class documentation.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-evolvepy.callbacks.logger">
+<span id="evolvepy-callbacks-logger-module"></span><h2>evolvepy.callbacks.logger module<a class="headerlink" href="#module-evolvepy.callbacks.logger" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.FileStoreLogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.logger.</span></span><span class="sig-name descname"><span class="pre">FileStoreLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#FileStoreLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.FileStoreLogger" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.logger.Logger" title="evolvepy.callbacks.logger.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a></p>
+<p>Logger that saves all logs in a file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.FileStoreLogger.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#FileStoreLogger.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.FileStoreLogger.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>FileStoreLogger constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>log_fitness</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the fitness of all individuals of each generation. Defaults to True.</p></li>
+<li><p><strong>log_population</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the populations. Defaults to False.</p></li>
+<li><p><strong>log_generator</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the generator dynamic parameters. Defaults to True.</p></li>
+<li><p><strong>log_evaluator</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the evaluator dynamic parameters. Defaults to True.</p></li>
+<li><p><strong>log_scores</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log all the evaluator individual scores. Defaults to False.</p></li>
+<li><p><strong>log_best_individual</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the best individual of each generation. Defaults to True.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.FileStoreLogger.log_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">log_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#evolvepy.callbacks.logger.FileStoreLogger.log_name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the file where the log is saved</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.FileStoreLogger.on_start">
+<span class="sig-name descname"><span class="pre">on_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#FileStoreLogger.on_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.FileStoreLogger.on_start" title="Permalink to this definition"></a></dt>
+<dd><p>Called on evolution start.</p>
+<p>Prepare the log file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.FileStoreLogger.save_dynamic_log">
+<span class="sig-name descname"><span class="pre">save_dynamic_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#FileStoreLogger.save_dynamic_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.FileStoreLogger.save_dynamic_log" title="Permalink to this definition"></a></dt>
+<dd><p>Dumps the dynamic log on the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – Log that will be dumped.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.FileStoreLogger.save_static_log">
+<span class="sig-name descname"><span class="pre">save_static_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#FileStoreLogger.save_static_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.FileStoreLogger.save_static_log" title="Permalink to this definition"></a></dt>
+<dd><p>Dumps the static log on the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – Log that will be dumped.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.Logger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.logger.</span></span><span class="sig-name descname"><span class="pre">Logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.Logger" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Basic Logger callback class.</p>
+<p>Allows to log data from the evolutionary process</p>
+<p>It needs to be inherited in some concrete save implementation to be used,
+like MemoryStoreLogger, FileStoreLogger or WandbLogger.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.Logger.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.Logger.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Logger constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>log_fitness</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the fitness of all individuals of each generation. Defaults to True.</p></li>
+<li><p><strong>log_population</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the populations. Defaults to False.</p></li>
+<li><p><strong>log_generator</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the generator dynamic parameters. Defaults to True.</p></li>
+<li><p><strong>log_evaluator</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the evaluator dynamic parameters. Defaults to True.</p></li>
+<li><p><strong>log_scores</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log all the evaluator individual scores. Defaults to False.</p></li>
+<li><p><strong>log_best_individual</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the best individual of each generation. Defaults to True.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.Logger.on_evaluator_end">
+<span class="sig-name descname"><span class="pre">on_evaluator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger.on_evaluator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.Logger.on_evaluator_end" title="Permalink to this definition"></a></dt>
+<dd><p>Called after population evaluation.</p>
+<p>Adds the fitness, scores, dynamic parameters of generator and evaluator
+and best individual if configured to do so. Also adds the best fitness.</p>
+<p>Saves the dynamic log.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fitness</strong> (<em>np.ndarray</em>) – Population fitness.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.Logger.on_generator_end">
+<span class="sig-name descname"><span class="pre">on_generator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger.on_generator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.Logger.on_generator_end" title="Permalink to this definition"></a></dt>
+<dd><p>Called on generator end.</p>
+<p>Adds the generated population to the log (if configured to do so), and the generation counter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>population</strong> (<em>np.ndarray</em>) – Generated population that may be logged.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.Logger.on_start">
+<span class="sig-name descname"><span class="pre">on_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger.on_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.Logger.on_start" title="Permalink to this definition"></a></dt>
+<dd><p>Runs on evolution start.</p>
+<p>Logs the static log.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.Logger.save_dynamic_log">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_dynamic_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger.save_dynamic_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.Logger.save_dynamic_log" title="Permalink to this definition"></a></dt>
+<dd><p>Saves dynamic log.</p>
+<p>Must be implemented by the inheritor class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – log with static parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.Logger.save_static_log">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_static_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger.save_static_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.Logger.save_static_log" title="Permalink to this definition"></a></dt>
+<dd><p>Saves static log.</p>
+<p>Must be implemented by the inheritor class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – log with static parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.MemoryStoreLogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.logger.</span></span><span class="sig-name descname"><span class="pre">MemoryStoreLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#MemoryStoreLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.MemoryStoreLogger" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.logger.Logger" title="evolvepy.callbacks.logger.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a></p>
+<p>Logger that keeps all logged data in memory.</p>
+<p>Simple to use but can cause high memory usage.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.MemoryStoreLogger.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#MemoryStoreLogger.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.MemoryStoreLogger.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>MemoryStoreLogger constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>log_fitness</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the fitness of all individuals of each generation. Defaults to True.</p></li>
+<li><p><strong>log_population</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the populations. Defaults to False.</p></li>
+<li><p><strong>log_generator</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the generator dynamic parameters. Defaults to True.</p></li>
+<li><p><strong>log_evaluator</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the evaluator dynamic parameters. Defaults to True.</p></li>
+<li><p><strong>log_scores</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log all the evaluator individual scores. Defaults to False.</p></li>
+<li><p><strong>log_best_individual</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the best individual of each generation. Defaults to True.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.MemoryStoreLogger.config_log">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config_log</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#evolvepy.callbacks.logger.MemoryStoreLogger.config_log" title="Permalink to this definition"></a></dt>
+<dd><p>Allows access to static log</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The static log.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[Dict[str, Dict]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.MemoryStoreLogger.log">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">log</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#evolvepy.callbacks.logger.MemoryStoreLogger.log" title="Permalink to this definition"></a></dt>
+<dd><p>Allows access to dynamic log</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dynamic log.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[Dict[str, Dict]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.MemoryStoreLogger.save_dynamic_log">
+<span class="sig-name descname"><span class="pre">save_dynamic_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#MemoryStoreLogger.save_dynamic_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.MemoryStoreLogger.save_dynamic_log" title="Permalink to this definition"></a></dt>
+<dd><p>Saves the dynamic log.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – Generation dynamic log to save.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="evolvepy.callbacks.logger.MemoryStoreLogger.save_static_log">
+<span class="sig-name descname"><span class="pre">save_static_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#MemoryStoreLogger.save_static_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.logger.MemoryStoreLogger.save_static_log" title="Permalink to this definition"></a></dt>
+<dd><p>Saves the static log.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – Static log to save.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-evolvepy.callbacks">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evolvepy.callbacks" title="Permalink to this headline"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evolvepy.callbacks" title="Permalink to this heading"></a></h2>
 <p>EvolvePy’s callbacks. Objects that can be called upon during evolution to change its behavior.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="evolvepy.callbacks.Callback">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.</span></span><span class="sig-name descname"><span class="pre">Callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Callback" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable" title="evolvepy.configurable.Configurable"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.configurable.Configurable</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.</span></span><span class="sig-name descname"><span class="pre">Callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Callback" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable" title="evolvepy.configurable.Configurable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configurable</span></code></a></p>
 <p>Base Callback class.</p>
 <p>Callbacks are objects that can be called upon during evolution to change its behavior.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.callbacks.Callback.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Callback.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Callback.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Callback constructor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>run</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether the object should run. Defaults to True.</p></li>
 <li><p><strong>parameters</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>object</em><em>]</em><em>, </em><em>optional</em>) – Other callback parameters. Defaults to None.</p></li>
@@ -144,31 +615,31 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.callbacks.Callback.callbacks">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">callbacks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">evolvepy.callbacks.callback.Callback</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#evolvepy.callbacks.Callback.callbacks" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">callbacks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">Callback</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#evolvepy.callbacks.Callback.callbacks" title="Permalink to this definition"></a></dt>
 <dd><p>Other callbacks associated with evolution</p>
 <p>Must be set correctly for Callback to work</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.callbacks.Callback.evaluator">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><span class="pre">evolvepy.evaluator.evaluator.Evaluator</span></a></em><a class="headerlink" href="#evolvepy.callbacks.Callback.evaluator" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="evolvepy.evaluator.html#evolvepy.evaluator.evaluator.Evaluator" title="evolvepy.evaluator.evaluator.Evaluator"><span class="pre">Evaluator</span></a></em><a class="headerlink" href="#evolvepy.callbacks.Callback.evaluator" title="Permalink to this definition"></a></dt>
 <dd><p>The Evaluator associated with evolution.</p>
 <p>Must be set correctly for Callback to work</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="evolvepy.callbacks.Callback.generator">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><span class="pre">evolvepy.generator.generator.Generator</span></a></em><a class="headerlink" href="#evolvepy.callbacks.Callback.generator" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.generator.Generator" title="evolvepy.generator.generator.Generator"><span class="pre">Generator</span></a></em><a class="headerlink" href="#evolvepy.callbacks.Callback.generator" title="Permalink to this definition"></a></dt>
 <dd><p>The Generator associated with evolution.</p>
 <p>Must be set correctly for Callback to work</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.callbacks.Callback.on_evaluator_end">
-<span class="sig-name descname"><span class="pre">on_evaluator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.on_evaluator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Callback.on_evaluator_end" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">on_evaluator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.on_evaluator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Callback.on_evaluator_end" title="Permalink to this definition"></a></dt>
 <dd><p>Called after evaluator run.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>fitness</strong> (<em>np.ndarray</em>) – The population fitness.</p>
 </dd>
 </dl>
@@ -176,10 +647,10 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.callbacks.Callback.on_generator_end">
-<span class="sig-name descname"><span class="pre">on_generator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.on_generator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Callback.on_generator_end" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">on_generator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/callback.html#Callback.on_generator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Callback.on_generator_end" title="Permalink to this definition"></a></dt>
 <dd><p>Called after generator run, before evaluator.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>population</strong> (<em>np.ndarray</em>) – The generated population.</p>
 </dd>
 </dl>
@@ -208,7 +679,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="evolvepy.callbacks.DynamicMutation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.</span></span><span class="sig-name descname"><span class="pre">DynamicMutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_divider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_multiplier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_refinement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/dynamic_mutation.html#DynamicMutation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.DynamicMutation" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.callbacks.callback.Callback</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></a></p>
 <p>Callback that implements the behavior of a dynamic mutation.</p>
 <p>Dynamic mutation is the process of changing mutation ranges during the process of evolution,
 to prevent the population from stagnating at a local maximum,
@@ -241,7 +712,7 @@ Exploration: Mutation gradually increases, to look for other maximums. It takes 
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_patience</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_divider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_multiplier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_refinement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/dynamic_mutation.html#DynamicMutation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.DynamicMutation.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>DynamicMutation constructor</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>layer_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – Names of the NumericMutation layers that will be affected by this callback.</p></li>
 <li><p><strong>patience</strong> (<em>int</em><em>, </em><em>optional</em>) – How many generations in normal mode to wait before starting a transition (to refinement). Defaults to 10.</p></li>
@@ -255,7 +726,7 @@ Exploration: Mutation gradually increases, to look for other maximums. It takes 
 <li><p><strong>run</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether this callback should be executed. Defaults to True.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – raised if layer_names is not a list.</p>
 </dd>
 </dl>
@@ -263,11 +734,11 @@ Exploration: Mutation gradually increases, to look for other maximums. It takes 
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.callbacks.DynamicMutation.on_evaluator_end">
-<span class="sig-name descname"><span class="pre">on_evaluator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/dynamic_mutation.html#DynamicMutation.on_evaluator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.DynamicMutation.on_evaluator_end" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">on_evaluator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/dynamic_mutation.html#DynamicMutation.on_evaluator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.DynamicMutation.on_evaluator_end" title="Permalink to this definition"></a></dt>
 <dd><p>Called on evaluator end.</p>
 <p>Checks for maximum fitness and performs the dynamic mutation process as described in the class documentation</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>fitness</strong> (<em>np.ndarray</em>) – Population fitness.</p>
 </dd>
 </dl>
@@ -278,14 +749,14 @@ Exploration: Mutation gradually increases, to look for other maximums. It takes 
 <dl class="py class">
 <dt class="sig sig-object py" id="evolvepy.callbacks.FileStoreLogger">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.</span></span><span class="sig-name descname"><span class="pre">FileStoreLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#FileStoreLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.FileStoreLogger" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.Logger" title="evolvepy.callbacks.logger.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.callbacks.logger.Logger</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.logger.Logger" title="evolvepy.callbacks.logger.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a></p>
 <p>Logger that saves all logs in a file.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.callbacks.FileStoreLogger.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#FileStoreLogger.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.FileStoreLogger.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>FileStoreLogger constructor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>log_fitness</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the fitness of all individuals of each generation. Defaults to True.</p></li>
 <li><p><strong>log_population</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the populations. Defaults to False.</p></li>
@@ -316,7 +787,7 @@ Exploration: Mutation gradually increases, to look for other maximums. It takes 
 <span class="sig-name descname"><span class="pre">save_dynamic_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#FileStoreLogger.save_dynamic_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.FileStoreLogger.save_dynamic_log" title="Permalink to this definition"></a></dt>
 <dd><p>Dumps the dynamic log on the file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – Log that will be dumped.</p>
 </dd>
 </dl>
@@ -327,7 +798,7 @@ Exploration: Mutation gradually increases, to look for other maximums. It takes 
 <span class="sig-name descname"><span class="pre">save_static_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#FileStoreLogger.save_static_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.FileStoreLogger.save_static_log" title="Permalink to this definition"></a></dt>
 <dd><p>Dumps the static log on the file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – Log that will be dumped.</p>
 </dd>
 </dl>
@@ -337,8 +808,8 @@ Exploration: Mutation gradually increases, to look for other maximums. It takes 
 
 <dl class="py class">
 <dt class="sig sig-object py" id="evolvepy.callbacks.IncrementalEvolution">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.</span></span><span class="sig-name descname"><span class="pre">IncrementalEvolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generation_to_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Block" title="evolvepy.generator.basic_layers.Block"><span class="pre">evolvepy.generator.basic_layers.Block</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_gen_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer" title="evolvepy.generator.firstgen.FirstGenLayer"><span class="pre">evolvepy.generator.firstgen.FirstGenLayer</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">evolvepy.callbacks.callback.Callback</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/incremental_evolution.html#IncrementalEvolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.IncrementalEvolution" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.callbacks.callback.Callback</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.</span></span><span class="sig-name descname"><span class="pre">IncrementalEvolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generation_to_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Block" title="evolvepy.generator.basic_layers.Block"><span class="pre">Block</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_gen_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer" title="evolvepy.generator.firstgen.FirstGenLayer"><span class="pre">FirstGenLayer</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">Callback</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/incremental_evolution.html#IncrementalEvolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.IncrementalEvolution" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></a></p>
 <p>Callback that implements the behavior of a incremental evolution.</p>
 <p>Incremental evolution is the process of evolving some aspects of the solution sought at each moment.</p>
 <p>It works by preventing some pieces of the individuals from being altered,
@@ -356,10 +827,10 @@ allowing the adjustment of a part of them, usually that is more essential to the
 <a class="reference external" href="https://github.com/EltonCN/evolvepy/blob/main/examples/Incremental%20Evolution.ipynb">https://github.com/EltonCN/evolvepy/blob/main/examples/Incremental%20Evolution.ipynb</a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.callbacks.IncrementalEvolution.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generation_to_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Block" title="evolvepy.generator.basic_layers.Block"><span class="pre">evolvepy.generator.basic_layers.Block</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_gen_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer" title="evolvepy.generator.firstgen.FirstGenLayer"><span class="pre">evolvepy.generator.firstgen.FirstGenLayer</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">evolvepy.callbacks.callback.Callback</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/incremental_evolution.html#IncrementalEvolution.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.IncrementalEvolution.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generation_to_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Block" title="evolvepy.generator.basic_layers.Block"><span class="pre">Block</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_gen_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.firstgen.FirstGenLayer" title="evolvepy.generator.firstgen.FirstGenLayer"><span class="pre">FirstGenLayer</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><span class="pre">Callback</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/incremental_evolution.html#IncrementalEvolution.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.IncrementalEvolution.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>IncrementalEvolution constructor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>generation_to_start</strong> (<em>int</em>) – In which generation to unlock the chromosome.</p></li>
 <li><p><strong>block_layer</strong> (<a class="reference internal" href="evolvepy.generator.html#evolvepy.generator.basic_layers.Block" title="evolvepy.generator.basic_layers.Block"><em>Block</em></a>) – Layer that will prevent the chromosome to be changed.</p></li>
@@ -382,7 +853,7 @@ allowing the adjustment of a part of them, usually that is more essential to the
 <dl class="py class">
 <dt class="sig sig-object py" id="evolvepy.callbacks.Logger">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.</span></span><span class="sig-name descname"><span class="pre">Logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Logger" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.Callback" title="evolvepy.callbacks.callback.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.callbacks.callback.Callback</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.callback.Callback" title="evolvepy.callbacks.callback.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <p>Basic Logger callback class.</p>
 <p>Allows to log data from the evolutionary process</p>
 <p>It needs to be inherited in some concrete save implementation to be used,
@@ -392,7 +863,7 @@ like MemoryStoreLogger, FileStoreLogger or WandbLogger.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Logger.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Logger constructor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>log_fitness</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the fitness of all individuals of each generation. Defaults to True.</p></li>
 <li><p><strong>log_population</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the populations. Defaults to False.</p></li>
@@ -407,13 +878,13 @@ like MemoryStoreLogger, FileStoreLogger or WandbLogger.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.callbacks.Logger.on_evaluator_end">
-<span class="sig-name descname"><span class="pre">on_evaluator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger.on_evaluator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Logger.on_evaluator_end" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">on_evaluator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger.on_evaluator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Logger.on_evaluator_end" title="Permalink to this definition"></a></dt>
 <dd><p>Called after population evaluation.</p>
 <p>Adds the fitness, scores, dynamic parameters of generator and evaluator
 and best individual if configured to do so. Also adds the best fitness.</p>
 <p>Saves the dynamic log.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>fitness</strong> (<em>np.ndarray</em>) – Population fitness.</p>
 </dd>
 </dl>
@@ -421,11 +892,11 @@ and best individual if configured to do so. Also adds the best fitness.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="evolvepy.callbacks.Logger.on_generator_end">
-<span class="sig-name descname"><span class="pre">on_generator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger.on_generator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Logger.on_generator_end" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">on_generator_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#Logger.on_generator_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.Logger.on_generator_end" title="Permalink to this definition"></a></dt>
 <dd><p>Called on generator end.</p>
 <p>Adds the generated population to the log (if configured to do so), and the generation counter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>population</strong> (<em>np.ndarray</em>) – Generated population that may be logged.</p>
 </dd>
 </dl>
@@ -444,7 +915,7 @@ and best individual if configured to do so. Also adds the best fitness.</p>
 <dd><p>Saves dynamic log.</p>
 <p>Must be implemented by the inheritor class.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – log with static parameters.</p>
 </dd>
 </dl>
@@ -456,7 +927,7 @@ and best individual if configured to do so. Also adds the best fitness.</p>
 <dd><p>Saves static log.</p>
 <p>Must be implemented by the inheritor class.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – log with static parameters.</p>
 </dd>
 </dl>
@@ -467,7 +938,7 @@ and best individual if configured to do so. Also adds the best fitness.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="evolvepy.callbacks.MemoryStoreLogger">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">evolvepy.callbacks.</span></span><span class="sig-name descname"><span class="pre">MemoryStoreLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#MemoryStoreLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.MemoryStoreLogger" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.Logger" title="evolvepy.callbacks.logger.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">evolvepy.callbacks.logger.Logger</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#evolvepy.callbacks.logger.Logger" title="evolvepy.callbacks.logger.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a></p>
 <p>Logger that keeps all logged data in memory.</p>
 <p>Simple to use but can cause high memory usage.</p>
 <dl class="py method">
@@ -475,7 +946,7 @@ and best individual if configured to do so. Also adds the best fitness.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_fitness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_population</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_evaluator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_best_individual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#MemoryStoreLogger.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.MemoryStoreLogger.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>MemoryStoreLogger constructor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>log_fitness</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the fitness of all individuals of each generation. Defaults to True.</p></li>
 <li><p><strong>log_population</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether it should log the populations. Defaults to False.</p></li>
@@ -493,10 +964,10 @@ and best individual if configured to do so. Also adds the best fitness.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config_log</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#evolvepy.callbacks.MemoryStoreLogger.config_log" title="Permalink to this definition"></a></dt>
 <dd><p>Allows access to static log</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The static log.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>List[Dict[str, Dict]]</p>
 </dd>
 </dl>
@@ -507,10 +978,10 @@ and best individual if configured to do so. Also adds the best fitness.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">log</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#evolvepy.callbacks.MemoryStoreLogger.log" title="Permalink to this definition"></a></dt>
 <dd><p>Allows access to dynamic log</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The dynamic log.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>List[Dict[str, Dict]]</p>
 </dd>
 </dl>
@@ -521,7 +992,7 @@ and best individual if configured to do so. Also adds the best fitness.</p>
 <span class="sig-name descname"><span class="pre">save_dynamic_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#MemoryStoreLogger.save_dynamic_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.MemoryStoreLogger.save_dynamic_log" title="Permalink to this definition"></a></dt>
 <dd><p>Saves the dynamic log.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – Generation dynamic log to save.</p>
 </dd>
 </dl>
@@ -532,7 +1003,7 @@ and best individual if configured to do so. Also adds the best fitness.</p>
 <span class="sig-name descname"><span class="pre">save_static_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/evolvepy/callbacks/logger.html#MemoryStoreLogger.save_static_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evolvepy.callbacks.MemoryStoreLogger.save_static_log" title="Permalink to this definition"></a></dt>
 <dd><p>Saves the static log.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>log</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em>) – Static log to save.</p>
 </dd>
 </dl>

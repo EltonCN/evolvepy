@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 import numpy as np
 
 from .evaluator import Evaluator
+from evolvepy.integrations import nvtx
 
 class ProcessFitnessFunction(ABC):
     '''
@@ -34,10 +35,16 @@ class ProcessFitnessFunction(ABC):
             np.ndarray: Individuals fitness.
         '''
         if not self._setted or self._reset:
-            self.setup()
-            self._setted = True
+            range_name = "{0}_setup".format(self.__class__.__name__)
+            with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
+                self.setup()
+                self._setted = True
         
-        return self.evaluate(individuals)
+        range_name = "{0}_evaluation".format(self.__class__.__name__)
+        with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
+            fitness = self.evaluate(individuals)
+        
+        return fitness 
 
 
     @abstractmethod
@@ -91,7 +98,7 @@ class ProcessEvaluator(Evaluator):
 
     '''
 
-    def __init__(self, fitness_function:Type[ProcessFitnessFunction], n_process:int=None, timeout:int=None, n_scores: int = 1, individual_per_call: int = 1, args:Dict[str, object]=None) -> None:
+    def __init__(self, fitness_function:Type[ProcessFitnessFunction], n_process:int=None, timeout:int=None, n_scores: int = 1, individual_per_call: int = 1, args:Dict[str, object]=None, name:str=None) -> None:
         '''
         ProcessEvaluator constructor.
 
@@ -107,7 +114,7 @@ class ProcessEvaluator(Evaluator):
             n_process = mp.cpu_count()
         
         other_parameters={"evaluation_function_name":fitness_function.__name__, "n_process":n_process, "timeout":timeout}
-        super().__init__(n_scores=n_scores, individual_per_call=individual_per_call, other_parameters=other_parameters)
+        super().__init__(n_scores=n_scores, individual_per_call=individual_per_call, other_parameters=other_parameters, name=name)
 
         self._fitness_function = fitness_function
         self._n_process = n_process
@@ -141,7 +148,7 @@ class ProcessEvaluator(Evaluator):
         self._setted = True
 
 
-    def __call__(self, population: np.ndarray) -> np.ndarray:
+    def call(self, population: np.ndarray) -> np.ndarray:
         '''
         Evaluates the population
 

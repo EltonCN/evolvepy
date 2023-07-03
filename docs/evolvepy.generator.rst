@@ -70,6 +70,14 @@ evolvepy.generator.layer module
    :undoc-members:
    :show-inheritance:
 
+evolvepy.generator.thread\_pool module
+--------------------------------------
+
+.. automodule:: evolvepy.generator.thread_pool
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

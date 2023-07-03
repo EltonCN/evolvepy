@@ -3,6 +3,9 @@ from numpy.typing import ArrayLike
 import numba
 from typing import Tuple
 
+from evolvepy.integrations import nvtx
+
+@nvtx.annotate(domain="evolvepy", category="generator_operator")
 @numba.njit
 def bit_mutation(chromosome:ArrayLike, existence_rate:float, gene_rate:float):
     ''' 

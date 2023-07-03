@@ -4,9 +4,13 @@ __pycache__/
 *.whl
 *.gz
 dist/
+.vscode
 coverage.xml
 create-reports.sh
 pytest-report.xml
 .coverage
 build/
 wandb/
+*.sqlite
+*.nsys-rep
+*.etl

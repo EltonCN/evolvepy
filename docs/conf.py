@@ -21,8 +21,7 @@ copyright = '2022, EvolvePy Developers.'
 author = 'EltonCN, João Bonucci, Thiago Lacerda'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0'
-
+release = '2.0.0'
 
 # -- General configuration ---------------------------------------------------
 
@@ -31,9 +30,9 @@ release = '1.0.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc', #Docs modules
-        'm2r2', #Markdown
-        'sphinx.ext.napoleon', #NumPy/Google Docs Styles
-        'sphinx.ext.viewcode', #Source code
+    'm2r2', #Markdown
+    'sphinx.ext.napoleon', #NumPy/Google Docs Styles
+    'sphinx.ext.viewcode', #Source code
 ]
 
 # Add any paths that contain templates here, relative to this directory.
