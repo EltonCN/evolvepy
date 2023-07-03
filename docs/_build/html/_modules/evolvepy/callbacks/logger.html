@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>evolvepy.callbacks.logger &mdash; EvolvePy 0.1.0 documentation</title>
+  <title>evolvepy.callbacks.logger &mdash; EvolvePy 2.0.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -24,11 +25,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> EvolvePy
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            EvolvePy
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -39,6 +44,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -46,9 +56,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.multiple">evolvepy.evaluator.multiple module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
 </ul>
@@ -63,19 +73,42 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.thread_pool">evolvepy.generator.thread_pool module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.integrations.html">evolvepy.integrations package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.integrations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable"><code class="docutils literal notranslate"><span class="pre">Configurable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.__element_count"><code class="docutils literal notranslate"><span class="pre">Configurable.__element_count</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.__init__"><code class="docutils literal notranslate"><span class="pre">Configurable.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.dynamic_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.dynamic_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.lock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.lock_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.name"><code class="docutils literal notranslate"><span class="pre">Configurable.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.reset_count"><code class="docutils literal notranslate"><span class="pre">Configurable.reset_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.static_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.static_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.unlock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.unlock_parameter()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.html#evolvepy.evolver.Evolver"><code class="docutils literal notranslate"><span class="pre">Evolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.evolver.Evolver.__init__"><code class="docutils literal notranslate"><span class="pre">Evolver.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.evolver.Evolver.evolve"><code class="docutils literal notranslate"><span class="pre">Evolver.evolve()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
@@ -101,9 +134,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>evolvepy.callbacks.logger</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">evolvepy.callbacks.logger</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -113,19 +146,19 @@
            <div itemprop="articleBody">
              
   <h1>Source code for evolvepy.callbacks.logger</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">evolvepy.callbacks.callback</span> <span class="k">import</span> <span class="n">Callback</span>
-<span class="kn">from</span> <span class="nn">evolvepy.evaluator.evaluator</span> <span class="k">import</span> <span class="n">EvaluationStage</span><span class="p">,</span> <span class="n">Evaluator</span>
+<span class="kn">from</span> <span class="nn">evolvepy.callbacks.callback</span> <span class="kn">import</span> <span class="n">Callback</span>
+<span class="kn">from</span> <span class="nn">evolvepy.evaluator.evaluator</span> <span class="kn">import</span> <span class="n">EvaluationStage</span><span class="p">,</span> <span class="n">Evaluator</span>
 
 
-<div class="viewcode-block" id="Logger"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.Logger">[docs]</a><span class="k">class</span> <span class="nc">Logger</span><span class="p">(</span><span class="n">Callback</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
-	<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="Logger"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger">[docs]</a><span class="k">class</span> <span class="nc">Logger</span><span class="p">(</span><span class="n">Callback</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">	Basic Logger callback class. </span>
 
 <span class="sd">	Allows to log data from the evolutionary process</span>
@@ -135,8 +168,8 @@
 <span class="sd">	</span>
 <span class="sd">	&#39;&#39;&#39;</span>
 
-	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_fitness</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_population</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_generator</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_evaluator</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_scores</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_best_individual</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="Logger.__init__"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.__init__">[docs]</a>	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_fitness</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_population</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_generator</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_evaluator</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_scores</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_best_individual</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Logger constructor.</span>
 
 <span class="sd">		Args:</span>
@@ -155,10 +188,10 @@
 
 		<span class="bp">self</span><span class="o">.</span><span class="n">_dynamic_log</span> <span class="o">=</span> <span class="p">{}</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">_generation_count</span> <span class="o">=</span> <span class="mi">0</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_population</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 	<span class="k">def</span> <span class="nf">_get_evaluator_static_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluator_log</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">object</span><span class="p">],</span> <span class="n">evaluator</span><span class="p">:</span><span class="n">Evaluator</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Adds the evaluator&#39;s static parameters to the log.</span>
 
 <span class="sd">		Args:</span>
@@ -172,7 +205,7 @@
 			<span class="n">evaluator_log</span><span class="p">[</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">static_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 
 	<span class="k">def</span> <span class="nf">_get_evaluator_dynamic_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluator_log</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">],</span> <span class="n">evaluator</span><span class="p">:</span><span class="n">Evaluator</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Adds the evaluator&#39;s dynamic parameters to the log.</span>
 
 <span class="sd">		Args:</span>
@@ -185,8 +218,8 @@
 		<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dynamic_parameters</span><span class="p">:</span>
 			<span class="n">evaluator_log</span><span class="p">[</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">dynamic_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Logger.on_start"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.Logger.on_start">[docs]</a>	<span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="Logger.on_start"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.on_start">[docs]</a>	<span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Runs on evolution start.</span>
 
 <span class="sd">		Logs the static log.</span>
@@ -204,9 +237,9 @@
 
 		<span class="bp">self</span><span class="o">.</span><span class="n">save_static_log</span><span class="p">(</span><span class="n">log</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Logger.save_static_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.Logger.save_static_log">[docs]</a>	<span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="Logger.save_static_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.save_static_log">[docs]</a>	<span class="nd">@abstractmethod</span>
 	<span class="k">def</span> <span class="nf">save_static_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Saves static log.</span>
 
 <span class="sd">		Must be implemented by the inheritor class.</span>
@@ -216,8 +249,8 @@
 <span class="sd">		&#39;&#39;&#39;</span>
 		<span class="o">...</span></div>
 
-<div class="viewcode-block" id="Logger.on_generator_end"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.Logger.on_generator_end">[docs]</a>	<span class="k">def</span> <span class="nf">on_generator_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="Logger.on_generator_end"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.on_generator_end">[docs]</a>	<span class="k">def</span> <span class="nf">on_generator_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Called on generator end.</span>
 
 <span class="sd">		Adds the generated population to the log (if configured to do so), and the generation counter.</span>
@@ -233,8 +266,8 @@
 
 		<span class="bp">self</span><span class="o">.</span><span class="n">_dynamic_log</span><span class="p">[</span><span class="s2">&quot;generation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generation_count</span></div>
 
-<div class="viewcode-block" id="Logger.on_evaluator_end"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.Logger.on_evaluator_end">[docs]</a>	<span class="k">def</span> <span class="nf">on_evaluator_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="Logger.on_evaluator_end"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.on_evaluator_end">[docs]</a>	<span class="k">def</span> <span class="nf">on_evaluator_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitness</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Called after population evaluation.</span>
 
 <span class="sd">		Adds the fitness, scores, dynamic parameters of generator and evaluator </span>
@@ -284,9 +317,9 @@
 		<span class="bp">self</span><span class="o">.</span><span class="n">save_dynamic_log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dynamic_log</span><span class="p">)</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">_generation_count</span> <span class="o">+=</span> <span class="mi">1</span></div>
 		
-<div class="viewcode-block" id="Logger.save_dynamic_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.Logger.save_dynamic_log">[docs]</a>	<span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="Logger.save_dynamic_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.Logger.save_dynamic_log">[docs]</a>	<span class="nd">@abstractmethod</span>
 	<span class="k">def</span> <span class="nf">save_dynamic_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Saves dynamic log.</span>
 
 <span class="sd">		Must be implemented by the inheritor class.</span>
@@ -297,15 +330,15 @@
 		<span class="o">...</span></div></div>
 
 
-<div class="viewcode-block" id="MemoryStoreLogger"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.MemoryStoreLogger">[docs]</a><span class="k">class</span> <span class="nc">MemoryStoreLogger</span><span class="p">(</span><span class="n">Logger</span><span class="p">):</span>
-	<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="MemoryStoreLogger"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.MemoryStoreLogger">[docs]</a><span class="k">class</span> <span class="nc">MemoryStoreLogger</span><span class="p">(</span><span class="n">Logger</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">	Logger that keeps all logged data in memory.</span>
 
 <span class="sd">	Simple to use but can cause high memory usage.</span>
 <span class="sd">	&#39;&#39;&#39;</span>
 
-	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_fitness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_population</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">log_generator</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_evaluator</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_scores</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">log_best_individual</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="MemoryStoreLogger.__init__"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.MemoryStoreLogger.__init__">[docs]</a>	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_fitness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_population</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">log_generator</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_evaluator</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_scores</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">log_best_individual</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		MemoryStoreLogger constructor.</span>
 
 <span class="sd">		Args:</span>
@@ -319,10 +352,10 @@
 		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">log_fitness</span><span class="o">=</span><span class="n">log_fitness</span><span class="p">,</span> <span class="n">log_population</span><span class="o">=</span><span class="n">log_population</span><span class="p">,</span> <span class="n">log_generator</span><span class="o">=</span><span class="n">log_generator</span><span class="p">,</span> <span class="n">log_evaluator</span><span class="o">=</span><span class="n">log_evaluator</span><span class="p">,</span> <span class="n">log_scores</span><span class="o">=</span><span class="n">log_scores</span><span class="p">,</span> <span class="n">log_best_individual</span><span class="o">=</span><span class="n">log_best_individual</span><span class="p">)</span>
 
 		<span class="bp">self</span><span class="o">.</span><span class="n">_log</span> <span class="o">=</span> <span class="p">[]</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">_config_log</span> <span class="o">=</span> <span class="p">{}</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_config_log</span> <span class="o">=</span> <span class="p">{}</span></div>
 
-<div class="viewcode-block" id="MemoryStoreLogger.save_dynamic_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.MemoryStoreLogger.save_dynamic_log">[docs]</a>	<span class="k">def</span> <span class="nf">save_dynamic_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="MemoryStoreLogger.save_dynamic_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.MemoryStoreLogger.save_dynamic_log">[docs]</a>	<span class="k">def</span> <span class="nf">save_dynamic_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Saves the dynamic log.</span>
 
 <span class="sd">		Args:</span>
@@ -330,8 +363,8 @@
 <span class="sd">		&#39;&#39;&#39;</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">log</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MemoryStoreLogger.save_static_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.MemoryStoreLogger.save_static_log">[docs]</a>	<span class="k">def</span> <span class="nf">save_static_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="MemoryStoreLogger.save_static_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.MemoryStoreLogger.save_static_log">[docs]</a>	<span class="k">def</span> <span class="nf">save_static_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Saves the static log.</span>
 
 <span class="sd">		Args:</span>
@@ -341,7 +374,7 @@
 
 	<span class="nd">@property</span>
 	<span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]]:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Allows access to dynamic log</span>
 
 <span class="sd">		Returns:</span>
@@ -351,7 +384,7 @@
 
 	<span class="nd">@property</span>
 	<span class="k">def</span> <span class="nf">config_log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Allows access to static log</span>
 
 <span class="sd">		Returns:</span>
@@ -360,12 +393,12 @@
 		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config_log</span></div>
 
 
-<div class="viewcode-block" id="FileStoreLogger"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.FileStoreLogger">[docs]</a><span class="k">class</span> <span class="nc">FileStoreLogger</span><span class="p">(</span><span class="n">Logger</span><span class="p">):</span>
-	<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="FileStoreLogger"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.FileStoreLogger">[docs]</a><span class="k">class</span> <span class="nc">FileStoreLogger</span><span class="p">(</span><span class="n">Logger</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">	Logger that saves all logs in a file.</span>
 <span class="sd">	&#39;&#39;&#39;</span>
-	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_fitness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_population</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">log_generator</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_evaluator</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_scores</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">log_best_individual</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="FileStoreLogger.__init__"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.FileStoreLogger.__init__">[docs]</a>	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_fitness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_population</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">log_generator</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_evaluator</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">log_scores</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">log_best_individual</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		FileStoreLogger constructor.</span>
 
 <span class="sd">		Args:</span>
@@ -377,10 +410,10 @@
 <span class="sd">			log_best_individual (bool, optional): Whether it should log the best individual of each generation. Defaults to True.</span>
 <span class="sd">		&#39;&#39;&#39;</span>
 		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">log_fitness</span><span class="o">=</span><span class="n">log_fitness</span><span class="p">,</span> <span class="n">log_population</span><span class="o">=</span><span class="n">log_population</span><span class="p">,</span> <span class="n">log_generator</span><span class="o">=</span><span class="n">log_generator</span><span class="p">,</span> <span class="n">log_evaluator</span><span class="o">=</span><span class="n">log_evaluator</span><span class="p">,</span> <span class="n">log_scores</span><span class="o">=</span><span class="n">log_scores</span><span class="p">,</span> <span class="n">log_best_individual</span><span class="o">=</span><span class="n">log_best_individual</span><span class="p">)</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">_log_name</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_log_name</span> <span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="FileStoreLogger.on_start"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.FileStoreLogger.on_start">[docs]</a>	<span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="FileStoreLogger.on_start"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.FileStoreLogger.on_start">[docs]</a>	<span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Called on evolution start.</span>
 
 <span class="sd">		Prepare the log file.</span>
@@ -392,8 +425,8 @@
 
 		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">on_start</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="FileStoreLogger.save_dynamic_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.FileStoreLogger.save_dynamic_log">[docs]</a>	<span class="k">def</span> <span class="nf">save_dynamic_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="FileStoreLogger.save_dynamic_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.FileStoreLogger.save_dynamic_log">[docs]</a>	<span class="k">def</span> <span class="nf">save_dynamic_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Dumps the dynamic log on the file.</span>
 
 <span class="sd">		Args:</span>
@@ -406,8 +439,8 @@
 				<span class="n">debug_log</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
 			
 
-<div class="viewcode-block" id="FileStoreLogger.save_static_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.FileStoreLogger.save_static_log">[docs]</a>	<span class="k">def</span> <span class="nf">save_static_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="FileStoreLogger.save_static_log"><a class="viewcode-back" href="../../../evolvepy.callbacks.html#evolvepy.callbacks.logger.FileStoreLogger.save_static_log">[docs]</a>	<span class="k">def</span> <span class="nf">save_static_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Dumps the static log on the file.</span>
 
 <span class="sd">		Args:</span>
@@ -421,7 +454,7 @@
 			
 	<span class="nd">@property</span>
 	<span class="k">def</span> <span class="nf">log_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-		<span class="sd">&#39;&#39;&#39;</span>
+<span class="w">		</span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">		Name of the file where the log is saved</span>
 <span class="sd">		&#39;&#39;&#39;</span>
 		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>

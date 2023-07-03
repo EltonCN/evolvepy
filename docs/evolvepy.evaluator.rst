@@ -20,14 +20,6 @@ evolvepy.evaluator.cache module
    :undoc-members:
    :show-inheritance:
 
-evolvepy.evaluator.dispatcher module
-------------------------------------
-
-.. automodule:: evolvepy.evaluator.dispatcher
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 evolvepy.evaluator.evaluator module
 -----------------------------------
 
@@ -40,6 +32,14 @@ evolvepy.evaluator.function\_evaluator module
 ---------------------------------------------
 
 .. automodule:: evolvepy.evaluator.function_evaluator
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+evolvepy.evaluator.multiple module
+----------------------------------
+
+.. automodule:: evolvepy.evaluator.multiple
    :members:
    :undoc-members:
    :show-inheritance:

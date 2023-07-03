@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EvolvePy &mdash; EvolvePy 1.0.0 documentation</title>
+  <title>EvolvePy &mdash; EvolvePy 2.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -25,11 +26,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> EvolvePy
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EvolvePy
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -40,6 +45,11 @@
 <li class="toctree-l1"><a class="reference internal" href="evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -47,9 +57,9 @@
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.multiple">evolvepy.evaluator.multiple module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
 </ul>
@@ -64,19 +74,42 @@
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator.thread_pool">evolvepy.generator.thread_pool module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="evolvepy.integrations.html">evolvepy.integrations package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable"><code class="docutils literal notranslate"><span class="pre">Configurable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.__element_count"><code class="docutils literal notranslate"><span class="pre">Configurable.__element_count</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.__init__"><code class="docutils literal notranslate"><span class="pre">Configurable.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.dynamic_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.dynamic_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.lock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.lock_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.name"><code class="docutils literal notranslate"><span class="pre">Configurable.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.reset_count"><code class="docutils literal notranslate"><span class="pre">Configurable.reset_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.static_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.static_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.configurable.Configurable.unlock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.unlock_parameter()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evolvepy.html#evolvepy.evolver.Evolver"><code class="docutils literal notranslate"><span class="pre">Evolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.evolver.Evolver.__init__"><code class="docutils literal notranslate"><span class="pre">Evolver.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="evolvepy.html#evolvepy.evolver.Evolver.evolve"><code class="docutils literal notranslate"><span class="pre">Evolver.evolve()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evolvepy.html#module-evolvepy">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples_link.html">Examples</a><ul>
@@ -102,8 +135,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>EvolvePy</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">EvolvePy</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,13 +150,13 @@
 <a class="reference external image-reference" href="https://github.com/EltonCN/evolvepy/blob/main/LICENSE"><img alt="" src="https://img.shields.io/pypi/l/evolvepy?style=for-the-badge" /></a>
 <a class="reference external image-reference" href="https://github.com/EltonCN/evolvepy"><img alt="" src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&amp;logo=github&amp;logoColor=white" /></a>
 <section id="evolvepy">
-<h1>EvolvePy<a class="headerlink" href="#evolvepy" title="Permalink to this headline"></a></h1>
+<h1>EvolvePy<a class="headerlink" href="#evolvepy" title="Permalink to this heading"></a></h1>
 <p>EvolvePy is a Python module created to allow the easy creation and execution of evolutionary algorithms.</p>
 <p><strong>Documentation</strong>: <a class="reference external" href="https://eltoncn.github.io/evolvepy/_build/html/index.html">EvolvePy’s documentation</a>.</p>
 <p>Presentation video (Portuguese, click on the image):</p>
 <a class="reference external image-reference" href="https://www.youtube.com/watch?v=Hfo1XkzEcis&amp;list=PLXcCIm-yDGGfBveHj_f_31GkythkJpeUl&amp;index=1"><img alt="Presentation Video" src="https://raw.githubusercontent.com/EltonCN/evolvepy/main/Thumbnail.png" /></a>
 <section id="features">
-<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this heading"></a></h2>
 <p>(Links to example using the feature)</p>
 <ul class="simple">
 <li><p>Allows to create complex individual generators using different strategies:</p>
@@ -156,36 +189,36 @@
 </ul>
 </section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
 <ul>
 <li><p>EvolvePy can be installed using pip:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --upgrade pip
-pip install evolvepy
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+pip<span class="w"> </span>install<span class="w"> </span>evolvepy
 </pre></div>
 </div>
 </li>
 <li><p>For install with all integrations dependecies (gym, tensorflow, wandb, gym_unity):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --upgrade pip
-pip install evolvepy<span class="o">[</span>all_integrations<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+pip<span class="w"> </span>install<span class="w"> </span>evolvepy<span class="o">[</span>all_integrations<span class="o">]</span>
 </pre></div>
 </div>
 </li>
 <li><p>For installing from the repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/EltonCN/evolvepy
-<span class="nb">cd</span> evolvepy
-pip install --upgrade pip
-pip install .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/EltonCN/evolvepy
+<span class="nb">cd</span><span class="w"> </span>evolvepy
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+pip<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
 </div>
 </li>
 </ul>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
 <p>The <a class="reference external" href="https://github.com/EltonCN/evolvepy/blob/main/examples">“examples”</a> folder have a lot of examples of how to use EvolvePy.</p>
 </section>
 <section id="authors">
-<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this headline"></a></h2>
+<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this heading"></a></h2>
 <p>Created by students from Unicamp’s Institute of Computing (IC-Unicamp) as a project for the <a class="reference external" href="https://gitlab.com/simoesusp/disciplinas/tree/master/SSC0713-Sistemas-Evolutivos-Aplicados-a-Robotica">evolutionary systems subject</a> at ICMC-USP, taught by prof. Eduardo do Valle Simoes.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/EltonCN">EltonCN</a></p></li>

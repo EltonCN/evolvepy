@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>evolvepy.generator.thread_pool &mdash; EvolvePy 2.0.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            EvolvePy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../evolvepy.html">evolvepy package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.evaluator.html">evolvepy.evaluator package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.multiple">evolvepy.evaluator.multiple module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.generator.html">evolvepy.generator package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.basic_layers">evolvepy.generator.basic_layers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.combine">evolvepy.generator.combine module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.context">evolvepy.generator.context module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.descriptor">evolvepy.generator.descriptor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator.thread_pool">evolvepy.generator.thread_pool module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.integrations.html">evolvepy.integrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.integrations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable"><code class="docutils literal notranslate"><span class="pre">Configurable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.__element_count"><code class="docutils literal notranslate"><span class="pre">Configurable.__element_count</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.__init__"><code class="docutils literal notranslate"><span class="pre">Configurable.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.dynamic_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.dynamic_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.lock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.lock_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.name"><code class="docutils literal notranslate"><span class="pre">Configurable.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.reset_count"><code class="docutils literal notranslate"><span class="pre">Configurable.reset_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.static_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.static_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.configurable.Configurable.unlock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.unlock_parameter()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../evolvepy.html#evolvepy.evolver.Evolver"><code class="docutils literal notranslate"><span class="pre">Evolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.evolver.Evolver.__init__"><code class="docutils literal notranslate"><span class="pre">Evolver.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../evolvepy.html#evolvepy.evolver.Evolver.evolve"><code class="docutils literal notranslate"><span class="pre">Evolver.evolve()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../evolvepy.html#module-evolvepy">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples_link.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples_link.html#examples-index">Examples index</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/development.html">EvolvePy’s Development Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dev/how_to_build_link.html">How to build and release</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EvolvePy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">evolvepy.generator.thread_pool</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for evolvepy.generator.thread_pool</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Set</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">#job = [Layer, individuals, fitness]</span>
+
+<div class="viewcode-block" id="thread_function"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.thread_pool.thread_function">[docs]</a><span class="k">def</span> <span class="nf">thread_function</span><span class="p">(</span><span class="n">job_queue</span><span class="p">:</span><span class="n">Queue</span><span class="p">,</span> <span class="n">end_queue</span><span class="p">:</span><span class="n">Queue</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Thread function to get and run jobs.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        job_queue (Queue): Queue to receive jobs</span>
+<span class="sd">        end_queue (Queue): Queue to mark job as done</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">job</span> <span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">job_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">job</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">job</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">job</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">job</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+        <span class="n">end_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">job</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ThreadPool"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool">[docs]</a><span class="k">class</span> <span class="nc">ThreadPool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Manager for threads in a multithreaded generator.</span>
+
+<span class="sd">    Should not be instantiated, all methods are static.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">initialized</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1">#If it is already initialized</span>
+    <span class="n">thread_pool</span> <span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#List of all threads</span>
+    <span class="n">job_queue</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Queue</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#Queue to sending jobs to threads</span>
+    <span class="n">end_queue</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Queue</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#Queue to receiving finished jobs info</span>
+    <span class="n">n_thread</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#Number of threads. If not setted is equal to number of cores.</span>
+    <span class="n">waiting</span> <span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#Set of jobs waiting to get done</span>
+    <span class="n">serial</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1">#If should run the jobs without threads.</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Initialize the ThreadPool, creating the threads.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">ThreadPool</span><span class="o">.</span><span class="n">initialized</span> <span class="ow">or</span> <span class="n">ThreadPool</span><span class="o">.</span><span class="n">serial</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">ThreadPool</span><span class="o">.</span><span class="n">n_thread</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ThreadPool</span><span class="o">.</span><span class="n">n_thread</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+
+        <span class="n">ThreadPool</span><span class="o">.</span><span class="n">job_queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+        <span class="n">ThreadPool</span><span class="o">.</span><span class="n">end_queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+        <span class="n">ThreadPool</span><span class="o">.</span><span class="n">waiting</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ThreadPool</span><span class="o">.</span><span class="n">n_thread</span><span class="p">):</span>
+            <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_function</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">ThreadPool</span><span class="o">.</span><span class="n">job_queue</span><span class="p">,</span> <span class="n">ThreadPool</span><span class="o">.</span><span class="n">end_queue</span><span class="p">))</span>
+            <span class="n">thread</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+            <span class="n">ThreadPool</span><span class="o">.</span><span class="n">thread_pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thread</span><span class="p">)</span>
+
+        <span class="n">ThreadPool</span><span class="o">.</span><span class="n">initialized</span> <span class="o">=</span> <span class="kc">True</span>
+
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_shutdown</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Shutdown the ThreadPool, destroying the threads.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ThreadPool</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">ThreadPool</span><span class="o">.</span><span class="n">initialized</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">with</span> <span class="n">ThreadPool</span><span class="o">.</span><span class="n">job_queue</span><span class="o">.</span><span class="n">mutex</span><span class="p">:</span>
+            <span class="n">ThreadPool</span><span class="o">.</span><span class="n">job_queue</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ThreadPool</span><span class="o">.</span><span class="n">n_thread</span><span class="p">):</span>
+            <span class="n">ThreadPool</span><span class="o">.</span><span class="n">job_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">thread</span> <span class="ow">in</span> <span class="n">ThreadPool</span><span class="o">.</span><span class="n">thread_pool</span><span class="p">:</span>
+            <span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+        <span class="n">ThreadPool</span><span class="o">.</span><span class="n">thread_pool</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="ThreadPool.add_job"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool.add_job">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">add_job</span><span class="p">(</span><span class="n">job</span> <span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">object</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Add a job to be run.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            job (Tuple[Layer, np.ndarray, np.ndarray, Context]): Info needed to the job be runned.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If job does not have 4 elements.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">ThreadPool</span><span class="o">.</span><span class="n">_initialize</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">job</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Job must have 4 elements, but have </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">job</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="n">ThreadPool</span><span class="o">.</span><span class="n">serial</span><span class="p">:</span>
+            <span class="n">job</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">job</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">job</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">job</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ThreadPool</span><span class="o">.</span><span class="n">waiting</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">job</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">ThreadPool</span><span class="o">.</span><span class="n">job_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">job</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ThreadPool.wait_for_end"><a class="viewcode-back" href="../../../evolvepy.generator.html#evolvepy.generator.thread_pool.ThreadPool.wait_for_end">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">wait_for_end</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Blocks while waits all jobs to be completed</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ThreadPool</span><span class="o">.</span><span class="n">initialized</span><span class="p">:</span>
+            <span class="k">return</span>
+        
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">ThreadPool</span><span class="o">.</span><span class="n">waiting</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ended_layer</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="o">.</span><span class="n">end_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="n">ThreadPool</span><span class="o">.</span><span class="n">waiting</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">ended_layer</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, EvolvePy Developers..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

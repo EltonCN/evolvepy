@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>evolvepy.evolver &mdash; EvolvePy 0.1.0 documentation</title>
+  <title>evolvepy.evolver &mdash; EvolvePy 2.0.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -24,11 +25,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> EvolvePy
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            EvolvePy
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -39,6 +44,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../evolvepy.html">evolvepy package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../evolvepy.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../evolvepy.callbacks.html">evolvepy.callbacks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.callbacks.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.callbacks.html#module-evolvepy.callbacks.callback">evolvepy.callbacks.callback module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.callbacks.html#module-evolvepy.callbacks.dynamic_mutation">evolvepy.callbacks.dynamic_mutation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.callbacks.html#module-evolvepy.callbacks.incremental_evolution">evolvepy.callbacks.incremental_evolution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.callbacks.html#module-evolvepy.callbacks.logger">evolvepy.callbacks.logger module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.callbacks.html#module-evolvepy.callbacks">Module contents</a></li>
 </ul>
 </li>
@@ -46,9 +56,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.evaluator.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.evaluator.html#module-evolvepy.evaluator.aggregator">evolvepy.evaluator.aggregator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.evaluator.html#module-evolvepy.evaluator.cache">evolvepy.evaluator.cache module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.evaluator.html#module-evolvepy.evaluator.dispatcher">evolvepy.evaluator.dispatcher module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.evaluator.html#module-evolvepy.evaluator.evaluator">evolvepy.evaluator.evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.evaluator.html#module-evolvepy.evaluator.function_evaluator">evolvepy.evaluator.function_evaluator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.evaluator.html#module-evolvepy.evaluator.multiple">evolvepy.evaluator.multiple module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.evaluator.html#module-evolvepy.evaluator.process_evaluator">evolvepy.evaluator.process_evaluator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.evaluator.html#module-evolvepy.evaluator">Module contents</a></li>
 </ul>
@@ -63,19 +73,42 @@
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.generator.html#module-evolvepy.generator.firstgen">evolvepy.generator.firstgen module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.generator.html#module-evolvepy.generator.generator">evolvepy.generator.generator module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.generator.html#module-evolvepy.generator.layer">evolvepy.generator.layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.generator.html#module-evolvepy.generator.thread_pool">evolvepy.generator.thread_pool module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.generator.html#module-evolvepy.generator">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../evolvepy.integrations.html">evolvepy.integrations package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../evolvepy.integrations.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.integrations.html#module-evolvepy.integrations">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../evolvepy.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evolvepy.html#module-evolvepy.configurable">evolvepy.configurable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../evolvepy.html#evolvepy.configurable.Configurable"><code class="docutils literal notranslate"><span class="pre">Configurable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.html#evolvepy.configurable.Configurable.__element_count"><code class="docutils literal notranslate"><span class="pre">Configurable.__element_count</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.html#evolvepy.configurable.Configurable.__init__"><code class="docutils literal notranslate"><span class="pre">Configurable.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.html#evolvepy.configurable.Configurable.dynamic_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.dynamic_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.html#evolvepy.configurable.Configurable.lock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.lock_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.html#evolvepy.configurable.Configurable.name"><code class="docutils literal notranslate"><span class="pre">Configurable.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.html#evolvepy.configurable.Configurable.parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.html#evolvepy.configurable.Configurable.reset_count"><code class="docutils literal notranslate"><span class="pre">Configurable.reset_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.html#evolvepy.configurable.Configurable.static_parameters"><code class="docutils literal notranslate"><span class="pre">Configurable.static_parameters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.html#evolvepy.configurable.Configurable.unlock_parameter"><code class="docutils literal notranslate"><span class="pre">Configurable.unlock_parameter()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../evolvepy.html#module-evolvepy.evolver">evolvepy.evolver module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../evolvepy.html#evolvepy.evolver.Evolver"><code class="docutils literal notranslate"><span class="pre">Evolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.html#evolvepy.evolver.Evolver.__init__"><code class="docutils literal notranslate"><span class="pre">Evolver.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../evolvepy.html#evolvepy.evolver.Evolver.evolve"><code class="docutils literal notranslate"><span class="pre">Evolver.evolve()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../evolvepy.html#module-evolvepy">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples_link.html">Examples</a><ul>
@@ -101,9 +134,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>evolvepy.evolver</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">evolvepy.evolver</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -113,29 +146,31 @@
            <div itemprop="articleBody">
              
   <h1>Source code for evolvepy.evolver</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">evolvepy.generator</span> <span class="k">import</span> <span class="n">Generator</span>
-<span class="kn">from</span> <span class="nn">evolvepy.evaluator</span> <span class="k">import</span> <span class="n">Evaluator</span>
-<span class="kn">from</span> <span class="nn">evolvepy.callbacks</span> <span class="k">import</span> <span class="n">Callback</span>
+<span class="kn">from</span> <span class="nn">evolvepy.generator</span> <span class="kn">import</span> <span class="n">Generator</span>
+<span class="kn">from</span> <span class="nn">evolvepy.evaluator</span> <span class="kn">import</span> <span class="n">Evaluator</span>
+<span class="kn">from</span> <span class="nn">evolvepy.callbacks</span> <span class="kn">import</span> <span class="n">Callback</span>
+<span class="kn">from</span> <span class="nn">evolvepy.integrations</span> <span class="kn">import</span> <span class="n">nvtx</span>
 
 <div class="viewcode-block" id="Evolver"><a class="viewcode-back" href="../../evolvepy.html#evolvepy.evolver.Evolver">[docs]</a><span class="k">class</span> <span class="nc">Evolver</span><span class="p">:</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Basic class for evolving generations.</span>
 
 <span class="sd">    It combines the generator, evaluator and callbacks and runs the evolutionary process.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generator</span><span class="p">:</span><span class="n">Generator</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">:</span><span class="n">Evaluator</span><span class="p">,</span> <span class="n">population_size</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">callbacks</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">Callback</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Callback</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="Evolver.__init__"><a class="viewcode-back" href="../../evolvepy.html#evolvepy.evolver.Evolver.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generator</span><span class="p">:</span><span class="n">Generator</span><span class="p">,</span> <span class="n">evaluator</span><span class="p">:</span><span class="n">Evaluator</span><span class="p">,</span> <span class="n">population_size</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">callbacks</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">Callback</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Callback</span><span class="p">]]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Evolver constructor.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            generator (Generator): Generator for generating populations.</span>
 <span class="sd">            evaluator (Evaluator): Evaluator for evaluating individuals.</span>
 <span class="sd">            population_size (int): Size of population.</span>
-<span class="sd">            callbacks (Union[Callback, List[Callback]], optional): Callabacks that will be called during evolution.. Defaults to None.</span>
+<span class="sd">            callbacks (Union[Callback, List[Callback]], optional): Callabacks that will be called during evolution. Defaults to None.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span> <span class="o">=</span> <span class="n">generator</span>
@@ -149,18 +184,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span> <span class="o">=</span> <span class="n">callbacks</span>
 
         <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span><span class="p">:</span>
-            <span class="n">callback</span><span class="o">.</span><span class="n">generator</span> <span class="o">=</span> <span class="n">generator</span>
-            <span class="n">callback</span><span class="o">.</span><span class="n">evaluator</span> <span class="o">=</span> <span class="n">evaluator</span>
-            <span class="n">callback</span><span class="o">.</span><span class="n">callbacks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span>
+            <span class="n">callback</span><span class="o">.</span><span class="n">_generator</span> <span class="o">=</span> <span class="n">generator</span>
+            <span class="n">callback</span><span class="o">.</span><span class="n">_evaluator</span> <span class="o">=</span> <span class="n">evaluator</span>
+            <span class="n">callback</span><span class="o">.</span><span class="n">_callbacks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Evolver.evolve"><a class="viewcode-back" href="../../evolvepy.html#evolvepy.evolver.Evolver.evolve">[docs]</a>    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generations</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-        <span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="Evolver.evolve"><a class="viewcode-back" href="../../evolvepy.html#evolvepy.evolver.Evolver.evolve">[docs]</a>    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generations</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Evolves the population for a few generations</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            generations (int): Number of generations to evolve</span>
+<span class="sd">            verbose (bool): If should print the generation number, maximum fitness and time. Defaults to False.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[np.ndarray, np.ndarray]: The first element is the fitness history of all generations, in order. </span>
@@ -170,35 +206,57 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">generations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_population_size</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_started</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span><span class="p">:</span>
-                <span class="n">callback</span><span class="o">.</span><span class="n">on_start</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">with</span> <span class="n">nvtx</span><span class="o">.</span><span class="n">annotate_se</span><span class="p">(</span><span class="s2">&quot;callback_start&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s2">&quot;evolvepy&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s2">&quot;evolution_stage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">nvtx</span><span class="o">.</span><span class="n">callback_color</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span><span class="p">:</span>
+                    <span class="n">callback</span><span class="o">.</span><span class="n">_on_start</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">generations</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">callback</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]:</span>
-                    <span class="n">callback</span><span class="o">.</span><span class="n">on_generator_start</span><span class="p">()</span>
+            <span class="n">range_name</span> <span class="o">=</span> <span class="s2">&quot;generation_iteration&quot;</span>
+            <span class="n">profile_range</span> <span class="o">=</span> <span class="n">nvtx</span><span class="o">.</span><span class="n">start_range</span><span class="p">(</span><span class="n">range_name</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s2">&quot;evolvepy&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s2">&quot;evolution_iteration&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">nvtx</span><span class="o">.</span><span class="n">evolver_color</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
-            <span class="n">population</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_population_size</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">nvtx</span><span class="o">.</span><span class="n">annotate_se</span><span class="p">(</span><span class="s2">&quot;callback_generator_start&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s2">&quot;evolvepy&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s2">&quot;evolution_stage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">nvtx</span><span class="o">.</span><span class="n">callback_color</span> <span class="p">):</span>
+                <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">callback</span><span class="o">.</span><span class="n">_parameters</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]:</span>
+                        <span class="n">callback</span><span class="o">.</span><span class="n">_on_generator_start</span><span class="p">()</span>
 
-            <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">callback</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]:</span>
-                    <span class="n">callback</span><span class="o">.</span><span class="n">on_generator_end</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">nvtx</span><span class="o">.</span><span class="n">annotate_se</span><span class="p">(</span><span class="s2">&quot;generator&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s2">&quot;evolvepy&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s2">&quot;evolution_stage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">nvtx</span><span class="o">.</span><span class="n">generator_color</span><span class="p">):</span>
+                <span class="n">population</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_population_size</span><span class="p">)</span>
 
-            <span class="n">fitness</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluator</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">nvtx</span><span class="o">.</span><span class="n">annotate_se</span><span class="p">(</span><span class="s2">&quot;callback_generator_end&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s2">&quot;evolvepy&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s2">&quot;evolution_stage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">nvtx</span><span class="o">.</span><span class="n">callback_color</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">callback</span><span class="o">.</span><span class="n">_parameters</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]:</span>
+                        <span class="n">callback</span><span class="o">.</span><span class="n">_on_generator_end</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
 
-            <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">callback</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]:</span>
-                    <span class="n">callback</span><span class="o">.</span><span class="n">on_evaluator_end</span><span class="p">(</span><span class="n">fitness</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">nvtx</span><span class="o">.</span><span class="n">annotate_se</span><span class="p">(</span><span class="s2">&quot;evaluator&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s2">&quot;evolvepy&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s2">&quot;evolution_stage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">nvtx</span><span class="o">.</span><span class="n">evaluator_color</span><span class="p">):</span>
+                <span class="n">fitness</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluator</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">nvtx</span><span class="o">.</span><span class="n">annotate_se</span><span class="p">(</span><span class="s2">&quot;callback_evaluator_end&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s2">&quot;evolvepy&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s2">&quot;evolution_stage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">nvtx</span><span class="o">.</span><span class="n">callback_color</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">callback</span><span class="o">.</span><span class="n">_parameters</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]:</span>
+                        <span class="n">callback</span><span class="o">.</span><span class="n">_on_evaluator_end</span><span class="p">(</span><span class="n">fitness</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span><span class="o">.</span><span class="n">fitness</span> <span class="o">=</span> <span class="n">fitness</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fitness</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-        
 
-        <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">callback</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]:</span>
-                <span class="n">callback</span><span class="o">.</span><span class="n">on_stop</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">nvtx</span><span class="o">.</span><span class="n">annotate_se</span><span class="p">(</span><span class="s2">&quot;verbose_print&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s2">&quot;evolvepy&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s2">&quot;evolution_stage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">nvtx</span><span class="o">.</span><span class="n">evolver_color</span><span class="p">):</span>
+                    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+                    <span class="n">delta_t</span> <span class="o">=</span> <span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Generation &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                            <span class="o">+</span><span class="s2">&quot; | Max fitness &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">fitness</span><span class="p">))</span>
+                            <span class="o">+</span><span class="s2">&quot; | Time &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">delta_t</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; s&quot;</span><span class="p">)</span>
+            
+            <span class="n">nvtx</span><span class="o">.</span><span class="n">end_range</span><span class="p">(</span><span class="n">profile_range</span><span class="p">)</span>
+        
+        <span class="k">with</span> <span class="n">nvtx</span><span class="o">.</span><span class="n">annotate_se</span><span class="p">(</span><span class="s2">&quot;callback_end&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="s2">&quot;evolvepy&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s2">&quot;evolution_stage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">nvtx</span><span class="o">.</span><span class="n">callback_color</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callbacks</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">callback</span><span class="o">.</span><span class="n">_parameters</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]:</span>
+                    <span class="n">callback</span><span class="o">.</span><span class="n">_on_stop</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_history</span><span class="p">,</span> <span class="n">population</span></div></div>
 
