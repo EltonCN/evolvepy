@@ -13,78 +13,73 @@ from evolvepy.generator.thread_pool import ThreadPool
 
 class Generator:
 	'''
-	Main class of the pipeline, it defines the layers oder, bifurcations and parameters
+	Main class of the pipeline, it defines the layers order, bifurcations and parameters
 	'''
 
-	def __init__(self, layers:Union[None, List[Layer]]=None, first_layer:Layer=None, last_layer:Layer=None, descriptor:Optional[Descriptor]=None):    
+	def __init__(self, layers: Union[None, List[Layer]] = None, first_layer: Layer = None, last_layer: Layer = None, descriptor: Optional[Descriptor] = None):
 		'''
-		Initialization for the Generator class with the desired layer order and individuasl description
+		Initialization for the Generator class with the desired layer order and individuals description
 
 		Args:
-			layers (List[Layer]): List of layers used in the pieline
+			layers (List[Layer]): List of layers used in the pipeline
 			first_layer (Layer): First layer of the pipeline
 			last_layer (Layer): Last layer of a pipeline
 			descriptor (Descriptor): Object describing the individuals chromosome number, type and range
 		'''
 
 		self._connected = False
+		self._layers = layers or []
+		self._fitness = None
+		self._population = None
 
-		if layers is None:
-			layers = []
-		elif first_layer is not None or last_layer is not None:
-			raise ValueError("Generator 'layers' parameter must not be used together with 'first_layer' and 'last_layer'")
+		if first_layer is not None or last_layer is not None:
+			if layers is not None:
+				raise ValueError("Generator 'layers' parameter must not be used together with 'first_layer' and 'last_layer'")
+			self._initialize_with_first_and_last_layer(first_layer, last_layer)
 		else:
-			for i in range(len(layers)-1):
-				layers[i].next = layers[i+1]
+			self._initialize_layers()
 
-		if first_layer is not None and last_layer is not None:
-			layers.append(first_layer)
+		self._initialize_first_gen_layer(descriptor)
 
-			queue = deque()
-			for layer in first_layer.next:
-				queue.append(layer)
-			
-			while len(queue) != 0:
-				layer:Layer = queue.pop()
-				if layer != last_layer and layer not in layers:
-					layers.append(layer)
-					for next_layer in layer.next:
-						queue.append(next_layer)
+		validate_layers(self._layers)
 
-			layers.append(last_layer)
-		elif last_layer is not None or first_layer is not None:
-			raise ValueError("You must set Generator 'first_layer' with 'last_layer'")
+	def _initialize_with_first_and_last_layer(self, first_layer: Layer, last_layer: Layer):
+		self._layers.append(first_layer)
+		queue = deque(first_layer.next)
 
-		have_first_generator = False
+		while queue:
+			layer = queue.pop()
+			if layer != last_layer and layer not in self._layers:
+				self._layers.append(layer)
+				queue.extend(layer.next)
 
-		for layer in layers:
-			if isinstance(layer, FirstGenLayer):
-				have_first_generator = True
+		self._layers.append(last_layer)
+
+	def _initialize_layers(self):
+		for i in range(len(self._layers) - 1):
+			self._layers[i].next = self._layers[i + 1]
+
+	def _initialize_first_gen_layer(self, descriptor: Optional[Descriptor]):
+		have_first_generator = any(isinstance(layer, FirstGenLayer) for layer in self._layers)
 
 		if not have_first_generator:
 			if descriptor is None:
 				warnings.warn("You are creating a generator without FirstGenLayer and descriptor. Creating default descriptor.")
-				
 				descriptor = Descriptor()
-			
-			if len(layers) > 0 and isinstance(layers[-1], FirstGenLayer):
+
+			if self._layers and isinstance(self._layers[-1], FirstGenLayer):
 				raise RuntimeWarning("You are passing a descriptor, but also passing a FirstGenLayer. This can create unexpected behavior.")
 
 			first_gen = FirstGenLayer(descriptor)
 
-			if len(layers) > 0:
-				layers[-1].next = first_gen
+			if self._layers:
+				self._layers[-1].next = first_gen
 
-			layers.append(first_gen)
+			self._layers.append(first_gen)
 			self._descriptor = descriptor
 		else:
-			self._descriptor = layers[-1]._descriptor
-
-		self._layers = layers
-
-		self._fitness = None
-		self._population = None
-
+			self._descriptor = self._layers[-1]._descriptor
+	
 	def set_parameter(self, layer_name:str, parameter_name:str, value:object) -> None:
 		'''
 		Defines the value of a specified parameter for a specified layer
@@ -221,8 +216,12 @@ class Generator:
 		
 		context = Context(population_size, self._descriptor.chromosome_names)
 
-		if self._population is not None and len(self._population) > population_size:
-			self._population = self._population[:population_size]
+		if self._population is not None:
+			if len(self._population) == population_size:
+				self._population = self._population
+			elif len(self._population) > population_size:
+				warnings.warn("The population size is bigger than the desired value passed as parameter. Truncating the population.")
+				self._population = self._population[:population_size]
 
 		self._layers[0](self._population, self._fitness, context)
 
@@ -234,3 +233,84 @@ class Generator:
 		self._population = self._layers[-1].population
 
 		return self._population
+
+def cycle_finder_dfs(node, visited):
+	visited.add(node)
+	for next_node in node.next:
+		if next_node in visited:
+			return False
+		if not cycle_finder_dfs(next_node, visited):
+			return False
+	visited.remove(node)
+	return True
+
+def simple_dfs(node, visited):
+	visited.add(node)
+	for next_node in node.next:
+		if next_node not in visited:
+			simple_dfs(next_node, visited)
+
+def end_finder_dfs(node, target_node, visited):
+    if node == target_node:
+        return True
+    visited.add(node)
+    for next_node in node.next:
+        if next_node not in visited:
+            if end_finder_dfs(next_node, target_node, visited):
+                return True
+    return False
+
+def is_dag(graph):
+	visited = set()
+	for node in graph:
+		if node not in visited:
+			if not cycle_finder_dfs(node, visited):
+				return False
+	return True
+
+def find_unreachable_nodes(graph):
+	visited = set()
+	simple_dfs(graph[0], visited)
+	unvisited_nodes = [node for node in graph if node not in visited]
+	
+	return unvisited_nodes
+
+def find_nodes_unable_to_reach_end(graph):
+    target_node = graph[-1]
+    visited = set()
+    for node in graph:
+        end_finder_dfs(node, target_node, visited)
+	
+    nodes_not_reaching_target = [node for node in graph if node not in visited and node != target_node]
+
+    return nodes_not_reaching_target
+
+def check_consistency(graph):
+    
+    return len(graph) != len(set(graph))
+
+def validate_layers(graph):
+	init_cant_reach = find_unreachable_nodes(graph)
+	cant_reach_end = find_nodes_unable_to_reach_end(graph)
+	cycle_deteted = is_dag(graph)
+	has_duplicates = check_consistency(graph)
+
+	if has_duplicates:
+		raise ValueError("The pipeline has duplicates")
+
+	if cycle_deteted:
+		raise ValueError("The pipeline has a cycle")
+
+	if graph[-1] in init_cant_reach:
+		raise ValueError("The last layer can not be reached by the first layer")
+
+	missing_items = set(init_cant_reach) - set(cant_reach_end)
+	if missing_items:
+		raise ValueError(f"The following Layers can be reached but does not end: {missing_items}")
+	
+	missing_items = set(cant_reach_end) - set(init_cant_reach)
+	if missing_items:
+		raise ValueError(f"The following Layers can end but can not be reached: {missing_items}")
+	
+	if init_cant_reach and cant_reach_end:
+		warnings.warn(f"The following Layers are deatached from the pipeline and should be removed: {init_cant_reach}", Warning)
