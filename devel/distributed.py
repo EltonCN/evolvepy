@@ -7,7 +7,6 @@ import multiprocessing as mp
 import ray, gym, nn
 
 import evolvepy as ep
-from evolvepy.evaluator import ProcessFitnessFunction
 from evolvepy.integrations.ray import DistributedEvaluator
 from evolvepy.integrations.gym import GymFitnessFunction
 
