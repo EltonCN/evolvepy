@@ -5,15 +5,14 @@ import numba
 
 from evolvepy.integrations import nvtx
 
-@numba.njit(fastmath=True)
+@numba.njit(fastmath=True, cache=True)
 def isin(val, arr):
     for i in range(arr.shape[0]):
         if arr[i] == val:
             return True
     return False
 
-#@nvtx.annotate(domain="evolvepy", category="generator_operator")
-@numba.njit
+@numba.njit(cache=True)
 def tournament(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 	'''
 	Select the best individuals in a one vs one test.
@@ -47,8 +46,7 @@ def tournament(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 
 	return selected
 
-@nvtx.annotate(domain="evolvepy", category="generator_operator")
-@numba.njit
+@numba.njit(cache=True)
 def roulette(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 	'''
 	Select the best individuals stocaticaly with the probability of beign chosen
@@ -85,8 +83,7 @@ def roulette(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
 		
 	return selected
 
-@nvtx.annotate(domain="evolvepy", category="generator_operator")
-@numba.njit
+@numba.njit(cache=True)
 def rank(fitness_array:ArrayLike, n_selection:int) -> np.ndarray:
     '''
 	Select the n best individuals assuming the fitness_array is decreasingly sorted.

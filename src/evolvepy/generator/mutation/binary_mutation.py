@@ -5,8 +5,7 @@ from typing import Tuple
 
 from evolvepy.integrations import nvtx
 
-@nvtx.annotate(domain="evolvepy", category="generator_operator")
-@numba.njit
+@numba.njit(cache=True)
 def bit_mutation(chromosome:ArrayLike, existence_rate:float, gene_rate:float):
     ''' 
     It takes a number n of genes and randomicaly change n gene bits in a chromosome.
