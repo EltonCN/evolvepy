@@ -87,6 +87,18 @@ class TestEvaluator(unittest.TestCase):
         fitness = dispatcher(population)
         assert_equal(fitness, fitness_reference)
 
+        dispatcher = MultipleEvaluation(evaluator, n_evaluation=2, discard_max=True)
+        fitness = dispatcher(population)
+        assert_equal(fitness, fitness_reference)
+
+        dispatcher = MultipleEvaluation(evaluator, n_evaluation=2, discard_min=True)
+        fitness = dispatcher(population)
+        assert_equal(fitness, fitness_reference)
+
+        dispatcher = MultipleEvaluation(evaluator, n_evaluation=3, discard_min=True, discard_max=True)
+        fitness = dispatcher(population)
+        assert_equal(fitness, fitness_reference)
+
     def test_aggregator(self):
         population = get_population()
         fitness_reference = population["chr0"].max(axis=1).reshape(10,1)

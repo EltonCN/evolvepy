@@ -62,11 +62,26 @@ class MultipleEvaluation(EvaluationStage):
 
                 result = np.empty((result_size, len(population), self._evaluator._n_scores))
 
+                mask = np.empty(n_evaluation, bool)
                 for i in range(len(population)):
+                    mask[:] = True
                     individual_fitness = fitness[:, i]
-                    individual_fitness = np.delete(individual_fitness, np.argmax(individual_fitness, axis=0), axis=0)
-                    individual_fitness = np.delete(individual_fitness, np.argmin(individual_fitness, axis=0), axis=0)
-                    result[:,i] = individual_fitness
+
+                    if self._discard_max and self._discard_min:
+                        argmax = np.argmax(individual_fitness, axis=0)
+                        mask[argmax] = False
+                        
+                        argmin = np.argmin(individual_fitness[mask], axis=0)
+                        if argmin >= argmax:
+                            argmin += 1
+                        mask[argmin] = False
+
+                    elif self._discard_max:
+                        mask[np.argmax(individual_fitness, axis=0)] = False
+                    elif self._discard_min:
+                        mask[np.argmin(individual_fitness, axis=0)] = False
+
+                    result[:,i] = individual_fitness[mask]
                 
         else:
             result = fitness
