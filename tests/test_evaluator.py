@@ -77,14 +77,26 @@ class TestEvaluator(unittest.TestCase):
         assert_equal(len(fitness), 10)
         assert_equal((fitness == 1).sum()+(fitness == -1).sum(), len(fitness))
         
-    def test_dispatcher(self):
+    def test_multiple(self):
         population = get_population()
         fitness_reference = population["chr0"].sum(axis=1).reshape(10,1)
 
         evaluator = FunctionEvaluator(sum1)
 
-        dispatcher = MultipleEvaluation(evaluator, n_evaluation=1)
-        fitness = dispatcher(population)
+        multiple = MultipleEvaluation(evaluator, n_evaluation=1)
+        fitness = multiple(population)
+        assert_equal(fitness, fitness_reference)
+
+        multiple = MultipleEvaluation(evaluator, n_evaluation=2, discard_max=True)
+        fitness = multiple(population)
+        assert_equal(fitness, fitness_reference)
+
+        multiple = MultipleEvaluation(evaluator, n_evaluation=2, discard_min=True)
+        fitness = multiple(population)
+        assert_equal(fitness, fitness_reference)
+
+        multiple = MultipleEvaluation(evaluator, n_evaluation=3, discard_min=True, discard_max=True)
+        fitness = multiple(population)
         assert_equal(fitness, fitness_reference)
 
     def test_aggregator(self):
@@ -128,11 +140,11 @@ class TestEvaluator(unittest.TestCase):
         fitness_reference = population["chr0"].max(axis=1).reshape(10,1)
 
 
-        # cache(aggregator(dispatcher(evaluator)))
+        # cache(aggregator(multiple(evaluator)))
 
         evaluator = FunctionEvaluator(min_max, n_scores=2)
-        dispatcher = MultipleEvaluation(evaluator, n_evaluation=2)
-        aggre = FitnessAggregator(dispatcher, mode=FitnessAggregator.MAX)
+        multiple = MultipleEvaluation(evaluator, n_evaluation=2)
+        aggre = FitnessAggregator(multiple, mode=FitnessAggregator.MAX)
         cache = FitnessCache(aggre)
 
         fitness = cache(population)

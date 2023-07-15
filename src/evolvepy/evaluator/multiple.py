@@ -1,5 +1,7 @@
 from typing import Callable
+
 import numpy as np
+import numba
 
 from evolvepy.evaluator.evaluator import Evaluator, EvaluationStage
 from evolvepy.integrations import nvtx
@@ -54,20 +56,9 @@ class MultipleEvaluation(EvaluationStage):
         if self._discard_max or self._discard_min:
             range_name = "{0}_discard_maxmix".format(self.name)
             with nvtx.annotate_se(range_name, domain="evolvepy", category="evaluator", color=nvtx.evaluator_color):
-                result_size = n_evaluation
-                if self._discard_max:
-                    result_size -= 1
-                if self._discard_min:
-                    result_size -= 1
-
-                result = np.empty((result_size, len(population), self._evaluator._n_scores))
-
-                for i in range(len(population)):
-                    individual_fitness = fitness[:, i]
-                    individual_fitness = np.delete(individual_fitness, np.argmax(individual_fitness, axis=0), axis=0)
-                    individual_fitness = np.delete(individual_fitness, np.argmin(individual_fitness, axis=0), axis=0)
-                    result[:,i] = individual_fitness
                 
+
+                result = MultipleEvaluation._discard(population, fitness, self._evaluator._n_scores, n_evaluation, self._discard_min, self._discard_max)
         else:
             result = fitness
 
@@ -78,3 +69,37 @@ class MultipleEvaluation(EvaluationStage):
         self._scores = final_fitness
 
         return final_fitness
+    
+    @staticmethod
+    @numba.njit(cache=True)
+    def _discard(population, fitness, n_scores, n_evaluation, discard_min, discard_max):
+        result_size = n_evaluation
+        if discard_max:
+            result_size -= 1
+        if discard_min:
+            result_size -= 1
+
+        result = np.empty((result_size, len(population), n_scores))
+
+        mask = np.empty(n_evaluation, np.bool_)
+        for i in range(len(population)):
+            mask[:] = True
+            individual_fitness = fitness[:, i]
+
+            if discard_max and discard_min:
+                argmax = np.argmax(individual_fitness, axis=0)
+                mask[argmax] = False
+                
+                argmin = np.argmin(individual_fitness[mask], axis=0)
+                if argmin >= argmax:
+                    argmin += 1
+                mask[argmin] = False
+
+            elif discard_max:
+                mask[np.argmax(individual_fitness, axis=0)] = False
+            elif discard_min:
+                mask[np.argmin(individual_fitness, axis=0)] = False
+
+            result[:,i] = individual_fitness[mask]
+        
+        return result

@@ -20,8 +20,8 @@ class TestLogger(unittest.TestCase):
         Configurable.reset_count()
 
         evaluator = FunctionEvaluator(sum1)
-        dispatcher = MultipleEvaluation(evaluator)
-        cache = FitnessCache(dispatcher)
+        multiple = MultipleEvaluation(evaluator)
+        cache = FitnessCache(multiple)
 
         logger = MemoryStoreLogger(log_evaluator=True)
 
