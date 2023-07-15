@@ -42,14 +42,14 @@ class FunctionEvaluator(Evaluator):
         super().__init__(n_scores, individual_per_call, other_parameters, name=name)
 
         if mode == FunctionEvaluator.JIT:
-            self._function = numba.jit()(function)
-            self._static_call = numba.jit()(FunctionEvaluator.static_call)
+            self._function = numba.jit(forceobj=True)(function)
+            self._static_call = numba.jit(forceobj=True)(FunctionEvaluator.static_call)
         elif mode == FunctionEvaluator.NJIT:
             self._function = numba.njit()(function)
             self._static_call = numba.njit()(FunctionEvaluator.static_call)
         elif mode == FunctionEvaluator.JIT_PARALLEL:
-            self._function = numba.jit(parallel=True)(function)
-            self._static_call = numba.jit(parallel=True)(FunctionEvaluator.static_call)
+            self._function = numba.jit(parallel=True, forceobj=True)(function)
+            self._static_call = numba.jit(parallel=True, forceobj=True)(FunctionEvaluator.static_call)
         elif mode == FunctionEvaluator.NJIT_PARALLEL:
             self._function = numba.njit(parallel=True)(function)
             self._static_call = numba.njit(parallel=True)(FunctionEvaluator.static_call)

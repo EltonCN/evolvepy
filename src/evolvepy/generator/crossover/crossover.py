@@ -4,8 +4,7 @@ import numba
 
 from evolvepy.integrations import nvtx
 
-@nvtx.annotate(domain="evolvepy", category="generator_operator")
-@numba.njit
+@numba.njit(cache=True)
 def mean(chromosomes:ArrayLike) -> np.ndarray:
     '''
     Crossover computing the mean of chromosomes
@@ -21,8 +20,7 @@ def mean(chromosomes:ArrayLike) -> np.ndarray:
 
     return np.sum(chromosomes, axis=0)/chromosomes.shape[0]
 
-#@nvtx.annotate(domain="evolvepy", category="generator_operator")
-@numba.njit
+@numba.njit(cache=True)
 def one_point(chromosomes:ArrayLike) -> np.array:
     '''
     Crossover joining in one point
@@ -41,8 +39,7 @@ def one_point(chromosomes:ArrayLike) -> np.array:
 
     return new_chromosome
 
-@nvtx.annotate(domain="evolvepy", category="generator_operator")
-@numba.njit
+@numba.njit(cache=True)
 def n_point(chromosomes:ArrayLike, n:int=1) -> np.array:
     '''
     Crossover joining in n points

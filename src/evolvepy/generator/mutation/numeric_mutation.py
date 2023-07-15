@@ -6,7 +6,7 @@ from typing import Tuple
 from evolvepy.integrations import nvtx
 
 #@nvtx.annotate(domain="evolvepy", category="generator_operator")
-@numba.njit
+@numba.njit(cache=True)
 def sum_mutation(chromosome:ArrayLike, existence_rate:float, gene_rate:float, mutation_range:Tuple[float, float]):
     '''
     It takes a chromosome and add a random value between the mutation range to its gene, then repeats the process with
