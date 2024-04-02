@@ -25,7 +25,8 @@ class DynamicMutation(Callback):
     REFINEMENT = 1
     EXPLORATION = 2
 
-    def __init__(self, layer_names:List[str], patience:int=10, refinement_patience:int=2, exploration_patience:int=2, refinement_steps:int=2, exploration_steps:int=5,  refinement_divider:int=2, exploration_multiplier:int=2, stop_refinement:bool=False, run:bool=True):
+    def __init__(self, layer_names:List[str], patience:int=10, refinement_patience:int=2, exploration_patience:int=2, refinement_steps:int=2, exploration_steps:int=5,  
+                 refinement_divider:int=2, exploration_multiplier:int=2, stop_refinement:bool=False, use_genes=False, threshould:float=0, run:bool=True):
         '''
         DynamicMutation constructor
 
@@ -55,6 +56,8 @@ class DynamicMutation(Callback):
         parameters["exploration_multiplier"] = exploration_multiplier
         parameters["wait"] = 0
         parameters["step_count"] = 0
+        parameters["use_genes"] = use_genes
+        parameters["threshould"] = threshould
 
         dynamic_parameters  = dict.fromkeys(list(parameters.keys()), True)
 
@@ -69,13 +72,18 @@ class DynamicMutation(Callback):
         self._stop_refinement = stop_refinement
         self._layer_names = layer_names
 
-        super().__init__(parameters=parameters, dynamic_parameters=dynamic_parameters, run=True)
+        super().__init__(parameters=parameters, dynamic_parameters=dynamic_parameters, run=run)
         self._best_fitness = -np.Infinity
 
         self._stage = DynamicMutation.NORMAL
         self._wait = 0
 
         self._original_parameters = {}
+
+
+    def on_generator_end(self, population: np.ndarray) -> None:
+        if self.parameters["use_genes"]:
+            self._population = population
 
     def on_evaluator_end(self, fitness: np.ndarray) -> None:
         '''
@@ -95,10 +103,28 @@ class DynamicMutation(Callback):
         self._exploration_steps = self.parameters["exploration_steps"]
         self._wait = self.parameters["wait"]
         self._step_count = self.parameters["step_count"]
+        self._use_genes = self.parameters["use_genes"]
+        self._threshould = self.parameters["threshould"]
 
         
-        max_fitness = fitness.max()
-        if max_fitness > self._best_fitness:
+        change = False
+
+        if self._use_genes:
+            bester_index = fitness.argmax()
+            best_ind : np.ndarray = self._population[bester_index]
+            max_fitness = best_ind
+
+            if not isinstance(self._best_fitness, float):
+                chr_names = best_ind.dtype.names
+                for chr_name in  chr_names:
+                    if np.linalg.norm(self._best_fitness[chr_name] - best_ind[chr_name]) > self._threshould:
+                        change = True
+        else:
+            max_fitness = fitness.max()
+            change = np.abs(max_fitness-self._best_fitness) > self._threshould
+
+        
+        if change:
             self._best_fitness = max_fitness
             self._wait = 0
 
