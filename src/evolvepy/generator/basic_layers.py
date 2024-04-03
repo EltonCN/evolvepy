@@ -24,9 +24,9 @@ class Sort(Layer):
 		Sort the population by fitness.
 
 		Args:
-			population (np.ndarray): 
-			fitness (np.ndarray):
-			context (Context):
+			population (np.ndarray): Array of inidividuals
+			fitness (np.ndarray): Array of individuals fitness
+			context (Context): Context of the population from the previous layers
 
 		Returns:
 			population (np.ArrayLike): Array of individuals.
@@ -38,6 +38,37 @@ class Sort(Layer):
 		context.sorted = True
 
 		return population[indexs], fitness[indexs]
+	
+class Shuffle(Layer):
+    '''
+    Shuffles the population
+    '''
+
+    def __init__(self, name: str = None ):
+        super().__init__(name=name)
+
+    def call(self, population: np.ndarray, fitness: np.ndarray, context:Context) -> Tuple[np.ndarray, np.ndarray]:
+        '''
+        Shuffles the population.
+
+        Args:
+            population (np.ndarray): Array of inidividuals
+			fitness (np.ndarray): Array of individuals fitness
+			context (Context): Context of the population from the previous layers
+
+        Returns:
+            population (np.ArrayLike): Array of individuals.
+            fitness (np.ArrayLike): Array of fitness per individual.
+        '''
+        
+        pop_size = len(population)
+
+        indexes = list(range(pop_size))
+        np.random.shuffle(indexes)
+
+        context.sorted = False
+
+        return population[indexes], fitness[indexes]
 
 class FilterFirsts(Layer):
 	'''
@@ -63,7 +94,6 @@ class FilterFirsts(Layer):
 		Args:
 			population (np.ArrayLike): array of individuals
 			parameters (Dict(string, string)): parameters for the function
-			dynamic_parameters (Dit(string, string)): dinamic parameters of the function
 
 		Returns:
 			n_to_pass (int): Number of best individuals selected
