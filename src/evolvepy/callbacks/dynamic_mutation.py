@@ -119,11 +119,12 @@ class DynamicMutation(Callback):
                 for chr_name in  chr_names:
                     if np.linalg.norm(self._best_fitness[chr_name] - best_ind[chr_name]) > self._threshould:
                         change = True
+            else:
+                change = True
         else:
             max_fitness = fitness.max()
             change = np.abs(max_fitness-self._best_fitness) > self._threshould
 
-        
         if change:
             self._best_fitness = max_fitness
             self._wait = 0
