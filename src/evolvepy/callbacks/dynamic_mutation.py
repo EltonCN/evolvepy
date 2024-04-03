@@ -25,13 +25,14 @@ class DynamicMutation(Callback):
     REFINEMENT = 1
     EXPLORATION = 2
 
-    def __init__(self, layer_names:List[str], patience:int=10, refinement_patience:int=2, exploration_patience:int=2, refinement_steps:int=2, exploration_steps:int=5,  
-                 refinement_divider:int=2, exploration_multiplier:int=2, stop_refinement:bool=False, use_genes=False, threshould:float=0, run:bool=True):
+    def __init__(self, layer_names:List[str], threshould:float=0, patience:int=10, refinement_patience:int=2, exploration_patience:int=2, refinement_steps:int=2, exploration_steps:int=5,  
+                 refinement_divider:int=2, exploration_multiplier:int=2, stop_refinement:bool=False, watch_genes=False, run:bool=True):
         '''
         DynamicMutation constructor
 
         Args:
             layer_names (List[str]): Names of the NumericMutation layers that will be affected by this callback.
+            threshould (float, optional): Minimum difference between generations to consider changing.
             patience (int, optional): How many generations in normal mode to wait before starting a transition (to refinement). Defaults to 10.
             refinement_patience (int, optional): How many generations in refinement mode to wait before starting a transition (to refinement or exploration). Defaults to 2.
             exploration_patience (int, optional): How many generations in exploration mode to wait before starting a transition (to exploration or normal). Defaults to 2.
@@ -40,6 +41,7 @@ class DynamicMutation(Callback):
             refinement_divider (int, optional): How much to divide the mutation rates at each refinement step. Defaults to 2.
             exploration_multiplier (int, optional): How much to multiply the mutation rates at each exploration step. Defaults to 2.
             stop_refinement (bool, optional): Whether to stop refining if you find an improvement in fitness. Defaults to False.
+            watch_genes (bool, optional): If true, watchs for change in the best individual genes instead of the fitness. Defaults to False.
             run (bool, optional): Whether this callback should be executed. Defaults to True.
 
         Raises:
@@ -47,6 +49,7 @@ class DynamicMutation(Callback):
         '''
         
         parameters = {}
+        parameters["threshould"] = threshould
         parameters["patience"] = patience
         parameters["refinement_patience"] = refinement_patience
         parameters["exploration_patience"] = exploration_patience
@@ -56,9 +59,8 @@ class DynamicMutation(Callback):
         parameters["exploration_multiplier"] = exploration_multiplier
         parameters["wait"] = 0
         parameters["step_count"] = 0
-        parameters["use_genes"] = use_genes
-        parameters["threshould"] = threshould
-
+        parameters["watch_genes"] = watch_genes
+        
         dynamic_parameters  = dict.fromkeys(list(parameters.keys()), True)
 
         dynamic_parameters["wait"] = False
@@ -73,7 +75,7 @@ class DynamicMutation(Callback):
         self._layer_names = layer_names
 
         super().__init__(parameters=parameters, dynamic_parameters=dynamic_parameters, run=run)
-        self._best_fitness = -np.Infinity
+        self._best_prev = -np.Infinity
 
         self._stage = DynamicMutation.NORMAL
         self._wait = 0
@@ -82,18 +84,26 @@ class DynamicMutation(Callback):
 
 
     def on_generator_end(self, population: np.ndarray) -> None:
-        if self.parameters["use_genes"]:
+        '''
+        Saves population if is watching for gene variation.
+
+        Args:
+            population (np.ndarray): Population.
+        '''
+
+        if self.parameters["watch_genes"]:
             self._population = population
 
     def on_evaluator_end(self, fitness: np.ndarray) -> None:
         '''
         Called on evaluator end.
 
-        Checks for maximum fitness and performs the dynamic mutation process as described in the class documentation
+        Checks for maximum fitness (or best individual) and performs the dynamic mutation process as described in the class documentation
 
         Args:
             fitness (np.ndarray): Population fitness.
         '''
+        
         self._patience = self.parameters["patience"]
         self._exploration_patience = self.parameters["exploration_patience"]
         self._refinement_patience = self.parameters["refinement_patience"]
@@ -103,30 +113,29 @@ class DynamicMutation(Callback):
         self._exploration_steps = self.parameters["exploration_steps"]
         self._wait = self.parameters["wait"]
         self._step_count = self.parameters["step_count"]
-        self._use_genes = self.parameters["use_genes"]
+        self._watch_genes = self.parameters["watch_genes"]
         self._threshould = self.parameters["threshould"]
 
-        
         change = False
-
-        if self._use_genes:
+        
+        if self._watch_genes:
             bester_index = fitness.argmax()
             best_ind : np.ndarray = self._population[bester_index]
-            max_fitness = best_ind
+            new_best = best_ind
 
-            if not isinstance(self._best_fitness, float):
+            if not isinstance(self._best_prev, float):
                 chr_names = best_ind.dtype.names
                 for chr_name in  chr_names:
-                    if np.linalg.norm(self._best_fitness[chr_name] - best_ind[chr_name]) > self._threshould:
+                    if np.linalg.norm(self._best_prev[chr_name] - best_ind[chr_name]) > self._threshould:
                         change = True
             else:
                 change = True
         else:
-            max_fitness = fitness.max()
-            change = np.abs(max_fitness-self._best_fitness) > self._threshould
+            new_best = fitness.max()
+            change = np.abs(new_best-self._best_prev) > self._threshould
 
         if change:
-            self._best_fitness = max_fitness
+            self._best_prev = new_best
             self._wait = 0
 
             if self._stage == DynamicMutation.EXPLORATION or (self._stop_refinement and self._stage == DynamicMutation.REFINEMENT):
