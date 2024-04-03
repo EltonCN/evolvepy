@@ -1,4 +1,5 @@
-from typing import List
+from typing import List, Union
+
 import numpy as np
 
 from evolvepy.callbacks import Callback
@@ -103,7 +104,7 @@ class DynamicMutation(Callback):
         Args:
             fitness (np.ndarray): Population fitness.
         '''
-        
+
         self._patience = self.parameters["patience"]
         self._exploration_patience = self.parameters["exploration_patience"]
         self._refinement_patience = self.parameters["refinement_patience"]
@@ -116,23 +117,7 @@ class DynamicMutation(Callback):
         self._watch_genes = self.parameters["watch_genes"]
         self._threshould = self.parameters["threshould"]
 
-        change = False
-        
-        if self._watch_genes:
-            bester_index = fitness.argmax()
-            best_ind : np.ndarray = self._population[bester_index]
-            new_best = best_ind
-
-            if not isinstance(self._best_prev, float):
-                chr_names = best_ind.dtype.names
-                for chr_name in  chr_names:
-                    if np.linalg.norm(self._best_prev[chr_name] - best_ind[chr_name]) > self._threshould:
-                        change = True
-            else:
-                change = True
-        else:
-            new_best = fitness.max()
-            change = np.abs(new_best-self._best_prev) > self._threshould
+        change, new_best = self._check_for_change(fitness)
 
         if change:
             self._best_prev = new_best
@@ -183,6 +168,38 @@ class DynamicMutation(Callback):
 
         self._parameters["wait"] = self._wait
         self._parameters["step_count"] = self._step_count
+
+    def _check_for_change(self, fitness:np.ndarray) -> Union[float, np.ndarray]:
+        '''
+        Checks if the watched variable changed.
+
+        Args:
+            fitness (np.ndarray): current population fitness.
+
+        Returns:
+            Union[float, np.ndarray]: new best for the watched variable.
+        '''
+
+        change = False
+        
+        if self._watch_genes:
+            bester_index = fitness.argmax()
+            best_ind : np.ndarray = self._population[bester_index]
+            new_best = best_ind
+
+            if not isinstance(self._best_prev, float):
+                chr_names = best_ind.dtype.names
+                for chr_name in  chr_names:
+                    if np.linalg.norm(self._best_prev[chr_name] - best_ind[chr_name]) > self._threshould:
+                        change = True
+            else:
+                change = True
+        else:
+            new_best = fitness.max()
+            change = np.abs(new_best-self._best_prev) > self._threshould
+
+        return change, new_best
+
 
     def _save_parameters(self) -> None:
         '''
