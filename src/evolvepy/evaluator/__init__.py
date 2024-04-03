@@ -8,3 +8,4 @@ from .aggregator import FitnessAggregator
 from .function_evaluator import FunctionEvaluator
 from .cache import FitnessCache
 from .process_evaluator import ProcessEvaluator, ProcessFitnessFunction
+from .shuffle import ShufflePopulation
