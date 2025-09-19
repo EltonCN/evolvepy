@@ -133,6 +133,36 @@ class TestEvaluator(unittest.TestCase):
 
         ind_repr = cache.get_individual_representation(population[0])
         assert_equal(ind_repr not in cache._cache, True)
+
+    def test_cache_repr(self):
+        dtype = np.dtype([("chr0", np.float32), ("chr1", np.float64)])
+
+        evaluator = FunctionEvaluator(sum1)
+        cache = FitnessCache(evaluator)
+
+        a = np.empty(1, dtype=dtype)
+        a["chr0"] = 12.3456
+        a["chr1"] = 12.3456
+
+        b = np.empty(1, dtype=dtype)
+        b["chr0"] = 12.3457
+        b["chr1"] = 12.3457
+        
+        a_rep = cache.get_individual_representation(a)
+        b_rep = cache.get_individual_representation(b)
+        assert_not_equal(a_rep, b_rep)
+
+        cache._max_decimals = 4
+        a_rep = cache.get_individual_representation(a)
+        b_rep = cache.get_individual_representation(b)
+        assert_not_equal(a_rep, b_rep)
+
+        cache._max_decimals = 2
+        a_rep = cache.get_individual_representation(a)
+        b_rep = cache.get_individual_representation(b)
+        assert_equal(a_rep, b_rep)
+
+
         
 
     def test_together(self):

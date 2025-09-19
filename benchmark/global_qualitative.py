@@ -63,7 +63,7 @@ generator = Generator(descriptor = descriptor, first_layer=first_layer, last_lay
 func_evaluator = FunctionEvaluator(fitness_function, n_scores=2)
 aggregator_evaluator = FitnessAggregator(func_evaluator)
 multiple_evaluator = MultipleEvaluation(aggregator_evaluator, 10, discard_max=True, discard_min=True)
-cache_evaluator = FitnessCache(multiple_evaluator, 10, 4)
+cache_evaluator = FitnessCache(multiple_evaluator, 10, 1)
 
 dyn_mut = DynamicMutation([mutation.name], # Target mutation layers
                 patience=3, refinement_patience=3, exploration_patience=3, # How many generations without improvements wait before realizing it got stuck in each stage

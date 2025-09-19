@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 
 import wandb
 import numpy as np
@@ -10,7 +10,7 @@ class WandbLogger(Logger):
     Logger class to log data to “Weights & Biases”.
     '''
 
-    def __init__(self, name:str=None, project:str=None, entity:str=None, group:str=None, log_fitness: bool = True, log_generator: bool = True, log_evaluator: bool = True, log_scores: bool = False):
+    def __init__(self, name:str=None, project:str=None, entity:str=None, group:str=None, log_fitness: bool = True, log_generator: bool = True, log_evaluator: bool = True, log_scores: bool = False, mode:Optional[str]=None):
         '''
         WandbLogger constructor.
 
@@ -31,6 +31,7 @@ class WandbLogger(Logger):
         self._entity = entity
         self._group = group
         self._name = name
+        self._mode = mode
 
         self._running = False
 
@@ -48,11 +49,11 @@ class WandbLogger(Logger):
 
         if self._wandb_id is None:
             self._run = wandb.init(project=self._project, entity=self._entity,
-                        group=self._group, name=self._name, 
+                        group=self._group, name=self._name, mode=self._mode, 
                         config=log, job_type="ea_optimization", resume="allow")
         else:
             self._run = wandb.init(project=self._project, entity=self._entity,
-                        group=self._group, name=self._name, 
+                        group=self._group, name=self._name, mode=self._mode,
                         config=log, job_type="ea_optimization", resume="allow", id=self._wandb_id)
 
         self._running = True
