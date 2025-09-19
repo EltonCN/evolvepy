@@ -1,7 +1,9 @@
 from typing import List
+
 import numpy as np
 
 from evolvepy.callbacks import Callback
+
 
 class DynamicMutation(Callback):
     '''
@@ -25,7 +27,7 @@ class DynamicMutation(Callback):
     REFINEMENT = 1
     EXPLORATION = 2
 
-    def __init__(self, layer_names:List[str], patience:int=10, refinement_patience:int=2, exploration_patience:int=2, refinement_steps:int=2, exploration_steps:int=5,  refinement_divider:int=2, exploration_multiplier:int=2, stop_refinement:bool=False, run:bool=True):
+    def __init__(self, layer_names: List[str], patience: int = 10, refinement_patience: int = 2, exploration_patience: int = 2, refinement_steps: int = 2, exploration_steps: int = 5,  refinement_divider: int = 2, exploration_multiplier: int = 2, stop_refinement: bool = False, run: bool = True):
         '''
         DynamicMutation constructor
 
@@ -44,7 +46,7 @@ class DynamicMutation(Callback):
         Raises:
             ValueError: raised if layer_names is not a list.
         '''
-        
+
         parameters = {}
         parameters["patience"] = patience
         parameters["refinement_patience"] = refinement_patience
@@ -56,7 +58,7 @@ class DynamicMutation(Callback):
         parameters["wait"] = 0
         parameters["step_count"] = 0
 
-        dynamic_parameters  = dict.fromkeys(list(parameters.keys()), True)
+        dynamic_parameters = dict.fromkeys(list(parameters.keys()), True)
 
         dynamic_parameters["wait"] = False
         dynamic_parameters["step_count"] = False
@@ -69,8 +71,9 @@ class DynamicMutation(Callback):
         self._stop_refinement = stop_refinement
         self._layer_names = layer_names
 
-        super().__init__(parameters=parameters, dynamic_parameters=dynamic_parameters, run=True)
-        self._best_fitness = -np.Infinity
+        super().__init__(parameters=parameters,
+                         dynamic_parameters=dynamic_parameters, run=True)
+        self._best_fitness = -np.inf
 
         self._stage = DynamicMutation.NORMAL
         self._wait = 0
@@ -96,20 +99,18 @@ class DynamicMutation(Callback):
         self._wait = self.parameters["wait"]
         self._step_count = self.parameters["step_count"]
 
-        
         max_fitness = fitness.max()
         if max_fitness > self._best_fitness:
             self._best_fitness = max_fitness
             self._wait = 0
 
             if self._stage == DynamicMutation.EXPLORATION or (self._stop_refinement and self._stage == DynamicMutation.REFINEMENT):
-                #EXPLORATION -> NORMAL
+                # EXPLORATION -> NORMAL
                 self._stage = DynamicMutation.NORMAL
                 self._restore_parameters()
                 self._step_count = 0
         else:
             self._wait += 1
-
 
         if self._stage == DynamicMutation.NORMAL and self._wait >= self._patience:
             self._wait = 0
@@ -153,16 +154,16 @@ class DynamicMutation(Callback):
         Saves original parameters of mutation layers.
         '''
         for name in self._layer_names:
-            self._original_parameters[name] = self.generator.get_parameters(name).copy()
+            self._original_parameters[name] = self.generator.get_parameters(
+                name).copy()
 
     def _restore_parameters(self) -> None:
         '''
         Restores orginal parameters of mutation layers.
         '''
         for name in self._layer_names:
-            self.generator.set_parameters(name, self._original_parameters[name])
-
-
+            self.generator.set_parameters(
+                name, self._original_parameters[name])
 
     def _refinement_step(self):
         '''
@@ -172,11 +173,15 @@ class DynamicMutation(Callback):
             parameters = self.generator.get_parameters(name)
 
             if "mutation_range_min" in parameters:
-                new_min = parameters["mutation_range_min"] / self._refinement_divider
-                new_max = parameters["mutation_range_max"] / self._refinement_divider
+                new_min = parameters["mutation_range_min"] / \
+                    self._refinement_divider
+                new_max = parameters["mutation_range_max"] / \
+                    self._refinement_divider
 
-                self.generator.set_parameter(name, "mutation_range_min", new_min)
-                self.generator.set_parameter(name, "mutation_range_max", new_max)
+                self.generator.set_parameter(
+                    name, "mutation_range_min", new_min)
+                self.generator.set_parameter(
+                    name, "mutation_range_max", new_max)
 
     def _exploration_step(self):
         '''
@@ -186,8 +191,12 @@ class DynamicMutation(Callback):
             parameters = self.generator.get_parameters(name)
 
             if "mutation_range_min" in parameters:
-                new_min = parameters["mutation_range_min"] * self._exploration_multiplier
-                new_max = parameters["mutation_range_max"] * self._exploration_multiplier
+                new_min = parameters["mutation_range_min"] * \
+                    self._exploration_multiplier
+                new_max = parameters["mutation_range_max"] * \
+                    self._exploration_multiplier
 
-                self.generator.set_parameter(name, "mutation_range_min", new_min)
-                self.generator.set_parameter(name, "mutation_range_max", new_max)
+                self.generator.set_parameter(
+                    name, "mutation_range_min", new_min)
+                self.generator.set_parameter(
+                    name, "mutation_range_max", new_max)
