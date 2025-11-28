@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 *.whl
 *.gz
+.vscode
 dist/
 .vscode
 coverage.xml

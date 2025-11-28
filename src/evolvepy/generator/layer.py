@@ -93,6 +93,15 @@ class Layer(Configurable):
 		'''
 		return self._context
 
+	def population_size(self) -> int:
+		'''
+		Returns the number of previous layers
+		
+		Returns:
+			prev_count (int): Number of previous layers
+		'''
+		return len(self._population) if self._population is not None else None
+
 	def __call__(self, population:Union[ArrayLike, None], fitness:Union[ArrayLike, None]=None, context:Union[Context, None]=None) -> np.ndarray:
 		'''
 		Generic call to use the object as a funtion call, applying the layer oparetion
@@ -167,7 +176,7 @@ class Concatenate(Layer):
 
 	def __init__(self, name: str = None):
 		'''
-		Initialization for thr Cconcatenate layer with the number of layers
+		Initialization for thr Concatenate layer with the number of layers
 		
 		Args:
 			name (string): Layer's name
